@@ -7,6 +7,8 @@
 <body>
 <h1>
 	Double Life!
+	
+	Number: ${randomPrice}
 </h1>
 </body>
 </html>
