@@ -9,7 +9,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
-import com.doublelife.doublelife.dao.Stock;
+import com.doublelife.doublelife.data.RetrievedStock;
 import com.doublelife.doublelife.services.StockService;
 import com.doublelife.doublelife.services.utils.HttpHelper;
 
@@ -29,7 +29,7 @@ import com.doublelife.doublelife.services.utils.HttpHelper;
 				
 				XMLProcessor xmlP = new XMLProcessor();
 				
-				List<Stock> lstStock = xmlP.processGetStock(document);
+				List<RetrievedStock> lstStock = xmlP.processGetStock(document);
 
 				return lstStock.get(0).getCurrentPrice();
 				} catch(Exception ex) {

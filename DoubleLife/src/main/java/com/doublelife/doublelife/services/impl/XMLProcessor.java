@@ -12,23 +12,23 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.doublelife.doublelife.dao.Stock;
+import com.doublelife.doublelife.data.RetrievedStock;
 
 
 
 public class XMLProcessor {
 
 	//convert an xml response to a list of stock 
-	public List<Stock> processGetStock(Document document) {
+	public List<RetrievedStock> processGetStock(Document document) {
 		try{
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		NodeList nl = (NodeList) xpath.evaluate("/query/results/quote", document, XPathConstants.NODESET);
 		
-		List<Stock> lstStock = new ArrayList<Stock>();
+		List<RetrievedStock> lstStock = new ArrayList<RetrievedStock>();
 
 		for(int i=0; i < nl.getLength(); i++) {
 			
-			Stock stock = new Stock();
+			RetrievedStock stock = new RetrievedStock();
 			stock.setCurrentPrice(Double.parseDouble(getNodeValueFromElement((Element) nl.item(i), "AskRealtime")));
 			stock.setStockCode(getNodeValueFromElement((Element) nl.item(i), "Symbol"));
 			stock.setStockName(getNodeValueFromElement((Element) nl.item(i), "Name"));
