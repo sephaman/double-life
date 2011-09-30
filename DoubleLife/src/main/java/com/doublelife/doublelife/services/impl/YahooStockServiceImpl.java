@@ -31,7 +31,7 @@ import com.doublelife.doublelife.services.utils.HttpHelper;
 				
 				List<Stock> lstStock = xmlP.processGetStock(document);
 
-				return 0;
+				return lstStock.get(0).getCurrentPrice();
 				} catch(Exception ex) {
 					System.out.println("Exception:" + ex.getMessage());
 					return -1;

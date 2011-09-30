@@ -6,6 +6,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+
+
 /**
  * Performs basic http functions.
  * @author Joseph McAleer
@@ -13,6 +15,10 @@ import org.apache.http.impl.client.DefaultHttpClient;
  */
 public class HttpHelper {
 
+/**
+ * @param url
+ * @return
+ */
 public static String getHttpRequestBody(String url) {
 	String returnValue = "";
 	 HttpClient httpclient = new DefaultHttpClient();
