@@ -1,6 +1,11 @@
-package com.doublelife.doublelife.dao;
+package com.doublelife.doublelife.data;
 
-public class Stock {
+/**
+ * Represents a stock retrieved from a real time market source.
+ * @author Joseph McAleer
+ *
+ */
+public class RetrievedStock {
 
 	private double currentPrice;
 	private String stockCode;
