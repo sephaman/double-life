@@ -29,7 +29,7 @@ public class HomeController {
 	public ModelAndView home() {
 		logger.info("Welcome home!");
 		ModelMap map = new ModelMap();
-		map.put("randomPrice", stockService.getPrice(""));
+		map.put("randomPrice", stockService.getPrice("WBC.AX"));
 		return new ModelAndView("home", map);
 	}
 	
