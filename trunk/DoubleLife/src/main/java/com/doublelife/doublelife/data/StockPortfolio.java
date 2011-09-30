@@ -3,7 +3,10 @@
  */
 package com.doublelife.doublelife.data;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.doublelife.doublelife.UserStockHolding;
 
@@ -22,5 +25,29 @@ public class StockPortfolio extends AbstractAsset {
 
 	public void setLstStocks(List<UserStockHolding> lstStocks) {
 		this.lstStocks = lstStocks;
+	}
+	
+	/**
+	 * Returns the list of stock codes from this portfolio.
+	 * @return
+	 */
+	public List<String> getPortfolioStockCodes() {
+		List<String> lstStockCodes = new ArrayList<String>();
+		for (UserStockHolding thisStock : getLstStocks()) {
+			lstStockCodes.add(thisStock.getStockCode());
+		}
+		return lstStockCodes;
+	}
+	
+	/**
+	 * Gets the stock holdings mapped to it's code for easy reference.
+	 * @return
+	 */
+	public Map<String, UserStockHolding> getHoldingsMappedToStockCode() {
+		Map<String, UserStockHolding> mappedStocks = new HashMap<String, UserStockHolding>();
+		for (UserStockHolding thisStockHolding : getLstStocks()) {
+			mappedStocks.put(thisStockHolding.getStockCode(), thisStockHolding);
+		}
+		return mappedStocks;
 	}
 }
