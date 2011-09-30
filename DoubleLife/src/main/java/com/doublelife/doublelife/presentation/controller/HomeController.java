@@ -1,5 +1,8 @@
 package com.doublelife.doublelife.presentation.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +32,9 @@ public class HomeController {
 	public ModelAndView home() {
 		logger.info("Welcome home!");
 		ModelMap map = new ModelMap();
-		map.put("randomPrice", stockService.getPrice("WBC.AX"));
+		List<String> lstStocks = new ArrayList<String>();
+		lstStocks.add("WBC.AX");
+		map.put("randomPrice", stockService.retrieveStocks(lstStocks));
 		return new ModelAndView("home", map);
 	}
 	
