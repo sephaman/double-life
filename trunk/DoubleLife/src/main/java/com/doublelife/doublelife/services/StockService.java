@@ -3,9 +3,9 @@ package com.doublelife.doublelife.services;
 import java.util.List;
 import java.util.Map;
 
-import com.doublelife.doublelife.UserStockHolding;
-import com.doublelife.doublelife.data.RetrievedStock;
-import com.doublelife.doublelife.data.StockPortfolio;
+import com.doublelife.doublelife.data.asset.stocks.RetrievedStock;
+import com.doublelife.doublelife.data.asset.stocks.StockPortfolio;
+import com.doublelife.doublelife.data.asset.stocks.UserStockHolding;
 
 /**
  * StockService interface that defines functionality for retrieving stock prices.
