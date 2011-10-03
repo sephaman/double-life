@@ -18,6 +18,8 @@ public class Bet {
 	private boolean userWins;
 	private double userStake;
 	private boolean pending;
+	private long selectionId;
+	private BetResult betResult;
 	/**
 	 * @return the user
 	 */
@@ -101,6 +103,30 @@ public class Bet {
 	 */
 	public void setPending(boolean pending) {
 		this.pending = pending;
+	}
+	/**
+	 * @return the selectionId
+	 */
+	public long getSelectionId() {
+		return selectionId;
+	}
+	/**
+	 * @param selectionId the selectionId to set
+	 */
+	public void setSelectionId(long selectionId) {
+		this.selectionId = selectionId;
+	}
+	/**
+	 * @param betResult the betResult to set
+	 */
+	public void setBetResult(BetResult betResult) {
+		this.betResult = betResult;
+	}
+	/**
+	 * @return the betResult
+	 */
+	public BetResult getBetResult() {
+		return betResult;
 	}
 	
 }
