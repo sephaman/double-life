@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.doublelife.doublelife.data.asset.stocks.RetrievedStock;
+import com.doublelife.doublelife.data.asset.stocks.StockOrder;
 import com.doublelife.doublelife.data.asset.stocks.StockPortfolio;
 import com.doublelife.doublelife.data.asset.stocks.UserStockHolding;
 
@@ -16,6 +17,7 @@ public interface StockService {
 
 	/**
 	 * Returns the current price for the given stock code.
+	 * @param lstStockCodes 
 	 * @param stockCode 
 	 * @return current price of stock code.
 	 */
@@ -26,11 +28,24 @@ public interface StockService {
 	 * to be compared to current prices.
 	 * 
 	 * Consider getting data from database instead (??)
+	 * @param stockPortFolio 
 	 * 
 	 * @param userStockHolding
 	 * @return
 	 */
 	public Map<UserStockHolding, RetrievedStock> getStockMappings(StockPortfolio stockPortFolio);
+	
+	/**
+	 * Perform a buy of stock.
+	 * @param stockOrder
+	 */
+	public void buyUserStock(StockOrder stockOrder);
+	
+	/**
+	 * Perform a sell of stock.
+	 * @param stockOrder
+	 */
+	public void sellUserStock(StockOrder stockOrder);
 	
 }
 
