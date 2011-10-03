@@ -8,7 +8,7 @@ package com.doublelife.doublelife.data.BetComp;
  *
  */
 public enum BetResult {
-
+    PENDING,
 	WIN,
 	LOSE,
 	DRAW ;
