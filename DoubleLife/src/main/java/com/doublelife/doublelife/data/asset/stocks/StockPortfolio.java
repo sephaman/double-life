@@ -1,14 +1,14 @@
 /**
  * 
  */
-package com.doublelife.doublelife.data;
+package com.doublelife.doublelife.data.asset.stocks;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.doublelife.doublelife.UserStockHolding;
+import com.doublelife.doublelife.data.asset.AbstractAsset;
 
 /**
  * Represents a stock portfolio that contains information for all stocks held.
