@@ -13,5 +13,5 @@ public enum PropertyType {
 	LAND,
 	HOUSE,
 	APARTMENT,
-	TOWNHOUSE
+	TOWNHOUSE;
 }
