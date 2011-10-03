@@ -16,3 +16,15 @@ CREATE TABLE "bet" (
     betResult integer NOT NULL,
     moneyPaid float NOT NULL default(0.00)
 );
+
+CREATE TABLE "userstock" (
+    id        integer PRIMARY KEY,
+    userID       integer NOT NULL,
+    quantity         integer NOT NULL,
+    basePrice   float NOT NULL,
+    stockCode    varchar(10) NOT NULL,
+    buyDate date NOT NULL,
+    sellDate date default(null),
+    buyTotal float NOT NULL,
+    sellTotal float default(null)
+);
