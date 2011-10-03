@@ -11,6 +11,7 @@
 
 	<bean id="stockService"
 		class="com.doublelife.doublelife.services.impl.YahooStockServiceImpl">
+		<property name="userStockDAO" ref="userStockDAO"></property>
 	</bean>
 	
 	<bean id="userBettingService"
@@ -30,5 +31,9 @@
 	
 	<bean id="userDAO"
 		class="com.doublelife.doublelife.data.dao.hibernate.HibernateUserDAO">
+	</bean>
+	
+	<bean id="userStockDAO"
+		class="com.doublelife.doublelife.data.dao.hibernate.HibernateUserStockDAO">
 	</bean>
 </beans>
