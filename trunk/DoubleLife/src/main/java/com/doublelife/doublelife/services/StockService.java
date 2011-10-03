@@ -40,12 +40,29 @@ public interface StockService {
 	 * @param stockOrder
 	 */
 	public void buyUserStock(StockOrder stockOrder);
-	
 	/**
 	 * Perform a sell of stock.
 	 * @param stockOrder
 	 */
 	public void sellUserStock(StockOrder stockOrder);
 	
+	/**
+	 * Generates a buy stockorder with the given values.
+	 * @param userId
+	 * @param quantity
+	 * @param price
+	 * @param isBuy
+	 * @return
+	 */
+	public StockOrder generateBuyStockOrder(long userId, int quantity, double price,
+			 RetrievedStock retrievedStock);
+	
+	/**
+	 * Generates a sell stock order with the given values.
+	 * @param userId
+	 * @param userStockHolding
+	 * @return
+	 */
+	public StockOrder generateSellStockOrder(long userId, UserStockHolding userStockHolding);
 }
 
