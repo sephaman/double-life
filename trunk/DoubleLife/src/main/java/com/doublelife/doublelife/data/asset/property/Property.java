@@ -1,7 +1,10 @@
 /**
  * 
  */
-package com.doublelife.doublelife.data;
+package com.doublelife.doublelife.data.asset.property;
+
+import com.doublelife.doublelife.data.User;
+import com.doublelife.doublelife.data.asset.AbstractAsset;
 
 /**
  * Represents a property asset.

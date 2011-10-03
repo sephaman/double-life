@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.doublelife.doublelife.data;
+package com.doublelife.doublelife.data.asset.property;
 
 /**
  * Enum for different property types.
