@@ -11,9 +11,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
-import com.doublelife.doublelife.UserStockHolding;
-import com.doublelife.doublelife.data.RetrievedStock;
-import com.doublelife.doublelife.data.StockPortfolio;
+import com.doublelife.doublelife.data.asset.stocks.RetrievedStock;
+import com.doublelife.doublelife.data.asset.stocks.StockPortfolio;
+import com.doublelife.doublelife.data.asset.stocks.UserStockHolding;
 import com.doublelife.doublelife.services.StockService;
 import com.doublelife.doublelife.services.utils.HttpHelper;
 
