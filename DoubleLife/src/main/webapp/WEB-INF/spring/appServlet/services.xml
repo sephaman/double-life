@@ -17,9 +17,18 @@
 		class="com.doublelife.doublelife.services.impl.UserBettingServiceImpl">
 		<property name="userBettingDAO" ref="userBettingDAO"></property>
 	</bean>
+	
+	<bean id="loginService"
+		class="com.doublelife.doublelife.services.impl.LoginServiceImpl">
+		<property name="userDAO" ref="userDAO"></property>
+	</bean>
 
 <!-- DAOs -->
 	<bean id="userBettingDAO"
 		class="com.doublelife.doublelife.data.dao.hibernate.HibernateUserBettingDAO">
+	</bean>
+	
+	<bean id="userDAO"
+		class="com.doublelife.doublelife.data.dao.hibernate.HibernateUserDAO">
 	</bean>
 </beans>
