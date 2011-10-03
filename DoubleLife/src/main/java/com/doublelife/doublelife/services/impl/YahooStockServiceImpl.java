@@ -12,6 +12,7 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
 import com.doublelife.doublelife.data.asset.stocks.RetrievedStock;
+import com.doublelife.doublelife.data.asset.stocks.StockOrder;
 import com.doublelife.doublelife.data.asset.stocks.StockPortfolio;
 import com.doublelife.doublelife.data.asset.stocks.UserStockHolding;
 import com.doublelife.doublelife.services.StockService;
@@ -73,5 +74,23 @@ import com.doublelife.doublelife.services.utils.HttpHelper;
 				mappedStocks.put(mappedUserHoldings.get(thisRetrievedStock.getStockCode()), thisRetrievedStock);
 			}
 			return mappedStocks;
+		}
+
+		/* (non-Javadoc)
+		 * @see com.doublelife.doublelife.services.StockService#buyUserStock(com.doublelife.doublelife.data.asset.stocks.StockOrder)
+		 */
+		@Override
+		public void buyUserStock(StockOrder stockOrder) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		/* (non-Javadoc)
+		 * @see com.doublelife.doublelife.services.StockService#sellUserStock(com.doublelife.doublelife.data.asset.stocks.StockOrder)
+		 */
+		@Override
+		public void sellUserStock(StockOrder stockOrder) {
+			// TODO Auto-generated method stub
+			
 		}
 }
