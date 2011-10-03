@@ -111,4 +111,23 @@ import com.doublelife.doublelife.services.utils.HttpHelper;
 		public UserStockDAO getUserStockDAO() {
 			return userStockDAO;
 		}
+
+		/**
+		 * @see com.doublelife.doublelife.services.StockService#generateStockOrder(long, int, double, boolean)
+		 */
+		public StockOrder generateBuyStockOrder(long userId, int quantity,
+				double price, RetrievedStock retrievedStock) {
+			StockOrder stockOrder = new StockOrder();
+			
+			return stockOrder;
+		}
+
+		/**
+		 * @see com.doublelife.doublelife.services.StockService#generateSellStockOrder(long, com.doublelife.doublelife.data.asset.stocks.UserStockHolding)
+		 */
+		public StockOrder generateSellStockOrder(long userId,
+				UserStockHolding userStockHolding) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 }
