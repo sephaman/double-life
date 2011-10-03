@@ -1,4 +1,4 @@
-package com.doublelife.doublelife;
+package com.doublelife.doublelife.data.asset.stocks;
 
 import java.util.Date;
 

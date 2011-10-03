@@ -1,4 +1,4 @@
-package com.doublelife.doublelife.data.dao;
+package com.doublelife.doublelife.data.asset.stocks;
 
 public class Stock {
 

@@ -1,4 +1,4 @@
-package com.doublelife.doublelife.data;
+package com.doublelife.doublelife.data.asset.stocks;
 
 /**
  * Represents a stock retrieved from a real time market source.
