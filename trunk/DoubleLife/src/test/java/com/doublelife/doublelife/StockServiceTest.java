@@ -8,8 +8,9 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import com.doublelife.doublelife.data.RetrievedStock;
-import com.doublelife.doublelife.data.StockPortfolio;
+import com.doublelife.doublelife.data.asset.stocks.RetrievedStock;
+import com.doublelife.doublelife.data.asset.stocks.StockPortfolio;
+import com.doublelife.doublelife.data.asset.stocks.UserStockHolding;
 import com.doublelife.doublelife.services.impl.YahooStockServiceImpl;
 
 
