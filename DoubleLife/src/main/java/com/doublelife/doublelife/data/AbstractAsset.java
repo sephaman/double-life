@@ -10,7 +10,7 @@ package com.doublelife.doublelife.data;
  */
 public abstract class AbstractAsset {
 
-	private double value;
+	protected double value;
 	private String name;
 	private String type;
 	
