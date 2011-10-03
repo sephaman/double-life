@@ -34,7 +34,7 @@ public class HomeController {
 		ModelMap map = new ModelMap();
 		List<String> lstStocks = new ArrayList<String>();
 		lstStocks.add("WBC.AX");
-		map.put("randomPrice", stockService.retrieveStocks(lstStocks));
+		map.put("randomPrice", stockService.retrieveStocks(lstStocks).get(0).getCurrentPrice());
 		return new ModelAndView("home", map);
 	}
 	
