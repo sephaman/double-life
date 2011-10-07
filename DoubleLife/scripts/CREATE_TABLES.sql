@@ -24,7 +24,14 @@ CREATE TABLE "userstock" (
     basePrice   float NOT NULL,
     stockCode    varchar(10) NOT NULL,
     buyDate date NOT NULL,
-    sellDate date default(null),
-    buyTotal float NOT NULL,
-    sellTotal float default(null)
+    marketValue float NOT NULL,
+);
+
+CREATE TABLE "stockorder" (
+    id        integer PRIMARY KEY,
+    userID       integer NOT NULL,
+    quantity         integer NOT NULL,
+    price   float NOT NULL,
+    stockCode    varchar(10) NOT NULL,
+    dateReceived date NOT NULL
 );
