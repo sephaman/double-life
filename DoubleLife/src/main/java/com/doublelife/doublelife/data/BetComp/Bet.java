@@ -25,11 +25,8 @@ public class Bet {
 	@Column(name = "userId")
 	private long userId;
 	
-	@Transient
-	private OddsRatio odds;
-	
-	@Transient
-	private BetEvent betEvent;
+	@Column(name = "odds", nullable = false)
+	private String oddsString;
 	
 	@Column(name = "dateReceived", nullable = false)
 	private Date dateReceived;
@@ -49,6 +46,19 @@ public class Bet {
 	@Column(name = "betEventId", nullable = false)
 	private long betEventId;
 
+	@Transient
+	private OddsRatio odds;
+	
+	@Transient
+	private BetEvent betEvent;
+	
+	/**
+	 * default constructor.
+	 */
+	public Bet() {
+		odds = new OddsRatio(oddsString);
+	}
+	
 	/**
 	 * @return the user
 	 */
@@ -56,6 +66,7 @@ public class Bet {
 		return userId;
 	}
 	/**
+	 * @param userId 
 	 * @param user the user to set
 	 */
 	public void setUserId(long userId) {
@@ -168,6 +179,18 @@ public class Bet {
 	 */
 	public long getBetEventId() {
 		return betEventId;
+	}
+	/**
+	 * @param oddsString the oddsString to set
+	 */
+	public void setOddsString(String oddsString) {
+		this.oddsString = oddsString;
+	}
+	/**
+	 * @return the oddsString
+	 */
+	public String getOddsString() {
+		return oddsString;
 	}
 	
 }
