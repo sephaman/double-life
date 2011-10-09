@@ -36,7 +36,7 @@ import com.doublelife.doublelife.services.utils.HttpHelper;
 				DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 				Document document = builder.parse(new InputSource(new StringReader(HttpHelper.getHttpRequestBody(constructedRequest))));
 				
-				XMLProcessor xmlP = new XMLProcessor();
+				YahooXMLProcessor xmlP = new YahooXMLProcessor();
 				
 				List<RetrievedStock> lstStock = xmlP.processGetStock(document);
 
