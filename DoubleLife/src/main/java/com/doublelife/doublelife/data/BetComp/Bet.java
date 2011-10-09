@@ -2,35 +2,64 @@ package com.doublelife.doublelife.data.BetComp;
 
 import java.util.Date;
 
-import com.doublelife.doublelife.data.User;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 
 /**
  * Represents a single bet made by a user.
  * @author Joseph McAleer
  *
  */
+@Entity (name = "bet")
 public class Bet {
 
-	private User user;
-	private OddsRatio odds; 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private long id;
+	
+	@Column(name = "userId")
+	private long userId;
+	
+	@Transient
+	private OddsRatio odds;
+	
+	@Transient
 	private BetEvent betEvent;
+	
+	@Column(name = "datereceived", nullable = false)
 	private Date dateReceived;
-	private boolean userWins;
-	private double userStake;
+	
+	@Column(name = "stake", nullable = false)
+	private double stake;
+	
+	@Transient
 	private boolean pending;
+	
+	@Column(name = "selectionid", nullable = false)
 	private long selectionId;
+	
+	@Column(name = "betResult", nullable = false)
 	private BetResult betResult;
+	
+	@Column(name = "moneyPaid", nullable = false)
+	private double moneyPaid;
+
 	/**
 	 * @return the user
 	 */
-	public User getUser() {
-		return user;
+	public long getUserId() {
+		return userId;
 	}
 	/**
 	 * @param user the user to set
 	 */
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 	/**
 	 * @return the odds
@@ -69,30 +98,6 @@ public class Bet {
 		this.dateReceived = dateReceived;
 	}
 	/**
-	 * @return the userWins
-	 */
-	public boolean isUserWins() {
-		return userWins;
-	}
-	/**
-	 * @param userWins the userWins to set
-	 */
-	public void setUserWins(boolean userWins) {
-		this.userWins = userWins;
-	}
-	/**
-	 * @return the userStake
-	 */
-	public double getUserStake() {
-		return userStake;
-	}
-	/**
-	 * @param userStake the userStake to set
-	 */
-	public void setUserStake(double userStake) {
-		this.userStake = userStake;
-	}
-	/**
 	 * @return the pending
 	 */
 	public boolean isPending() {
@@ -127,6 +132,42 @@ public class Bet {
 	 */
 	public BetResult getBetResult() {
 		return betResult;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+	/**
+	 * @param stake the stake to set
+	 */
+	public void setStake(double stake) {
+		this.stake = stake;
+	}
+	/**
+	 * @return the stake
+	 */
+	public double getStake() {
+		return stake;
+	}
+	/**
+	 * @param moneyPaid the moneyPaid to set
+	 */
+	public void setMoneyPaid(double moneyPaid) {
+		this.moneyPaid = moneyPaid;
+	}
+	/**
+	 * @return the moneyPaid
+	 */
+	public double getMoneyPaid() {
+		return moneyPaid;
 	}
 	
 }

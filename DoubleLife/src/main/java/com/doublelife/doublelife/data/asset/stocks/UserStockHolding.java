@@ -18,7 +18,7 @@ import javax.persistence.Transient;
 public class UserStockHolding {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false)
 	private long id;
 	
