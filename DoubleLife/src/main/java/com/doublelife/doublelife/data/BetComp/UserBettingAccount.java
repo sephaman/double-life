@@ -3,29 +3,33 @@
  */
 package com.doublelife.doublelife.data.BetComp;
 
-import com.doublelife.doublelife.data.User;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * Represents a user's betting account.
  * @author Joseph McAleer
  *
  */
+@Entity (name = "user_betting_account")
 public class UserBettingAccount {
 
-	private User user;
+	@Id
+	@Column(name = "id", nullable = false)
+	private long id;
+	
+	@Column(name = "userId", nullable = false)
+	private long userId;
+	
+	@Column(name = "amount", nullable = false)
 	private Double amountAvailable;
-	/**
-	 * @return the user
-	 */
-	public User getUser() {
-		return user;
-	}
-	/**
-	 * @param user the user to set
-	 */
-	public void setUser(User user) {
-		this.user = user;
-	}
+	
+	@Column(name = "updateDateTime", nullable = false)
+	private Date updateDateTime;
+	
 	/**
 	 * @return the amountAvailable
 	 */
@@ -37,6 +41,42 @@ public class UserBettingAccount {
 	 */
 	public void setAmountAvailable(Double amountAvailable) {
 		this.amountAvailable = amountAvailable;
+	}
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+	/**
+	 * @return the userId
+	 */
+	public long getUserId() {
+		return userId;
+	}
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+	/**
+	 * @param dateUpdated the dateUpdated to set
+	 */
+	public void setDateUpdated(Date dateUpdated) {
+		this.updateDateTime = dateUpdated;
+	}
+	/**
+	 * @return the dateUpdated
+	 */
+	public Date getDateUpdated() {
+		return updateDateTime;
 	}
 	
 }
