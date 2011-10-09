@@ -12,7 +12,7 @@ public enum BetResult {
     PENDING,
 	WIN,
 	LOSE,
-	DRAW ;
+	DRAW,
+	CANCELLED;
     
-    //cancelled?
 }
