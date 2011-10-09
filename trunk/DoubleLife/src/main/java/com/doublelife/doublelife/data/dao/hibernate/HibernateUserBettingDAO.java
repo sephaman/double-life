@@ -106,6 +106,7 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		List<Bet> retVal = null;
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Bet.class);
 		detachedCriteria.add(Property.forName("betEventId").eq(betEventId));
+		detachedCriteria.add(Property.forName("betResult").eq(BetResult.PENDING));
 		
 		try {
 			retVal = (List<Bet>) hibernate.findByCriteria(detachedCriteria);

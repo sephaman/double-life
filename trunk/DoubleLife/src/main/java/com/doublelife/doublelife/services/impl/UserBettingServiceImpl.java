@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.doublelife.doublelife.data.BetComp.Bet;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
+import com.doublelife.doublelife.data.BetComp.BetResult;
 import com.doublelife.doublelife.data.dao.UserBettingDAO;
 import com.doublelife.doublelife.services.UserBettingService;
 
@@ -36,7 +37,17 @@ public class UserBettingServiceImpl implements UserBettingService {
 	 * @see com.doublelife.doublelife.services.UserBettingService#processBetResults(com.doublelife.doublelife.data.BetComp.BetEvent)
 	 */
 	public void processBetResults(BetEvent betEvent) {
-		
+		List<Bet> lstBets = userBettingDAO.getBetsByBetEvent(betEvent.getId());
+		for (Bet thisBet : lstBets) {
+			if (thisBet.getSelectionId() == betEvent.getSelectionWinnerId()) {
+				thisBet.setBetResult(BetResult.WIN);
+				thisBet.setMoneyPaid(thisBet.getStake() * thisBet.getOdds().getOddsAsMultiplier());
+			} else {
+				thisBet.setBetResult(BetResult.LOSE);
+				thisBet.setMoneyPaid(thisBet.getStake() * -1);
+			}
+			userBettingDAO.updateAllBets(lstBets);
+		}
 	}
 	
 	/**
