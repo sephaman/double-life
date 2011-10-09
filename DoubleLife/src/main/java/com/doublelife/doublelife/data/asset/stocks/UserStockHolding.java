@@ -2,17 +2,36 @@ package com.doublelife.doublelife.data.asset.stocks;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+
 /**
  * Represents stock held by a user.
  * @author Joseph McAleer
  */
+@Entity (name = "userstock")
 public class UserStockHolding {
 
+	@Id
+	@Column(name = "id", nullable = false)
+	private long id;
+	
+	@Column(name = "stockCode", nullable = false)
 	private String stockCode;
+	
 	private String stockName;
+	
+	@Column(name = "costBasis", nullable = false)
 	private double costBasis;
+	
+	@Column(name = "quantityHeld", nullable = false)
 	private long quantityHeld;
+	
+	@Column(name = "dateAcquired", nullable = false)
 	private Date dateAcquired;
+	
 	private boolean isActive;
 	
 	public String getStockCode() {
@@ -50,5 +69,17 @@ public class UserStockHolding {
 	}
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
 	}
 }
