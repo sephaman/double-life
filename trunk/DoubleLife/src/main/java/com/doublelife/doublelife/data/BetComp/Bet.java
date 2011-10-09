@@ -31,7 +31,7 @@ public class Bet {
 	@Transient
 	private BetEvent betEvent;
 	
-	@Column(name = "datereceived", nullable = false)
+	@Column(name = "dateReceived", nullable = false)
 	private Date dateReceived;
 	
 	@Column(name = "stake", nullable = false)
@@ -48,6 +48,9 @@ public class Bet {
 	
 	@Column(name = "moneyPaid", nullable = false)
 	private double moneyPaid;
+	
+	@Column(name = "betEventId", nullable = false)
+	private long betEventId;
 
 	/**
 	 * @return the user
@@ -168,6 +171,18 @@ public class Bet {
 	 */
 	public double getMoneyPaid() {
 		return moneyPaid;
+	}
+	/**
+	 * @param betEventId the betEventId to set
+	 */
+	public void setBetEventId(long betEventId) {
+		this.betEventId = betEventId;
+	}
+	/**
+	 * @return the betEventId
+	 */
+	public long getBetEventId() {
+		return betEventId;
 	}
 	
 }

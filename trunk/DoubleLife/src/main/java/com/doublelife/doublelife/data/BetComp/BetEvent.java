@@ -10,10 +10,13 @@ import java.util.List;
  */
 public class BetEvent {
 
+	private long id;
 	private BetEventType eventType;  //store in database
 	private Date dateTime;
-	private List<String> lstCompetitors;  //may not belong here
+	private List<Long> lstBetParticipantIds;  //may not belong here
 	private boolean isOutcomePending;
+	private long selectionWinnerId;
+
 	/**
 	 * @return the eventType
 	 */
@@ -51,24 +54,48 @@ public class BetEvent {
 		this.isOutcomePending = isOutcomePending;
 	}
 	
-	/**
-	 * @return the lstCompetitors
-	 */
-	public List<String> getLstCompetitors() {
-		return lstCompetitors;
-	}
-	/**
-	 * @param lstCompetitors the lstCompetitors to set
-	 */
-	public void setLstCompetitors(List<String> lstCompetitors) {
-		this.lstCompetitors = lstCompetitors;
-	}
 	
 	/**
 	 * Returns true if there are more than two competing entities.
 	 * @return
 	 */
 	public boolean isMoreThanTwoCompetitors() {
-		return lstCompetitors.size() > 2;
+		return lstBetParticipantIds.size() > 2;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+	/**
+	 * @param selectionWinnerId the selectionWinnerId to set
+	 */
+	public void setSelectionWinnerId(long selectionWinnerId) {
+		this.selectionWinnerId = selectionWinnerId;
+	}
+	/**
+	 * @return the selectionWinnerId
+	 */
+	public long getSelectionWinnerId() {
+		return selectionWinnerId;
+	}
+	/**
+	 * @param lstBetParticipantIds the lstBetParticipantIds to set
+	 */
+	public void setLstBetParticipantIds(List<Long> lstBetParticipantIds) {
+		this.lstBetParticipantIds = lstBetParticipantIds;
+	}
+	/**
+	 * @return the lstBetParticipantIds
+	 */
+	public List<Long> getLstBetParticipantIds() {
+		return lstBetParticipantIds;
 	}
 }
