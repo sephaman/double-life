@@ -41,4 +41,11 @@ public interface UserBettingDAO {
 	 * @return true if successful
 	 */
 	public boolean saveBet(Bet bet);
+	
+	
+	/**
+	 * Returns all bets for the given bet event.
+	 * @param betEventId
+	 */
+	public List<Bet> getBetsByBetEvent(long betEventId);
 }

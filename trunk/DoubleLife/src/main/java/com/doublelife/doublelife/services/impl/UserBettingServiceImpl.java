@@ -6,6 +6,7 @@ package com.doublelife.doublelife.services.impl;
 import java.util.List;
 
 import com.doublelife.doublelife.data.BetComp.Bet;
+import com.doublelife.doublelife.data.BetComp.BetEvent;
 import com.doublelife.doublelife.data.dao.UserBettingDAO;
 import com.doublelife.doublelife.services.UserBettingService;
 
@@ -21,9 +22,23 @@ public class UserBettingServiceImpl implements UserBettingService {
 	 * @see com.doublelife.doublelife.services.UserBettingService#getUserPendingBets(long)
 	 */
 	public List<Bet> getUserPendingBets(long userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return userBettingDAO.getUserPendingBets(userId);
 	}
+	
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#createBet(com.doublelife.doublelife.data.BetComp.Bet)
+	 */
+	public boolean createBet(Bet bet) {
+		return userBettingDAO.saveBet(bet);
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#processBetResults(com.doublelife.doublelife.data.BetComp.BetEvent)
+	 */
+	public void processBetResults(BetEvent betEvent) {
+		
+	}
+	
 	/**
 	 * @return the userBettingDAO
 	 */
