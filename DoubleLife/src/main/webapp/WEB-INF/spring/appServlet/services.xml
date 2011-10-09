@@ -35,5 +35,6 @@
 	
 	<bean id="userStockDAO"
 		class="com.doublelife.doublelife.data.dao.hibernate.HibernateUserStockDAO">
+		<constructor-arg ref="sessionFactory"></constructor-arg>
 	</bean>
 </beans>

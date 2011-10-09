@@ -25,4 +25,6 @@
 	
 	<beans:import resource="services.xml" />
 	
+	<beans:import resource="doublelife-common-context.xml"/>
+	
 </beans:beans>
