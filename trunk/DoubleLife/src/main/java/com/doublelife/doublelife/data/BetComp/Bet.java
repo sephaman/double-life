@@ -37,9 +37,6 @@ public class Bet {
 	@Column(name = "stake", nullable = false)
 	private double stake;
 	
-	@Transient
-	private boolean pending;
-	
 	@Column(name = "selectionid", nullable = false)
 	private long selectionId;
 	
@@ -99,18 +96,6 @@ public class Bet {
 	 */
 	public void setDateReceived(Date dateReceived) {
 		this.dateReceived = dateReceived;
-	}
-	/**
-	 * @return the pending
-	 */
-	public boolean isPending() {
-		return pending;
-	}
-	/**
-	 * @param pending the pending to set
-	 */
-	public void setPending(boolean pending) {
-		this.pending = pending;
 	}
 	/**
 	 * @return the selectionId
