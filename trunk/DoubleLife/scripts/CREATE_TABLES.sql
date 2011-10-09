@@ -35,3 +35,26 @@ CREATE TABLE "stockorder" (
     stockCode    varchar(10) NOT NULL,
     dateReceived date NOT NULL
 );
+
+CREATE TABLE bet_participant
+(
+   id integer PRIMARY KEY,
+   name    varchar(50) NOT NULL,
+   updateDateTime date NOT NULL,
+   primaryBetEventTypeId integer
+); 
+
+CREATE TABLE bet_event_type
+(
+	id integer PRIMARY KEY,
+   name    varchar(50) NOT NULL,
+   updateDateTime date NOT NULL
+);
+
+CREATE TABLE user_betting_account
+(
+	id integer PRIMARY KEY,
+   userid    integer NOT NULL,
+   amount float NOT NULL,
+   updateDateTime date NOT NULL
+);
