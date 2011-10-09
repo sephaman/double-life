@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 
 /**
@@ -21,6 +22,7 @@ public class UserStockHolding {
 	@Column(name = "stockCode", nullable = false)
 	private String stockCode;
 	
+	@Transient
 	private String stockName;
 	
 	@Column(name = "costBasis", nullable = false)
@@ -32,6 +34,7 @@ public class UserStockHolding {
 	@Column(name = "dateAcquired", nullable = false)
 	private Date dateAcquired;
 	
+	@Transient
 	private boolean isActive;
 	
 	public String getStockCode() {
