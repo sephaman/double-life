@@ -3,12 +3,15 @@
  */
 package com.doublelife.doublelife.data.BetComp;
 
+import javax.persistence.Entity;
+
 
 /**
  * Represents a BetEventType.
  * @author Joseph McAleer
  *
  */
+@Entity (name = "bet_event_type")
 public class BetEventType {
 	
 	private long id;
