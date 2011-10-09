@@ -3,7 +3,14 @@
  */
 package com.doublelife.doublelife.data.BetComp;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 
 
 /**
@@ -14,10 +21,17 @@ import javax.persistence.Entity;
 @Entity (name = "bet_event_type")
 public class BetEventType {
 	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	@Column(name = "id")
 	private long id;
-	private String sportName;
-	private String eventName;
 	
+	@Column(name = "name")
+	private String name;
+	
+	@Column(name = "updateDateTime")
+	private Date updateDateTime;
 	/**
 	 * @return the id
 	 */
@@ -31,28 +45,27 @@ public class BetEventType {
 		this.id = id;
 	}
 	/**
-	 * @return the sportName
+	 * @param updateDateTime the updateDateTime to set
 	 */
-	public String getSportName() {
-		return sportName;
+	public void setUpdateDateTime(Date updateDateTime) {
+		this.updateDateTime = updateDateTime;
 	}
 	/**
-	 * @param sportName the sportName to set
+	 * @return the updateDateTime
 	 */
-	public void setSportName(String sportName) {
-		this.sportName = sportName;
+	public Date getUpdateDateTime() {
+		return updateDateTime;
 	}
 	/**
-	 * @return the eventName
+	 * @param name the name to set
 	 */
-	public String getEventName() {
-		return eventName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	/**
-	 * @param eventName the eventName to set
+	 * @return the name
 	 */
-	public void setEventName(String eventName) {
-		this.eventName = eventName;
+	public String getName() {
+		return name;
 	}
-	
 }

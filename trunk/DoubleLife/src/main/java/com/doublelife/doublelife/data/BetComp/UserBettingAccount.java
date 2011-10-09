@@ -7,6 +7,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -18,7 +20,8 @@ import javax.persistence.Id;
 public class UserBettingAccount {
 
 	@Id
-	@Column(name = "id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	@Column(name = "id")
 	private long id;
 	
 	@Column(name = "userId", nullable = false)
