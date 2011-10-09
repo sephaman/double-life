@@ -114,5 +114,21 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		}
 		return retVal;
 	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#updateAllBets(java.util.List)
+	 */
+	public boolean updateAllBets(final List<Bet> lstBets) {
+		boolean retval = false;
+		logger.debug("Saving bets collection.");
+		try {
+			hibernate.saveOrUpdateAll(lstBets);
+			retval = true;
+		} catch (DataAccessException e) {
+			logger.error("Error saving bets collection.", e);
+			throw e;
+		}
+		return retval;
+	}
 
 }

@@ -46,6 +46,13 @@ public interface UserBettingDAO {
 	/**
 	 * Returns all bets for the given bet event.
 	 * @param betEventId
+	 * @return 
 	 */
 	public List<Bet> getBetsByBetEvent(long betEventId);
+	
+	/**
+	 * @param lstBets
+	 * @return
+	 */
+	public boolean updateAllBets(List<Bet> lstBets);
 }
