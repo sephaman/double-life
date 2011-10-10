@@ -13,7 +13,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.doublelife.doublelife.data.BetComp.Bet;
+import com.doublelife.doublelife.data.BetComp.BetEvent;
 import com.doublelife.doublelife.data.BetComp.BetResult;
+import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
 
 
 
@@ -44,6 +46,32 @@ public class UserBettingDAOTest {
 		bet.setOddsString("3:4");
 		
 		Assert.assertTrue(userBettingDAO.saveBet(bet));
+	}
+	
+	/**
+	 * Test creation of bet event.
+	 */
+	@Test
+	public void testCreateBetEventAndParticipants() {
+		BetEvent betEvent = new BetEvent();
+		betEvent.setDateTime(new Date());
+		betEvent.setBetEventTypeId(3L);
+		betEvent.setOutcomePending(0);
+		betEvent.setSelectionWinnerId(0);
+		userBettingDAO.createBetEvent(betEvent);
+	}
+	
+	/**
+	 * Tests creation of a user betting account.
+	 */
+	@Test
+	public void testCreateUserBettingAccount() {
+		UserBettingAccount bettingAccount = new UserBettingAccount();
+		bettingAccount.setAmountAvailable(100.00);
+		bettingAccount.setDateUpdated(new Date());
+		bettingAccount.setUserId(444L);
+		
+		userBettingDAO.createUserBettingAccount(bettingAccount);
 	}
 
 	/**
