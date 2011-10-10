@@ -15,7 +15,9 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.doublelife.doublelife.data.BetComp.Bet;
+import com.doublelife.doublelife.data.BetComp.BetEvent;
 import com.doublelife.doublelife.data.BetComp.BetResult;
+import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
 import com.doublelife.doublelife.data.dao.UserBettingDAO;
 
 /**
@@ -127,6 +129,38 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 			retval = true;
 		} catch (DataAccessException e) {
 			logger.error("Error saving bets collection.", e);
+			throw e;
+		}
+		return retval;
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#createBetEvent(com.doublelife.doublelife.data.BetComp.BetEvent)
+	 */
+	public boolean createBetEvent(BetEvent betEvent) {
+		boolean retval = false;
+		logger.debug("Saving bets collection.");
+		try {
+			hibernate.saveOrUpdate(betEvent);
+			retval = true;
+		} catch (DataAccessException e) {
+			logger.error("Error saving bet event.", e);
+			throw e;
+		}
+		return retval;
+	}
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#createUserBettingAccount(com.doublelife.doublelife.data.BetComp.UserBettingAccount)
+	 */
+	public boolean createUserBettingAccount(
+			UserBettingAccount userBettingAccount) {
+		boolean retval = false;
+		logger.debug("Saving bets collection.");
+		try {
+			hibernate.saveOrUpdate(userBettingAccount);
+			retval = true;
+		} catch (DataAccessException e) {
+			logger.error("Error saving user betting account.", e);
 			throw e;
 		}
 		return retval;
