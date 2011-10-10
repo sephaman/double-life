@@ -5,8 +5,11 @@ package com.doublelife.doublelife.services.impl;
 
 import java.util.List;
 
+import com.doublelife.doublelife.data.User;
 import com.doublelife.doublelife.data.BetComp.Bet;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
+import com.doublelife.doublelife.data.BetComp.BetEventType;
+import com.doublelife.doublelife.data.BetComp.BetParticipant;
 import com.doublelife.doublelife.data.BetComp.BetResult;
 import com.doublelife.doublelife.data.dao.UserBettingDAO;
 import com.doublelife.doublelife.services.UserBettingService;
@@ -61,6 +64,47 @@ public class UserBettingServiceImpl implements UserBettingService {
 	 */
 	public void setUserBettingDAO(UserBettingDAO userBettingDAO) {
 		this.userBettingDAO = userBettingDAO;
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#addBettingParticipant(com.doublelife.doublelife.data.BetComp.BetParticipant)
+	 */
+	public void addBettingParticipant(BetParticipant betParticipant) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#addParticipantToBettingEvent(com.doublelife.doublelife.data.BetComp.BetParticipant, com.doublelife.doublelife.data.BetComp.BetEvent)
+	 */
+	public void addParticipantToBettingEvent(BetParticipant betParticipant,
+			BetEvent betEvent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#addBetEvent(com.doublelife.doublelife.data.BetComp.BetEvent)
+	 */
+	public void addBetEvent(BetEvent betEvent) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#addUserBettingAccount(com.doublelife.doublelife.data.User)
+	 */
+	public void addUserBettingAccount(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#addBetEventType(com.doublelife.doublelife.data.BetComp.BetEventType)
+	 */
+	public void addBetEventType(BetEventType betEventType) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
