@@ -113,4 +113,16 @@ public class UserBettingServiceImpl implements UserBettingService {
 		
 	}
 
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#updateUserBettingAccount(long)
+	 */
+	public void updateUserBettingAccount(long userId, double amount) {
+		UserBettingAccount userAcct = userBettingDAO.getUserBettingAccountByUserId(userId);
+		if (userAcct != null) {
+			userAcct.setAmountAvailable(userAcct.getAmountAvailable() + amount);
+			userAcct.setDateUpdated(new Date());
+			userBettingDAO.createUserBettingAccount(userAcct);  //saves it
+		}
+	}
+
 }

@@ -58,7 +58,7 @@ public class UserBettingDAOTest {
 		betEvent.setBetEventTypeId(3L);
 		betEvent.setOutcomePending(0);
 		betEvent.setSelectionWinnerId(0);
-		userBettingDAO.createBetEvent(betEvent);
+		Assert.assertTrue(userBettingDAO.createBetEvent(betEvent));
 	}
 	
 	/**
@@ -71,7 +71,7 @@ public class UserBettingDAOTest {
 		bettingAccount.setDateUpdated(new Date());
 		bettingAccount.setUserId(444L);
 		
-		userBettingDAO.createUserBettingAccount(bettingAccount);
+		Assert.assertTrue(userBettingDAO.createUserBettingAccount(bettingAccount));
 	}
 
 	/**
