@@ -20,7 +20,7 @@ import javax.persistence.Id;
 public class UserBettingAccount {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private long id;
 	

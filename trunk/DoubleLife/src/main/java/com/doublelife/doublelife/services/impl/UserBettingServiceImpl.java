@@ -3,6 +3,7 @@
  */
 package com.doublelife.doublelife.services.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import com.doublelife.doublelife.data.User;
@@ -11,6 +12,7 @@ import com.doublelife.doublelife.data.BetComp.BetEvent;
 import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
 import com.doublelife.doublelife.data.BetComp.BetResult;
+import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
 import com.doublelife.doublelife.data.dao.UserBettingDAO;
 import com.doublelife.doublelife.services.UserBettingService;
 
@@ -94,9 +96,13 @@ public class UserBettingServiceImpl implements UserBettingService {
 	/**
 	 * @see com.doublelife.doublelife.services.UserBettingService#addUserBettingAccount(com.doublelife.doublelife.data.User)
 	 */
-	public void addUserBettingAccount(User user) {
-		// TODO Auto-generated method stub
+	public void addUserBettingAccount(final User user) {
+		UserBettingAccount userBettingAccount = new UserBettingAccount();
+		userBettingAccount.setAmountAvailable(0.00);
+		userBettingAccount.setDateUpdated(new Date());
+		userBettingAccount.setUserId(user.getId());
 		
+		userBettingDAO.createUserBettingAccount(userBettingAccount);
 	}
 
 	/**
