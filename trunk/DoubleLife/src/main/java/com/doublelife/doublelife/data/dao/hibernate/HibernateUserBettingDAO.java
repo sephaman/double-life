@@ -16,6 +16,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.doublelife.doublelife.data.BetComp.Bet;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
+import com.doublelife.doublelife.data.BetComp.BetParticipant;
 import com.doublelife.doublelife.data.BetComp.BetResult;
 import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
 import com.doublelife.doublelife.data.dao.UserBettingDAO;
@@ -183,6 +184,22 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 			return retVal.get(0);
 		}
 		return null;
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#createBetParticipant(com.doublelife.doublelife.data.BetComp.BetParticipant)
+	 */
+	public boolean createBetParticipant(BetParticipant betParticipant) {
+		boolean retval = false;
+		logger.debug("Saving bet participant");
+		try {
+			hibernate.saveOrUpdate(betParticipant);
+			retval = true;
+		} catch (DataAccessException e) {
+			logger.error("Error saving bet participant", e);
+			throw e;
+		}
+		return retval;
 	}
 
 }

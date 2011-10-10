@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.doublelife.doublelife.data.BetComp.Bet;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
+import com.doublelife.doublelife.data.BetComp.BetParticipant;
 import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
 
 /**
@@ -79,5 +80,12 @@ public interface UserBettingDAO {
 	 * @return
 	 */
 	public UserBettingAccount getUserBettingAccountByUserId(long userId);
+	
+	/**
+	 * Creates a bet participant.
+	 * @param betParticipant
+	 * @return
+	 */
+	public boolean createBetParticipant(BetParticipant betParticipant);
 	
 }
