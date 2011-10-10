@@ -46,7 +46,11 @@ public class UserBettingServiceImpl implements UserBettingService {
 		for (Bet thisBet : lstBets) {
 			if (thisBet.getSelectionId() == betEvent.getSelectionWinnerId()) {
 				thisBet.setBetResult(BetResult.WIN);
-				thisBet.setMoneyPaid(thisBet.getStake() * thisBet.getOdds().getOddsAsMultiplier());
+				double winnings = thisBet.getStake() * thisBet.getOdds().getOddsAsMultiplier();
+				thisBet.setMoneyPaid(winnings);
+				
+				//update user account with winning amount
+				updateUserBettingAccount(thisBet.getUserId(), winnings);
 			} else {
 				thisBet.setBetResult(BetResult.LOSE);
 				thisBet.setMoneyPaid(thisBet.getStake() * -1);
@@ -72,8 +76,7 @@ public class UserBettingServiceImpl implements UserBettingService {
 	 * @see com.doublelife.doublelife.services.UserBettingService#addBettingParticipant(com.doublelife.doublelife.data.BetComp.BetParticipant)
 	 */
 	public void addBettingParticipant(BetParticipant betParticipant) {
-		// TODO Auto-generated method stub
-		
+		userBettingDAO.createBetParticipant(betParticipant);
 	}
 
 	/**
@@ -89,8 +92,7 @@ public class UserBettingServiceImpl implements UserBettingService {
 	 * @see com.doublelife.doublelife.services.UserBettingService#addBetEvent(com.doublelife.doublelife.data.BetComp.BetEvent)
 	 */
 	public void addBetEvent(BetEvent betEvent) {
-		// TODO Auto-generated method stub
-		
+		userBettingDAO.createBetEvent(betEvent);
 	}
 
 	/**
