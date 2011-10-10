@@ -40,7 +40,7 @@ public class BetEvent {
 	private List<BetParticipant> lstBetParticipant;
 	
 	@Column(name = "outcomePending")
-	private boolean isOutcomePending;
+	private int isOutcomePending;
 	
 	@Column(name = "selectionWinnerId")
 	private long selectionWinnerId;
@@ -60,13 +60,13 @@ public class BetEvent {
 	/**
 	 * @return the isOutcomePending
 	 */
-	public boolean isOutcomePending() {
+	public int isOutcomePending() {
 		return isOutcomePending;
 	}
 	/**
 	 * @param isOutcomePending the isOutcomePending to set
 	 */
-	public void setOutcomePending(boolean isOutcomePending) {
+	public void setOutcomePending(int isOutcomePending) {
 		this.isOutcomePending = isOutcomePending;
 	}
 	
