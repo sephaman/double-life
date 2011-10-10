@@ -174,17 +174,11 @@
 		    <artifactId>hibernate-validator</artifactId>
 		    <version>4.0.0.Beta2</version>
         </dependency>
-     <!--    <dependency>
-		    <groupId>hibernate</groupId>
-		    <artifactId>hibernate-entitymanager</artifactId>
-		    <version>3.4.0.GA</version>
-		</dependency> -->
 		<dependency>
 			<groupId>javassist</groupId>
 			<artifactId>javassist</artifactId>
 			<version>3.8.0.GA</version>
 		</dependency>
-		
 		<dependency>
 		    <groupId>postgresql</groupId>
 		    <artifactId>postgresql</artifactId>
@@ -199,6 +193,11 @@
 		    <groupId>org.apache.httpcomponents</groupId>
 		    <artifactId>httpclient-osgi</artifactId>
 		    <version>4.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
 		</dependency>
 	</dependencies>
 	<repositories>
