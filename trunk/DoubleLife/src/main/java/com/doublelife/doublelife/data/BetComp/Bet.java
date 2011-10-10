@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
+import org.hsqldb.lib.StringUtil;
+
 /**
  * Represents a single bet made by a user.
  * @author Joseph McAleer
@@ -43,7 +45,7 @@ public class Bet {
 	@Column(name = "moneyPaid", nullable = false)
 	private double moneyPaid;
 	
-	@Column(name = "betEventId", nullable = false)
+	@Column(name = "bet_event_id", nullable = false)
 	private long betEventId;
 
 	@Transient
@@ -56,7 +58,9 @@ public class Bet {
 	 * default constructor.
 	 */
 	public Bet() {
-		odds = new OddsRatio(oddsString);
+		if (!StringUtil.isEmpty(oddsString)) {
+			odds = new OddsRatio(oddsString);
+		}
 	}
 	
 	/**
