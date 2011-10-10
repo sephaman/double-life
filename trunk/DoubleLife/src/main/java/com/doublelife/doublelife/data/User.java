@@ -1,6 +1,10 @@
 package com.doublelife.doublelife.data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * Represents a user.
@@ -10,10 +14,21 @@ import javax.persistence.Entity;
 @Entity (name = "user")
 public class User {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private long id;
+	
+	@Column(name = "userName")
 	private String userName;
+	
+	@Column(name = "firstName")
 	private String firstName;
+	
+	@Column(name = "lastName")
 	private String lastName;
+	
+	@Column(name = "password")
 	private String password;  //temp?
 	
 	public String getUserName() {
