@@ -67,4 +67,11 @@ public interface UserBettingService {
 	 * @param betEventType
 	 */
 	public void addBetEventType(BetEventType betEventType);
+	
+	/**
+	 * Updates the user betting account with the given amount.
+	 * @param userId
+	 * @param amount 
+	 */
+	public void updateUserBettingAccount(long userId, double amount);
 }
