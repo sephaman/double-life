@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 /**
  * Represents a bet event such as a sport.
@@ -29,8 +31,13 @@ public class BetEvent {
 	@Column(name = "dateTime")
 	private Date dateTime;
 	
-	@Transient
-	private List<Long> lstBetParticipantIds;  //may not belong here
+	@ManyToMany
+	@JoinTable (
+	name = "participant_betevent",
+	joinColumns = {@JoinColumn(name = "betEventId")} ,
+	inverseJoinColumns ={@JoinColumn(name = "participantId")}
+	)
+	private List<BetParticipant> lstBetParticipant;
 	
 	@Column(name = "outcomePending")
 	private boolean isOutcomePending;
@@ -69,7 +76,7 @@ public class BetEvent {
 	 * @return
 	 */
 	public boolean isMoreThanTwoCompetitors() {
-		return lstBetParticipantIds.size() > 2;
+		return lstBetParticipant.size() > 2;
 	}
 	/**
 	 * @param id the id to set
@@ -96,18 +103,6 @@ public class BetEvent {
 		return selectionWinnerId;
 	}
 	/**
-	 * @param lstBetParticipantIds the lstBetParticipantIds to set
-	 */
-	public void setLstBetParticipantIds(List<Long> lstBetParticipantIds) {
-		this.lstBetParticipantIds = lstBetParticipantIds;
-	}
-	/**
-	 * @return the lstBetParticipantIds
-	 */
-	public List<Long> getLstBetParticipantIds() {
-		return lstBetParticipantIds;
-	}
-	/**
 	 * @param betEventTypeId the betEventTypeId to set
 	 */
 	public void setBetEventTypeId(long betEventTypeId) {
@@ -118,5 +113,17 @@ public class BetEvent {
 	 */
 	public long getBetEventTypeId() {
 		return betEventTypeId;
+	}
+	/**
+	 * @param lstBetParticipant the lstBetParticipant to set
+	 */
+	public void setLstBetParticipant(List<BetParticipant> lstBetParticipant) {
+		this.lstBetParticipant = lstBetParticipant;
+	}
+	/**
+	 * @return the lstBetParticipant
+	 */
+	public List<BetParticipant> getLstBetParticipant() {
+		return lstBetParticipant;
 	}
 }
