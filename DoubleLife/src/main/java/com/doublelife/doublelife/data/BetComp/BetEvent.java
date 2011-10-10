@@ -3,32 +3,41 @@ package com.doublelife.doublelife.data.BetComp;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
 /**
  * Represents a bet event such as a sport.
  * @author Joseph McAleer
  *
  */
+@Entity (name = "bet_event")
 public class BetEvent {
-
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private long id;
-	private BetEventType eventType;  //store in database
+	
+	@Column(name = "betEventTypeId")
+	private long betEventTypeId;
+	
+	@Column(name = "dateTime")
 	private Date dateTime;
+	
+	@Transient
 	private List<Long> lstBetParticipantIds;  //may not belong here
+	
+	@Column(name = "outcomePending")
 	private boolean isOutcomePending;
+	
+	@Column(name = "selectionWinnerId")
 	private long selectionWinnerId;
 
-	/**
-	 * @return the eventType
-	 */
-	public BetEventType getEventType() {
-		return eventType;
-	}
-	/**
-	 * @param eventType the eventType to set
-	 */
-	public void setEventType(BetEventType eventType) {
-		this.eventType = eventType;
-	}
 	/**
 	 * @return the dateTime
 	 */
@@ -97,5 +106,17 @@ public class BetEvent {
 	 */
 	public List<Long> getLstBetParticipantIds() {
 		return lstBetParticipantIds;
+	}
+	/**
+	 * @param betEventTypeId the betEventTypeId to set
+	 */
+	public void setBetEventTypeId(long betEventTypeId) {
+		this.betEventTypeId = betEventTypeId;
+	}
+	/**
+	 * @return the betEventTypeId
+	 */
+	public long getBetEventTypeId() {
+		return betEventTypeId;
 	}
 }
