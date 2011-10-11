@@ -111,8 +111,7 @@ public class UserBettingServiceImpl implements UserBettingService {
 	 * @see com.doublelife.doublelife.services.UserBettingService#addBetEventType(com.doublelife.doublelife.data.BetComp.BetEventType)
 	 */
 	public void addBetEventType(BetEventType betEventType) {
-		// TODO Auto-generated method stub
-		
+		userBettingDAO.createBetEventType(betEventType);
 	}
 
 	/**
