@@ -1,5 +1,6 @@
 package com.doublelife.doublelife.data.BetComp;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -124,6 +125,11 @@ public class BetEvent {
 	 * @return the lstBetParticipant
 	 */
 	public List<BetParticipant> getLstBetParticipant() {
+		if (lstBetParticipant != null) {
 		return lstBetParticipant;
+		} else {
+			return new ArrayList<BetParticipant>();
+		}
+			
 	}
 }
