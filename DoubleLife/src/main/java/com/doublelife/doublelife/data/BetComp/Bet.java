@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
-import org.hsqldb.lib.StringUtil;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * Represents a single bet made by a user.
@@ -55,7 +55,7 @@ public class Bet {
 	 * default constructor.
 	 */
 	public Bet() {
-		if (!StringUtil.isEmpty(oddsString)) {
+		if (!StringUtils.isEmpty(oddsString)) {
 			odds = new OddsRatio(oddsString);
 		}
 	}
