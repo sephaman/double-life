@@ -46,6 +46,8 @@ public class BetEvent {
 	@Column(name = "selectionWinnerId")
 	private long selectionWinnerId;
 
+	//need update datetime
+	
 	/**
 	 * @return the dateTime
 	 */

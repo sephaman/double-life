@@ -77,6 +77,9 @@ public class Bet {
 	 * @return the odds
 	 */
 	public OddsRatio getOdds() {
+		if (odds == null) {
+			this.odds = new OddsRatio(this.oddsString);
+		}
 		return odds;
 	}
 	/**

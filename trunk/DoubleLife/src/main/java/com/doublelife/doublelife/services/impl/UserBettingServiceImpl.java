@@ -98,13 +98,15 @@ public class UserBettingServiceImpl implements UserBettingService {
 	/**
 	 * @see com.doublelife.doublelife.services.UserBettingService#addUserBettingAccount(com.doublelife.doublelife.data.User)
 	 */
-	public void addUserBettingAccount(final User user) {
+	public UserBettingAccount addUserBettingAccount(final User user) {
 		UserBettingAccount userBettingAccount = new UserBettingAccount();
 		userBettingAccount.setAmountAvailable(0.00);
 		userBettingAccount.setDateUpdated(new Date());
 		userBettingAccount.setUserId(user.getId());
 		
 		userBettingDAO.createUserBettingAccount(userBettingAccount);
+		
+		return userBettingAccount;
 	}
 
 	/**
@@ -124,6 +126,20 @@ public class UserBettingServiceImpl implements UserBettingService {
 			userAcct.setDateUpdated(new Date());
 			userBettingDAO.createUserBettingAccount(userAcct);  //saves it
 		}
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getAllUserBets(long)
+	 */
+	public List<Bet> getAllUserBets(long userId) {
+		return userBettingDAO.getAllUserBets(userId);
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getUserBettingAccount(long)
+	 */
+	public UserBettingAccount getUserBettingAccount(long userId) {
+		return userBettingDAO.getUserBettingAccountByUserId(userId);
 	}
 
 }

@@ -10,6 +10,7 @@ import com.doublelife.doublelife.data.BetComp.Bet;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
 import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
+import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
 
 /**
  * Provides useful services for betting.
@@ -59,8 +60,9 @@ public interface UserBettingService {
 	/**
 	 * Adds a user betting account for the given user.
 	 * @param user
+	 * @return 
 	 */
-	public void addUserBettingAccount(User user);
+	public UserBettingAccount addUserBettingAccount(User user);
 	
 	/**
 	 * Adds a new bet event type;
@@ -74,4 +76,18 @@ public interface UserBettingService {
 	 * @param amount 
 	 */
 	public void updateUserBettingAccount(long userId, double amount);
+	
+	/**
+	 * Returns all bets for the given user.
+	 * @param userId
+	 * @return
+	 */
+	public List<Bet> getAllUserBets(long userId);
+	
+	/**
+	 * Gets the user betting account with the provided user id.
+	 * @param userId
+	 * @return
+	 */
+	public UserBettingAccount getUserBettingAccount(long userId);
 }
