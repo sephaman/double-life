@@ -125,11 +125,9 @@ public class BetEvent {
 	 * @return the lstBetParticipant
 	 */
 	public List<BetParticipant> getLstBetParticipant() {
-		if (lstBetParticipant != null) {
+		if (lstBetParticipant == null) {
+			lstBetParticipant = new ArrayList<BetParticipant>();
+		} 
 		return lstBetParticipant;
-		} else {
-			return new ArrayList<BetParticipant>();
-		}
-			
 	}
 }

@@ -51,9 +51,6 @@ public class Bet {
 	@Transient
 	private OddsRatio odds;
 	
-	@Transient
-	private BetEvent betEvent;
-	
 	/**
 	 * default constructor.
 	 */
@@ -87,18 +84,6 @@ public class Bet {
 	 */
 	public void setOdds(OddsRatio odds) {
 		this.odds = odds;
-	}
-	/**
-	 * @return the betEvent
-	 */
-	public BetEvent getBetEvent() {
-		return betEvent;
-	}
-	/**
-	 * @param betEvent the betEvent to set
-	 */
-	public void setBetEvent(BetEvent betEvent) {
-		this.betEvent = betEvent;
 	}
 	/**
 	 * @return the dateReceived
