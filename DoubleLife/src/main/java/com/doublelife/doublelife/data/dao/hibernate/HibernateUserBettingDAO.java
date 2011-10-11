@@ -173,7 +173,7 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 	 */
 	public UserBettingAccount getUserBettingAccountByUserId(long userId) {
 		List<UserBettingAccount> retVal = null;
-		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Bet.class);
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(UserBettingAccount.class);
 		detachedCriteria.add(Property.forName("userId").eq(userId));
 		
 		try {

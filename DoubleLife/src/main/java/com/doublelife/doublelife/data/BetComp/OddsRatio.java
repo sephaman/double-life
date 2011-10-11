@@ -47,7 +47,8 @@ public class OddsRatio {
 	 * @return
 	 */
 	public double getOddsAsMultiplier() {
-		return leftOdd / rightOdd;
+		double val = (double)leftOdd / (double)rightOdd;
+		return val;
 	}
 	
 	/**
