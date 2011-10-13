@@ -48,11 +48,4 @@ public interface StockDAO {
 	 * @return
 	 */
 	public List<StockOrder> getAllUserStockOrders(long userId);
-	
-	
-	/**
-	 * Processes any pending stock orders.
-	 * @return
-	 */
-	public int processPendingStockOrders();
 }
