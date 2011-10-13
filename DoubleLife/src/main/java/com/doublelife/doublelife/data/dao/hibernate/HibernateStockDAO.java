@@ -115,17 +115,4 @@ public class HibernateStockDAO implements StockDAO {
 		return retVal;
 	}
 
-	/**
-	 * @see com.doublelife.doublelife.data.dao.StockDAO#processPendingStockOrders()
-	 */
-	public int processPendingStockOrders() {
-		// TODO Auto-generated method stub
-		
-		//get all pending stocks
-		
-		//for each stock check to see if it can be completed.
-		
-		return 0;
-	}
-
 }
