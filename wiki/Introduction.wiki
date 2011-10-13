@@ -1,13 +1,14 @@
-#summary Im one sentence summary.
+#summary A brand new start in double-life.
 
 = Introduction =
 
-Im the intro.
+Welcome to the first incarnation of double life.
 
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Currently Double-Life is focusing on 2 separate projects (one day will be split)
+
+A) Fantasy betting competition.
+
+B) Stock port folio management / sharemarket game.
