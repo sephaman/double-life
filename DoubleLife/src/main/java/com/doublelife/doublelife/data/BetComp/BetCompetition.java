@@ -30,8 +30,6 @@ public class BetCompetition {
 	@Column(name = "id")
 	private long id;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "name")
 	private String name;
 	

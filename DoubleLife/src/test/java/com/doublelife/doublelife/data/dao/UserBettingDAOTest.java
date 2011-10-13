@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.doublelife.doublelife.data.BetComp.Bet;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
@@ -25,7 +26,7 @@ import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
  */
 @ContextConfiguration(locations = { "/servlet-context-TEST.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
-//@Transactional
+@Transactional
 public class UserBettingDAOTest {
 
 	@Autowired
