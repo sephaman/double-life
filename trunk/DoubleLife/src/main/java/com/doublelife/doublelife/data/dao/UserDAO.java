@@ -18,4 +18,11 @@ public interface UserDAO {
 	 * @return
 	 */
 	public String getUserPassword(User user);
+	
+	/**
+	 * Get the user by Id.
+	 * @param id
+	 * @return
+	 */
+	public User getUserById(long userId);
 }
