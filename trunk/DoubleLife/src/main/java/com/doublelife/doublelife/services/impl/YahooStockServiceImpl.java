@@ -31,7 +31,7 @@ import com.doublelife.doublelife.services.utils.HttpHelper;
 	
 		public List<RetrievedStock> retrieveStocks(List<String> lstStockCodes) {
 			try{
-				userStockDAO.buyUserStock(null);
+				//userStockDAO.buyUserStock(null);
 				String constructedRequest = constructRequestString(lstStockCodes);
 				DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 				Document document = builder.parse(new InputSource(new StringReader(HttpHelper.getHttpRequestBody(constructedRequest))));
