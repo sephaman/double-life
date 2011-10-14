@@ -48,8 +48,19 @@ public class HibernateUserStockDAO implements UserStockDAO {
 	 * @see com.doublelife.doublelife.data.dao.UserStockDAO#getUserStockHolding(long)
 	 */
 	public List<UserStockHolding> getUserStockHolding(long userId) {
-		// TODO Auto-generated method stub
-		return null;
+        List<UserStockHolding> retVal = null;
+        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(UserStockHolding.class);
+        detachedCriteria.add(Property.forName("userId").eq(userId));
+  //TODO: where quantity is greater than 0!
+        try {
+                retVal = (List<UserStockHolding>) hibernate.findByCriteria(detachedCriteria);
+        } catch (DataAccessException e) {
+                logger.error("Error retrieving user stock holding", e);
+        }
+        if (!retVal.isEmpty()) {
+                return retVal;
+        }
+        return null;
 	}
 
 	/**
