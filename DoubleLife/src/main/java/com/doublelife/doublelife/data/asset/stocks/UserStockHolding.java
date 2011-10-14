@@ -22,6 +22,9 @@ public class UserStockHolding {
 	@Column(name = "id", nullable = false)
 	private long id;
 	
+	@Column(name = "userId", nullable = false)
+	private long userId;
+	
 	@Column(name = "stockCode", nullable = false)
 	private String stockCode;
 	
@@ -87,5 +90,17 @@ public class UserStockHolding {
 	 */
 	public long getId() {
 		return id;
+	}
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+	/**
+	 * @return the userId
+	 */
+	public long getUserId() {
+		return userId;
 	}
 }
