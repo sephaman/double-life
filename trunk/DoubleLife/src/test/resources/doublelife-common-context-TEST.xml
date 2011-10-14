@@ -68,8 +68,8 @@
     <property name="defaultEncoding" value="UTF-8"/>
     <property name="host" value="smtp.gmail.com"/>
     <property name="port" value="465"/>
-    <property name="username" value="joseph.mcaleer"/>
-    <property name="password" value="xxxx"/>
+    <property name="username" value="doublelifeapp"/>
+    <property name="password" value="doubleLife12"/>
     <property name="javaMailProperties">
         <value>
             mail.debug=true
