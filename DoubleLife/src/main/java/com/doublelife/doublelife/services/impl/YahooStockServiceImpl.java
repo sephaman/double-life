@@ -15,7 +15,6 @@ import com.doublelife.doublelife.data.asset.stocks.RetrievedStock;
 import com.doublelife.doublelife.data.asset.stocks.StockOrder;
 import com.doublelife.doublelife.data.asset.stocks.StockPortfolio;
 import com.doublelife.doublelife.data.asset.stocks.UserStockHolding;
-import com.doublelife.doublelife.data.dao.UserStockDAO;
 import com.doublelife.doublelife.services.StockService;
 import com.doublelife.doublelife.services.utils.HttpHelper;
 
@@ -25,13 +24,10 @@ import com.doublelife.doublelife.services.utils.HttpHelper;
 	 */
 	public class YahooStockServiceImpl implements StockService {	
 	
-		private UserStockDAO userStockDAO;
-		
 		String requestString = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(STOCKCODES)%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env";
 	
 		public List<RetrievedStock> retrieveStocks(List<String> lstStockCodes) {
 			try{
-				//userStockDAO.buyUserStock(null);
 				String constructedRequest = constructRequestString(lstStockCodes);
 				DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 				Document document = builder.parse(new InputSource(new StringReader(HttpHelper.getHttpRequestBody(constructedRequest))));
@@ -99,19 +95,6 @@ import com.doublelife.doublelife.services.utils.HttpHelper;
 			
 		}
 
-		/**
-		 * @param userStockDAO the userStockDAO to set
-		 */
-		public void setUserStockDAO(UserStockDAO userStockDAO) {
-			this.userStockDAO = userStockDAO;
-		}
-
-		/**
-		 * @return the userStockDAO
-		 */
-		public UserStockDAO getUserStockDAO() {
-			return userStockDAO;
-		}
 
 		/**
 		 * @see com.doublelife.doublelife.services.StockService#generateStockOrder(long, int, double, boolean)
