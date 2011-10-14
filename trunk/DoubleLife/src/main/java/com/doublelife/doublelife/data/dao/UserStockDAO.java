@@ -46,5 +46,5 @@ public interface UserStockDAO {
 	 * @param userId
 	 * @return
 	 */
-	public List<UserStockHolding> getUserStockByStockCode(long userId, String stockCode);
+	public UserStockHolding getUserStockByStockCode(long userId, String stockCode);
 }
