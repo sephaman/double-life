@@ -40,4 +40,11 @@ public interface UserStockDAO {
 	 * @return
 	 */
 	public List<UserStockHolding> getAllHistoricalUserStockHolding(long userId);
+   
+   /**
+	 * get a particular stock held by a user.
+	 * @param userId
+	 * @return
+	 */
+	public List<UserStockHolding> getUserStockByStockCode(long userId, String stockCode);
 }
