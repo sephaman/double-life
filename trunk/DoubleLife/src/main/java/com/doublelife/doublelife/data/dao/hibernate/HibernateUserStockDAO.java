@@ -27,6 +27,9 @@ public class HibernateUserStockDAO implements UserStockDAO {
 
 	private final HibernateTemplate hibernate;
 	
+	/**
+	 * @param sessionFactory
+	 */
 	public HibernateUserStockDAO(final SessionFactory sessionFactory) {
 		this.hibernate = new HibernateTemplate(sessionFactory);
 	}
@@ -34,6 +37,7 @@ public class HibernateUserStockDAO implements UserStockDAO {
 	/**
 	 * @see com.doublelife.doublelife.data.dao.UserStockDAO#getUserStockHolding(long)
 	 */
+	@SuppressWarnings("unchecked")
 	public List<UserStockHolding> getUserStockHolding(long userId) {
         List<UserStockHolding> retVal = null;
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(UserStockHolding.class);
@@ -61,11 +65,13 @@ public class HibernateUserStockDAO implements UserStockDAO {
 	/**
 	 * @see com.doublelife.doublelife.data.dao.UserStockDAO#getUserStockByStockCode(long, String)
 	 */
-     public UserStockHolding getUserStockByStockCode(long userId, String stockCode) {
+     @SuppressWarnings("unchecked")
+	public UserStockHolding getUserStockByStockCode(long userId, String stockCode) {
       List<UserStockHolding> retVal = null;
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(UserStockHolding.class);
         detachedCriteria.add(Property.forName("userId").eq(userId));
         detachedCriteria.add(Property.forName("stockCode").eq(stockCode));
+        //TODO: must be active!
 
         try {
                 retVal = (List<UserStockHolding>) hibernate.findByCriteria(detachedCriteria);

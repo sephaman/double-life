@@ -45,8 +45,16 @@ public class UserStockServiceImpl implements UserStockService {
 	 * @see com.doublelife.doublelife.services.UserStockService#sellUserStock(com.doublelife.doublelife.data.asset.stocks.StockOrder)
 	 */
 	public boolean sellUserStock(StockOrder stockOrder) {
-		// TODO Auto-generated method stub
-		return false;
+		UserStockHolding userStockHolding = 
+			getUserStockHoldingByStockCode(stockOrder.getUserId(), stockOrder.getStockCode());
+		if (userStockHolding == null) {
+			return false;   //TODO: throw exception
+		}
+		
+		userStockHolding.setQuantityHeld(userStockHolding.getQuantityHeld() - stockOrder.getQuantity());
+		//TODO: calculate cost basis properly!
+		//if 0 then set to inactive
+		return userStockDAO.saveUserStockHolding(userStockHolding);
 	}
 
 	/**
@@ -61,8 +69,7 @@ public class UserStockServiceImpl implements UserStockService {
 	 */
 	public UserStockHolding getUserStockHoldingByStockCode(long userId,
 			String stockCode) {
-		// TODO Auto-generated method stub
-		return null;
+		return userStockDAO.getUserStockByStockCode(userId, stockCode);
 	}
 	
 	private UserStockHolding createNewStockHolding(StockOrder stockOrder) {
