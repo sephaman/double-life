@@ -71,4 +71,26 @@ public class HibernateUserStockDAO implements UserStockDAO {
 		return null;
 	}
 
+  /**
+	 * @see com.doublelife.doublelife.data.dao.UserStockDAO#getUserStockByStockCode(long, String)
+	 */
+     public UserStockHolding getUserStockByStockCode(long userId, String stockCode) {
+      List<UserStockHolding> retVal = null;
+        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(UserStockHolding.class);
+        detachedCriteria.add(Property.forName("userId").eq(userId));
+        detachedCriteria.add(Property.forName("stockCode").eq(stockCode));
+
+        try {
+                retVal = (List<UserStockHolding>) hibernate.findByCriteria(detachedCriteria);
+        } catch (DataAccessException e) {
+                logger.error("Error retrieving user stock holding by stockcode", e);
+        }
+        if (!retVal.isEmpty()) {
+                return retVal.get(0);
+        }
+        return null;
+     
+     }
+
+
 }
