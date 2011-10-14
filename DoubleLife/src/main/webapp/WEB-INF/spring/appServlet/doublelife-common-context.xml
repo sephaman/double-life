@@ -67,7 +67,6 @@
     <property name="password" value="xxxx"/>
     <property name="javaMailProperties">
         <value>
-            mail.debug=true
             mail.smtp.auth=true
             mail.smtp.socketFactory.class=java.net.SocketFactory
             mail.smtp.socketFactory.fallback=false
