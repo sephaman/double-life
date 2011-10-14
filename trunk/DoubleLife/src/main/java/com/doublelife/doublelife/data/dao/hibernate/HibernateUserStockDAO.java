@@ -58,7 +58,7 @@ public class HibernateUserStockDAO implements UserStockDAO {
 		return null;
 	}
 
-  /**
+	/**
 	 * @see com.doublelife.doublelife.data.dao.UserStockDAO#getUserStockByStockCode(long, String)
 	 */
      public UserStockHolding getUserStockByStockCode(long userId, String stockCode) {
@@ -78,6 +78,22 @@ public class HibernateUserStockDAO implements UserStockDAO {
         return null;
      
      }
+
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserStockDAO#saveUserStockHolding(com.doublelife.doublelife.data.asset.stocks.UserStockHolding)
+	 */
+	public boolean saveUserStockHolding(UserStockHolding userStockHolding) {
+		boolean retval = false;
+		logger.debug("Saving userStockHolding.");
+		try {
+			hibernate.saveOrUpdate(userStockHolding);
+			retval = true;
+		} catch (DataAccessException e) {
+			logger.error("Error saving userStockHolding.", e);
+			throw e;
+		}
+		return retval;
+	}
 
 
 }

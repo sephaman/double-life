@@ -32,7 +32,15 @@ public interface UserStockDAO {
    /**
 	 * get a particular stock held by a user.
 	 * @param userId
+	 * @param stockCode 
 	 * @return
 	 */
 	public UserStockHolding getUserStockByStockCode(long userId, String stockCode);
+	
+	/**
+	 * Saves the users stock holding.
+	 * @param userStockHolding
+	 * @return
+	 */
+	public boolean saveUserStockHolding(UserStockHolding userStockHolding);
 }
