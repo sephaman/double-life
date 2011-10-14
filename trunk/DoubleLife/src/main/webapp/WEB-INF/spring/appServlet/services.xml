@@ -23,6 +23,11 @@
 		class="com.doublelife.doublelife.services.impl.LoginServiceImpl">
 		<property name="userDAO" ref="userDAO"></property>
 	</bean>
+	
+	<bean id="emailService"
+		class="com.doublelife.doublelife.services.impl.EmailServiceImpl">
+		<property name="mailSender" ref="springMailSender"></property>
+	</bean>
 
 <!-- DAOs -->
 	<bean id="userBettingDAO"
