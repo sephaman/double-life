@@ -64,7 +64,7 @@
     <property name="host" value="smtp.gmail.com"/>
     <property name="port" value="465"/>
     <property name="username" value="joseph.mcaleer"/>
-    <property name="password" value="medsno10"/>
+    <property name="password" value="xxxx"/>
     <property name="javaMailProperties">
         <value>
             mail.debug=true
