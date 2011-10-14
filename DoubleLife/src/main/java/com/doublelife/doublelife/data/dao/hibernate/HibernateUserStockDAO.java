@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
-import com.doublelife.doublelife.data.asset.stocks.StockOrder;
 import com.doublelife.doublelife.data.asset.stocks.UserStockHolding;
 import com.doublelife.doublelife.data.dao.UserStockDAO;
 
@@ -32,21 +31,6 @@ public class HibernateUserStockDAO implements UserStockDAO {
 		this.hibernate = new HibernateTemplate(sessionFactory);
 	}
 	
-	/**
-	 * @see com.doublelife.doublelife.data.dao.UserStockDAO#buyUserStock(com.doublelife.doublelife.data.asset.stocks.StockOrder)
-	 */
-	public void buyUserStock(StockOrder stockOrder) {
-		UserStockHolding ush = (UserStockHolding) hibernate.get(UserStockHolding.class, 1L);
-	}
-
-	/**
-	 * @see com.doublelife.doublelife.data.dao.UserStockDAO#sellUserStock(com.doublelife.doublelife.data.asset.stocks.StockOrder)
-	 */
-	public void sellUserStock(StockOrder stockOrder) {
-		// TODO Auto-generated method stub
-
-	}
-
 	/**
 	 * @see com.doublelife.doublelife.data.dao.UserStockDAO#getUserStockHolding(long)
 	 */
