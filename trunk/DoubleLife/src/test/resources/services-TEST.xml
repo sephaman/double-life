@@ -39,4 +39,9 @@
 		class="com.doublelife.doublelife.data.dao.hibernate.HibernateUserStockDAO">
 		<constructor-arg ref="sessionFactory"></constructor-arg>
 	</bean>
+	
+	<bean id="emailService"
+		class="com.doublelife.doublelife.services.impl.EmailServiceImpl">
+		<property name="mailSender" ref="springMailSender"></property>
+	</bean>
 </beans>
