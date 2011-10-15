@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.doublelife.doublelife.data.asset.stocks.RetrievedStock;
-import com.doublelife.doublelife.data.asset.stocks.StockOrder;
 import com.doublelife.doublelife.data.asset.stocks.StockPortfolio;
 import com.doublelife.doublelife.data.asset.stocks.UserStockHolding;
 
@@ -35,34 +34,6 @@ public interface StockService {
 	 */
 	public Map<UserStockHolding, RetrievedStock> getStockMappings(StockPortfolio stockPortFolio);
 	
-	/**
-	 * Perform a buy of stock.
-	 * @param stockOrder
-	 */
-	public void buyUserStock(StockOrder stockOrder);
-	/**
-	 * Perform a sell of stock.
-	 * @param stockOrder
-	 */
-	public void sellUserStock(StockOrder stockOrder);
 	
-	/**
-	 * Generates a buy stockorder with the given values.
-	 * @param userId
-	 * @param quantity
-	 * @param price
-	 * @param isBuy
-	 * @return
-	 */
-	public StockOrder generateBuyStockOrder(long userId, int quantity, double price,
-			 RetrievedStock retrievedStock);
-	
-	/**
-	 * Generates a sell stock order with the given values.
-	 * @param userId
-	 * @param userStockHolding
-	 * @return
-	 */
-	public StockOrder generateSellStockOrder(long userId, UserStockHolding userStockHolding);
 }
 
