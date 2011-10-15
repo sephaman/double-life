@@ -33,12 +33,30 @@ public class UserStockServiceImpl implements UserStockService {
 			userStockHolding = createNewStockHolding(stockOrder);
 		}
 		
+		if (!isNewStock) {
+			userStockHolding.setCostBasis(calculateCostBasis(stockOrder, userStockHolding));
+		} else {
+			userStockHolding.setCostBasis(stockOrder.getOrderPrice());
+		}
 		userStockHolding.setQuantityHeld(userStockHolding.getQuantityHeld() + stockOrder.getQuantity());
 		userStockHolding.setDateAcquired(new Date());
-		userStockHolding.setCostBasis(stockOrder.getOrderPrice());
-		//TODO: calculate cost basis properly!
+		userStockHolding.setActive(1);
 		
 		return userStockDAO.saveUserStockHolding(userStockHolding);
+	}
+
+	/**
+	 * Determines the cost basis based on existing and new stocks.
+	 * @param stockOrder
+	 * @param userStockHolding
+	 */
+	private double calculateCostBasis(StockOrder stockOrder,
+			UserStockHolding userStockHolding) {
+		double totalStockBasis = ((userStockHolding.getQuantityHeld() * userStockHolding.getCostBasis())
+				+ (stockOrder.getQuantity() * stockOrder.getOrderPrice()))
+				/ (stockOrder.getQuantity() + userStockHolding.getQuantityHeld());
+						
+		return totalStockBasis;
 	}
 
 	/**
@@ -53,7 +71,9 @@ public class UserStockServiceImpl implements UserStockService {
 		
 		userStockHolding.setQuantityHeld(userStockHolding.getQuantityHeld() - stockOrder.getQuantity());
 		//TODO: calculate cost basis properly!
-		//if 0 then set to inactive
+		if (userStockHolding.getQuantityHeld() == 0) {
+			userStockHolding.setActive(0);
+		}
 		return userStockDAO.saveUserStockHolding(userStockHolding);
 	}
 
