@@ -46,6 +46,10 @@ public class StockProcessingServiceImpl implements StockProcessingService {
 		return counter;
 	}
 
+	public void processAtmarketPriceStockOrder(StockOrder stockOrder) {
+		
+	}
+	
 	/**
 	 * Processes the given stock-order to see whether it can be executed.
 	 * If so, execute the order and return true.
