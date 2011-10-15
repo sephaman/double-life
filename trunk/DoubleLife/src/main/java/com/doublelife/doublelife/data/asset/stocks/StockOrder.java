@@ -24,6 +24,8 @@ public class StockOrder {
 	 */
 	public static int PENDING_ORDER = 0;
 	
+	public static int BUY_ORDER = 1;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
@@ -57,6 +59,9 @@ public class StockOrder {
 	
 	@Column(name = "completed")
 	private int completed;
+	
+	@Column(name = "buy_order")
+	private int isBuyOrder;
 
 	/**
 	 * @return the id
@@ -196,5 +201,19 @@ public class StockOrder {
 	 */
 	public int getCompleted() {
 		return completed;
+	}
+
+	/**
+	 * @param isBuyOrder the isBuyOrder to set
+	 */
+	public void setIsBuyOrder(int isBuyOrder) {
+		this.isBuyOrder = isBuyOrder;
+	}
+
+	/**
+	 * @return the isBuyOrder
+	 */
+	public int getIsBuyOrder() {
+		return isBuyOrder;
 	}
 }

@@ -12,7 +12,6 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
 import com.doublelife.doublelife.data.asset.stocks.RetrievedStock;
-import com.doublelife.doublelife.data.asset.stocks.StockOrder;
 import com.doublelife.doublelife.data.asset.stocks.StockPortfolio;
 import com.doublelife.doublelife.data.asset.stocks.UserStockHolding;
 import com.doublelife.doublelife.services.StockService;
@@ -68,50 +67,12 @@ import com.doublelife.doublelife.services.utils.HttpHelper;
 				StockPortfolio stockPortfolio) {
 			Map<UserStockHolding, RetrievedStock> mappedStocks = new HashMap<UserStockHolding, RetrievedStock>();
 			
-			//only want to make one external request - grab dtaa once and map it!
+			//only want to make one external request - grab data once and map it!
 			List<RetrievedStock> lstRetrievedStocks = retrieveStocks(stockPortfolio.getPortfolioStockCodes());
 			Map<String, UserStockHolding> mappedUserHoldings = stockPortfolio.getHoldingsMappedToStockCode(); 
 			for (RetrievedStock thisRetrievedStock : lstRetrievedStocks) {
 				mappedStocks.put(mappedUserHoldings.get(thisRetrievedStock.getStockCode()), thisRetrievedStock);
 			}
 			return mappedStocks;
-		}
-
-		/* (non-Javadoc)
-		 * @see com.doublelife.doublelife.services.StockService#buyUserStock(com.doublelife.doublelife.data.asset.stocks.StockOrder)
-		 */
-		@Override
-		public void buyUserStock(StockOrder stockOrder) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		/* (non-Javadoc)
-		 * @see com.doublelife.doublelife.services.StockService#sellUserStock(com.doublelife.doublelife.data.asset.stocks.StockOrder)
-		 */
-		@Override
-		public void sellUserStock(StockOrder stockOrder) {
-			// TODO Auto-generated method stub
-			
-		}
-
-
-		/**
-		 * @see com.doublelife.doublelife.services.StockService#generateStockOrder(long, int, double, boolean)
-		 */
-		public StockOrder generateBuyStockOrder(long userId, int quantity,
-				double price, RetrievedStock retrievedStock) {
-			StockOrder stockOrder = new StockOrder();
-			
-			return stockOrder;
-		}
-
-		/**
-		 * @see com.doublelife.doublelife.services.StockService#generateSellStockOrder(long, com.doublelife.doublelife.data.asset.stocks.UserStockHolding)
-		 */
-		public StockOrder generateSellStockOrder(long userId,
-				UserStockHolding userStockHolding) {
-			// TODO Auto-generated method stub
-			return null;
 		}
 }
