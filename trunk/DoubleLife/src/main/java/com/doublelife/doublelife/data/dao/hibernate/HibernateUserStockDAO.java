@@ -42,7 +42,7 @@ public class HibernateUserStockDAO implements UserStockDAO {
         List<UserStockHolding> retVal = null;
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(UserStockHolding.class);
         detachedCriteria.add(Property.forName("userId").eq(userId));
-  //TODO: where quantity is greater than 0!
+        detachedCriteria.add(Property.forName("isActive").eq(1));
         try {
                 retVal = (List<UserStockHolding>) hibernate.findByCriteria(detachedCriteria);
         } catch (DataAccessException e) {
@@ -57,9 +57,21 @@ public class HibernateUserStockDAO implements UserStockDAO {
 	/**
 	 * @see com.doublelife.doublelife.data.dao.UserStockDAO#getAllHistoricalUserStockHolding(long)
 	 */
+	@SuppressWarnings("unchecked")
 	public List<UserStockHolding> getAllHistoricalUserStockHolding(long userId) {
-		// TODO Auto-generated method stub
-		return null;
+		   List<UserStockHolding> retVal = null;
+	        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(UserStockHolding.class);
+	        detachedCriteria.add(Property.forName("userId").eq(userId));
+
+	        try {
+	                retVal = (List<UserStockHolding>) hibernate.findByCriteria(detachedCriteria);
+	        } catch (DataAccessException e) {
+	                logger.error("Error retrieving user stock holding by stockcode", e);
+	        }
+	        if (!retVal.isEmpty()) {
+	                return retVal;
+	        }
+	        return null;
 	}
 
 	/**
@@ -71,7 +83,7 @@ public class HibernateUserStockDAO implements UserStockDAO {
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(UserStockHolding.class);
         detachedCriteria.add(Property.forName("userId").eq(userId));
         detachedCriteria.add(Property.forName("stockCode").eq(stockCode));
-        //TODO: must be active!
+        detachedCriteria.add(Property.forName("isActive").eq(1));
 
         try {
                 retVal = (List<UserStockHolding>) hibernate.findByCriteria(detachedCriteria);
@@ -100,6 +112,4 @@ public class HibernateUserStockDAO implements UserStockDAO {
 		}
 		return retval;
 	}
-
-
 }

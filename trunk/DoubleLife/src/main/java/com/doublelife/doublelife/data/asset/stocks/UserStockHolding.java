@@ -40,8 +40,8 @@ public class UserStockHolding {
 	@Column(name = "dateAcquired", nullable = false)
 	private Date dateAcquired;
 	
-	@Transient
-	private boolean isActive;
+	@Column(name = "is_active", nullable = false)
+	private int isActive;
 	
 	public String getStockCode() {
 		return stockCode;
@@ -73,10 +73,10 @@ public class UserStockHolding {
 	public void setDateAcquired(Date dateAcquired) {
 		this.dateAcquired = dateAcquired;
 	}
-	public boolean isActive() {
+	public int isActive() {
 		return isActive;
 	}
-	public void setActive(boolean isActive) {
+	public void setActive(int isActive) {
 		this.isActive = isActive;
 	}
 	/**
