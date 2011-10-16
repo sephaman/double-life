@@ -4,7 +4,11 @@
 package com.doublelife.doublelife.services.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.doublelife.doublelife.data.asset.stocks.RetrievedStock;
 import com.doublelife.doublelife.data.asset.stocks.StockOrder;
@@ -15,11 +19,14 @@ import com.doublelife.doublelife.services.UserStockService;
 import com.doublelife.doublelife.services.utils.StockHelper;
 
 /**
+ * Implementation of StockProcessingService, providing services for processing stockorders.
  * @author Joseph McAleer
  *
  */
 public class StockProcessingServiceImpl implements StockProcessingService {
 
+	private final Logger logger = LoggerFactory.getLogger(StockProcessingServiceImpl.class);
+	
 	private UserStockService userStockService;
 	private StockDAO stockDAO;
 	private StockService stockService;
@@ -40,14 +47,34 @@ public class StockProcessingServiceImpl implements StockProcessingService {
 				stockService.retrieveStocks(StockHelper.getListStockCodesFromPendingStockOrders(lstPendingStockOrders));
 
 			for (StockOrder thisStockOrder : lstPendingStockOrders) {
-				processStockOrderLivePrice(thisStockOrder);
+				if (processStockOrderLivePrice(thisStockOrder)) {
+					counter++;
+				}
 			}
 		}
 		return counter;
 	}
 
-	public void processAtmarketPriceStockOrder(StockOrder stockOrder) {
-		
+	/**
+	 * @see com.doublelife.doublelife.services.StockProcessingService#processAtmarketPriceStockOrder(com.doublelife.doublelife.data.asset.stocks.StockOrder)
+	 */
+	public boolean processAtMarketPriceStockOrder(StockOrder stockOrder) {
+		if (stockOrder.getIsBuyOrder() == StockOrder.BUY_ORDER) {
+			if (userStockService.buyUserStock(stockOrder) && settleStockOrder(stockOrder)) {
+				return true;
+			} else {
+				logger.error("Couldn't process BUY atMarket stock order: " + stockOrder.getId());
+				return false; //TODO: handle errors!
+			}
+		} else {
+			if (userStockService.sellUserStock(stockOrder) && settleStockOrder(stockOrder)) {
+				return true;
+			} else {
+				logger.error("Couldn't process SELL atMarket stock order: " + stockOrder.getId());
+
+				return false; //TODO: handle errors!
+			}
+		}
 	}
 	
 	/**
@@ -61,23 +88,35 @@ public class StockProcessingServiceImpl implements StockProcessingService {
 		if (thisStockOrder.getIsBuyOrder() == StockOrder.BUY_ORDER) {
 			//buy low
 			if (thisStockOrder.getOrderPrice() >= currentStock.getCurrentPrice()) {
-				if (userStockService.buyUserStock(thisStockOrder)) {
+				if (userStockService.buyUserStock(thisStockOrder) && settleStockOrder(thisStockOrder)) {
 					return true;
 				} else {
+					logger.error("Couldn't process BUY stock order: " + thisStockOrder.getId());
 					return false; //TODO: handle errors!
 				}
 			}
 		} else {
 			//sell high
 			if (thisStockOrder.getOrderPrice() <= currentStock.getCurrentPrice()) {
-				if (userStockService.sellUserStock(thisStockOrder)) {
+				if (userStockService.sellUserStock(thisStockOrder) && settleStockOrder(thisStockOrder)) {
 					return true;
 				} else {
+					logger.error("Couldn't process SELL stock order: " + thisStockOrder.getId());
 					return false; //TODO: handle errors!
 				}
 			}
 		}
 		return false;
+	}
+	
+	private boolean settleStockOrder(StockOrder stockOrder) {
+		stockOrder.setCompleted(StockOrder.COMPLETED_ORDER);
+		stockOrder.setProcessedDateTime(new Date());
+		boolean result = stockDAO.saveStockOrder(stockOrder);
+		if (result == false) {
+			logger.error("Couldn't settle stock order: " + stockOrder.getId());
+		}
+		return result;
 	}
 
 	/**

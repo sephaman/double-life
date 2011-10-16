@@ -3,6 +3,7 @@
  */
 package com.doublelife.doublelife.data.dao.hibernate;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -38,6 +39,7 @@ public class HibernateStockDAO implements StockDAO {
 		boolean retval = false;
 		logger.debug("Saving stock order.");
 		try {
+			stockOrder.setUpdateDateTime(new Date());
 			hibernate.saveOrUpdate(stockOrder);
 			retval = true;
 		} catch (DataAccessException e) {
