@@ -13,6 +13,13 @@
 		class="com.doublelife.doublelife.services.impl.YahooStockServiceImpl">
 	</bean>
 	
+	<bean id="stockProcessingService"
+		class="com.doublelife.doublelife.services.impl.StockProcessingServiceImpl">
+		<property name="userStockService" ref="userStockService"></property>
+		<property name="stockOrderDAO" ref="stockOrderDAO"></property>
+		<property name="stockService" ref="stockService"></property>
+	</bean>
+	
 	<bean id="userStockService"
 		class="com.doublelife.doublelife.services.impl.UserStockServiceImpl">
 		<property name="userStockDAO" ref="userStockDAO"></property>
@@ -41,6 +48,11 @@
 	
 	<bean id="userStockDAO"
 		class="com.doublelife.doublelife.data.dao.hibernate.HibernateUserStockDAO">
+		<constructor-arg ref="sessionFactory"></constructor-arg>
+	</bean>
+	
+	<bean id="stockOrderDAO"
+		class="com.doublelife.doublelife.data.dao.hibernate.HibernateStockOrderDAO">
 		<constructor-arg ref="sessionFactory"></constructor-arg>
 	</bean>
 	
