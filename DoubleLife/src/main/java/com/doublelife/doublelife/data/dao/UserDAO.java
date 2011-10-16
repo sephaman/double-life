@@ -13,6 +13,13 @@ import com.doublelife.doublelife.data.User;
 public interface UserDAO {
 
 	/**
+	 * Creates the given user.
+	 * @param user 
+	 * @return
+	 */
+	public boolean createUser(User user);
+	
+	/**
 	 * Returns a password for a user.
 	 * @param user
 	 * @return
