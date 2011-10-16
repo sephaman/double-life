@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import com.doublelife.doublelife.data.asset.stocks.RetrievedStock;
 import com.doublelife.doublelife.data.asset.stocks.StockOrder;
-import com.doublelife.doublelife.data.dao.StockDAO;
+import com.doublelife.doublelife.data.dao.StockOrderDAO;
 import com.doublelife.doublelife.services.StockProcessingService;
 import com.doublelife.doublelife.services.StockService;
 import com.doublelife.doublelife.services.UserStockService;
@@ -28,7 +28,7 @@ public class StockProcessingServiceImpl implements StockProcessingService {
 	private final Logger logger = LoggerFactory.getLogger(StockProcessingServiceImpl.class);
 	
 	private UserStockService userStockService;
-	private StockDAO stockDAO;
+	private StockOrderDAO stockOrderDAO;
 	private StockService stockService;
 	
 	//internal list to be refreshed. Shouldn't be accessible outside class.
@@ -39,7 +39,7 @@ public class StockProcessingServiceImpl implements StockProcessingService {
 	 */
 	public int checkAndProcessPendingStocksLivePrices() {
 		int counter = 0;
-		List<StockOrder> lstPendingStockOrders = stockDAO.getAllPendingStockOrders();
+		List<StockOrder> lstPendingStockOrders = stockOrderDAO.getAllPendingStockOrders();
 		
 		if (lstPendingStockOrders != null && lstPendingStockOrders.size() > 0) {
 			//refresh retrieved stock list
@@ -112,7 +112,7 @@ public class StockProcessingServiceImpl implements StockProcessingService {
 	private boolean settleStockOrder(StockOrder stockOrder) {
 		stockOrder.setCompleted(StockOrder.COMPLETED_ORDER);
 		stockOrder.setProcessedDateTime(new Date());
-		boolean result = stockDAO.saveStockOrder(stockOrder);
+		boolean result = stockOrderDAO.saveStockOrder(stockOrder);
 		if (result == false) {
 			logger.error("Couldn't settle stock order: " + stockOrder.getId());
 		}
@@ -136,15 +136,15 @@ public class StockProcessingServiceImpl implements StockProcessingService {
 	/**
 	 * @return the stockDAO
 	 */
-	public StockDAO getStockDAO() {
-		return stockDAO;
+	public StockOrderDAO getStockDAO() {
+		return stockOrderDAO;
 	}
 
 	/**
 	 * @param stockDAO the stockDAO to set
 	 */
-	public void setStockDAO(StockDAO stockDAO) {
-		this.stockDAO = stockDAO;
+	public void setStockDAO(StockOrderDAO stockDAO) {
+		this.stockOrderDAO = stockDAO;
 	}
 
 	/**
