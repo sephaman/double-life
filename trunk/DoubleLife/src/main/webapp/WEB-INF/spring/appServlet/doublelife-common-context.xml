@@ -59,7 +59,7 @@
 		</property>
 	</bean>
 	
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	<bean id="springMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
     <property name="defaultEncoding" value="UTF-8"/>
     <property name="host" value="smtp.gmail.com"/>
     <property name="port" value="465"/>
@@ -67,12 +67,12 @@
     <property name="password" value="doubleLife12"/>
     <property name="javaMailProperties">
         <value>
+            mail.debug=true
             mail.smtp.auth=true
-            mail.smtp.socketFactory.class=java.net.SocketFactory
+            mail.smtp.socketFactory.class=javax.net.ssl.SSLSocketFactory
             mail.smtp.socketFactory.fallback=false
         </value>
     </property>
 </bean>
 	
-
 </beans>
