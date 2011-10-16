@@ -8,8 +8,8 @@
 	<table width="100%" border="0">
 		<!-- title -->
 		<tr>
-			<td valign="middle" style="font-size: x-large">
-				<span id="siteName">Double Life</span>
+			<td valign="middle">
+				<img src="<c:url value="/resources/img/header.jpg"/>" alt="header logo" />
 			</td>
 		</tr>
 	</table>
