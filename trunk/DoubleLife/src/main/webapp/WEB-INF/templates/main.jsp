@@ -13,7 +13,8 @@
 	</head>
 	<body>
 		<tiles:insertAttribute name="header" />
-		
-		<!-- footer goes here -->
+		<tiles:insertAttribute name="top-menu" />
+		<tiles:insertAttribute name="body" />
+		<tiles:insertAttribute name="footer" />
 	</body>
 </html>
