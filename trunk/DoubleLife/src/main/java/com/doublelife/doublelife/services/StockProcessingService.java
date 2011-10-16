@@ -19,5 +19,9 @@ public interface StockProcessingService {
 	 */
 	public int checkAndProcessPendingStocksLivePrices();
 	
-	public void processAtmarketPriceStockOrder(StockOrder stockOrder);
+	/**
+	 * Processes the stockorder at the current market price.
+	 * @param stockOrder
+	 */
+	public boolean processAtMarketPriceStockOrder(StockOrder stockOrder);
 }

@@ -20,10 +20,18 @@ import javax.persistence.Id;
 public class StockOrder {
 
 	/**
-	 * Vale representing an order still pending.
+	 * Value representing an order still pending.
 	 */
 	public static int PENDING_ORDER = 0;
 	
+	/**
+	 * Value representing a completed order.
+	 */
+	public static int COMPLETED_ORDER = 1;
+	
+	/**
+	 * Value representing a buy order.
+	 */
 	public static int BUY_ORDER = 1;
 	
 	@Id

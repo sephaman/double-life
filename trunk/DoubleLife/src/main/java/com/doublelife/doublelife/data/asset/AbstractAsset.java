@@ -11,8 +11,8 @@ package com.doublelife.doublelife.data.asset;
 public abstract class AbstractAsset {
 
 	protected double value;
-	private String name;
-	private String type;
+	protected String name;
+	protected String type;
 	
 	/**
 	 * @return
