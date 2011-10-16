@@ -9,8 +9,9 @@
     <definition name="main.tvw" template="/WEB-INF/templates/main.jsp">
     	<put-attribute name="title" value="Double Life" type="string" />
         <put-attribute name="header" value="/WEB-INF/templates/header.jsp" />
-        <!-- <put-attribute name="body" value="/templates/blank.jsp" />
-        <put-attribute name="helpContents" value="/help/noHelp.jsp" />
+        <put-attribute name="top-menu" value="/WEB-INF/templates/top-menu.jsp" />
+        <put-attribute name="body" value="/WEB-INF/templates/blank.jsp" />
+       <!--  <put-attribute name="helpContents" value="/help/noHelp.jsp" />
         <put-list-attribute id="items" name="items">
         	<add-attribute id="menu" value="/templates/menu.jsp" role="ROLE_USER"/>
         	<add-attribute id="adminMenu" value="/templates/adminmenu.jsp" role="ROLE_ADMIN"/>
@@ -18,7 +19,7 @@
         </put-list-attribute> -->
     </definition>
 
-	<!-- Login screen does not extend any other template -->
-	<definition name="home.tvw" template="/WEB-INF/views/home.jsp">
-	</definition>
+	<definition name="home.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+    </definition>
 </tiles-definitions>
