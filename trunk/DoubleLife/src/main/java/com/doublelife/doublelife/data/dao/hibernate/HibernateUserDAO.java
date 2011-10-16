@@ -58,4 +58,17 @@ public class HibernateUserDAO implements UserDAO {
 		return null;
 	}
 
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserDAO#createUser(com.doublelife.doublelife.data.User)
+	 */
+	public boolean createUser(User user) {
+		try {
+			hibernate.saveOrUpdate(user);
+			return true;
+		} catch (DataAccessException e) {
+			logger.error("Error saving user.", e);
+			return false;
+		}
+	}
+
 }
