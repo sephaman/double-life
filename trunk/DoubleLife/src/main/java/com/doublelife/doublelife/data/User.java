@@ -11,7 +11,7 @@ import javax.persistence.Id;
  * @author Joseph McAleer
  *
  */
-@Entity (name = "user")
+@Entity (name = "dl_user")
 public class User {
 
 	@Id
@@ -19,17 +19,17 @@ public class User {
 	@Column(name = "id")
 	private long id;
 	
-	@Column(name = "userName")
+	@Column(name = "username")
 	private String userName;
 	
-	@Column(name = "firstName")
+	@Column(name = "firstname")
 	private String firstName;
 	
-	@Column(name = "lastName")
+	@Column(name = "lastname")
 	private String lastName;
 	
 	@Column(name = "password")
-	private String password;  //temp?
+	private String password; 
 	
 	public String getUserName() {
 		return userName;

@@ -60,7 +60,7 @@ public class HibernateStockOrderDAO implements StockOrderDAO {
 		try {
 			retVal = (List<StockOrder>) hibernate.findByCriteria(detachedCriteria);
 		} catch (DataAccessException e) {
-			logger.error("Error retrieving user bets with stockOrderId", e);
+			logger.error("Error retrieving stock orders with stockOrderId", e);
 		}
 		if (!retVal.isEmpty()) {
 			return retVal.get(0);

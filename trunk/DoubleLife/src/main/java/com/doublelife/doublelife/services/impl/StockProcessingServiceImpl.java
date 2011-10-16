@@ -118,7 +118,7 @@ public class StockProcessingServiceImpl implements StockProcessingService {
 		}
 		return result;
 	}
-
+	
 	/**
 	 * @param userStockService the userStockService to set
 	 */
@@ -134,17 +134,17 @@ public class StockProcessingServiceImpl implements StockProcessingService {
 	}
 
 	/**
-	 * @return the stockDAO
+	 * @return the stockOrderDAO
 	 */
-	public StockOrderDAO getStockDAO() {
+	public StockOrderDAO getStockOrderDAO() {
 		return stockOrderDAO;
 	}
 
 	/**
-	 * @param stockDAO the stockDAO to set
+	 * @param stockOrderDAO 
 	 */
-	public void setStockDAO(StockOrderDAO stockDAO) {
-		this.stockOrderDAO = stockDAO;
+	public void setStockOrderDAO(StockOrderDAO stockOrderDAO) {
+		this.stockOrderDAO = stockOrderDAO;
 	}
 
 	/**
