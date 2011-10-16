@@ -58,3 +58,19 @@ CREATE TABLE user_betting_account
    amount float NOT NULL,
    updateDateTime date NOT NULL
 );
+
+CREATE TABLE bet_event
+(
+	id integer PRIMARY KEY,
+   betEventTypeId    integer NOT NULL,
+   dateTime date NOT NULL,
+   outcomePending integer NOT NULL,
+   selectionWinnerId integer
+);
+
+CREATE TABLE participant_betevent
+(
+id integer PRIMARY KEY,
+participantId integer NOT NULL,
+betEventId integer NOT NULL
+);

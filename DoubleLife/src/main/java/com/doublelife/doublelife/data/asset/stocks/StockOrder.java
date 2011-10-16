@@ -34,6 +34,11 @@ public class StockOrder {
 	 */
 	public static int BUY_ORDER = 1;
 	
+	/**
+	 * Value for at market orders.
+	 */
+	public static int AT_MARKET = 1;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")

@@ -14,7 +14,7 @@ import javax.persistence.Transient;
  * Represents stock held by a user.
  * @author Joseph McAleer
  */
-@Entity (name = "userstock")
+@Entity (name = "user_stock")
 public class UserStockHolding {
 
 	@Id

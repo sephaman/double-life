@@ -12,8 +12,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.doublelife.doublelife.data.asset.stocks.StockOrder;
-
 /**
  * @author Joseph McAleer
  *
@@ -26,22 +24,6 @@ public class UserStockDAOTest {
 	@Autowired
 	private UserStockDAO userStockDAO;
 	
-	/**
-	 * Test method for {@link com.doublelife.doublelife.data.dao.hibernate.HibernateUserStockDAO#buyUserStock(com.doublelife.doublelife.data.asset.stocks.StockOrder)}.
-	 */
-	@Test
-	public void testBuyUserStock() {
-		StockOrder stockOrder = new StockOrder();
-		//userStockDAO.buyUserStock(stockOrder);
-	}
-
-	/**
-	 * Test method for {@link com.doublelife.doublelife.data.dao.hibernate.HibernateUserStockDAO#sellUserStock(com.doublelife.doublelife.data.asset.stocks.StockOrder)}.
-	 */
-	@Test
-	public void testSellUserStock() {
-		fail("Not yet implemented");
-	}
 
 	/**
 	 * Test method for {@link com.doublelife.doublelife.data.dao.hibernate.HibernateUserStockDAO#getUserStockHolding(long)}.

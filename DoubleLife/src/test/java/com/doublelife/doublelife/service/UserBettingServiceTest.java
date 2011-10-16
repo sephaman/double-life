@@ -68,7 +68,7 @@ public class UserBettingServiceTest {
 		user.setId(333L);
 		user.setUserName("sepha");
 		
-		UserBettingAccount acct =userBettingService.addUserBettingAccount(user);
+		UserBettingAccount acct = userBettingService.addUserBettingAccount(user);
 		
 		//make a bet
 		Bet bet = new Bet();
