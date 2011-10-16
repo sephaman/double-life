@@ -1,0 +1,767 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	background-color: white;
+	font-family: calibri, tahoma, verdana, arial, helvetica;
+	padding: 0px;
+	margin: 0px;
+}
+
+#bodyFrame {
+	 margin-top:2px;
+	 border-width: 1px;
+	 border-color: #17375E;
+	 border-style: solid;
+	 padding-bottom:10px;
+	 width: 99%;
+	 padding-right:5px;
+	 padding-left:5px;
+	 font-size:11pt;
+}
+
+#menuFrame {
+	width:15%;
+}
+
+/* Headings */
+h1 {
+	font-size: xx-large;
+}
+
+h2 {
+	color: #000000;
+	background-color: #C2D4E8;
+	width:100%;
+	font-size:140%;
+	margin-bottom:0.3em;
+	padding-left: 3px;
+}
+
+/* Links */
+a {
+	text-decoration: none;
+}
+
+a:HOVER {
+	text-decoration:underline;
+}
+
+a.menuLink:LINK {
+	color: #17375E;
+}
+
+a.menuLink:VISITED {
+	color: #17375E;
+}
+
+a.menuLink:HOVER {
+	color: #17375E;
+}
+
+a.menuLink:ACTIVE {
+	color: blue;
+}
+
+#loginPanel {
+	float: none;
+	background-color: #95B3D7;
+	color: #17375E;
+	border: solid black 1px;
+	width: 30em;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5%;
+	margin-bottom: auto;
+	padding-top: 40px;
+	padding-bottom: 10px;
+	text-align: center;
+}
+
+#loginInnerPanel {
+	background-color: #DBEEF4;
+	border: solid black 1px;
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 1em;
+	/*
+	padding-bottom: 10px;
+	*/
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#loginInnerPanel .loginLabel {
+	font-weight: bold;
+	text-align: right;
+	padding-right: 1em;
+}
+
+#loginInnerPanel .loginInput {
+	text-align: left;
+	width: 95%;
+}
+
+#versionInfo {
+	width: 30em;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	font-family: "Courier New";
+	text-align: center;
+	font-size: small;
+}
+
+#noticeBoard {
+	float: left;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background-color: #FFFFCC;
+	margin-left: 1em;
+	margin-top: 1em;
+	padding: 1em;
+	text-align: left;
+	font-size: small;
+	border: solid black 1px;
+}
+
+#header {
+	background-color: #95B3D7;
+	color: white;
+	/*
+	font-size: small;
+	*/
+	border-botton: 2px solid #17375E;
+	padding-bottom: 2px;
+}
+
+#header img {
+    margin-top: 2px;
+}
+#siteName {
+    vertical-align: top;
+}
+
+.centeredText {
+	text-align: center;
+}
+
+.headerSubpanel {
+	border-width: 1px;
+	border-style: solid;
+	border-color: #17375E;
+	background-color: #C3D5EB;
+    width: 98%;
+}
+
+.headerSubpanel .headerLabel {
+	color: #17375E;
+	font-weight: normal;
+}
+
+.headerLabel {
+	font-weight: bold;
+	padding-left: 1em;
+	padding-right: 1em;
+	white-space: nowrap;
+	/*
+	border-bottom: solid 1px;
+	*/
+}
+
+.headerValue {
+	color: #17375E;
+	font-weight: normal;
+	/*
+	width: 100%;
+	*/
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+.pagePanel {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+.pagePanel #lblNotification {
+	color: red;
+	text-align: center;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+#menuBar {
+	/*
+	background-color: #17375E;
+	*/
+	color: white;
+	position: relative;
+	left: 0;
+	width: auto;
+	height: 80%;
+	padding: 0.2px 0;
+}
+
+.menuPanel {
+	/*
+	background-color: #95B3D7;
+	*/
+	color: white;
+	position: relative;
+	left: 0;
+	width: 180px;
+	height: auto;
+	margin: 2px;
+	text-align: left;
+}
+
+.menuHeader {
+	background-color: #95B3D7;
+	border-color: #17375E;
+	border-style: solid;
+	border-width: 1px;
+	font-weight: bold;
+	cursor: pointer; /* FF, Safari, Chrome */
+	cursor: hand; /* IE, Opera */
+}
+
+.menuItems ul {
+    background-color: #C3D5EB;
+	border-color: #17375E;
+	border-style: solid;
+	border-width: 1px;
+    margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+.menuItems li {
+	padding-left: 5px;
+	padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: right;
+}
+
+.menuItem {
+}
+
+.menuItemSelected {
+	/*background-color: #7593C7;*/
+	background-color: #56759B;
+}
+
+.disabledButton {
+	background-color: #97B7DE;
+	color: #DBEEF4;
+	font-weight: bold;
+	font-size: smaller;
+	text-align: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 1em;
+	padding-right: 1em;
+	border: 1px dotted;
+}
+
+.button {
+	background-color: #3299F8;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: smaller;
+	text-align: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 1em;
+	padding-right: 1em;
+	margin-right: 2px;
+	cursor: pointer; /* FF, Safari, Chrome */
+	cursor: hand; /* IE, Opera */
+	border: 1px solid white;
+}
+
+.button:HOVER {
+	border: 2px solid #0000FF;
+	border-left: none;
+	border-top:none;
+}
+
+.button a:LINK {
+	color: #DBEEF4;
+}
+
+.button a:VISITED {
+	color: #DBEEF4;
+}
+
+.button a:HOVER {
+}
+
+.button a:ACTIVE {
+	color: blue;
+}
+
+/*must be a class - see screeningDetails.jsp*/
+.scrollableTextBox {
+     width:98%;
+     height:100%;
+     border:0px;
+     overflow:scroll;
+     overflow-x: hidden;
+     padding-top: 10px;
+     text-align: left;
+     font-size: 90%;
+     font-family: calibri, tahoma, verdana, arial, helvetica;
+}
+
+.pageTitleBar {
+	font-weight: bold;
+	font-size: 14pt;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+    margin-bottom:0.3em;
+    margin-top:0.2em;
+    color: #FFFFFF;
+    background-color: #7FBFBF;
+    /*
+    margin-left: 0em;
+    margin-right: 0em;
+    */
+}
+
+.pageSectionTitle {
+	border: none;
+	width: 100%;
+	color: #17375E;
+	font-weight: normal;
+	font-size: large;
+    padding-left: 1em;
+    padding-top: 1em;
+	margin-bottom: 1em;
+}
+
+.pageSummary {
+	border: none;
+	width: 90%;
+	margin-top: 1em;
+	margin-left: auto;
+	margin-right: auto;
+	float: none;
+}
+
+.toolbarContainer {
+	position: relative;
+}
+
+.toolbarImage {
+	margin-left: 5px;
+	margin-right: 2px;
+}
+
+#buttonToolbar {
+	width: 200px;
+	position:absolute;
+	font-size:x-small;
+	text-align:right;
+	right: 0;
+	top: 0.3em;
+	padding: 0em;
+	padding-right: 1em;
+	margin-left: 0em;
+	margin-right: 0.5em;
+	margin-top: 0.5em;
+	border: none;
+}
+
+#helpPanel {
+	width: 15em;
+	position: absolute;
+	top: 2em;
+	right: 0;
+	border-color: #17375E;
+	border-style: solid;
+	border-width: 2px;
+	padding: 0.5em;
+	padding-right: 1em;
+	margin-left: 0em;
+	margin-right: 0em;
+	margin-top: 0em;
+	background-color: white;
+	text-align: left;
+}
+
+.helpHeader {
+	font-size: large;
+	font-weight: bold;
+	color: #17375E;
+	text-decoration: underline;
+}
+
+.helpContent {
+	width: 5em;
+}
+
+.errorMessage {
+	color: red;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+}
+
+div.authorisation {
+    width:100%;
+    background-color:#A2D1FC;
+    border:1px solid #17375E;;
+    color:#17375E;;
+    text-align:center;
+    margin-bottom:10px;
+    padding:5px;
+}
+
+div.form-errors {
+    background-color:#fff;
+    border:1px solid #ff0000;
+    text-align:left;
+    margin-bottom:5px;
+    padding:5px;
+}
+
+div.form-errors ul {
+    margin-top:0;
+    margin-bottom:0;
+}
+
+div.form-errors li {
+    text-align:left;
+    color:#ff0000;
+    padding:0;
+}
+
+tr.labeledForm {
+    height: 20px;
+}
+
+td.labeledForm {
+    text-align: right;
+    background-color: #D4E0F0;
+    color: black;
+    font-family: calibri,tahoma,verdana,arial,helvetica;
+    padding: 0px 5px 0px 0px;
+    width:200px;
+}
+
+p.changePasswordMessage {
+    color: red;
+    font-size:1.2em;
+    margin:0px 0px 5px 0px;
+}
+
+p.changePasswordTitle {
+    color: #153894;
+    font-size:1.5em;
+    margin:0px 0px 10px 0px;
+}
+
+p.customHeading {
+    color: #153894;
+    font-size:3em;
+    font-weight:bold;
+    margin:0px 0px -10px 0px;
+}
+
+td.rightBoldText {
+	text-align:right;
+	font-weight:bold;
+}
+
+td.changePasswordTextField {
+	width:100px;
+	text-align:right;
+	padding-left:30px;
+}
+
+.passwordChangeContainer {
+    color:#153894;
+    width:35%;
+    background-color:#C3D5EB;
+    border:1px #153894 solid;
+}
+
+.centerTextAlign {
+    text-align:center;
+}
+
+div.passwordRules {
+	width:450px;
+	margin: 20px 0px 0px 0px;
+}
+
+/*
+alternate color scheme
+td.labeledForm {
+    text-align: right;
+    background-color: #C3D5EB;
+    color: #153894;
+    font-family: calibri,tahoma,verdana,arial,helvetica;
+    padding: 0px 5px 0px 0px;
+    width:200px;
+    border:1px #153894 solid;
+}*/
+
+ul.labeledForm {
+	color: red;
+	margin: 0px 0px 0px 22px;
+	padding: 0px 5px 0px 0px;
+}
+
+/* User Details pages */
+.userDetailsForm {
+    margin-top: 10px;
+    margin-left: 30px;
+}
+td.userDetailsTextField {
+	width: 195px;
+	text-align: left;
+}
+.userDetailsForm .required {
+    text-align: right;
+	width: 30px;
+}
+td.userDetailsTextField input, td.userDetailsTextField select {
+	width: 100%;
+} /* End User Details pages */
+
+.noticeBox {
+	margin-top: 1em;
+	margin-bottom: 1em;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	padding-top: 0.3em;
+	padding-bottom: 0.3em;
+	border-style: solid;
+	border-width: 1px;
+	background-color: #FFFFCC;
+}
+
+.pageBody {
+	color: #95B3D7;
+}
+
+.invisible {
+	/*
+	position:absolute;
+	width:0px;
+	height:0px;
+	display: none;
+	*/
+}
+
+#fileUploadPanel {
+	position: relative;
+	margin-top: 0.1em;
+	margin-bottom: 0.1em;
+	padding-top: 3em;
+	/*
+	border-top: solid;
+	border-top-color: #17375E;
+	border-top-width: 1px;
+	*/
+}
+/* Form Button div */
+#formButtons div {
+    text-align: center;
+    background-color: red;
+}
+/* Style to centre buttons on list pages */
+.listButtonContainer {
+    text-align: center;
+    margin-top: 10px;
+}
+
+div.columnFilter {
+    margin: 5px 0;
+    margin-bottom: 5px;
+    padding: 0;
+    clear:both;
+}
+#frmFilter {
+    background-color: #D4E0F0;
+    border: 1px solid #17375E;
+    clear: both;
+    margin-top: 3px;
+}
+#frmFilter label {
+    font-weight: bolder;
+}
+.filterHeading {
+    background-color: #3299F8;
+    height: 26px;
+}
+h3.filterPane {
+    margin: 0;
+    padding-left: 2px;
+    color: white;
+    float:left;
+    width:40%
+}
+#filterFormActivator {
+	cursor: pointer; /* FF, Safari, Chrome */
+	cursor: hand; /* IE, Opera */
+}
+.filterFormActivatorButton {
+    float: right;
+    width:40%;
+    text-align: right;
+    margin-top: 1px;
+    margin-right: 3px;
+}
+.columnFilter div.formField {
+    float: left;
+    margin: 0.5em;
+}
+.filterButtons {
+   float: right;
+}
+.filterButtons input {
+    background-color:#3299F8;
+    border:1px solid white;
+    color:#FFFFFF;
+    cursor:pointer;
+    font-size:smaller;
+    font-weight:bold;
+    margin-right:2px;
+    padding:2px 1em;
+    text-align:center;
+}
+.separator {
+    clear: both;
+    font-size: 1px;
+    line-height: 1px;
+}
+/* Table Styles */
+tr.alternateRowColor td {
+    background-color: #F4F7FB;
+}
+
+tr.highlightRow td {
+	background-color: #A2D1FC;
+}
+
+.dataTable {
+	width: 100%;
+	background-color: white;
+	border-spacing: 5px;
+    clear:both;
+    text-align: left;
+}
+
+.dataTable a,
+	#dataTable a:active,
+    #dataTable a:visited {
+    text-decoration:none;
+    color:#000;
+}
+
+.dataTable table{
+	width: 100%;
+    cell-spacing: 0px;
+    border-collapse:collapse;
+    text-align: left;
+    margin-top: 0.25em;
+    clear: both;
+}
+.dataTable td, .dataTable th {
+	padding-left: 3px;
+	background-color: #FFFFFF;
+	border: 1px solid #C2D4E8;
+	padding-right: 3px;
+    padding-left:3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size: 90%;
+    white-space:nowrap;
+}
+.dataTable th {
+	background-color: #D4E0F0;
+	font-size: 90%;
+}
+.dataTable p {
+    text-align: left;
+}
+
+.drillDownTable {
+	width: 90%;
+	margin-left: auto;
+	margin-right:auto;
+}
+
+.drillDownTable td {
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-left: 1px;
+	margin-right: 1px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	text-align: left;
+}
+
+.drillDownTable td.tableLabel {
+	background-color: #D4E0F0;
+}
+
+.drillDownTable td.tableValue {
+	border: 1px solid #C2D4E8;
+}
+
+/* Pagination styles */
+.paginatedTable {
+    text-align: right;
+}
+.pagebanner, .pagelinks {
+    color: #444;
+    font-size: 110%;
+    margin: 0.4em;
+    white-space: nowrap;
+}
+
+/* screeningMode */
+
+.screenModeTable {
+	border: 1px solid black;
+	margin-top:5px;
+}
+.screenModeHeader {
+    background-color:#95B3D7;
+    color: black;
+    width: 575px;
+    margin-left: 15em;
+    font-weight: bold;
+    font-size: 110%;
+}
+
+#screenModeSubTitle {
+	text-align: center;
+    font-weight: bold;
+    font-size: large;
+    color: #FFFFFF;
+    width:850px;
+    background-color: #D4E0F0;
+}
+
+/* Notification */
+.notifyText {
+	background-color: #C2D4E8;
+    color: #17375E;
+    border: solid black 1px;
+    font-weight: bold;
+    padding: 1em;
+    margin: 0em;
+    text-align: center;
+}
+
+
+
+

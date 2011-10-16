@@ -11,6 +11,7 @@
         <put-attribute name="header" value="/WEB-INF/templates/header.jsp" />
         <put-attribute name="top-menu" value="/WEB-INF/templates/top-menu.jsp" />
         <put-attribute name="body" value="/WEB-INF/templates/blank.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/templates/blank.jsp" />
        <!--  <put-attribute name="helpContents" value="/help/noHelp.jsp" />
         <put-list-attribute id="items" name="items">
         	<add-attribute id="menu" value="/templates/menu.jsp" role="ROLE_USER"/>
