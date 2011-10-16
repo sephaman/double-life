@@ -6,12 +6,15 @@ package com.doublelife.doublelife.services.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.doublelife.doublelife.data.asset.stocks.RetrievedStock;
 import com.doublelife.doublelife.data.asset.stocks.StockOrder;
+import com.doublelife.doublelife.data.asset.stocks.StockPortfolio;
+import com.doublelife.doublelife.data.asset.stocks.UserStockHolding;
 import com.doublelife.doublelife.data.dao.StockOrderDAO;
 import com.doublelife.doublelife.services.StockProcessingService;
 import com.doublelife.doublelife.services.StockService;
@@ -107,6 +110,24 @@ public class StockProcessingServiceImpl implements StockProcessingService {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.services.StockProcessingService#getUserStockPortfolio(long)
+	 */
+	public StockPortfolio getUserStockPortfolio(long userId) {
+		List<UserStockHolding> lstStock = userStockService.getUserStockHolding(userId);
+		StockPortfolio stockPortfolio = new StockPortfolio(lstStock);
+		return stockPortfolio;
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.services.StockProcessingService#getUserLiveStockMappings(long)
+	 */
+	public Map<UserStockHolding, RetrievedStock> getUserLiveStockMappings(
+			long userId) {
+		StockPortfolio stockPortfolio = getUserStockPortfolio(userId);
+		return stockService.getStockMappings(stockPortfolio);
 	}
 	
 	private boolean settleStockOrder(StockOrder stockOrder) {
