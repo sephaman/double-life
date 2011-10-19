@@ -91,4 +91,11 @@
 		<property name="order" value="1" />
 	</bean>
 	
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>messages</value>
+            </list>
+        </property>
+    </bean>
 </beans>
