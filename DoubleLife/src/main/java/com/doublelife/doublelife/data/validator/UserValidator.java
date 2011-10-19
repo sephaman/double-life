@@ -38,5 +38,5 @@ public class UserValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "emailAddress",
 		"emailAddress.required");
 	}
-
+	
 }

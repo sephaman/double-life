@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Property;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,6 +70,44 @@ public class HibernateUserDAO implements UserDAO {
 			logger.error("Error saving user.", e);
 			return false;
 		}
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserDAO#getAllUsers()
+	 */
+	public List<User> getAllUsers() {
+		List<User> retVal = null;
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(UserBettingAccount.class);
+		detachedCriteria.addOrder(Order.asc("userName"));
+		
+		try {
+			retVal = (List<User>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving all users", e);
+		}
+		if (!retVal.isEmpty()) {
+			return retVal;
+		}
+		return null;
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserDAO#getUserByUserName(java.lang.String)
+	 */
+	public List<User> getUserByUserName(String userName) {
+		List<User> retVal = null;
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(UserBettingAccount.class);
+		detachedCriteria.add(Property.forName("userName").eq(userName));
+		
+		try {
+			retVal = (List<User>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving users with userName", e);
+		}
+		if (retVal != null && !retVal.isEmpty()) {
+			return retVal;
+		}
+		return null;
 	}
 
 }

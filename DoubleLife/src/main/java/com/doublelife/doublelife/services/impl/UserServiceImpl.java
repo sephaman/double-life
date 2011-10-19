@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 	 * @see com.doublelife.doublelife.services.UserService#getAllUsers()
 	 */
 	public List<User> getAllUsers() {
-		return null; //TODO
+		return userDAO.getAllUsers();
 	}
 
 	/**
@@ -42,8 +42,11 @@ public class UserServiceImpl implements UserService {
 	 * @see com.doublelife.doublelife.services.UserService#checkForExistingUser(com.doublelife.doublelife.data.User)
 	 */
 	public boolean checkForExistingUser(User user) {
-		// TODO Auto-generated method stub
-		return false;
+		if (userDAO.getUserByUserName(user.getUserName()).size() > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**

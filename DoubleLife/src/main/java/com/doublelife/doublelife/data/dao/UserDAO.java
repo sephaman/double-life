@@ -3,6 +3,8 @@
  */
 package com.doublelife.doublelife.data.dao;
 
+import java.util.List;
+
 import com.doublelife.doublelife.data.User;
 
 /**
@@ -28,8 +30,20 @@ public interface UserDAO {
 	
 	/**
 	 * Get the user by Id.
-	 * @param id
+	 * @param userId 
 	 * @return
 	 */
 	public User getUserById(long userId);
+	
+	/**
+	 * Returns all users.
+	 * @return
+	 */
+	public List<User> getAllUsers();
+	
+	/**
+	 * @param userName
+	 * @return
+	 */
+	public List<User> getUserByUserName(String userName);
 }
