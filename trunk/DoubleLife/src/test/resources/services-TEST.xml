@@ -13,6 +13,11 @@
 		class="com.doublelife.doublelife.services.impl.YahooStockServiceImpl">
 	</bean>
 	
+	<bean id="userService"
+		class="com.doublelife.doublelife.services.impl.UserServiceImpl">
+		<property name="userDAO" ref="userDAO"></property>
+	</bean>
+	
 	<bean id="stockProcessingService"
 		class="com.doublelife.doublelife.services.impl.StockProcessingServiceImpl">
 		<property name="userStockService" ref="userStockService"></property>

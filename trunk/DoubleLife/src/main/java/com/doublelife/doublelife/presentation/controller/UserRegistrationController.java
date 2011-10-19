@@ -2,6 +2,7 @@ package com.doublelife.doublelife.presentation.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -25,7 +26,10 @@ public class UserRegistrationController {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserRegistrationController.class);
 
+	@Autowired
 	private UserService userService;
+	
+	@Autowired
 	private UserValidator userValidator;
 	
 	/**
@@ -68,6 +72,20 @@ public class UserRegistrationController {
 	 */
 	public UserService getUserService() {
 		return userService;
+	}
+
+	/**
+	 * @return the userValidator
+	 */
+	public UserValidator getUserValidator() {
+		return userValidator;
+	}
+
+	/**
+	 * @param userValidator the userValidator to set
+	 */
+	public void setUserValidator(UserValidator userValidator) {
+		this.userValidator = userValidator;
 	}
 	
 }
