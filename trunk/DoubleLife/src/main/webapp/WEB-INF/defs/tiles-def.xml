@@ -23,4 +23,12 @@
 	<definition name="home.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
     </definition>
+    
+    <definition name="userStockPortfolio.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/userStockPortfolio.jsp" />
+    </definition>
+    
+    <definition name="userRegistration.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/userRegistration.jsp" />
+    </definition>
 </tiles-definitions>
