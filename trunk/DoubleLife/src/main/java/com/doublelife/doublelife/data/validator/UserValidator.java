@@ -28,9 +28,15 @@ public class UserValidator implements Validator {
 	 */
 	public void validate(Object arg0, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName",
-		"name.required");
+		"userName.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName",
+		"firstName.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName",
+		"lastName.required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password",
 		"password.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "emailAddress",
+		"emailAddress.required");
 	}
 
 }
