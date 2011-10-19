@@ -28,6 +28,9 @@ public class User {
 	@Column(name = "lastname")
 	private String lastName;
 	
+	@Column(name = "email_address")
+	private String emailAddress;
+	
 	@Column(name = "password")
 	private String password; 
 	
@@ -72,5 +75,17 @@ public class User {
 	 */
 	public String getPassword() {
 		return password;
+	}
+	/**
+	 * @param emailAddress the emailAddress to set
+	 */
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+	/**
+	 * @return the emailAddress
+	 */
+	public String getEmailAddress() {
+		return emailAddress;
 	}
 }
