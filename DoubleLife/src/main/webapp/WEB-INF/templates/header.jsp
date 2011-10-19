@@ -9,7 +9,7 @@
 		<!-- title -->
 		<tr>
 			<td valign="middle">
-				<img src="<c:url value="/resources/img/header.jpg"/>" alt="header logo" />
+				<img src="<c:url value="/resources/img/header.jpg"/>" alt="header logo" style="width:100%"/>
 			</td>
 		</tr>
 	</table>
