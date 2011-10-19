@@ -51,6 +51,10 @@ public class UserRegistrationController {
 	public ModelAndView handleSubmit(@ModelAttribute("user") User user, BindingResult result) {
 		logger.info("User Registration Submission");
 		userValidator.validate(user, result);
+		if (userService.checkForExistingUser(user)) {
+			result.reject("userName", "Username already exists");
+		}
+		
 		if (result.hasErrors()) {
 			return new ModelAndView("userRegistration.tvw");
 		} else {
