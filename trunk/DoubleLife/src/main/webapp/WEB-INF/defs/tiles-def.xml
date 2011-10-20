@@ -34,4 +34,7 @@
     <definition name="userRegistrationSuccess.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/userRegistrationSuccess.jsp" />
     </definition>
+    <definition name="stockSearch.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/stockSearch.jsp" />
+    </definition>
 </tiles-definitions>

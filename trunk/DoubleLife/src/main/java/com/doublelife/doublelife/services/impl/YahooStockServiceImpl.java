@@ -38,7 +38,7 @@ import com.doublelife.doublelife.services.utils.HttpHelper;
 				return lstStock;
 				} catch(Exception ex) {
 					System.out.println("Exception:" + ex.getMessage());
-					return null;
+					return new ArrayList<RetrievedStock>();
 				}
 	}
 		
