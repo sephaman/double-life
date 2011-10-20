@@ -38,7 +38,7 @@ public class YahooXMLProcessor {
 		
 		} catch(Exception ex) {
 			System.out.println(ex.getMessage());
-			return null;
+			return new ArrayList<RetrievedStock>();
 		}
 	}
 	

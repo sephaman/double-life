@@ -15,7 +15,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.doublelife.doublelife.data.User;
-import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
 import com.doublelife.doublelife.data.dao.UserDAO;
 
 /**
@@ -45,7 +44,7 @@ public class HibernateUserDAO implements UserDAO {
 	 */
 	public User getUserById(long userId) {
 		List<User> retVal = null;
-		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(UserBettingAccount.class);
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(User.class);
 		detachedCriteria.add(Property.forName("userId").eq(userId));
 		
 		try {
@@ -77,7 +76,7 @@ public class HibernateUserDAO implements UserDAO {
 	 */
 	public List<User> getAllUsers() {
 		List<User> retVal = null;
-		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(UserBettingAccount.class);
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(User.class);
 		detachedCriteria.addOrder(Order.asc("userName"));
 		
 		try {
@@ -96,7 +95,7 @@ public class HibernateUserDAO implements UserDAO {
 	 */
 	public List<User> getUserByUserName(String userName) {
 		List<User> retVal = null;
-		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(UserBettingAccount.class);
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(User.class);
 		detachedCriteria.add(Property.forName("userName").eq(userName));
 		
 		try {
