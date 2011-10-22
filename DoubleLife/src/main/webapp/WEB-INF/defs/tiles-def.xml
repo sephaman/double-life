@@ -25,17 +25,14 @@
 	<definition name="home.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
     </definition>
-    
-    <definition name="userStockPortfolio.tvw" extends="main.tvw">
-    	<put-attribute name="body" value="/WEB-INF/views/userStockPortfolio.jsp" />
-    </definition>
-    
     <definition name="userRegistration.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/userRegistration.jsp" />
     </definition>
     <definition name="userRegistrationSuccess.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/userRegistrationSuccess.jsp" />
     </definition>
+    
+    <!-- Stock Views -->
     <definition name="stockSearch.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/stockSearch.jsp" />
     </definition>
@@ -44,6 +41,15 @@
     </definition>
     <definition name="stockOrderConfirmation.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/stockOrderConfirmation.jsp" />
+    </definition>
+     <definition name="userStockPortfolio.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/userStockPortfolio.jsp" />
+    </definition>
+    <definition name="dlCompsView.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/dlCompsView.jsp" />
+    </definition>
+    <definition name="dlCompsCreate.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/dlCompsCreate.jsp" />
     </definition>
     
     <!-- Betting views -->
@@ -55,6 +61,12 @@
     </definition>
     <definition name="userBetAccount.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/betViews/userBetAccount.jsp" />
+    </definition>
+    <definition name="betCompsView.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/betViews/betCompsView.jsp" />
+    </definition>
+    <definition name="betCompsCreate.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/betViews/betCompsCreate.jsp" />
     </definition>
     
 </tiles-definitions>
