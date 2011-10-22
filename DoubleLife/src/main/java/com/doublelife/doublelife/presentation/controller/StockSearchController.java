@@ -6,6 +6,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,9 +35,12 @@ public class StockSearchController {
 	 */
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView initStockSearchPage() {
-		logger.info("Welcome to stock search!");
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
-		return new ModelAndView("stockSearch.tvw");
+		logger.info("Welcome to stock search!");
+		ModelMap map = new ModelMap();
+		map.addAttribute("userName", userDetails.getUsername());
+		return new ModelAndView("stockSearch.tvw", map);
 	}
 	
 	/**
