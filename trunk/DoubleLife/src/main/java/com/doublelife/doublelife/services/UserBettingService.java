@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.doublelife.doublelife.data.User;
 import com.doublelife.doublelife.data.BetComp.Bet;
+import com.doublelife.doublelife.data.BetComp.BetCompetition;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
 import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
@@ -90,4 +91,24 @@ public interface UserBettingService {
 	 * @return
 	 */
 	public UserBettingAccount getUserBettingAccount(long userId);
+	
+	/**
+	 * Gets all betting competitions.
+	 * @return
+	 */
+	public List<BetCompetition> getAllCurrentCompetitions();
+	
+	/**
+	 * Gets the BetCompetition by the id.
+	 * @param id
+	 * @return
+	 */
+	public BetCompetition getCompetitionById(long id);
+	
+	/**
+	 * Create new betCompetition.
+	 * @param betCompetition
+	 * @return
+	 */
+	public boolean createBetCompetition(BetCompetition betCompetition);
 }
