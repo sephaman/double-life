@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.doublelife.doublelife.data.User;
 import com.doublelife.doublelife.data.BetComp.Bet;
+import com.doublelife.doublelife.data.BetComp.BetCompetition;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
 import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
@@ -140,6 +141,27 @@ public class UserBettingServiceImpl implements UserBettingService {
 	 */
 	public UserBettingAccount getUserBettingAccount(long userId) {
 		return userBettingDAO.getUserBettingAccountByUserId(userId);
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getAllCurrentCompetitions()
+	 */
+	public List<BetCompetition> getAllCurrentCompetitions() {
+		return userBettingDAO.getAllCurrentCompetitions();
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getCompetitionById(long)
+	 */
+	public BetCompetition getCompetitionById(long id) {
+		return userBettingDAO.getCompetitionById(id);
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#createBetCompetition(com.doublelife.doublelife.data.BetComp.BetCompetition)
+	 */
+	public boolean createBetCompetition(BetCompetition betCompetition) {
+		return userBettingDAO.createBetCompetition(betCompetition);
 	}
 
 }

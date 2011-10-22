@@ -46,6 +46,12 @@ public class BetCompetition {
 	
 	@Column(name = "update_dateTime")
 	private Date updateDateTime;
+	
+	@Column(name = "is_active")
+	private int isActive;
+	
+	@Column(name = "created_by_userid")
+	private long createdByUserId;
 
 	/**
 	 * @return the id
@@ -115,5 +121,33 @@ public class BetCompetition {
 	 */
 	public void setUpdateDateTime(Date updateDateTime) {
 		this.updateDateTime = updateDateTime;
+	}
+
+	/**
+	 * @param isActive the isActive to set
+	 */
+	public void setIsActive(int isActive) {
+		this.isActive = isActive;
+	}
+
+	/**
+	 * @return the isActive
+	 */
+	public int getIsActive() {
+		return isActive;
+	}
+
+	/**
+	 * @param createdByUserId the createdByUserId to set
+	 */
+	public void setCreatedByUserId(long createdByUserId) {
+		this.createdByUserId = createdByUserId;
+	}
+
+	/**
+	 * @return the createdByUserId
+	 */
+	public long getCreatedByUserId() {
+		return createdByUserId;
 	}
 }

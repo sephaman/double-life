@@ -15,6 +15,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.doublelife.doublelife.data.BetComp.Bet;
+import com.doublelife.doublelife.data.BetComp.BetCompetition;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
 import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
@@ -181,7 +182,7 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		} catch (DataAccessException e) {
 			logger.error("Error retrieving user bets with betEventId", e);
 		}
-		if (!retVal.isEmpty()) {
+		if (retVal != null && !retVal.isEmpty()) {
 			return retVal.get(0);
 		}
 		return null;
@@ -214,6 +215,58 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 			retval = true;
 		} catch (DataAccessException e) {
 			logger.error("Error saving bet event type", e);
+			throw e;
+		}
+		return retval;
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getAllCurrentCompetitions()
+	 */
+	public List<BetCompetition> getAllCurrentCompetitions() {
+		List<BetCompetition> retVal = null;
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetCompetition.class);
+		detachedCriteria.add(Property.forName("isActive").eq(1));
+		
+		try {
+			retVal = (List<BetCompetition>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving bet competitions", e);
+		}
+			return retVal;
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getCompetitionById(long)
+	 */
+	@SuppressWarnings("unchecked")
+	public BetCompetition getCompetitionById(long id) {
+		List<BetCompetition> retVal = null;
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetCompetition.class);
+		detachedCriteria.add(Property.forName("id").eq(id));
+		
+		try {
+			retVal = (List<BetCompetition>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving user BetCompetition with Id", e);
+		}
+		if (retVal != null && !retVal.isEmpty()) {
+			return retVal.get(0);
+		}
+		return null;
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#createBetCompetition(com.doublelife.doublelife.data.BetComp.BetCompetition)
+	 */
+	public boolean createBetCompetition(BetCompetition betCompetition) {
+		boolean retval = false;
+		logger.debug("Saving bet competition");
+		try {
+			hibernate.saveOrUpdate(betCompetition);
+			retval = true;
+		} catch (DataAccessException e) {
+			logger.error("Error saving bet competition", e);
 			throw e;
 		}
 		return retval;

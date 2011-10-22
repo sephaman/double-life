@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.doublelife.doublelife.services.UserBettingService;
+import com.doublelife.doublelife.services.utils.SecurityUtil;
 
 /**
  * Handles requests for the application home page.
@@ -29,6 +30,8 @@ public class UserBetAccountController {
 	public ModelAndView showUserBetAccount() {
 		logger.info("UserBetAccount Controller: GET");
 		ModelMap map = new ModelMap();
+		map.addAttribute("userBetAccount", 
+				userBettingService.getUserBettingAccount(SecurityUtil.getCurrentUserId()));
 		return new ModelAndView("userBetAccount.tvw", map);
 	}
 
