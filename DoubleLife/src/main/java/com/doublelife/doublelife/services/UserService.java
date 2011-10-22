@@ -41,4 +41,11 @@ public interface UserService {
 	 * @return
 	 */
 	public boolean checkForExistingUser(User user);
+	
+	/**
+	 * Gets a user by username.
+	 * @param userName
+	 * @return
+	 */
+	public User getUserByUserName(String userName);
 }

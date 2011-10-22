@@ -28,4 +28,6 @@
 	
 	<beans:import resource="doublelife-common-context.xml"/>
 	
+	<beans:import resource="security.xml" />
+	
 </beans:beans>

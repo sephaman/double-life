@@ -63,4 +63,15 @@ public class UserServiceImpl implements UserService {
 		return userDAO;
 	}
 
+	/**
+	 * @see com.doublelife.doublelife.services.UserService#getUserByUserName(java.lang.String)
+	 */
+	public User getUserByUserName(String userName) {
+		List<User> lstUsers = userDAO.getUserByUserName(userName);
+		if (lstUsers != null && lstUsers.size() == 1) {
+			return lstUsers.get(0);
+		}
+		return null;
+	}
+
 }

@@ -39,6 +39,14 @@
 		class="com.doublelife.doublelife.services.impl.LoginServiceImpl">
 		<property name="userDAO" ref="userDAO"></property>
 	</bean>
+	
+	
+	<bean id="emailService"
+		class="com.doublelife.doublelife.services.impl.EmailServiceImpl">
+		<property name="mailSender" ref="springMailSender"></property>
+	</bean>
+	
+	<bean class="com.doublelife.doublelife.services.impl.UserDetailsServiceImpl" id="userDetailsService"/>
 
 <!-- DAOs -->
 	<bean id="userBettingDAO"
@@ -61,8 +69,4 @@
 		<constructor-arg ref="sessionFactory"></constructor-arg>
 	</bean>
 	
-	<bean id="emailService"
-		class="com.doublelife.doublelife.services.impl.EmailServiceImpl">
-		<property name="mailSender" ref="springMailSender"></property>
-	</bean>
 </beans>
