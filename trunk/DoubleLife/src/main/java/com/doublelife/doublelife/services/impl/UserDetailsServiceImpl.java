@@ -12,12 +12,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import com.doublelife.doublelife.data.AuthorisedUser;
 import com.doublelife.doublelife.data.User;
 import com.doublelife.doublelife.services.UserService;
 
 /**
  * Spring UserDetailsService implementation.
- * @author rstsyy
+ * @author Joseph McAleer
  */
 public class UserDetailsServiceImpl implements UserDetailsService, Serializable {
 
@@ -34,10 +35,10 @@ public class UserDetailsServiceImpl implements UserDetailsService, Serializable 
 		List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
 			grantedAuthorities.add(new GrantedAuthorityImpl("ROLE_USER"));
 		return
-			new org.springframework.security.core.userdetails.User(
+			new AuthorisedUser (
 					user.getUserName(), user.getPassword(), true,
-						true, true, true, grantedAuthorities) {
-
+						true, true, true, grantedAuthorities, user) {
+							
 						};
 	}
 

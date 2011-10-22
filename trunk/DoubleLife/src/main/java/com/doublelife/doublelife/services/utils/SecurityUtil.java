@@ -21,6 +21,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.doublelife.doublelife.data.AuthorisedUser;
+import com.doublelife.doublelife.data.User;
+
 /**
  * Contains utility methods to perform basic security operations
  * like calculating message digests, encryption, decryption, etc.
@@ -55,6 +58,50 @@ public final class SecurityUtil {
 		if ((userDetails != null)
 				&& (userDetails instanceof UserDetails)) {
 			retval = (UserDetails) userDetails;
+		}
+
+		return retval;
+	}
+	
+	/**
+	 * Retrieves the id of the current user.
+	 *
+	 * @return the current user id.
+	 */
+	public static long getCurrentUserId() {
+		Long retval = null;
+		Object userDetails = null;
+		try {
+			userDetails = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		} catch (Exception e) {
+			LOGGER.error("Error retrieving current user details.", e);
+		}
+
+		if ((userDetails != null)
+				&& (userDetails instanceof AuthorisedUser)) {
+			retval = ((AuthorisedUser) userDetails).getUser().getId();
+		}
+
+		return retval;
+	}
+	
+	/**
+	 * Retrieves the current user.
+	 *
+	 * @return the current user.
+	 */
+	public static User getCurrentUser() {
+		User retval = null;
+		Object userDetails = null;
+		try {
+			userDetails = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		} catch (Exception e) {
+			LOGGER.error("Error retrieving current user details.", e);
+		}
+
+		if ((userDetails != null)
+				&& (userDetails instanceof AuthorisedUser)) {
+			retval = ((AuthorisedUser) userDetails).getUser();
 		}
 
 		return retval;

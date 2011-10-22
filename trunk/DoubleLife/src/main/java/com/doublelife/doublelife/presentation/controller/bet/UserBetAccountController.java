@@ -29,7 +29,6 @@ public class UserBetAccountController {
 	public ModelAndView showUserBetAccount() {
 		logger.info("UserBetAccount Controller: GET");
 		ModelMap map = new ModelMap();
-		
 		return new ModelAndView("userBetAccount.tvw", map);
 	}
 
