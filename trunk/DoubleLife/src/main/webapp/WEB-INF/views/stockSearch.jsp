@@ -8,6 +8,10 @@
 <h1>
 	Stock Search
 </h1>	
+
+<h2>
+	Welcome ${userName}
+</h2>	
 	<form id="frmSubmit" method="post" action="stockSearch.htm">
 		<input id="some" type="text" name="stockCode" />
 		<input id="btnOK"  type="submit" value="Submit"/>

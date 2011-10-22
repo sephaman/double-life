@@ -39,4 +39,10 @@
     <definition name="stockSearch.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/stockSearch.jsp" />
     </definition>
+    <definition name="stockOrder.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/stockOrder.jsp" />
+    </definition>
+    <definition name="stockOrderConfirmation.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/stockOrderConfirmation.jsp" />
+    </definition>
 </tiles-definitions>
