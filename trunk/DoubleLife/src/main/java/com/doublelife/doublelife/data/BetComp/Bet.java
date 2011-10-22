@@ -7,9 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
-
-import org.apache.commons.lang.StringUtils;
 
 /**
  * Represents a single bet made by a user.
@@ -28,7 +25,7 @@ public class Bet {
 	private long userId;
 	
 	@Column(name = "odds", nullable = false)
-	private String oddsString;
+	private double odds;
 	
 	@Column(name = "dateReceived", nullable = false)
 	private Date dateReceived;
@@ -48,17 +45,6 @@ public class Bet {
 	@Column(name = "bet_event_id", nullable = false)
 	private long betEventId;
 
-	@Transient
-	private OddsRatio odds;
-	
-	/**
-	 * default constructor.
-	 */
-	public Bet() {
-		if (!StringUtils.isEmpty(oddsString)) {
-			odds = new OddsRatio(oddsString);
-		}
-	}
 	
 	/**
 	 * @return the user
@@ -72,21 +58,6 @@ public class Bet {
 	 */
 	public void setUserId(long userId) {
 		this.userId = userId;
-	}
-	/**
-	 * @return the odds
-	 */
-	public OddsRatio getOdds() {
-		if (odds == null) {
-			this.odds = new OddsRatio(this.oddsString);
-		}
-		return odds;
-	}
-	/**
-	 * @param odds the odds to set
-	 */
-	public void setOdds(OddsRatio odds) {
-		this.odds = odds;
 	}
 	/**
 	 * @return the dateReceived
@@ -173,16 +144,16 @@ public class Bet {
 		return betEventId;
 	}
 	/**
-	 * @param oddsString the oddsString to set
+	 * @param odds the odds to set
 	 */
-	public void setOddsString(String oddsString) {
-		this.oddsString = oddsString;
+	public void setOdds(double odds) {
+		this.odds = odds;
 	}
 	/**
-	 * @return the oddsString
+	 * @return the odds
 	 */
-	public String getOddsString() {
-		return oddsString;
+	public double getOdds() {
+		return odds;
 	}
 	
 }

@@ -46,7 +46,7 @@ public class UserBettingServiceImpl implements UserBettingService {
 		for (Bet thisBet : lstBets) {
 			if (thisBet.getSelectionId() == betEvent.getSelectionWinnerId()) {
 				thisBet.setBetResult(BetResult.WIN);
-				double winnings = thisBet.getStake() * thisBet.getOdds().getOddsAsMultiplier();
+				double winnings = thisBet.getStake() * thisBet.getOdds();
 				thisBet.setMoneyPaid(winnings);
 				
 				//update user account with winning amount
