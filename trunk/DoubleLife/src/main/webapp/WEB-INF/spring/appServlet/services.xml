@@ -49,6 +49,8 @@
 		class="com.doublelife.doublelife.services.impl.EmailServiceImpl">
 		<property name="mailSender" ref="springMailSender"></property>
 	</bean>
+	
+	<bean id="userDetailsService" class="com.doublelife.doublelife.services.impl.UserDetailsServiceImpl"/>
 
 <!-- DAOs -->
 	<bean id="userBettingDAO"

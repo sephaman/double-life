@@ -46,6 +46,5 @@ public class HomeController {
 	public void setStockService(StockService stockService) {
 		this.stockService = stockService;
 	}
-	
 }
 
