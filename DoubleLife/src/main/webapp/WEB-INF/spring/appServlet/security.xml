@@ -56,10 +56,11 @@
 		<intercept-url pattern="/sessionInvalid.form" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/login.form" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY" />
+		<intercept-url pattern="/stockSearch.htm" access="ROLE_USER"/>
 
 		<form-login login-page="/login.htm"
 			authentication-failure-url="/login.form?login_error=true"
-			default-target-url="/home.form"
+			default-target-url="/stockSearch.htm"
 			always-use-default-target="false" />
 
 		<logout logout-success-url="/login.htm"

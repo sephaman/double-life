@@ -32,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService, Serializable 
 			throws UsernameNotFoundException, DataAccessException {
 		User user = userService.getUserByUserName(userLogon);
 		List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
-			grantedAuthorities.add(new GrantedAuthorityImpl("USER"));
+			grantedAuthorities.add(new GrantedAuthorityImpl("USER_USER"));
 		return
 			new org.springframework.security.core.userdetails.User(
 					user.getUserName(), user.getPassword(), true,
