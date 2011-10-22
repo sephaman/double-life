@@ -18,17 +18,12 @@
 		<property name="userDAO" ref="userDAO"></property>
 	</bean>
 	
-		<bean id="userValidator"
-		class="com.doublelife.doublelife.data.validator.UserValidator">
-	</bean>
-	
 	<bean id="stockProcessingService"
 		class="com.doublelife.doublelife.services.impl.StockProcessingServiceImpl">
 		<property name="userStockService" ref="userStockService"></property>
 		<property name="stockOrderDAO" ref="stockOrderDAO"></property>
 		<property name="stockService" ref="stockService"></property>
 	</bean>
-	
 	
 	<bean id="userStockService"
 		class="com.doublelife.doublelife.services.impl.UserStockServiceImpl">
@@ -71,5 +66,15 @@
 	<bean id="stockOrderDAO"
 		class="com.doublelife.doublelife.data.dao.hibernate.HibernateStockOrderDAO">
 		<constructor-arg ref="sessionFactory"></constructor-arg>
+	</bean>
+	
+	<!-- Validators -->
+	
+	<bean id="userValidator"
+		class="com.doublelife.doublelife.data.validator.UserValidator">
+	</bean>
+	
+	<bean id="stockOrderValidator"
+		class="com.doublelife.doublelife.data.validator.StockOrderValidator">
 	</bean>
 </beans>

@@ -19,7 +19,7 @@
 			<h3>Life Simulating Financial Games</h3>
 			<div class="errorMessage" style="color:#FFE09D;font-size:1.1em;">
                 <c:if test="${!empty param.login_error}">
-                    Login failed.  Please retry or contact the SUSS Administrator
+                    Login failed.  Please retry.
                 </c:if>
 
             </div>

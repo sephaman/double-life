@@ -27,12 +27,12 @@ public class UserDetailsServiceImpl implements UserDetailsService, Serializable 
 	private UserService userService;
 
 	@Override
-	@SuppressWarnings({"PMD.ExcessiveMethodLength", "serial" })
+	@SuppressWarnings({"serial" })
 	public UserDetails loadUserByUsername(String userLogon)
 			throws UsernameNotFoundException, DataAccessException {
 		User user = userService.getUserByUserName(userLogon);
 		List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
-			grantedAuthorities.add(new GrantedAuthorityImpl("USER_USER"));
+			grantedAuthorities.add(new GrantedAuthorityImpl("ROLE_USER"));
 		return
 			new org.springframework.security.core.userdetails.User(
 					user.getUserName(), user.getPassword(), true,
