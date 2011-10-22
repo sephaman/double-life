@@ -45,4 +45,16 @@
     <definition name="stockOrderConfirmation.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/stockOrderConfirmation.jsp" />
     </definition>
+    
+    <!-- Betting views -->
+    <definition name="userBets.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/betViews/userBets.jsp" />
+    </definition>
+    <definition name="betEvents.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/betViews/betEvents.jsp" />
+    </definition>
+    <definition name="userBetAccount.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/betViews/userBetAccount.jsp" />
+    </definition>
+    
 </tiles-definitions>
