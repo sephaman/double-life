@@ -29,7 +29,6 @@ public class BetCompetitionController {
 	public ModelAndView showBetCompetitions() {
 		logger.info("Bet Comps Controller : GET");
 		ModelMap map = new ModelMap();
-		
 		return new ModelAndView("betCompsView.tvw", map);
 	}
 	

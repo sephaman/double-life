@@ -75,7 +75,7 @@ public class UserBettingServiceTest {
 		bet.setBetEventId(betEvent.getId());
 		bet.setDateReceived(new Date());
 		bet.setBetResult(BetResult.PENDING);
-		bet.setOddsString("4:1");
+		bet.setOdds(4.00);
 		bet.setSelectionId(betParticipant.getId());
 		bet.setStake(100.00);
 		bet.setUserId(user.getId());

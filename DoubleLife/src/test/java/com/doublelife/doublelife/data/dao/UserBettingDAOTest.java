@@ -44,7 +44,7 @@ public class UserBettingDAOTest {
 		bet.setUserId(66);
 		bet.setStake(55.00);
 		bet.setBetResult(BetResult.PENDING);
-		bet.setOddsString("3:4");
+		bet.setOdds(22.22);
 		
 		Assert.assertTrue(userBettingDAO.saveBet(bet));
 	}
