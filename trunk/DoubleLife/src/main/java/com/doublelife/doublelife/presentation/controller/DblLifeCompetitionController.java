@@ -25,7 +25,7 @@ public class DblLifeCompetitionController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value="/dlCompsView", method=RequestMethod.GET)
+	@RequestMapping(value="/dlCompsView.htm", method=RequestMethod.GET)
 	public ModelAndView showBetEvents() {
 		logger.info("DoubleLife Comp Controller : GET");
 		ModelMap map = new ModelMap();
