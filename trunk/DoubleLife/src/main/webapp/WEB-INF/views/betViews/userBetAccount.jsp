@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>
-	Stock Order Confirmation!
+	User Bet Account
 </h1>
 </body>
 </html>

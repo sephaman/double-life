@@ -8,5 +8,12 @@
 <h1>
 	Fantasy Betting
 </h1>
+<table width="100%" border="0">
+		<tr>
+			<td valign="middle" style="font-size: normal">
+					<a id="betAccountLink" href="userBetAccount.htm">View Betting Account</a>
+			</td>
+		</tr>
+	</table>
 </body>
 </html>
