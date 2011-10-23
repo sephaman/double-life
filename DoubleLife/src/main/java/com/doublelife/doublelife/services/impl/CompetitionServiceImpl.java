@@ -10,6 +10,7 @@ import com.doublelife.doublelife.data.dao.CompetitionDAO;
 import com.doublelife.doublelife.services.CompetitionService;
 
 /**
+ * Service implementation of CompetitionService.
  * @author Joseph McAleer
  *
  */
