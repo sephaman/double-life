@@ -33,7 +33,8 @@ public class UserRegistrationController {
 	private UserValidator userValidator;
 	
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * Displays the user registration page.
+	 * @return 
 	 */
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView initUserRegistrationPage() {
@@ -45,7 +46,10 @@ public class UserRegistrationController {
 	}
 	
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * Validates the user and creates it. Returns success view.
+	 * @param user 
+	 * @param result 
+	 * @return 
 	 */
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView handleSubmit(@ModelAttribute("user") User user, BindingResult result) {
@@ -58,7 +62,8 @@ public class UserRegistrationController {
 		if (result.hasErrors()) {
 			return new ModelAndView("userRegistration.tvw");
 		} else {
-			boolean createResult = userService.createUser(user);
+			user.setRoleId(0);
+			boolean createResult = userService.createUser(user);  //TODO: handle failures
 			
 			return new ModelAndView("userRegistrationSuccess.tvw");
 		}

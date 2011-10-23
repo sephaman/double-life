@@ -34,6 +34,9 @@ public class User {
 	@Column(name = "password")
 	private String password; 
 	
+	@Column(name = "role_id")
+	private long roleId; 
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -87,5 +90,17 @@ public class User {
 	 */
 	public String getEmailAddress() {
 		return emailAddress;
+	}
+	/**
+	 * @param roleId the roleId to set
+	 */
+	public void setRoleId(long roleId) {
+		this.roleId = roleId;
+	}
+	/**
+	 * @return the roleId
+	 */
+	public long getRoleId() {
+		return roleId;
 	}
 }

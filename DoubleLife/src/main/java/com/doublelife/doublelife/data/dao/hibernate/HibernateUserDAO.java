@@ -3,6 +3,7 @@
  */
 package com.doublelife.doublelife.data.dao.hibernate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -94,19 +95,15 @@ public class HibernateUserDAO implements UserDAO {
 	 * @see com.doublelife.doublelife.data.dao.UserDAO#getUserByUserName(java.lang.String)
 	 */
 	public List<User> getUserByUserName(String userName) {
-		List<User> retVal = null;
+		List<User> retVal = new ArrayList<User>();
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(User.class);
 		detachedCriteria.add(Property.forName("userName").eq(userName));
 		
 		try {
-			retVal = (List<User>) hibernate.findByCriteria(detachedCriteria);
+			retVal.addAll((List<User>) hibernate.findByCriteria(detachedCriteria));
 		} catch (DataAccessException e) {
 			logger.error("Error retrieving users with userName", e);
 		}
-		if (retVal != null && !retVal.isEmpty()) {
 			return retVal;
-		}
-		return null;
 	}
-
 }
