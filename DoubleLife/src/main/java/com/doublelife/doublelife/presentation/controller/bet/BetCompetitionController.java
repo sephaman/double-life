@@ -25,7 +25,7 @@ public class BetCompetitionController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value="/betCompsView", method=RequestMethod.GET)
+	@RequestMapping(value="/betCompsView.htm", method=RequestMethod.GET)
 	public ModelAndView showBetCompetitions() {
 		logger.info("Bet Comps Controller : GET");
 		ModelMap map = new ModelMap();
@@ -33,7 +33,6 @@ public class BetCompetitionController {
 		return new ModelAndView("betCompsView.tvw", map);
 	}
 	
-	//create view exists
 	/**
 	 * @param userBettingService the userBettingService to set
 	 */

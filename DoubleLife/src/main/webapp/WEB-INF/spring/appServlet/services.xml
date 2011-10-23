@@ -77,4 +77,8 @@
 	<bean id="stockOrderValidator"
 		class="com.doublelife.doublelife.data.validator.StockOrderValidator">
 	</bean>
+	
+	<bean id="betCompetitionValidator"
+		class="com.doublelife.doublelife.data.validator.BetCompetitionValidator">
+	</bean>
 </beans>

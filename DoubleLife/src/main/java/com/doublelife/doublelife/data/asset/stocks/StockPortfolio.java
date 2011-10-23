@@ -57,6 +57,9 @@ public class StockPortfolio extends AbstractAsset {
 	 * @return
 	 */
 	public List<UserStockHolding> getLstStocks() {
+		if (lstStocks == null) {
+			lstStocks = new ArrayList<UserStockHolding>();
+		}
 		return lstStocks;
 	}
 

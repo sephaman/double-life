@@ -6,7 +6,9 @@
 </head>
 <body>
 <h1>
-	Stock Order Confirmation!
+	View / Join Bet Comps.
 </h1>
+
+
 </body>
 </html>
