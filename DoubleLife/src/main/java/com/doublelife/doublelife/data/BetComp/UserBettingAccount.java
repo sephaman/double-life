@@ -33,6 +33,9 @@ public class UserBettingAccount {
 	@Column(name = "updateDateTime", nullable = false)
 	private Date updateDateTime;
 	
+	@Column(name = "comp_id", nullable = false)
+	private long compId;
+	
 	/**
 	 * @return the amountAvailable
 	 */
@@ -80,6 +83,18 @@ public class UserBettingAccount {
 	 */
 	public Date getDateUpdated() {
 		return updateDateTime;
+	}
+	/**
+	 * @param compId the compId to set
+	 */
+	public void setCompId(long compId) {
+		this.compId = compId;
+	}
+	/**
+	 * @return the compId
+	 */
+	public long getCompId() {
+		return compId;
 	}
 	
 }

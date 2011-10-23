@@ -13,7 +13,7 @@ import com.doublelife.doublelife.services.UserBettingService;
 import com.doublelife.doublelife.services.utils.SecurityUtil;
 
 /**
- * Handles requests for the application home page.
+ * Handles requests for displaying user's bets.
  */
 @Controller
 public class UserBetsController {

@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.doublelife.doublelife.services.UserBettingService;
 
 /**
- * Handles requests for the application home page.
+ * Handles requests for displaying betting competitions.
  */
 @Controller
 public class BetCompetitionController {

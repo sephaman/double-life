@@ -52,6 +52,12 @@ public class BetCompetition {
 	
 	@Column(name = "created_by_userid")
 	private long createdByUserId;
+	
+	@Column(name = "acct_start_amnt")
+	private double acctStartAmnt;
+	
+	@Column(name = "end_date")
+	private Date endDate;
 
 	/**
 	 * @return the id
@@ -149,5 +155,33 @@ public class BetCompetition {
 	 */
 	public long getCreatedByUserId() {
 		return createdByUserId;
+	}
+
+	/**
+	 * @param endDate the endDate to set
+	 */
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	/**
+	 * @return the endDate
+	 */
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	/**
+	 * @param acctStartAmnt the acctStartAmnt to set
+	 */
+	public void setAcctStartAmnt(double acctStartAmnt) {
+		this.acctStartAmnt = acctStartAmnt;
+	}
+
+	/**
+	 * @return the acctStartAmnt
+	 */
+	public double getAcctStartAmnt() {
+		return acctStartAmnt;
 	}
 }
