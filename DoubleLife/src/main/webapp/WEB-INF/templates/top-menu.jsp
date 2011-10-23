@@ -8,8 +8,14 @@
 	<table width="100%" border="0">
 		<!-- title -->
 		<tr>
-			<td valign="middle" style="font-size: x-large">
-				<span id="siteName">top menu</span>
+			<td valign="middle" style="font-size: normal">
+				<a id="dblLifeHomeLink" href="doubleLifeHome.htm">Double Life</a>
+			</td>
+			<td valign="middle" style="font-size: normal">
+				<a id="fantasyBetHomeLink" href="fantasyBetHome.htm">Fantasy Betting</a>
+			</td>
+			<td valign="middle" style="font-size: normal">
+				<a href="<c:url value="/j_spring_security_logout"/>">Logout</a>
 			</td>
 		</tr>
 	</table>
