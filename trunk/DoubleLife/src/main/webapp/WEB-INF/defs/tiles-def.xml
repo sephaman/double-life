@@ -22,9 +22,14 @@
         </put-list-attribute> -->
     </definition>
 
-	<definition name="home.tvw" extends="main.tvw">
-    	<put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+
+	<definition name="doubleLifeHome.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/doubleLifeHome.jsp" />
     </definition>
+    <definition name="fantasyBetHome.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/fantasyBetHome.jsp" />
+    </definition>
+    
     <definition name="userRegistration.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/userRegistration.jsp" />
     </definition>
