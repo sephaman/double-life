@@ -17,7 +17,7 @@ import com.doublelife.doublelife.data.validator.UserValidator;
 import com.doublelife.doublelife.services.UserService;
 
 /**
- * Handles requests for the application home page.
+ * Handles requests for the user registration page.
  */
 @Controller
 @RequestMapping("/userRegistration.htm")

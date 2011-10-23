@@ -14,6 +14,16 @@
 					<a id="betAccountLink" href="userBetAccount.htm">View Betting Account</a>
 			</td>
 		</tr>
+		<tr>
+			<td valign="middle" style="font-size: normal">
+					<a id="joinBetCompLink" href="betCompsView.htm">Join Competition</a>
+			</td>
+		</tr>
+		<tr>
+			<td valign="middle" style="font-size: normal">
+					<a id="createBetCompLink" href="betCompsCreate.htm">Create Competition</a>
+			</td>
+		</tr>
 	</table>
 </body>
 </html>

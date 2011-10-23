@@ -4,6 +4,7 @@
 package com.doublelife.doublelife.data.dao.hibernate;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -263,6 +264,7 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		boolean retval = false;
 		logger.debug("Saving bet competition");
 		try {
+			betCompetition.setUpdateDateTime(new Date());
 			hibernate.saveOrUpdate(betCompetition);
 			retval = true;
 		} catch (DataAccessException e) {
