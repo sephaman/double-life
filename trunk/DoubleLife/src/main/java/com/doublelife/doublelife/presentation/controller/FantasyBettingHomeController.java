@@ -18,6 +18,7 @@ public class FantasyBettingHomeController {
 
 	/**
 	 * Gets the main menu for fantasy betting.
+	 * @return 
 	 */
 	@RequestMapping(value="/fantasyBetHome.htm", method=RequestMethod.GET)
 	public ModelAndView fantasyBetHome() {

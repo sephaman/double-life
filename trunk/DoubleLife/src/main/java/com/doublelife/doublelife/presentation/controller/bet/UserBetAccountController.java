@@ -26,7 +26,7 @@ public class UserBetAccountController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value="/userBetAccount", method=RequestMethod.GET)
+	@RequestMapping(value="/userBetAccount.htm", method=RequestMethod.GET)
 	public ModelAndView showUserBetAccount() {
 		logger.info("UserBetAccount Controller: GET");
 		ModelMap map = new ModelMap();
