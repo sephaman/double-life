@@ -48,9 +48,11 @@
 					</table>
 				</form>
 			</div>
+				<a id="registerLink" href="userRegistration.htm">Register</a>
 			<p/>
 			<div>
 			</div>
+			
 		</div>
 	</body>
 </html>
