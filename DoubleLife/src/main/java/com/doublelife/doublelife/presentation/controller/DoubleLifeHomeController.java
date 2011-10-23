@@ -18,6 +18,7 @@ public class DoubleLifeHomeController {
 
 	/**
 	 * Gets the main menu for double life.
+	 * @return 
 	 */
 	@RequestMapping(value="/doubleLifeHome.htm", method=RequestMethod.GET)
 	public ModelAndView doubleLifeHome() {
