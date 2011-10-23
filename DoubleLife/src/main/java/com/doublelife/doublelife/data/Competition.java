@@ -45,6 +45,19 @@ public class Competition {
 	
 	@Column(name = "update_dateTime")
 	private Date updateDateTime;
+	
+
+	@Column(name = "is_active")
+	private int isActive;
+	
+	@Column(name = "created_by_userid")
+	private long createdByUserId;
+	
+	@Column(name = "acct_start_amnt")
+	private double acctStartAmnt;
+	
+	@Column(name = "end_date")
+	private Date endDate;
 
 	/**
 	 * @return the id
@@ -114,5 +127,61 @@ public class Competition {
 	 */
 	public void setUpdateDateTime(Date updateDateTime) {
 		this.updateDateTime = updateDateTime;
+	}
+
+	/**
+	 * @param isActive the isActive to set
+	 */
+	public void setIsActive(int isActive) {
+		this.isActive = isActive;
+	}
+
+	/**
+	 * @return the isActive
+	 */
+	public int getIsActive() {
+		return isActive;
+	}
+
+	/**
+	 * @param createdByUserId the createdByUserId to set
+	 */
+	public void setCreatedByUserId(long createdByUserId) {
+		this.createdByUserId = createdByUserId;
+	}
+
+	/**
+	 * @return the createdByUserId
+	 */
+	public long getCreatedByUserId() {
+		return createdByUserId;
+	}
+
+	/**
+	 * @param acctStartAmnt the acctStartAmnt to set
+	 */
+	public void setAcctStartAmnt(double acctStartAmnt) {
+		this.acctStartAmnt = acctStartAmnt;
+	}
+
+	/**
+	 * @return the acctStartAmnt
+	 */
+	public double getAcctStartAmnt() {
+		return acctStartAmnt;
+	}
+
+	/**
+	 * @param endDate the endDate to set
+	 */
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	/**
+	 * @return the endDate
+	 */
+	public Date getEndDate() {
+		return endDate;
 	}
 }

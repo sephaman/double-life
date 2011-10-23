@@ -54,7 +54,7 @@ public class CreateBetCompetitionController {
 	 */
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView handleSubmit(@ModelAttribute("betCompetition") BetCompetition betCompetition, BindingResult result) {
-		logger.info("User Registration Submission");
+		logger.info("Bet Competition Submission");
 		betCompetitionValidator.validate(betCompetition, result);
 		if (betCompetition.getAcctStartAmnt() < 1.00) {
 			result.reject("acctStartAmnt", "Enter amount > 1.00");

@@ -20,6 +20,16 @@
 				<a id="stockSearchLink" href="stockSearch.htm">Search For Stock</a>
 			</td>
 		</tr>
+		<tr>
+			<td valign="middle" style="font-size: normal">
+					<a id="joinCompLink" href="dlCompsView.htm">Join Competition</a>
+			</td>
+		</tr>
+		<tr>
+			<td valign="middle" style="font-size: normal">
+					<a id="createCompLink" href="dlCompsCreate.htm">Create Competition</a>
+			</td>
+		</tr>
 	</table>
 </body>
 </html>

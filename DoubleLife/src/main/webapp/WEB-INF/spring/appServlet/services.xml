@@ -35,17 +35,17 @@
 		<property name="userBettingDAO" ref="userBettingDAO"></property>
 	</bean>
 	
-	<bean id="loginService"
-		class="com.doublelife.doublelife.services.impl.LoginServiceImpl">
-		<property name="userDAO" ref="userDAO"></property>
-	</bean>
-	
 	<bean id="emailService"
 		class="com.doublelife.doublelife.services.impl.EmailServiceImpl">
 		<property name="mailSender" ref="springMailSender"></property>
 	</bean>
 	
 	<bean id="userDetailsService" class="com.doublelife.doublelife.services.impl.UserDetailsServiceImpl"/>
+
+	<bean id="competitionService"
+		class="com.doublelife.doublelife.services.impl.CompetitionServiceImpl">
+		<property name="competitionDAO" ref="competitionDAO"></property>
+	</bean>
 
 <!-- DAOs -->
 	<bean id="userBettingDAO"
@@ -68,6 +68,11 @@
 		<constructor-arg ref="sessionFactory"></constructor-arg>
 	</bean>
 	
+	<bean id="competitionDAO"
+		class="com.doublelife.doublelife.data.dao.hibernate.HibernateCompetitionDAO">
+		<constructor-arg ref="sessionFactory"></constructor-arg>
+	</bean>
+	
 	<!-- Validators -->
 	
 	<bean id="userValidator"
@@ -80,5 +85,9 @@
 	
 	<bean id="betCompetitionValidator"
 		class="com.doublelife.doublelife.data.validator.BetCompetitionValidator">
+	</bean>
+	
+	<bean id="competitionValidator"
+		class="com.doublelife.doublelife.data.validator.CompetitionValidator">
 	</bean>
 </beans>
