@@ -1,5 +1,8 @@
 package com.doublelife.doublelife.presentation.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.doublelife.doublelife.data.asset.stocks.RetrievedStock;
 import com.doublelife.doublelife.data.asset.stocks.StockOrder;
 import com.doublelife.doublelife.data.validator.StockOrderValidator;
+import com.doublelife.doublelife.services.StockService;
 import com.doublelife.doublelife.services.UserStockService;
 
 /**
@@ -31,6 +36,9 @@ public class StockOrderController {
 	private UserStockService userStockService;
 	
 	@Autowired
+	private StockService stockService;
+	
+	@Autowired
 	private StockOrderValidator stockOrderValidator;
 	
 	/**
@@ -42,11 +50,17 @@ public class StockOrderController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView initStockOrderPage(@RequestParam("stockCode")String stockCode,
 			@RequestParam("action")String buySell) {
-		logger.info("Welcome to stock order!");
-		StockOrder stockOrder = new StockOrder();
+		logger.info("Stock order vontroller GET");
+		List<String> lstStockCodes = new ArrayList<String>();
+		lstStockCodes.add(stockCode);
+		List<RetrievedStock> lstRetrievedStock = stockService.retrieveStocks(lstStockCodes);
 		ModelMap map = new ModelMap();
+		if (lstRetrievedStock.size() > 0) {
+			map.addAttribute("stock", lstRetrievedStock.get(0));
+		}
+		StockOrder stockOrder = new StockOrder();
+		stockOrder.setIsBuyOrder(1);
 		map.addAttribute("stockOrder", stockOrder);
-		map.addAttribute("stockCode", stockCode);
 		return new ModelAndView("stockOrder.tvw", map);
 	}
 	
@@ -86,6 +100,20 @@ public class StockOrderController {
 	 */
 	public void setStockOrderValidator(StockOrderValidator stockOrderValidator) {
 		this.stockOrderValidator = stockOrderValidator;
+	}
+
+	/**
+	 * @param stockService the stockService to set
+	 */
+	public void setStockService(StockService stockService) {
+		this.stockService = stockService;
+	}
+
+	/**
+	 * @return the stockService
+	 */
+	public StockService getStockService() {
+		return stockService;
 	}
 	
 }
