@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,13 +35,18 @@ public class StockOrderController {
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
+	 * @param stockCode 
+	 * @param buySell 
+	 * @return 
 	 */
 	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView initUserRegistrationPage() {
+	public ModelAndView initStockOrderPage(@RequestParam("stockCode")String stockCode,
+			@RequestParam("action")String buySell) {
 		logger.info("Welcome to stock order!");
 		StockOrder stockOrder = new StockOrder();
 		ModelMap map = new ModelMap();
 		map.addAttribute("stockOrder", stockOrder);
+		map.addAttribute("stockCode", stockCode);
 		return new ModelAndView("stockOrder.tvw", map);
 	}
 	

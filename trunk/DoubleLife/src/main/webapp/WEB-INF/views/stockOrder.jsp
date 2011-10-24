@@ -7,6 +7,8 @@
 <body>
 <h1>
 	Stock Order!
+	
+	${stockCode}
 </h1>
 </body>
 </html>
