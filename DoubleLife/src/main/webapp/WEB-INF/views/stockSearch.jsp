@@ -9,7 +9,7 @@
 	Stock Search
 </h1>	
 	<form id="frmSubmit" method="post" action="stockSearch.htm">
-		<input id="some" type="text" name="stockCode" />
+		<input id="stkCode" type="text" name="stkCode" />
 		<input id="btnOK"  type="submit" value="Submit"/>
 	</form>
 	
@@ -29,8 +29,8 @@
 					<td>${stock.stockCode}</td>
 					<td>${stock.stockName}</td>
 					<td>${stock.currentPrice}</td>
-					<td><a id="buyStockLink" href="orderStock.htm?stockCode=${stock.stockCode}&action=buy">Buy</a></td>
-					<td><a id="sellStockLink" href="orderStock.htm?stockCode=${stock.stockCode}&action=sell">Sell</a></td>
+					<td><a id="buyStockLink" href="orderStock.htm?stkCode=${stock.stockCode}&action=buy">Buy</a></td>
+					<td><a id="sellStockLink" href="orderStock.htm?stkCode=${stock.stockCode}&action=sell">Sell</a></td>
 				</tr>
 			</tbody>
 		</table>

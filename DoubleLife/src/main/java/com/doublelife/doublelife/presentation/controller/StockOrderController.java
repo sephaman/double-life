@@ -1,6 +1,7 @@
 package com.doublelife.doublelife.presentation.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -21,6 +22,7 @@ import com.doublelife.doublelife.data.asset.stocks.StockOrder;
 import com.doublelife.doublelife.data.validator.StockOrderValidator;
 import com.doublelife.doublelife.services.StockService;
 import com.doublelife.doublelife.services.UserStockService;
+import com.doublelife.doublelife.services.utils.SecurityUtil;
 
 /**
  * Handles requests for the application home page.
@@ -42,15 +44,15 @@ public class StockOrderController {
 	private StockOrderValidator stockOrderValidator;
 	
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * Displays the stock order form with the given stockCode and order action.
 	 * @param stockCode 
 	 * @param buySell 
 	 * @return 
 	 */
 	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView initStockOrderPage(@RequestParam("stockCode")String stockCode,
+	public ModelAndView initStockOrderPage(@RequestParam("stkCode")String stockCode,
 			@RequestParam("action")String buySell) {
-		logger.info("Stock order vontroller GET");
+		logger.info("Stock order controller GET");
 		List<String> lstStockCodes = new ArrayList<String>();
 		lstStockCodes.add(stockCode);
 		List<RetrievedStock> lstRetrievedStock = stockService.retrieveStocks(lstStockCodes);
@@ -60,18 +62,32 @@ public class StockOrderController {
 		}
 		StockOrder stockOrder = new StockOrder();
 		stockOrder.setIsBuyOrder(1);
+		stockOrder.setStockCode(stockCode);
 		map.addAttribute("stockOrder", stockOrder);
 		return new ModelAndView("stockOrder.tvw", map);
 	}
 	
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * handles the submission of stockOrder and saves the order.
+	 * @param stockOrder 
+	 * @param result 
+	 * @return 
 	 */
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView handleSubmit(@ModelAttribute("stockOrder") StockOrder stockOrder, BindingResult result) {
-		logger.info("User Registration Submission");
+		logger.info("Stock order controller Submission");
 		stockOrderValidator.validate(stockOrder, result);
+		
+		if (result.hasErrors()) {
+			return new ModelAndView("orderStock.htm");
+		} else {
+			stockOrder.setCompleted(0);
+			stockOrder.setOrderDateTime(new Date());
+			stockOrder.setUserId(SecurityUtil.getCurrentUserId());
+			boolean createResult = userStockService.saveStockOrder(stockOrder);  //TODO: handle failures
+			
 			return new ModelAndView("stockOrderConfirmation.tvw");
+		}
 	}
 
 	/**

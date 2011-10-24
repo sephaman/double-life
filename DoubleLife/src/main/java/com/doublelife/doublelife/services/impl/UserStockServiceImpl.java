@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.doublelife.doublelife.data.asset.stocks.StockOrder;
 import com.doublelife.doublelife.data.asset.stocks.UserStockHolding;
+import com.doublelife.doublelife.data.dao.StockOrderDAO;
 import com.doublelife.doublelife.data.dao.UserStockDAO;
 import com.doublelife.doublelife.services.UserStockService;
 
@@ -19,6 +20,8 @@ import com.doublelife.doublelife.services.UserStockService;
 public class UserStockServiceImpl implements UserStockService {
 
 	private UserStockDAO userStockDAO;
+	
+	private StockOrderDAO stockOrderDAO;
 	
 	/**
 	 * @see com.doublelife.doublelife.services.UserStockService#buyUserStock(com.doublelife.doublelife.data.asset.stocks.StockOrder)
@@ -101,7 +104,7 @@ public class UserStockServiceImpl implements UserStockService {
 		
 		return userStockHolding;
 	}
-
+	
 	/**
 	 * @param userStockDAO the userStockDAO to set
 	 */
@@ -114,6 +117,27 @@ public class UserStockServiceImpl implements UserStockService {
 	 */
 	public UserStockDAO getUserStockDAO() {
 		return userStockDAO;
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserStockService#saveStockOrder(com.doublelife.doublelife.data.asset.stocks.StockOrder)
+	 */
+	public boolean saveStockOrder(StockOrder stockOrder) {
+		return stockOrderDAO.saveStockOrder(stockOrder);
+	}
+
+	/**
+	 * @param stockOrderDAO the stockOrderDAO to set
+	 */
+	public void setStockOrderDAO(StockOrderDAO stockOrderDAO) {
+		this.stockOrderDAO = stockOrderDAO;
+	}
+
+	/**
+	 * @return the stockOrderDAO
+	 */
+	public StockOrderDAO getStockOrderDAO() {
+		return stockOrderDAO;
 	}
 
 }

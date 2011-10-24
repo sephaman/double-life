@@ -18,7 +18,7 @@ import com.doublelife.doublelife.data.asset.stocks.StockOrder;
 import com.doublelife.doublelife.data.dao.StockOrderDAO;
 
 /**
- * Hibernate implementation of the StockDAO interface.
+ * Hibernate implementation of the Stock Order DAO interface.
  * @author Joseph McAleer
  *
  */
@@ -52,6 +52,7 @@ public class HibernateStockOrderDAO implements StockOrderDAO {
 	/**
 	 * @see com.doublelife.doublelife.data.dao.StockDAO#getStockOrder(long)
 	 */
+	@SuppressWarnings("unchecked")
 	public StockOrder getStockOrder(long stockOrderId) {
 		List<StockOrder> retVal = null;
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(StockOrder.class);
@@ -62,7 +63,7 @@ public class HibernateStockOrderDAO implements StockOrderDAO {
 		} catch (DataAccessException e) {
 			logger.error("Error retrieving stock orders with stockOrderId", e);
 		}
-		if (!retVal.isEmpty()) {
+		if (retVal != null && !retVal.isEmpty()) {
 			return retVal.get(0);
 		}
 		return null;

@@ -28,6 +28,7 @@
 	<bean id="userStockService"
 		class="com.doublelife.doublelife.services.impl.UserStockServiceImpl">
 		<property name="userStockDAO" ref="userStockDAO"></property>
+		<property name="stockOrderDAO" ref="stockOrderDAO"></property>
 	</bean>
 	
 	<bean id="userBettingService"

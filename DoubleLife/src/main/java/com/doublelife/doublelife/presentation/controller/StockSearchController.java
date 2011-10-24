@@ -31,7 +31,7 @@ public class StockSearchController {
 	private StockService stockService;
 	
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * Displays the stock search page.
 	 */
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView initStockSearchPage() {
@@ -48,7 +48,7 @@ public class StockSearchController {
 	 * @return 
 	 */
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView handleSubmit(@RequestParam("stockCode") String stockCode) {
+	public ModelAndView handleSubmit(@RequestParam("stkCode") String stockCode) {
 		logger.info("Stock Search Submission");
 		List<String> lstStockCodes = new ArrayList<String>();
 		lstStockCodes.add(stockCode);
