@@ -44,6 +44,8 @@ public class StockSearchController {
 	
 	/**
 	 * Finds the stocks to be viewed.
+	 * @param stockCode 
+	 * @return 
 	 */
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView handleSubmit(@RequestParam("stockCode") String stockCode) {
