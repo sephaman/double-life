@@ -43,4 +43,11 @@ public interface UserStockService {
 	 * @return
 	 */
 	public UserStockHolding getUserStockHoldingByStockCode(long userId, String stockCode);
+	
+	/**
+	 * @param stockOrder
+	 * @return
+	 */
+	public boolean saveStockOrder(StockOrder stockOrder);
+	
 }

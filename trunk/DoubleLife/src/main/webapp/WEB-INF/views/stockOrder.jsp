@@ -14,7 +14,7 @@
 	<table>
 		<tr>
 			<td>Stock Code:</td>
-			<td><form:input path="stockCode" value="${stock.stockCode}"/></td>
+			<td><form:input path="stockCode"/></td>
 			<td><form:errors path="stockCode" cssClass="error" /></td>
 		</tr>
 		<tr>
