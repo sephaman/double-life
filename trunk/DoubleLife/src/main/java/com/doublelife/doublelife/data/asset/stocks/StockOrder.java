@@ -54,7 +54,7 @@ public class StockOrder {
 	private long quantity;
 	
 	@Column(name = "atMarket")
-	private int atMarket;
+	private Boolean atMarket;
 	
 	@Column(name = "orderPrice")
 	private double orderPrice;
@@ -135,14 +135,15 @@ public class StockOrder {
 	/**
 	 * @return the atMarket
 	 */
-	public int getAtMarket() {
+	public Boolean getAtMarket() {
 		return atMarket;
 	}
 
 	/**
 	 * @param atMarket the atMarket to set
+	 * @return 
 	 */
-	public void setAtMarket(int atMarket) {
+	public void setAtMarket(Boolean atMarket) {
 		this.atMarket = atMarket;
 	}
 
