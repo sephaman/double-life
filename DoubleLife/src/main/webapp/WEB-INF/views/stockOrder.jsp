@@ -31,6 +31,10 @@
 			<td><form:errors path="quantity" cssClass="error" /></td>
 		</tr>
 		<tr>
+			<td>At Market:</td>
+			<td><form:checkbox path="atMarket"/></td>
+		</tr>
+		<tr>
 			<td>Price:</td>
 			<td><form:input path="orderPrice" /></td>
 			<td><form:errors path="orderPrice" cssClass="error" /></td>
