@@ -140,4 +140,12 @@ public class UserStockServiceImpl implements UserStockService {
 		return stockOrderDAO;
 	}
 
+	/**
+	 * @see com.doublelife.doublelife.services.UserStockService#getUserStockHoldingForComp(long, long)
+	 */
+	public List<UserStockHolding> getUserStockHoldingForComp(long userId,
+			long compId) {
+		return userStockDAO.getUserStockHoldingForComp(userId, compId);
+	}
+
 }

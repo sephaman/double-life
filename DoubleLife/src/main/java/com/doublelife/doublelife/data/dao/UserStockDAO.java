@@ -43,4 +43,12 @@ public interface UserStockDAO {
 	 * @return
 	 */
 	public boolean saveUserStockHolding(UserStockHolding userStockHolding);
+	
+	/**
+	 * Gets all current stock holdings for a user for the competition.
+	 * @param userId
+	 * @param compId 
+	 * @return
+	 */
+	public List<UserStockHolding> getUserStockHoldingForComp(long userId, long compId); 
 }

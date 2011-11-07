@@ -112,4 +112,26 @@ public class HibernateUserStockDAO implements UserStockDAO {
 		}
 		return retval;
 	}
+
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserStockDAO#getUserStockHoldingForComp(long, long)
+	 */
+	@SuppressWarnings("unchecked")
+	public List<UserStockHolding> getUserStockHoldingForComp(long userId,
+			long compId) {
+		 List<UserStockHolding> retVal = null;
+	        DetachedCriteria detachedCriteria = DetachedCriteria.forClass(UserStockHolding.class);
+	        detachedCriteria.add(Property.forName("userId").eq(userId));
+	        detachedCriteria.add(Property.forName("isActive").eq(1));
+	        detachedCriteria.add(Property.forName("compId").eq(compId));
+	        try {
+	                retVal = (List<UserStockHolding>) hibernate.findByCriteria(detachedCriteria);
+	        } catch (DataAccessException e) {
+	                logger.error("Error retrieving user stock holdingfor comp", e);
+	        }
+	        if (!retVal.isEmpty()) {
+	                return retVal;
+	        }
+	        return null;
+	}
 }

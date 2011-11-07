@@ -50,4 +50,12 @@ public interface UserStockService {
 	 */
 	public boolean saveStockOrder(StockOrder stockOrder);
 	
+	/**
+	 * Returns the list of user stock holdings for competition.
+	 * @param userId
+	 * @param compId 
+	 * @return
+	 */
+	public List<UserStockHolding> getUserStockHoldingForComp(long userId, long compId);
+	
 }
