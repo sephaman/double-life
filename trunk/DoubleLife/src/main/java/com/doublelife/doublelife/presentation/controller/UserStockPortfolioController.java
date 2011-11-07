@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.doublelife.doublelife.data.asset.stocks.RetrievedStock;
 import com.doublelife.doublelife.data.asset.stocks.UserStockHolding;
 import com.doublelife.doublelife.services.StockProcessingService;
+import com.doublelife.doublelife.services.utils.SecurityUtil;
 
 /**
  * Handles requests for the user stock portfolio page, containing portfolio and live prices
@@ -28,12 +29,12 @@ public class UserStockPortfolioController {
 	private StockProcessingService stockProcessingService;
 	
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * Returns the stock portfolio view with current stock with current prices.
 	 */
 	@RequestMapping(value="/userStockPortfolio", method=RequestMethod.GET)
 	public ModelAndView getUserPortFolioPage() {
 		logger.info("Welcome to user stock portfolio!");
-		long userId = 22;  //TODO: get user id from security
+		long userId = SecurityUtil.getCurrentUserId();
 		ModelMap map = new ModelMap();
 		Map<UserStockHolding, RetrievedStock> stockMap = stockProcessingService.getUserLiveStockMappings(userId);
 		map.addAttribute("stockMap", stockMap);

@@ -32,6 +32,10 @@ insert into dl_user values(1,'joe','joe','sepha2','joe','joe@joe.com',1);
 --insert competition
 insert into competition values (1,'General', now(), now(), 1, 0, null, 1000.00);
 
+-- join competition
+insert into comp_user values (1,0);
+insert into comp_user values (1,1);
+
 --insert user stock holdings
 insert into user_stock values(0,0,500,22.00,'WBC.AX', now(),1,1);
 insert into user_stock values(1,0,700,0.08,'CSS.AX', now(),1,1);
