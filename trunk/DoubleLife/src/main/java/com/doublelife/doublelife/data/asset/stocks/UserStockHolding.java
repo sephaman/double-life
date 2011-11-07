@@ -43,6 +43,9 @@ public class UserStockHolding {
 	@Column(name = "is_active", nullable = false)
 	private int isActive;
 	
+	@Column(name = "compid", nullable = false)
+	private int compId;
+	
 	public String getStockCode() {
 		return stockCode;
 	}
@@ -102,5 +105,17 @@ public class UserStockHolding {
 	 */
 	public long getUserId() {
 		return userId;
+	}
+	/**
+	 * @param compId the compId to set
+	 */
+	public void setCompId(int compId) {
+		this.compId = compId;
+	}
+	/**
+	 * @return the compId
+	 */
+	public int getCompId() {
+		return compId;
 	}
 }
