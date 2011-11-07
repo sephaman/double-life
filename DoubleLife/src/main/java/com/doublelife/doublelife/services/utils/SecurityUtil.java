@@ -6,9 +6,11 @@ package com.doublelife.doublelife.services.utils;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.security.DigestInputStream;
 import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -190,4 +192,17 @@ public final class SecurityUtil {
 		return sha1(message, salt);
 	}
 
+	/**
+	 * computes the MD5 digest for the message string.
+	 * @param message the message to encode
+	 * @return the computed md5 digest
+	 * @throws NoSuchAlgorithmException
+	 */
+	public static String md5(final String message) throws NoSuchAlgorithmException {
+		final MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+		final byte[] data = message.getBytes();
+		messageDigest.update(data, 0, data.length);
+		final BigInteger bigInt = new BigInteger(1, messageDigest.digest());
+		return String.format("%1$032X", bigInt);
+	}
 }

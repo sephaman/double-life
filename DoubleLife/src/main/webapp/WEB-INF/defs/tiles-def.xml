@@ -56,6 +56,9 @@
     <definition name="dlCompsCreate.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/dlCompsCreate.jsp" />
     </definition>
+    <definition name="dlCompsSuccessJoinView.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/dlCompsSuccessJoinView.jsp" />
+    </definition>
     
     <!-- Betting views -->
     <definition name="userBets.tvw" extends="main.tvw">
@@ -69,6 +72,9 @@
     </definition>
     <definition name="betCompsView.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/betViews/betCompsView.jsp" />
+    </definition>
+    <definition name="betCompsSuccessJoinView.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/betViews/betCompsSuccessJoinView.jsp" />
     </definition>
     <definition name="betCompsCreate.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/betViews/betCompsCreate.jsp" />

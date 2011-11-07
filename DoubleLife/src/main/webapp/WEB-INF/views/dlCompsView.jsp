@@ -6,7 +6,19 @@
 </head>
 <body>
 <h1>
-	Stock Order Confirmation!
+	Join Fantasy Competition
 </h1>
+
+<c:if test="${not empty dlComps}">
+	<table>
+	<c:forEach items="${dlComps}" var="thisDlComp">
+		<tr>
+			<td valign="middle" style="font-size: normal">
+				<a id="${thisDlComp.id}" href="dlCompsJoin.htm?id=${thisDlComp.id}">${thisDlComp.name}</a>
+			</td>
+		</tr>
+	</c:forEach>
+	</table>
+</c:if>
 </body>
 </html>

@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.doublelife.doublelife.data.asset.stocks.RetrievedStock;
 import com.doublelife.doublelife.data.asset.stocks.StockOrder;
 import com.doublelife.doublelife.data.validator.StockOrderValidator;
+import com.doublelife.doublelife.services.StockProcessingService;
 import com.doublelife.doublelife.services.StockService;
 import com.doublelife.doublelife.services.UserStockService;
 import com.doublelife.doublelife.services.utils.SecurityUtil;
@@ -39,6 +40,9 @@ public class StockOrderController {
 	
 	@Autowired
 	private StockService stockService;
+	
+	@Autowired
+	private StockProcessingService stockProcessingServiceImpl;
 	
 	@Autowired
 	private StockOrderValidator stockOrderValidator;
@@ -85,7 +89,10 @@ public class StockOrderController {
 			stockOrder.setOrderDateTime(new Date());
 			stockOrder.setUserId(SecurityUtil.getCurrentUserId());
 			boolean createResult = userStockService.saveStockOrder(stockOrder);  //TODO: handle failures
-			
+			if (stockOrder.getAtMarket() == Boolean.TRUE) {
+				//process the order if at market
+				boolean atMarketResult = stockProcessingServiceImpl.processAtMarketPriceStockOrder(stockOrder);
+			}
 			return new ModelAndView("stockOrderConfirmation.tvw");
 		}
 	}
@@ -130,6 +137,21 @@ public class StockOrderController {
 	 */
 	public StockService getStockService() {
 		return stockService;
+	}
+
+	/**
+	 * @return the stockProcessingServiceImpl
+	 */
+	public StockProcessingService getStockProcessingServiceImpl() {
+		return stockProcessingServiceImpl;
+	}
+
+	/**
+	 * @param stockProcessingServiceImpl the stockProcessingServiceImpl to set
+	 */
+	public void setStockProcessingServiceImpl(
+			StockProcessingService stockProcessingServiceImpl) {
+		this.stockProcessingServiceImpl = stockProcessingServiceImpl;
 	}
 	
 }
