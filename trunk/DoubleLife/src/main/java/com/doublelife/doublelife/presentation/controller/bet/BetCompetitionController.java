@@ -7,9 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.doublelife.doublelife.data.BetComp.BetCompetition;
 import com.doublelife.doublelife.services.UserBettingService;
+import com.doublelife.doublelife.services.utils.SecurityUtil;
 
 /**
  * Handles requests for displaying betting competitions.
@@ -23,7 +26,8 @@ public class BetCompetitionController {
 	private static final Logger logger = LoggerFactory.getLogger(BetCompetitionController.class);
 
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * Returns a list of bet competitions.
+	 * @return 
 	 */
 	@RequestMapping(value="/betCompsView.htm", method=RequestMethod.GET)
 	public ModelAndView showBetCompetitions() {
@@ -31,6 +35,23 @@ public class BetCompetitionController {
 		ModelMap map = new ModelMap();
 		map.addAttribute("betComps", userBettingService.getAllCurrentCompetitions());
 		return new ModelAndView("betCompsView.tvw", map);
+	}
+	
+	/**
+	 * Allows user to join the competition.
+	 * @param compId 
+	 * @return 
+	 */
+	@RequestMapping(value="/betCompsJoin.htm", method=RequestMethod.GET)
+	public ModelAndView joinBetCompetition(@RequestParam("id") long compId) {
+		logger.info("Bet Comps Controller join: GET");
+		BetCompetition betComp = userBettingService.getCompetitionById(compId);
+		betComp.getLstUser().add(SecurityUtil.getCurrentUser());
+		userBettingService.createBetCompetition(betComp);
+		ModelMap map = new ModelMap();
+		map.addAttribute("registered", true);
+		map.addAttribute("joinedComp", betComp);
+		return new ModelAndView("betCompsSuccessJoinView.tvw", map);
 	}
 	
 	/**

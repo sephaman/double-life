@@ -3,11 +3,16 @@
  */
 package com.doublelife.doublelife.services.impl;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.doublelife.doublelife.data.User;
 import com.doublelife.doublelife.data.dao.UserDAO;
 import com.doublelife.doublelife.services.UserService;
+import com.doublelife.doublelife.services.utils.SecurityUtil;
 
 /**
  * @author Joseph McAleer
@@ -15,13 +20,23 @@ import com.doublelife.doublelife.services.UserService;
  */
 public class UserServiceImpl implements UserService {
 
+	private final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+	
 	private UserDAO userDAO;
 	
 	/**
 	 * @see com.doublelife.doublelife.services.UserService#createUser(com.doublelife.doublelife.data.User)
 	 */
 	public boolean createUser(User user) {
-		return userDAO.createUser(user);
+		//hash the password
+		try {
+			user.setPassword(SecurityUtil.md5(user.getPassword()));
+			return userDAO.createUser(user);
+		} catch(NoSuchAlgorithmException ex) {
+			logger.error("couldnt hash password while saving user: " + user.getUserName());
+			return false;
+		}
+		
 	}
 
 	/**
@@ -72,6 +87,13 @@ public class UserServiceImpl implements UserService {
 			return lstUsers.get(0);
 		}
 		return null;
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserService#saveUser(com.doublelife.doublelife.data.User)
+	 */
+	public boolean saveUser(User user) {
+		return userDAO.createUser(user);
 	}
 
 }

@@ -48,4 +48,11 @@ public interface UserService {
 	 * @return
 	 */
 	public User getUserByUserName(String userName);
+	
+	/**
+	 * Saves the user.
+	 * @param user
+	 * @return
+	 */
+	public boolean saveUser(User user);
 }
