@@ -26,8 +26,15 @@ insert into role values(1, 'ROLE_USER');
 -- test data
 
 --insert users
+insert into dl_user values(0,'joe','joe','sepha','joe','joe@joe.com',0);
+insert into dl_user values(1,'joe','joe','sepha2','joe','joe@joe.com',1);
 
 --insert competition
-insert into competition values (1,'General', sysdate)
---insert betting competition
+insert into competition values (1,'General', now(), now(), 1, 0, null, 1000.00);
 
+--insert user stock holdings
+insert into user_stock values(0,0,500,22.00,'WBC.AX', now(),1,1);
+insert into user_stock values(1,0,700,0.08,'CSS.AX', now(),1,1);
+
+--insert betting competition
+insert into bet_competition values (1,'General', now(), now(), 1, 0, null, 1000.00);
