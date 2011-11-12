@@ -64,8 +64,8 @@
     <definition name="userBets.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/betViews/userBets.jsp" />
     </definition>
-    <definition name="betEvents.tvw" extends="main.tvw">
-    	<put-attribute name="body" value="/WEB-INF/views/betViews/betEvents.jsp" />
+    <definition name="betViewer.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/betViews/betViewer.jsp" />
     </definition>
     <definition name="userBetAccount.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/betViews/userBetAccount.jsp" />
@@ -79,5 +79,7 @@
     <definition name="betCompsCreate.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/betViews/betCompsCreate.jsp" />
     </definition>
-    
+    <definition name="betEventsView.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/betViews/betEventsView.jsp" />
+    </definition>
 </tiles-definitions>

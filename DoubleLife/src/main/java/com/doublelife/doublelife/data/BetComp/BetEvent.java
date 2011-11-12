@@ -41,13 +41,14 @@ public class BetEvent {
 	private List<BetParticipant> lstBetParticipant;
 	
 	@Column(name = "outcomePending")
-	private int isOutcomePending;
+	private Boolean isOutcomePending;
 	
 	@Column(name = "selectionWinnerId")
 	private long selectionWinnerId;
-
-	//need update datetime
 	
+	@Column(name = "bet_event_name")
+	private String betEventName;
+
 	/**
 	 * @return the dateTime
 	 */
@@ -63,13 +64,13 @@ public class BetEvent {
 	/**
 	 * @return the isOutcomePending
 	 */
-	public int isOutcomePending() {
+	public Boolean isOutcomePending() {
 		return isOutcomePending;
 	}
 	/**
 	 * @param isOutcomePending the isOutcomePending to set
 	 */
-	public void setOutcomePending(int isOutcomePending) {
+	public void setOutcomePending(Boolean isOutcomePending) {
 		this.isOutcomePending = isOutcomePending;
 	}
 	
@@ -131,5 +132,17 @@ public class BetEvent {
 			lstBetParticipant = new ArrayList<BetParticipant>();
 		} 
 		return lstBetParticipant;
+	}
+	/**
+	 * @param betEventName the betEventName to set
+	 */
+	public void setBetEventName(String betEventName) {
+		this.betEventName = betEventName;
+	}
+	/**
+	 * @return the betEventName
+	 */
+	public String getBetEventName() {
+		return betEventName;
 	}
 }

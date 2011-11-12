@@ -111,4 +111,10 @@ public interface UserBettingService {
 	 * @return
 	 */
 	public boolean createBetCompetition(BetCompetition betCompetition);
+	
+	/**
+	 * Returns all current bet events.
+	 * @return
+	 */
+	public List<BetEvent> getAllCurrentBetEvents();
 }

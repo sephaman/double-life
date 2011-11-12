@@ -114,4 +114,11 @@ public interface UserBettingDAO {
 	 * @return
 	 */
 	public boolean createBetCompetition(BetCompetition betCompetition);
+	
+	
+	/**
+	 * Returns all bet events available to bet on.
+	 * @return
+	 */
+	public List<BetEvent> getAllCurrentBetEvents();
 }

@@ -24,6 +24,11 @@
 					<a id="createBetCompLink" href="betCompsCreate.htm">Create Competition</a>
 			</td>
 		</tr>
+		<tr>
+			<td valign="middle" style="font-size: normal">
+					<a id="viewBetEvents" href="betEventsView.htm">View Bet Events</a>
+			</td>
+		</tr>
 	</table>
 </body>
 </html>

@@ -23,15 +23,27 @@ public class BetEventsController {
 	private static final Logger logger = LoggerFactory.getLogger(BetEventsController.class);
 
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * Called to display a list of bet events.
 	 */
-	@RequestMapping(value="/betEvents", method=RequestMethod.GET)
+	@RequestMapping(value="/betEventsView.htm", method=RequestMethod.GET)
 	public ModelAndView showBetEvents() {
 		logger.info("betEvents Controller : GET");
 		ModelMap map = new ModelMap();
-		
-		return new ModelAndView("betEvents.tvw", map);
+		map.addAttribute("betEvents", userBettingService.getAllCurrentBetEvents());
+		return new ModelAndView("betEventsView.tvw", map);
 	}
+	
+	/**
+	 * Called to display a single of bet event that can be betted on by the user.
+	 */
+	@RequestMapping(value="/betViewer.htm", method=RequestMethod.GET)
+	public ModelAndView showSingleBetEvent() {
+		logger.info("single betEvent Controller : GET");
+		ModelMap map = new ModelMap();
+		
+		return new ModelAndView("betViewer.tvw", map);
+	}
+	
 	
 	/**
 	 * @param userBettingService the userBettingService to set

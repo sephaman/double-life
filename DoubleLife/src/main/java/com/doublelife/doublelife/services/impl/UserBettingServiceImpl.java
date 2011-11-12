@@ -164,4 +164,11 @@ public class UserBettingServiceImpl implements UserBettingService {
 		return userBettingDAO.createBetCompetition(betCompetition);
 	}
 
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getAllCurrentBetEvents()
+	 */
+	public List<BetEvent> getAllCurrentBetEvents() {
+		return userBettingDAO.getAllCurrentBetEvents();
+	}
+
 }
