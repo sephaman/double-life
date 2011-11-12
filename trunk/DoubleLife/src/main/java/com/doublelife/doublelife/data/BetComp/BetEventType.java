@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
-
 /**
  * Represents a BetEventType.
  * @author Joseph McAleer
@@ -20,7 +19,6 @@ import javax.persistence.Id;
  */
 @Entity (name = "bet_event_type")
 public class BetEventType {
-	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

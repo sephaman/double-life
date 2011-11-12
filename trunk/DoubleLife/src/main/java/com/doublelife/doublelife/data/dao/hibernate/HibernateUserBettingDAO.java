@@ -274,4 +274,20 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		return retval;
 	}
 
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getAllCurrentBetEvents()
+	 */
+	public List<BetEvent> getAllCurrentBetEvents() {
+		List<BetEvent> retVal = new ArrayList<BetEvent>();
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetEvent.class);
+		detachedCriteria.add(Property.forName("isOutcomePending").eq(Boolean.TRUE));
+		
+		try {
+			retVal = (List<BetEvent>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving current bet events", e);
+		}
+		return retVal;
+	}
+
 }
