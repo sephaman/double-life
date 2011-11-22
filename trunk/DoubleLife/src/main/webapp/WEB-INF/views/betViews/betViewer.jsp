@@ -8,7 +8,7 @@
 <h1>
 	Bet Viewer
 </h1>
-<form id="submitForm" method="post" action="/betViewer.htm">
+<form id="submitForm" method="POST" action="betViewer.htm">
 <input type="hidden" name="betEventId" value="${betEvent.id}">
 <table>
 	<tr>
@@ -16,7 +16,8 @@
 	</tr>
 		<c:forEach items="${betParticipants}" var="thisBetParticipant">
 		<tr>
-			<td>${thisBetParticipant.name}</td>
+			<td>${thisBetParticipant.key.name} - ${thisBetParticipant.value}</td>
+			<td><input id="betSelect-${thisBetParticipant.key.id}"  name="betSelect" type="radio" value="${thisBetParticipant.key.id}:${thisBetParticipant.value}"/></td>
 		</tr>
 		</c:forEach>
 	<tr>

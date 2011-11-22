@@ -133,8 +133,9 @@ public interface UserBettingDAO {
 	
 	/**
 	 * Returns the Bet event participants prices.
-	 * @param eventId
+	 * @param betEventId 
 	 * @return
 	 */
 	public List<BetEventParticipantPrice> getBetEventParticipantPricesByEvent(long betEventId);
+
 }

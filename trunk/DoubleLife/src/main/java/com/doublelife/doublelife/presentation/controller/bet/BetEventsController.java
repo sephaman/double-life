@@ -52,17 +52,21 @@ public class BetEventsController {
 	
 	/**
 	 * Called to handle bet submission.
+	 * @param stake 
+	 * @param selection 
 	 * @param betEventId 
 	 * @return 
 	 */
 	@RequestMapping(value="/betViewer.htm", method=RequestMethod.POST)
-	public ModelAndView handleSingleBetEvent(@RequestParam("stake") double stake) {
-		logger.info("single betEvent Controller : GET");
-		ModelMap map = new ModelMap();
-	//	BetEvent betEvent = userBettingService.getBetEventById(betEventId);
-		//map.addAttribute("betEvent", betEvent);
-		//map.addAttribute("betParticipants", betEvent.getLstBetParticipant());
-		return new ModelAndView("betViewer.tvw", map);
+	public ModelAndView handleSingleBetEvent(@RequestParam("stake") double stake, 
+			@RequestParam("betSelect") String selection, @RequestParam("betEventId") long betEventId) {
+		logger.info("single betEvent Controller : POST");
+		//TODO: check inputs
+		String[] strParts = selection.split(":");
+		long participantId = Long.parseLong(strParts[0]);
+		double odds = Double.parseDouble(strParts[1]);
+		userBettingService.createAndSaveBet(betEventId, participantId, stake, odds);
+		return showBetEvents();
 	}
 	
 	/**
