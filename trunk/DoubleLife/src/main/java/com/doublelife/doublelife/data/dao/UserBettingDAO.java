@@ -4,10 +4,12 @@
 package com.doublelife.doublelife.data.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import com.doublelife.doublelife.data.BetComp.Bet;
 import com.doublelife.doublelife.data.BetComp.BetCompetition;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
+import com.doublelife.doublelife.data.BetComp.BetEventParticipantPrice;
 import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
 import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
@@ -120,5 +122,19 @@ public interface UserBettingDAO {
 	 * Returns all bet events available to bet on.
 	 * @return
 	 */
-	public List<BetEvent> getAllCurrentBetEvents();
+	public Set<BetEvent> getAllCurrentBetEvents();
+
+	/**
+	 * Returns the bet event for the given id.
+	 * @param betEventId
+	 * @return
+	 */
+	public BetEvent getBetEventById(long betEventId);
+	
+	/**
+	 * Returns the Bet event participants prices.
+	 * @param eventId
+	 * @return
+	 */
+	public List<BetEventParticipantPrice> getBetEventParticipantPricesByEvent(long betEventId);
 }

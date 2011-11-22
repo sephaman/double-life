@@ -4,11 +4,14 @@
 package com.doublelife.doublelife.services;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import com.doublelife.doublelife.data.User;
 import com.doublelife.doublelife.data.BetComp.Bet;
 import com.doublelife.doublelife.data.BetComp.BetCompetition;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
+import com.doublelife.doublelife.data.BetComp.BetEventParticipantPrice;
 import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
 import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
@@ -116,5 +119,26 @@ public interface UserBettingService {
 	 * Returns all current bet events.
 	 * @return
 	 */
-	public List<BetEvent> getAllCurrentBetEvents();
+	public Set<BetEvent> getAllCurrentBetEvents();
+
+	/**
+	 * Gets a bet event by id.
+	 * @param betEventId
+	 * @return
+	 */
+	public BetEvent getBetEventById(long betEventId);
+	
+	/**
+	 * Returns the Bet event participants prices.
+	 * @param betEventId 
+	 * @return
+	 */
+	public List<BetEventParticipantPrice> getBetEventParticipantPricesByEvent(long betEventId);
+	
+	/**
+	 * Returns a map of participants and their prices.
+	 * @param betEvent
+	 * @return
+	 */
+	public Map<String, Double> getMappedParticipantAndPrice(BetEvent betEvent);
 }

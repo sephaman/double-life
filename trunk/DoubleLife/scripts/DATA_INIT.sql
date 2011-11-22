@@ -61,6 +61,12 @@ insert into participant_betevent values(1, 0);
 insert into participant_betevent values(2, 1); --cricket eng vs aus
 insert into participant_betevent values(3, 1);
 
+--insert bet participant price
+insert into bet_participant_price values(0, 0, 0, now(), 1.70, 'TRUE'); --afl participants
+insert into bet_participant_price values(1, 0, 1, now(), 1.90, 'TRUE');
+insert into bet_participant_price values(2, 1, 2, now(), 2.70, 'TRUE'); --cricket
+insert into bet_participant_price values(3, 1, 3, now(), 1.40, 'TRUE');
+
 
 --insert betting competition
 insert into bet_competition values (1,'General', now(), now(), 1, 0, null, 1000.00);
