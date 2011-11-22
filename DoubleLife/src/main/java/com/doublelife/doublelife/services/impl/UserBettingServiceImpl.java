@@ -4,12 +4,16 @@
 package com.doublelife.doublelife.services.impl;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import com.doublelife.doublelife.data.User;
 import com.doublelife.doublelife.data.BetComp.Bet;
 import com.doublelife.doublelife.data.BetComp.BetCompetition;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
+import com.doublelife.doublelife.data.BetComp.BetEventParticipantPrice;
 import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
 import com.doublelife.doublelife.data.BetComp.BetResult;
@@ -167,8 +171,39 @@ public class UserBettingServiceImpl implements UserBettingService {
 	/**
 	 * @see com.doublelife.doublelife.services.UserBettingService#getAllCurrentBetEvents()
 	 */
-	public List<BetEvent> getAllCurrentBetEvents() {
+	public Set<BetEvent> getAllCurrentBetEvents() {
 		return userBettingDAO.getAllCurrentBetEvents();
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getBetEventById(long)
+	 */
+	public BetEvent getBetEventById(long betEventId) {
+		return userBettingDAO.getBetEventById(betEventId);
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getBetEventParticipantPricesByEvent(long)
+	 */
+	public List<BetEventParticipantPrice> getBetEventParticipantPricesByEvent(
+			long betEventId) {
+		return userBettingDAO.getBetEventParticipantPricesByEvent(betEventId);
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getMappedParticipantAndPrice(com.doublelife.doublelife.data.BetComp.BetEvent)
+	 */
+	public Map<String, Double> getMappedParticipantAndPrice(BetEvent betEvent) {
+		Map<String, Double> mapParticipantNameToPrice = new HashMap<String, Double>();
+		List<BetEventParticipantPrice> bettingPrices = getBetEventParticipantPricesByEvent(betEvent.getId());
+		for (BetParticipant thisParticipant : betEvent.getLstBetParticipant()) {
+			for (BetEventParticipantPrice thisBetPrice : bettingPrices) {
+				if (thisBetPrice.getParticipantId() == thisParticipant.getId()) {
+					mapParticipantNameToPrice.put(thisParticipant.getName(), thisBetPrice.getOdds());
+				}
+			}
+		}
+		return mapParticipantNameToPrice;
 	}
 
 }

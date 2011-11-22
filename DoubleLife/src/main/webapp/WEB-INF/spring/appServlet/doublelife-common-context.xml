@@ -98,4 +98,27 @@
             </list>
         </property>
     </bean>
+    
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<constructor-arg ref="sessionFactory"/>
+		<property name="nestedTransactionAllowed" value="true"/>
+	</bean>
+
+	<!-- Use a transaction advice to define read semantics for get/fetch/find operations and read-write semantics for save/insert operations -->
+	<tx:advice id="daoTxAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/>
+		<!-- 	<tx:method name="fetch*" read-only="true"/>
+			<tx:method name="find*" read-only="true"/>
+			<tx:method name="save*" read-only="false"/>
+			<tx:method name="insert*" read-only="false"/>  -->
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- Use AOP to apply each transaction advice to the relevant operations -->
+	<aop:config>
+		<aop:advisor
+			advice-ref="daoTxAdvice"
+			pointcut="execution(* com.doublelife.doublelife.data.dao*.*(..))"/>
+	</aop:config>
 </beans>

@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.doublelife.doublelife.data.BetComp.BetEvent;
 import com.doublelife.doublelife.services.UserBettingService;
 
 /**
@@ -35,15 +37,33 @@ public class BetEventsController {
 	
 	/**
 	 * Called to display a single of bet event that can be betted on by the user.
+	 * @param betEventId 
+	 * @return 
 	 */
 	@RequestMapping(value="/betViewer.htm", method=RequestMethod.GET)
-	public ModelAndView showSingleBetEvent() {
+	public ModelAndView showSingleBetEvent(@RequestParam("id") long betEventId) {
 		logger.info("single betEvent Controller : GET");
 		ModelMap map = new ModelMap();
-		
+		BetEvent betEvent = userBettingService.getBetEventById(betEventId);
+		map.addAttribute("betEvent", betEvent);
+		map.addAttribute("betParticipants", userBettingService.getMappedParticipantAndPrice(betEvent));
 		return new ModelAndView("betViewer.tvw", map);
 	}
 	
+	/**
+	 * Called to handle bet submission.
+	 * @param betEventId 
+	 * @return 
+	 */
+	@RequestMapping(value="/betViewer.htm", method=RequestMethod.POST)
+	public ModelAndView handleSingleBetEvent(@RequestParam("stake") double stake) {
+		logger.info("single betEvent Controller : GET");
+		ModelMap map = new ModelMap();
+	//	BetEvent betEvent = userBettingService.getBetEventById(betEventId);
+		//map.addAttribute("betEvent", betEvent);
+		//map.addAttribute("betParticipants", betEvent.getLstBetParticipant());
+		return new ModelAndView("betViewer.tvw", map);
+	}
 	
 	/**
 	 * @param userBettingService the userBettingService to set

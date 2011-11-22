@@ -5,7 +5,9 @@ package com.doublelife.doublelife.data.dao.hibernate;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
@@ -18,6 +20,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import com.doublelife.doublelife.data.BetComp.Bet;
 import com.doublelife.doublelife.data.BetComp.BetCompetition;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
+import com.doublelife.doublelife.data.BetComp.BetEventParticipantPrice;
 import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
 import com.doublelife.doublelife.data.BetComp.BetResult;
@@ -277,7 +280,8 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 	/**
 	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getAllCurrentBetEvents()
 	 */
-	public List<BetEvent> getAllCurrentBetEvents() {
+	@SuppressWarnings("unchecked")
+	public Set<BetEvent> getAllCurrentBetEvents() {
 		List<BetEvent> retVal = new ArrayList<BetEvent>();
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetEvent.class);
 		detachedCriteria.add(Property.forName("isOutcomePending").eq(Boolean.TRUE));
@@ -287,7 +291,45 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		} catch (DataAccessException e) {
 			logger.error("Error retrieving current bet events", e);
 		}
-		return retVal;
+		return new HashSet(retVal);
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getBetEventById(long)
+	 */
+	public BetEvent getBetEventById(long betEventId) {
+		List<BetEvent> retVal = new ArrayList<BetEvent>();
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetEvent.class);
+		detachedCriteria.add(Property.forName("id").eq(betEventId));
+		
+		try {
+			retVal = (List<BetEvent>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving bet event", e);
+		}
+		if (retVal != null && !retVal.isEmpty()) {
+			return retVal.get(0);
+		}
+		return null;
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getBetEventParticipantPricesByEvent(long)
+	 */
+	public List<BetEventParticipantPrice> getBetEventParticipantPricesByEvent(
+			long betEventId) {
+		List<BetEventParticipantPrice> retVal = null;
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetEventParticipantPrice.class);
+		detachedCriteria.add(Property.forName("isCurrent").eq(Boolean.TRUE));
+		detachedCriteria.add(Property.forName("betEventId").eq(betEventId));
+		
+		try {
+			retVal = (List<BetEventParticipantPrice>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving bet competitions", e);
+		}
+			return retVal;
+
 	}
 
 }
