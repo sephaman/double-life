@@ -20,6 +20,7 @@ import com.doublelife.doublelife.data.BetComp.BetResult;
 import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
 import com.doublelife.doublelife.data.dao.UserBettingDAO;
 import com.doublelife.doublelife.services.UserBettingService;
+import com.doublelife.doublelife.services.utils.SecurityUtil;
 
 /**
  * Implementation of the UserBetting Service.
@@ -193,17 +194,33 @@ public class UserBettingServiceImpl implements UserBettingService {
 	/**
 	 * @see com.doublelife.doublelife.services.UserBettingService#getMappedParticipantAndPrice(com.doublelife.doublelife.data.BetComp.BetEvent)
 	 */
-	public Map<String, Double> getMappedParticipantAndPrice(BetEvent betEvent) {
-		Map<String, Double> mapParticipantNameToPrice = new HashMap<String, Double>();
+	public Map<BetParticipant, Double> getMappedParticipantAndPrice(BetEvent betEvent) {
+		Map<BetParticipant, Double> mapParticipantNameToPrice = new HashMap<BetParticipant, Double>();
 		List<BetEventParticipantPrice> bettingPrices = getBetEventParticipantPricesByEvent(betEvent.getId());
 		for (BetParticipant thisParticipant : betEvent.getLstBetParticipant()) {
 			for (BetEventParticipantPrice thisBetPrice : bettingPrices) {
 				if (thisBetPrice.getParticipantId() == thisParticipant.getId()) {
-					mapParticipantNameToPrice.put(thisParticipant.getName(), thisBetPrice.getOdds());
+					mapParticipantNameToPrice.put(thisParticipant, thisBetPrice.getOdds());
 				}
 			}
 		}
 		return mapParticipantNameToPrice;
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#createAndSaveBet(long, long)
+	 */
+	public boolean createAndSaveBet(long betEventId, long selectionId, double stake, double odds) {
+		Bet bet = new Bet();
+		bet.setBetEventId(betEventId);
+		bet.setBetResult(BetResult.PENDING);
+		bet.setUserId(SecurityUtil.getCurrentUserId());
+		bet.setDateReceived(new Date());
+		bet.setStake(stake);
+		bet.setSelectionId(selectionId);
+		bet.setOdds(odds);
+		bet.setMoneyPaid(-1.00 * stake);
+		return createBet(bet);
 	}
 
 }

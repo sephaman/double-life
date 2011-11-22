@@ -140,5 +140,14 @@ public interface UserBettingService {
 	 * @param betEvent
 	 * @return
 	 */
-	public Map<String, Double> getMappedParticipantAndPrice(BetEvent betEvent);
+	public Map<BetParticipant, Double> getMappedParticipantAndPrice(BetEvent betEvent);
+	
+	
+	/**
+	 * Creates and saves the bet.
+	 * @param betEventId
+	 * @param selectionId
+	 * @return
+	 */
+	public boolean createAndSaveBet(long betEventId, long selectionId, double stake, double odds);
 }
