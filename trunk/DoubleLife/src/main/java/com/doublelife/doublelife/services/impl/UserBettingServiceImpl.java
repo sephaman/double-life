@@ -249,4 +249,15 @@ public class UserBettingServiceImpl implements UserBettingService {
 		return lstSelectionIds;
 	}
 
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#createNewBettingAccount(com.doublelife.doublelife.data.BetComp.BetCompetition, long)
+	 */
+	public void createNewBettingAccount(BetCompetition betComp, long userId) {
+		UserBettingAccount userBetAcct = new UserBettingAccount();
+		userBetAcct.setAmountAvailable(betComp.getAcctStartAmnt());
+		userBetAcct.setCompId(betComp.getId());
+		userBetAcct.setUserId(userId);
+		userBettingDAO.createUserBettingAccount(userBetAcct);
+	}
+
 }
