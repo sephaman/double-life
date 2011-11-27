@@ -162,7 +162,7 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 	public boolean createUserBettingAccount(
 			UserBettingAccount userBettingAccount) {
 		boolean retval = false;
-		logger.debug("Saving bets collection.");
+		logger.debug("Saving user betting account");
 		try {
 			hibernate.saveOrUpdate(userBettingAccount);
 			retval = true;
@@ -176,10 +176,11 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 	/**
 	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getUserBettingAccountByUserId(long)
 	 */
-	public UserBettingAccount getUserBettingAccountByUserId(long userId) {
+	public UserBettingAccount getUserBettingAccountByUserId(long userId, long compId) {
 		List<UserBettingAccount> retVal = null;
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(UserBettingAccount.class);
 		detachedCriteria.add(Property.forName("userId").eq(userId));
+		detachedCriteria.add(Property.forName("compId").eq(compId));
 		
 		try {
 			retVal = (List<UserBettingAccount>) hibernate.findByCriteria(detachedCriteria);

@@ -76,10 +76,10 @@ public interface UserBettingService {
 	
 	/**
 	 * Updates the user betting account with the given amount.
-	 * @param userId
-	 * @param amount 
+	 * @param bet 
+	 * @return 
 	 */
-	public void updateUserBettingAccount(long userId, double amount);
+	public boolean updateUserBettingAccount(Bet bet);
 	
 	/**
 	 * Returns all bets for the given user.
@@ -91,9 +91,10 @@ public interface UserBettingService {
 	/**
 	 * Gets the user betting account with the provided user id.
 	 * @param userId
+	 * @param compId 
 	 * @return
 	 */
-	public UserBettingAccount getUserBettingAccount(long userId);
+	public UserBettingAccount getUserBettingAccount(long userId, long compId);
 	
 	/**
 	 * Gets all betting competitions.
