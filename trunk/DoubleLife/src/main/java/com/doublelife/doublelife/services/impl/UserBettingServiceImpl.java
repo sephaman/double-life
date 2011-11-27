@@ -57,7 +57,7 @@ public class UserBettingServiceImpl implements UserBettingService {
 				thisBet.setMoneyPaid(winnings);
 				
 				//update user account with winning amount
-				updateUserBettingAccount(thisBet.getUserId(), winnings);
+				updateUserBettingAccount(thisBet);
 			} else {
 				thisBet.setBetResult(BetResult.LOSE);
 				thisBet.setMoneyPaid(thisBet.getStake() * -1);
@@ -126,13 +126,14 @@ public class UserBettingServiceImpl implements UserBettingService {
 	/**
 	 * @see com.doublelife.doublelife.services.UserBettingService#updateUserBettingAccount(long)
 	 */
-	public void updateUserBettingAccount(long userId, double amount) {
-		UserBettingAccount userAcct = userBettingDAO.getUserBettingAccountByUserId(userId);
+	public boolean updateUserBettingAccount(Bet bet) {
+		UserBettingAccount userAcct = userBettingDAO.getUserBettingAccountByUserId(bet.getUserId(), bet.getCompId());
 		if (userAcct != null) {
-			userAcct.setAmountAvailable(userAcct.getAmountAvailable() + amount);
+			userAcct.setAmountAvailable(userAcct.getAmountAvailable() + bet.getMoneyPaid());
 			userAcct.setDateUpdated(new Date());
-			userBettingDAO.createUserBettingAccount(userAcct);  //saves it
+			return userBettingDAO.createUserBettingAccount(userAcct);  //saves it
 		}
+		return false;
 	}
 
 	/**
@@ -145,8 +146,8 @@ public class UserBettingServiceImpl implements UserBettingService {
 	/**
 	 * @see com.doublelife.doublelife.services.UserBettingService#getUserBettingAccount(long)
 	 */
-	public UserBettingAccount getUserBettingAccount(long userId) {
-		return userBettingDAO.getUserBettingAccountByUserId(userId);
+	public UserBettingAccount getUserBettingAccount(long userId, long compId) {
+		return userBettingDAO.getUserBettingAccountByUserId(userId, compId);
 	}
 
 	/**
@@ -221,7 +222,12 @@ public class UserBettingServiceImpl implements UserBettingService {
 		bet.setSelectionId(selectionId);
 		bet.setOdds(odds);
 		bet.setMoneyPaid(-1.00 * stake);
-		return createBet(bet);
+		bet.setCompId(1);  //TODO: grab competition id!
+		if (createBet(bet)) {
+			return updateUserBettingAccount(bet);
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -248,7 +254,7 @@ public class UserBettingServiceImpl implements UserBettingService {
 		}
 		return lstSelectionIds;
 	}
-
+	
 	/**
 	 * @see com.doublelife.doublelife.services.UserBettingService#createNewBettingAccount(com.doublelife.doublelife.data.BetComp.BetCompetition, long)
 	 */

@@ -44,6 +44,9 @@ public class Bet {
 	
 	@Column(name = "bet_event_id", nullable = false)
 	private long betEventId;
+	
+	@Column(name = "compid", nullable = false)
+	private long compId;
 
 	
 	/**
@@ -154,6 +157,18 @@ public class Bet {
 	 */
 	public double getOdds() {
 		return odds;
+	}
+	/**
+	 * @param compId the compId to set
+	 */
+	public void setCompId(long compId) {
+		this.compId = compId;
+	}
+	/**
+	 * @return the compId
+	 */
+	public long getCompId() {
+		return compId;
 	}
 	
 }

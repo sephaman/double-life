@@ -83,7 +83,7 @@ public interface UserBettingDAO {
 	 * @param userId
 	 * @return
 	 */
-	public UserBettingAccount getUserBettingAccountByUserId(long userId);
+	public UserBettingAccount getUserBettingAccountByUserId(long userId, long compId);
 	
 	/**
 	 * Creates a bet participant.
