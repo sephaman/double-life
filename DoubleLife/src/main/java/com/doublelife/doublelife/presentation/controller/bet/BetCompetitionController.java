@@ -48,6 +48,7 @@ public class BetCompetitionController {
 		BetCompetition betComp = userBettingService.getCompetitionById(compId);
 		betComp.getLstUser().add(SecurityUtil.getCurrentUser());
 		userBettingService.createBetCompetition(betComp);
+		userBettingService.createNewBettingAccount(betComp, SecurityUtil.getCurrentUserId());
 		ModelMap map = new ModelMap();
 		map.addAttribute("registered", true);
 		map.addAttribute("joinedComp", betComp);

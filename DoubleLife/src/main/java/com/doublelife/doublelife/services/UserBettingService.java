@@ -158,4 +158,10 @@ public interface UserBettingService {
 	 * @return
 	 */
 	public Map<Bet, String> getMappedBetAndSelection();
+
+	/**
+	 * creates a a bet competition for the current user.
+	 * @param betComp
+	 */
+	public void createNewBettingAccount(BetCompetition betComp, long userId);
 }

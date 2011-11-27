@@ -67,8 +67,10 @@ insert into bet_participant_price values(1, 0, 1, now(), 1.90, 'TRUE');
 insert into bet_participant_price values(2, 1, 2, now(), 2.70, 'TRUE'); --cricket
 insert into bet_participant_price values(3, 1, 3, now(), 1.40, 'TRUE');
 
-
 --insert betting competition
 insert into bet_competition values (1,'General', now(), now(), 1, 0, null, 1000.00);
 
+--insert betting accounts
+insert into user_betting_account values (0, 0, 1000.00, now(),1);
+insert into user_betting_account values (1, 1, 1000.00, now(),1);
 
