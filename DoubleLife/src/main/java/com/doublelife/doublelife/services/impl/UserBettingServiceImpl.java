@@ -3,6 +3,7 @@
  */
 package com.doublelife.doublelife.services.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -221,6 +222,31 @@ public class UserBettingServiceImpl implements UserBettingService {
 		bet.setOdds(odds);
 		bet.setMoneyPaid(-1.00 * stake);
 		return createBet(bet);
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getMappedBetAndSelection()
+	 */
+	public Map<Bet, String> getMappedBetAndSelection() {
+		Map<Bet, String> mapBetsAndSelections = new HashMap<Bet, String>();
+		List<Bet> lstBets = getAllUserBets(SecurityUtil.getCurrentUserId());
+		Set<BetParticipant> setParticipants = userBettingDAO.getParticipantsBySelectionList(getSelectionIdsFromBets(lstBets));
+		for(Bet thisBet : lstBets) {
+			for (BetParticipant thisParticipant : setParticipants) {
+				if (thisParticipant.getId() == thisBet.getSelectionId()) {
+					mapBetsAndSelections.put(thisBet, thisParticipant.getName());
+				}
+			}
+		}
+		return mapBetsAndSelections;
+	}
+	
+	private List<Long> getSelectionIdsFromBets(List<Bet> lstBets) {
+		List<Long> lstSelectionIds = new ArrayList<Long>(); 
+		for(Bet thisBet : lstBets) {
+			lstSelectionIds.add(thisBet.getSelectionId());
+		}
+		return lstSelectionIds;
 	}
 
 }

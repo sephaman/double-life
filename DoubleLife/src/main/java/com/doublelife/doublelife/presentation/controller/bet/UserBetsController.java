@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.doublelife.doublelife.services.UserBettingService;
-import com.doublelife.doublelife.services.utils.SecurityUtil;
 
 /**
  * Handles requests for displaying user's bets.
@@ -24,14 +23,15 @@ public class UserBetsController {
 	private static final Logger logger = LoggerFactory.getLogger(UserBetsController.class);
 
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * Returns a view displaying a user's bets and their selections.
+	 * @return 
 	 */
-	@RequestMapping(value="/userBets", method=RequestMethod.GET)
+	@RequestMapping(value="/userBets.htm", method=RequestMethod.GET)
 	public ModelAndView showUserBets() {
 		logger.info("User Bets Contoller: GET");
 		ModelMap map = new ModelMap();
 		map.addAttribute("userBets",
-				userBettingService.getAllUserBets(SecurityUtil.getCurrentUserId()));
+				userBettingService.getMappedBetAndSelection());
 		return new ModelAndView("userBets.tvw", map);
 	}
 	
