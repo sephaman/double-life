@@ -326,9 +326,26 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		try {
 			retVal = (List<BetEventParticipantPrice>) hibernate.findByCriteria(detachedCriteria);
 		} catch (DataAccessException e) {
-			logger.error("Error retrieving bet competitions", e);
+			logger.error("Error retrieving betevent participant prices", e);
 		}
 			return retVal;
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getParticipantsBySelectionList(java.util.List)
+	 */
+	public Set<BetParticipant> getParticipantsBySelectionList(
+			List<Long> selectionIds) {
+		List<BetParticipant> retVal = null;
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetParticipant.class);
+		detachedCriteria.add(Property.forName("id").in(selectionIds));
+		
+		try {
+			retVal = (List<BetParticipant>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving bet participants", e);
+		}
+			return new HashSet<BetParticipant>(retVal);
 
 	}
 

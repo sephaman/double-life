@@ -29,6 +29,11 @@
 					<a id="viewBetEvents" href="betEventsView.htm">View Bet Events</a>
 			</td>
 		</tr>
+		<tr>
+			<td valign="middle" style="font-size: normal">
+					<a id="viewUserBets" href="userBets.htm">View User Bet</a>
+			</td>
+		</tr>
 	</table>
 </body>
 </html>
