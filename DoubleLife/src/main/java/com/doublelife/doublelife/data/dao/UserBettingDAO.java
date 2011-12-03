@@ -79,6 +79,12 @@ public interface UserBettingDAO {
 	public boolean createUserBettingAccount(UserBettingAccount userBettingAccount);
 	
 	/**
+	 * @param userBettingAccount
+	 * @return
+	 */
+	public boolean updateUserBettingAccount(UserBettingAccount userBettingAccount);
+	
+	/**
 	 * Returns the UserBettingAccount for the given userId.
 	 * @param userId
 	 * @return

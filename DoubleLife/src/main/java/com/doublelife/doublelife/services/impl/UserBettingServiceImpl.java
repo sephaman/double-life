@@ -131,7 +131,7 @@ public class UserBettingServiceImpl implements UserBettingService {
 		if (userAcct != null) {
 			userAcct.setAmountAvailable(userAcct.getAmountAvailable() + bet.getMoneyPaid());
 			userAcct.setDateUpdated(new Date());
-			return userBettingDAO.createUserBettingAccount(userAcct);  //saves it
+			return userBettingDAO.updateUserBettingAccount(userAcct);
 		}
 		return false;
 	}
