@@ -151,4 +151,16 @@ public interface UserBettingDAO {
 	 */
 	public Set<BetParticipant> getParticipantsBySelectionList(List<Long> selectionIds);
 
+	/**
+	 * Returns all bet participants.
+	 * @return
+	 */
+	public List<BetParticipant> getAllBetParticipants();
+
+	/**
+	 * Returns all bet event types.
+	 * @return
+	 */
+	public List<BetEventType> getAllBetEventTypes();
+
 }

@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,7 +34,10 @@ public class BetEventCreatorController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView showCreateBetEvent() {
 		logger.info("create bet event betEvent Controller : GET");
-		return new ModelAndView("createBetEvent.tvw");
+		ModelMap map = new ModelMap();
+		map.addAttribute("lstParticipants", userBettingService.getAllBetParticipants());
+		map.addAttribute("lstBetEventTypes", userBettingService.getAllBetEventTypes());
+		return new ModelAndView("createBetEvent.tvw", map);
 	}
 	
 	/**
