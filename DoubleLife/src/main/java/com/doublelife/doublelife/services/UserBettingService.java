@@ -163,6 +163,19 @@ public interface UserBettingService {
 	/**
 	 * creates a a bet competition for the current user.
 	 * @param betComp
+	 * @param userId 
 	 */
 	public void createNewBettingAccount(BetCompetition betComp, long userId);
+	
+	/**
+	 * Returns all Bet Participants.
+	 * @return
+	 */
+	public List<BetParticipant> getAllBetParticipants();
+
+	/**
+	 * Returns all bet event types.
+	 * @return
+	 */
+	public List<BetEventType> getAllBetEventTypes();
 }

@@ -266,4 +266,18 @@ public class UserBettingServiceImpl implements UserBettingService {
 		userBettingDAO.createUserBettingAccount(userBetAcct);
 	}
 
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getAllBetParticipants()
+	 */
+	public List<BetParticipant> getAllBetParticipants() {
+		return userBettingDAO.getAllBetParticipants();
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getAllBetEventTypes()
+	 */
+	public List<BetEventType> getAllBetEventTypes() {
+		return userBettingDAO.getAllBetEventTypes();
+	}
+
 }
