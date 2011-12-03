@@ -98,7 +98,7 @@ public class UserBettingServiceImpl implements UserBettingService {
 	/**
 	 * @see com.doublelife.doublelife.services.UserBettingService#addBetEvent(com.doublelife.doublelife.data.BetComp.BetEvent)
 	 */
-	public void addBetEvent(BetEvent betEvent) {
+	public void createBetEvent(BetEvent betEvent) {
 		userBettingDAO.createBetEvent(betEvent);
 	}
 
