@@ -31,7 +31,7 @@ public class UserBetAccountController {
 		logger.info("UserBetAccount Controller: GET");
 		ModelMap map = new ModelMap();
 		map.addAttribute("userBetAccount", 
-				userBettingService.getUserBettingAccount(SecurityUtil.getCurrentUserId()));
+				userBettingService.getUserBettingAccount(SecurityUtil.getCurrentUserId(), 1)); //TODO:
 		return new ModelAndView("userBetAccount.tvw", map);
 	}
 

@@ -59,7 +59,7 @@ public interface UserBettingService {
 	 * Adds a new betEvent.
 	 * @param betEvent
 	 */
-	public void addBetEvent(BetEvent betEvent);
+	public void createBetEvent(BetEvent betEvent);
 	
 	/**
 	 * Adds a user betting account for the given user.

@@ -70,6 +70,19 @@ public class BetEventsController {
 	}
 	
 	/**
+	 * Called to handle bet submission.
+	 * @param stake 
+	 * @param selection 
+	 * @param betEventId 
+	 * @return 
+	 */
+	@RequestMapping(value="/createBetEvent.htm", method=RequestMethod.GET)
+	public ModelAndView createBetEvent() {
+		logger.info("create bet event betEvent Controller : GET");
+		return new ModelAndView("createBetEvent.tvw");
+	}
+	
+	/**
 	 * @param userBettingService the userBettingService to set
 	 */
 	public void setUserBettingService(UserBettingService userBettingService) {

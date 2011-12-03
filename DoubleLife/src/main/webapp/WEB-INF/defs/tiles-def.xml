@@ -82,4 +82,7 @@
     <definition name="betEventsView.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/betViews/betEventsView.jsp" />
     </definition>
+    <definition name="createBetEvent.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/betViews/createBetEvent.jsp" />
+    </definition>
 </tiles-definitions>

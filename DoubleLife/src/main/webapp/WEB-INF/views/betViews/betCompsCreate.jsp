@@ -9,22 +9,9 @@
 <h1>
 	Create Bet Competition.
 </h1>
-<form:form method="POST" commandName="betCompetition">
-	<table>
-		<tr>
-			<td>Competition Name :</td>
-			<td><form:input path="name" /></td>
-			<td><form:errors path="name" cssClass="error" /></td>
-		</tr>
-		<tr>
-			<td>Starting Amount :</td>
-			<td><form:input path="acctStartAmnt" value="1000.00"/></td>
-			<td><form:errors path="acctStartAmnt" cssClass="error" /></td>
-		</tr>
-		<tr>
-			<td colspan="2"><input type="submit" value="Create Competition"></td>
-		</tr>
-	</table>
-</form:form>
+<form id="frmSubmit" method="post" action="createBetEvent.htm">
+		<input id="stkCode" type="text" name="stkCode" />
+		<input id="btnOK"  type="submit" value="Submit"/>
+	</form>
 </body>
 </html>
