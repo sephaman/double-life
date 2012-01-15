@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.doublelife.doublelife.data.BetComp.BetEvent;
@@ -20,6 +21,7 @@ import com.doublelife.doublelife.services.UserBettingService;
  */
 @Controller
 @RequestMapping("/createBetEvent.htm")
+@SessionAttributes("betEvent")
 public class BetEventCreatorController {
 
 	@Autowired
@@ -37,6 +39,7 @@ public class BetEventCreatorController {
 		ModelMap map = new ModelMap();
 		map.addAttribute("lstParticipants", userBettingService.getAllBetParticipants());
 		map.addAttribute("lstBetEventTypes", userBettingService.getAllBetEventTypes());
+		map.addAttribute("betEvent", new BetEvent());
 		return new ModelAndView("createBetEvent.tvw", map);
 	}
 	
