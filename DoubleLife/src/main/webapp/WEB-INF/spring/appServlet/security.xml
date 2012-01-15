@@ -59,12 +59,12 @@
 		<intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY" />
 		<intercept-url pattern="/stockSearch.htm" access="ROLE_USER"/>
 
-		<form-login login-page="/login.htm"
+		<form-login login-page="/login.form"
 			authentication-failure-url="/login.form?login_error=true"
 			default-target-url="/doubleLifeHome.htm"
 			always-use-default-target="false" />
 
-		<logout logout-success-url="/login.htm"
+		<logout logout-success-url="/login.form"
 			logout-url="/j_spring_security_logout"
 			invalidate-session="true" />
 
