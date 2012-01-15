@@ -53,7 +53,7 @@ public class BankAccount {
 	private Date updateDateTime;
 
 	@Column(name = "is_active")
-	private int isActive;
+	private Boolean isActive;
 	
 	@Column(name = "created_by_userid")
 	private long createdByUserId;
@@ -145,13 +145,13 @@ public class BankAccount {
 	/**
 	 * @return the isActive
 	 */
-	public int getIsActive() {
+	public Boolean getIsActive() {
 		return isActive;
 	}
 	/**
 	 * @param isActive the isActive to set
 	 */
-	public void setIsActive(int isActive) {
+	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
 	/**

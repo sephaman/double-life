@@ -46,7 +46,7 @@ public class BankingTransaction {
 	private double postTransBal;
 	
 	@Column(name = "is_credit")
-	private int isCredit;
+	private Boolean isCredit;
 	
 	@Column(name = "counter_acct_no")
 	private long counterAcctNo;
@@ -138,13 +138,13 @@ public class BankingTransaction {
 	/**
 	 * @param isCredit the isCredit to set
 	 */
-	public void setIsCredit(int isCredit) {
+	public void setIsCredit(Boolean isCredit) {
 		this.isCredit = isCredit;
 	}
 	/**
 	 * @return the isCredit
 	 */
-	public int getIsCredit() {
+	public Boolean getIsCredit() {
 		return isCredit;
 	}
 	/**

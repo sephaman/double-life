@@ -34,10 +34,10 @@ public class UserStockHolding {
 	@Column(name = "costBasis", nullable = false)
 	private double costBasis;
 	
-	@Column(name = "quantityHeld", nullable = false)
+	@Column(name = "quantity_held", nullable = false)
 	private long quantityHeld;
 	
-	@Column(name = "dateAcquired", nullable = false)
+	@Column(name = "date_acquired", nullable = false)
 	private Date dateAcquired;
 	
 	@Column(name = "is_active", nullable = false)
