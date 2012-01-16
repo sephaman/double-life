@@ -6,10 +6,19 @@
 	<title>Create Bet Event</title>
 </head>
 <body>
+<script type="text/javascript">
+	function submitter(buttonSubmit) {
+		alert('xxx');
+		 var hiddenField = document.getElementById('submissionType');
+		 hiddenField.value = buttonSubmit;
+		 var form = document.getElementById('sbtForm');
+		 form.submit();
+	}
+</script>
 <h1>
 	Create Bet Event
 </h1>
-<form:form method="POST" commandName="betEvent">
+<form:form method="POST" commandName="betEvent" name="sbtForm" id="sbtForm">
 	<table>
 		<tr>
 			<td>Bet Event Type :</td>
@@ -21,13 +30,13 @@
 			<tr>
 				<td>Date :</td>
 				<td>
-					<form:input path="dateTime"/>
+					<form:input path=""/>
 				</td>
 			</tr>
 			<tr>
 				<td>Event Name :</td>
 				<td>
-					<form:input path="betEventName"/>
+					<form:input path="betEventName" name="betEventName"/>
 				</td>
 			</tr>
 			<tr>
@@ -37,7 +46,7 @@
 					</form:select>
 				</td>
 				<td>
-					<input type="button" value="add" onclick="alert('hello')"/>
+					<input id="addParticipant" name="addParticipant" type="button" value="add" onclick="submitter(this.value);"/>
 				</td>
 			</tr>
 			<tr>
@@ -52,12 +61,11 @@
 				</td>
 			
 			</tr>
-		
-		
 		<tr>
-			<td colspan="2"><input type="submit" value="Create Bet Event"></td>
+			<td colspan="2"><input type="button" value="Create Bet Event" name="submitBtn" id="submitBtn" onclick="submitter(this.value);"></td>
 		</tr>
 	</table>
+	<form:hidden path="" name="submissionType" id="submissionType" value=""/>
 </form:form>
 </body>
 </html>

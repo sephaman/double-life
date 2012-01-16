@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,11 +52,12 @@ public class BetEventCreatorController {
 	 * @return 
 	 */
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView createBetEvent(@RequestParam("betEventName") String betEventName, 
-			@RequestParam("betEventDate") String betEventDate, 
-			@RequestParam("betEventParticipants") String betEventParticipants) {
+	public ModelAndView createBetEvent(@ModelAttribute("betEvent") BetEvent betEvent, @RequestParam("betEventName") String betEventName, 
+			//@RequestParam("betEventDate") String betEventDate, 
+			//@RequestParam("betEventParticipants") String betEventParticipants,
+			@RequestParam("submissionType") String submitter) {
 		logger.info("create bet event betEvent Controller : POST");
-		BetEvent betEvent = new BetEvent();
+		
 		betEvent.setBetEventName(betEventName);
 		betEvent.setOutcomePending(Boolean.TRUE);
 		betEvent.setDateTime(new Date());  //TODO: parse date
