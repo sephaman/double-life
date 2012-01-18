@@ -145,6 +145,13 @@ public interface UserBettingDAO {
 	public List<BetEventParticipantPrice> getBetEventParticipantPricesByEvent(long betEventId);
 	
 	/**
+	 * Saves a new BetEventParticipantPrice object.
+	 * @param betEventParticipantPrice
+	 * @return
+	 */
+	public boolean createBetEventParticipantPrice(BetEventParticipantPrice betEventParticipantPrice);
+	
+	/**
 	 * Returns the list of bet participants for the given selection ids.
 	 * @param selectionIds
 	 * @return
@@ -162,5 +169,12 @@ public interface UserBettingDAO {
 	 * @return
 	 */
 	public List<BetEventType> getAllBetEventTypes();
+	
+	/**
+	 * Returns the Bet Participant by name.
+	 * @param id
+	 * @return
+	 */
+	public BetParticipant getParticipantById(long id);
 
 }

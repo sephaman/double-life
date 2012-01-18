@@ -148,7 +148,7 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		boolean retval = false;
 		logger.debug("Saving bets collection.");
 		try {
-			hibernate.saveOrUpdate(betEvent);
+			hibernate.save(betEvent);
 			retval = true;
 		} catch (DataAccessException e) {
 			logger.error("Error saving bet event.", e);
@@ -395,6 +395,43 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 			logger.error("Error retrieving bet event types", e);
 		}
 			return retVal;
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getParticipantById(long)
+	 */
+	public BetParticipant getParticipantById(long id) {
+		List<BetParticipant> retVal = new ArrayList<BetParticipant>();
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetParticipant.class);
+		detachedCriteria.add(Property.forName("id").eq(id));
+		
+		try {
+			retVal = (List<BetParticipant>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving BetParticipant", e);
+		}
+		if (retVal != null && !retVal.isEmpty()) {
+			return retVal.get(0);
+		}
+		return null;
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#createBetEventParticipantPrice(com.doublelife.doublelife.data.BetComp.BetEventParticipantPrice)
+	 */
+	public boolean createBetEventParticipantPrice(
+			BetEventParticipantPrice betEventParticipantPrice) {
+		boolean retval = false;
+		logger.debug("Saving betEventParticipantPrice");
+		try {
+			betEventParticipantPrice.setDateUpdated(new Date());
+			hibernate.save(betEventParticipantPrice);
+			retval = true;
+		} catch (DataAccessException e) {
+			logger.error("Error saving betEventParticipantPrice", e);
+			throw e;
+		}
+		return retval;
 	}
 
 }

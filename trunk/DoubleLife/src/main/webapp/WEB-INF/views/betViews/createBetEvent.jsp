@@ -8,7 +8,6 @@
 <body>
 <script type="text/javascript">
 	function submitter(buttonSubmit) {
-		alert('xxx');
 		 var hiddenField = document.getElementById('submissionType');
 		 hiddenField.value = buttonSubmit;
 		 var form = document.getElementById('sbtForm');
@@ -41,9 +40,15 @@
 			</tr>
 			<tr>
 				<td>Select Participants :</td>
-				<td><form:select path="">
+				<td><form:select path="" name="participantSelect" id="participantSelect">
 					<form:options items="${lstParticipants}" itemValue="id" itemLabel="name"/>
 					</form:select>
+				</td>
+				<td>
+					Price
+				</td>
+				<td>
+					<form:input path="" name="part_price" id="part_price"/>
 				</td>
 				<td>
 					<input id="addParticipant" name="addParticipant" type="button" value="add" onclick="submitter(this.value);"/>
@@ -55,14 +60,15 @@
 					Participants
 				</td>
 				<td>
-					<select id="participantList" multiple="multiple" >
-						
-					</select>
+					<form:select id="participantList" multiple="multiple" path="">
+						<form:options items="${selectedParticipants}" />
+					</form:select>
 				</td>
 			
 			</tr>
 		<tr>
-			<td colspan="2"><input type="button" value="Create Bet Event" name="submitBtn" id="submitBtn" onclick="submitter(this.value);"></td>
+			<td colspan="2"><input type="button" value="Create Bet Event" name="submitBtn" id="submitBtn" onclick="submitter(this.name);"/>
+			</td>
 		</tr>
 	</table>
 	<form:hidden path="" name="submissionType" id="submissionType" value=""/>

@@ -87,19 +87,10 @@ public class UserBettingServiceImpl implements UserBettingService {
 	}
 
 	/**
-	 * @see com.doublelife.doublelife.services.UserBettingService#addParticipantToBettingEvent(com.doublelife.doublelife.data.BetComp.BetParticipant, com.doublelife.doublelife.data.BetComp.BetEvent)
-	 */
-	public void addParticipantToBettingEvent(BetParticipant betParticipant,
-			BetEvent betEvent) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
 	 * @see com.doublelife.doublelife.services.UserBettingService#addBetEvent(com.doublelife.doublelife.data.BetComp.BetEvent)
 	 */
-	public void createBetEvent(BetEvent betEvent) {
-		userBettingDAO.createBetEvent(betEvent);
+	public boolean createBetEvent(BetEvent betEvent) {
+		return userBettingDAO.createBetEvent(betEvent);
 	}
 
 	/**
@@ -201,7 +192,7 @@ public class UserBettingServiceImpl implements UserBettingService {
 		List<BetEventParticipantPrice> bettingPrices = getBetEventParticipantPricesByEvent(betEvent.getId());
 		for (BetParticipant thisParticipant : betEvent.getLstBetParticipant()) {
 			for (BetEventParticipantPrice thisBetPrice : bettingPrices) {
-				if (thisBetPrice.getParticipantId() == thisParticipant.getId()) {
+				if (thisBetPrice.getBetParticipantId() == thisParticipant.getId()) {
 					mapParticipantNameToPrice.put(thisParticipant, thisBetPrice.getOdds());
 				}
 			}
@@ -280,4 +271,30 @@ public class UserBettingServiceImpl implements UserBettingService {
 		return userBettingDAO.getAllBetEventTypes();
 	}
 
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getParticipantById(long)
+	 */
+	public BetParticipant getParticipantById(long id) {
+		return userBettingDAO.getParticipantById(id);
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#createBetEventParticipantPrice(com.doublelife.doublelife.data.BetComp.BetEventParticipantPrice)
+	 */
+	public boolean createBetEventParticipantPrice(
+			BetEventParticipantPrice betEventParticipantPrice) {
+		return userBettingDAO.createBetEventParticipantPrice(betEventParticipantPrice);
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#createAllBetEventParticipantPrices(com.doublelife.doublelife.data.BetComp.BetEvent)
+	 */
+	public void createAllBetEventParticipantPrices(BetEvent betEvent) {
+		for (BetEventParticipantPrice thisParticipantPrice : betEvent.getLstBetEventParticipantPrice()) {
+			thisParticipantPrice.setBetEventId(betEvent.getId());
+			thisParticipantPrice.setBetParticipantId(thisParticipantPrice.getBetParticipant().getId());
+			thisParticipantPrice.setIsCurrent(true);
+			userBettingDAO.createBetEventParticipantPrice(thisParticipantPrice);
+		}
+	}
 }

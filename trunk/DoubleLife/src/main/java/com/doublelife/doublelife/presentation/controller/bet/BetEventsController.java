@@ -46,7 +46,7 @@ public class BetEventsController {
 		ModelMap map = new ModelMap();
 		BetEvent betEvent = userBettingService.getBetEventById(betEventId);
 		map.addAttribute("betEvent", betEvent);
-		map.addAttribute("betParticipants", userBettingService.getMappedParticipantAndPrice(betEvent));
+		map.addAttribute("betParticipants", userBettingService.getMappedParticipantAndPrice(betEvent)); //TODO: just get bet participant...
 		return new ModelAndView("betViewer.tvw", map);
 	}
 	
