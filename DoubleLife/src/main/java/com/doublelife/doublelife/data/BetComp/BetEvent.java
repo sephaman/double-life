@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
 
 /**
  * Represents a bet event such as a sport.
@@ -33,7 +35,7 @@ public class BetEvent {
 	@Column(name = "dateTime")
 	private Date dateTime;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	@JoinTable (
 	name = "participant_betevent",
 	joinColumns = {@JoinColumn(name = "betEventId")} ,
@@ -49,7 +51,28 @@ public class BetEvent {
 	
 	@Column(name = "bet_event_name")
 	private String betEventName;
+	
+	@Transient
+	private List<BetEventParticipantPrice> lstBetEventParticipantPrice;
 
+	/**
+	 * @return the lstBetEventParticipantPrice
+	 */
+	public List<BetEventParticipantPrice> getLstBetEventParticipantPrice() {
+		if (lstBetEventParticipantPrice == null) {
+			lstBetEventParticipantPrice = new ArrayList<BetEventParticipantPrice>();
+		}
+		return lstBetEventParticipantPrice;
+	}
+
+	/**
+	 * @param lstBetEventParticipantPrice the lstBetEventParticipantPrice to set
+	 */
+	public void setLstBetEventParticipantPrice(
+			List<BetEventParticipantPrice> lstBetEventParticipantPrice) {
+		this.lstBetEventParticipantPrice = lstBetEventParticipantPrice;
+	}
+	
 	/**
 	 * @return the dateTime
 	 */
@@ -134,6 +157,7 @@ public class BetEvent {
 		} 
 		return lstBetParticipant;
 	}
+	
 	/**
 	 * @param betEventName the betEventName to set
 	 */

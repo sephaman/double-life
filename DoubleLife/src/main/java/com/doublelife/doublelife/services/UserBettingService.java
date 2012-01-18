@@ -49,17 +49,10 @@ public interface UserBettingService {
 	public void addBettingParticipant(BetParticipant betParticipant);
 	
 	/**
-	 * Adds a registered participant to a bet event.
-	 * @param betParticipant
-	 * @param betEvent
-	 */
-	public void addParticipantToBettingEvent(BetParticipant betParticipant, BetEvent betEvent);
-	
-	/**
 	 * Adds a new betEvent.
 	 * @param betEvent
 	 */
-	public void createBetEvent(BetEvent betEvent);
+	public boolean createBetEvent(BetEvent betEvent);
 	
 	/**
 	 * Adds a user betting account for the given user.
@@ -178,4 +171,23 @@ public interface UserBettingService {
 	 * @return
 	 */
 	public List<BetEventType> getAllBetEventTypes();
+	
+	/**
+	 * Returns the Bet Participant by name.
+	 * @param id
+	 * @return
+	 */
+	public BetParticipant getParticipantById(long id);
+	
+	/**
+	 * Saves a new BetEventParticipantPrice object.
+	 * @param betEventParticipantPrice
+	 * @return
+	 */
+	public boolean createBetEventParticipantPrice(BetEventParticipantPrice betEventParticipantPrice);
+
+	/**
+	 * @param betEvent
+	 */
+	public void createAllBetEventParticipantPrices(BetEvent betEvent);
 }

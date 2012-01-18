@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.doublelife.doublelife.data.BetComp.BetEvent;
+import com.doublelife.doublelife.data.BetComp.BetEventParticipantPrice;
+import com.doublelife.doublelife.data.BetComp.BetParticipant;
 import com.doublelife.doublelife.services.UserBettingService;
 
 /**
@@ -46,23 +48,74 @@ public class BetEventCreatorController {
 	
 	/**
 	 * Validates and creates bet event.
+	 * @param betEvent 
 	 * @param betEventName 
-	 * @param betEventDate 
-	 * @param betEventParticipants 
+	 * @param submitter 
+	 * @param selectedParticipant 
 	 * @return 
 	 */
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView createBetEvent(@ModelAttribute("betEvent") BetEvent betEvent, @RequestParam("betEventName") String betEventName, 
-			//@RequestParam("betEventDate") String betEventDate, 
-			//@RequestParam("betEventParticipants") String betEventParticipants,
-			@RequestParam("submissionType") String submitter) {
+	public ModelAndView createBetEvent(@ModelAttribute("betEvent") BetEvent betEvent,
+			@RequestParam("betEventName") String betEventName, 
+			@RequestParam("submissionType") String submitter,
+			@RequestParam("participantSelect") String selectedParticipant,
+			@RequestParam("part_price") String part_price) {
 		logger.info("create bet event betEvent Controller : POST");
 		
-		betEvent.setBetEventName(betEventName);
-		betEvent.setOutcomePending(Boolean.TRUE);
-		betEvent.setDateTime(new Date());  //TODO: parse date
-		userBettingService.createBetEvent(betEvent);
+		if (submitter.equalsIgnoreCase("add")) {
+			return addParticipant(betEvent, selectedParticipant, part_price);
+		} else if (submitter.equalsIgnoreCase("remove")) {
+			return removeParticipant(betEvent, selectedParticipant);
+		} else if (submitter.equalsIgnoreCase("submitBtn")) {
+			betEvent.setBetEventName(betEventName);
+			betEvent.setOutcomePending(Boolean.TRUE);
+			betEvent.setDateTime(new Date());  //TODO: parse date
+			
+			if (userBettingService.createBetEvent(betEvent)) {
+				userBettingService.createAllBetEventParticipantPrices(betEvent);
+			}
+		}
+		
 		return new ModelAndView("createBetEvent.tvw");
+	}
+	
+	
+	private ModelAndView addParticipant(BetEvent betEvent, String participantSelect, String part_price) {
+		BetParticipant betParticipant = userBettingService.getParticipantById(Long.parseLong(participantSelect));
+		betEvent.getLstBetParticipant().add(betParticipant);
+		
+		//create a betEvetParticipantPrice object and store in betEvent
+		betEvent.getLstBetEventParticipantPrice().add(new BetEventParticipantPrice(betParticipant, Double.parseDouble(part_price)));
+		
+		ModelMap map = new ModelMap();
+		map.addAttribute("lstParticipants", userBettingService.getAllBetParticipants());
+		map.addAttribute("lstBetEventTypes", userBettingService.getAllBetEventTypes());
+		map.addAttribute("betEvent", betEvent);
+		map.addAttribute("selectedParticipants", betEvent.getLstBetEventParticipantPrice());
+		return new ModelAndView("createBetEvent.tvw", map);
+	}
+	
+	private ModelAndView removeParticipant(BetEvent betEvent, String participantSelect) {
+		for (int i = 0; i < betEvent.getLstBetParticipant().size(); i++) {
+			if (betEvent.getLstBetParticipant().get(i).getId() == Long.parseLong(participantSelect)) {
+				betEvent.getLstBetParticipant().remove(i);
+				break;
+			}
+		}
+		//remove the betEventParticipantPrice
+		for (int i = 0; i < betEvent.getLstBetEventParticipantPrice().size(); i++) {
+			if (betEvent.getLstBetEventParticipantPrice().get(i).getBetParticipant().getName().equalsIgnoreCase(participantSelect)) {
+				betEvent.getLstBetEventParticipantPrice().remove(i);
+				break;
+			}
+		}
+		
+		ModelMap map = new ModelMap();
+		map.addAttribute("lstParticipants", userBettingService.getAllBetParticipants());
+		map.addAttribute("lstBetEventTypes", userBettingService.getAllBetEventTypes());
+		map.addAttribute("betEvent", betEvent);
+		map.addAttribute("selectedParticipants", betEvent.getLstBetParticipant());
+		return new ModelAndView("createBetEvent.tvw", map);
 	}
 	
 	/**
