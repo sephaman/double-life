@@ -19,6 +19,8 @@ import com.doublelife.doublelife.data.BetComp.BetEventParticipantPrice;
 import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
 import com.doublelife.doublelife.data.BetComp.BetResult;
+import com.doublelife.doublelife.data.BetComp.Round;
+import com.doublelife.doublelife.data.BetComp.Season;
 import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
 import com.doublelife.doublelife.data.dao.BettingCompetitionDAO;
 import com.doublelife.doublelife.data.dao.UserBettingDAO;
@@ -348,5 +350,19 @@ public class UserBettingServiceImpl implements UserBettingService {
 			mapUserLeaderboard.put(thisUser, thisUserAct.getAmountAvailable());
 		}
 		return mapUserLeaderboard;
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#createSeason(com.doublelife.doublelife.data.BetComp.Season)
+	 */
+	public boolean createSeason(Season season) {
+		return userBettingDAO.createSeason(season);
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#createRound(com.doublelife.doublelife.data.BetComp.Round)
+	 */
+	public boolean createRound(Round round) {
+		return userBettingDAO.createRound(round);
 	}
 }

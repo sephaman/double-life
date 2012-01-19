@@ -24,6 +24,8 @@ import com.doublelife.doublelife.data.BetComp.BetEventParticipantPrice;
 import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
 import com.doublelife.doublelife.data.BetComp.BetResult;
+import com.doublelife.doublelife.data.BetComp.Round;
+import com.doublelife.doublelife.data.BetComp.Season;
 import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
 import com.doublelife.doublelife.data.dao.UserBettingDAO;
 
@@ -448,6 +450,39 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 			logger.error("Error retrieving betevent participant prices", e);
 		}
 			return retVal;
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#createSeason(com.doublelife.doublelife.data.BetComp.Season)
+	 */
+	public boolean createSeason(Season season) {
+		boolean retval = false;
+		logger.debug("Saving Season");
+		try {
+			season.setUpdateDateTime(new Date());
+			hibernate.save(season);
+			retval = true;
+		} catch (DataAccessException e) {
+			logger.error("Error saving season", e);
+			throw e;
+		}
+		return retval;
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#createRound(com.doublelife.doublelife.data.BetComp.Round)
+	 */
+	public boolean createRound(Round round) {
+		boolean retval = false;
+		logger.debug("Saving Round");
+		try {
+			hibernate.save(round);
+			retval = true;
+		} catch (DataAccessException e) {
+			logger.error("Error saving round", e);
+			throw e;
+		}
+		return retval;
 	}
 
 }

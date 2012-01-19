@@ -14,6 +14,8 @@ import com.doublelife.doublelife.data.BetComp.BetEvent;
 import com.doublelife.doublelife.data.BetComp.BetEventParticipantPrice;
 import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
+import com.doublelife.doublelife.data.BetComp.Round;
+import com.doublelife.doublelife.data.BetComp.Season;
 import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
 
 /**
@@ -198,4 +200,19 @@ public interface UserBettingService {
 	 * @return
 	 */
 	public Map<User, Double> getLeaderBoardForCompetition(long betttingCompetitionId);
+	
+	
+	/**
+	 * Create a season.
+	 * @param season
+	 * @return
+	 */
+	public boolean createSeason(Season season);
+	
+	/**
+	 * Creates a Round.
+	 * @param round 
+	 * @return
+	 */
+	public boolean createRound(Round round);
 }
