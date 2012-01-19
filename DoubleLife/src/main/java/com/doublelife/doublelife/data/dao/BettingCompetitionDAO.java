@@ -18,4 +18,11 @@ public interface BettingCompetitionDAO {
 	 * @return
 	 */
 	public boolean createCompetition(BetCompetition betCompetition);
+	
+	/**
+	 * Returns the bet competition for the given id.
+	 * @param id
+	 * @return
+	 */
+	public BetCompetition getBetCompetitionById(long betCompId);
 }

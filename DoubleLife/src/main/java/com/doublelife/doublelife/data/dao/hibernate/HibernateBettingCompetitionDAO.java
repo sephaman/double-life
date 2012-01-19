@@ -3,7 +3,12 @@
  */
 package com.doublelife.doublelife.data.dao.hibernate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Property;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
@@ -44,6 +49,23 @@ public class HibernateBettingCompetitionDAO implements BettingCompetitionDAO {
 			throw e;
 		}
 		return retval;
+	}
+	
+	
+	public BetCompetition getBetCompetitionById(long betCompId) {
+		List<BetCompetition> retVal = new ArrayList<BetCompetition>();
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetCompetition.class);
+		detachedCriteria.add(Property.forName("id").eq(betCompId));
+		
+		try {
+			retVal = (List<BetCompetition>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving bet competition", e);
+		}
+		if (retVal != null && !retVal.isEmpty()) {
+			return retVal.get(0);
+		}
+		return null;
 	}
 
 }

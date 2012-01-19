@@ -52,6 +52,9 @@ public class BetEvent {
 	@Column(name = "bet_event_name")
 	private String betEventName;
 	
+	@Column(name = "parent_round_id")
+	private long parentRoundId;
+	
 	@Transient
 	private List<BetEventParticipantPrice> lstBetEventParticipantPrice;
 
@@ -169,5 +172,19 @@ public class BetEvent {
 	 */
 	public String getBetEventName() {
 		return betEventName;
+	}
+	
+	/**
+	 * @return the parentRoundId
+	 */
+	public long getParentRoundId() {
+		return parentRoundId;
+	}
+
+	/**
+	 * @param parentRoundId the parentRoundId to set
+	 */
+	public void setParentRoundId(long parentRoundId) {
+		this.parentRoundId = parentRoundId;
 	}
 }

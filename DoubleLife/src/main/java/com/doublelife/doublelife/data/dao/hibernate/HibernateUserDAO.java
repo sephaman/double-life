@@ -46,14 +46,14 @@ public class HibernateUserDAO implements UserDAO {
 	public User getUserById(long userId) {
 		List<User> retVal = null;
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(User.class);
-		detachedCriteria.add(Property.forName("userId").eq(userId));
+		detachedCriteria.add(Property.forName("id").eq(userId));
 		
 		try {
 			retVal = (List<User>) hibernate.findByCriteria(detachedCriteria);
 		} catch (DataAccessException e) {
-			logger.error("Error retrieving user bets with betEventId", e);
+			logger.error("Error retrieving user with id:" + userId, e);
 		}
-		if (!retVal.isEmpty()) {
+		if (retVal != null && !retVal.isEmpty()) {
 			return retVal.get(0);
 		}
 		return null;
@@ -85,7 +85,7 @@ public class HibernateUserDAO implements UserDAO {
 		} catch (DataAccessException e) {
 			logger.error("Error retrieving all users", e);
 		}
-		if (!retVal.isEmpty()) {
+		if (retVal != null && !retVal.isEmpty()) {
 			return retVal;
 		}
 		return null;
