@@ -88,4 +88,7 @@
      <definition name="betCompLeaderboardView.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/betViews/betCompLeaderboardView.jsp" />
     </definition>
+    <definition name="createSeason.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/betViews/createSeason.jsp" />
+    </definition>
 </tiles-definitions>
