@@ -47,26 +47,26 @@ insert into bet_event_type values(1, 'NRL', now());
 insert into bet_event_type values(2, 'Cricket', now());
 
 --insert bet participants
-insert into bet_participant values(0, 'Melbourne', now(), 0);
-insert into bet_participant values(1, 'Geelong', now(), 0);
-insert into bet_participant values(2, 'Australia', now(), 2);
-insert into bet_participant values(3, 'England', now(), 2);
+insert into bet_participant values(1, 'Melbourne', now(), 0);
+insert into bet_participant values(2, 'Geelong', now(), 0);
+insert into bet_participant values(3, 'Australia', now(), 2);
+insert into bet_participant values(4, 'England', now(), 2);
 
 --insert bet_event
 insert into bet_event values(0, 0, now(), true, -1, 'Geelong vs Melbourne');
 insert into bet_event values(1, 2, now(), true, -1, 'Australia vs England');
 
 --insert bet_event - participants
-insert into participant_betevent values(0, 0); --AFL geel vs melb
-insert into participant_betevent values(0, 1);
-insert into participant_betevent values(1, 2); --cricket eng vs aus
-insert into participant_betevent values(1, 3);
+insert into participant_betevent values(0, 1); --AFL geel vs melb
+insert into participant_betevent values(0, 2);
+insert into participant_betevent values(1, 3); --cricket eng vs aus
+insert into participant_betevent values(1, 4);
 
 --insert bet participant price
-insert into bet_participant_price values(0, 0, 1.70, now(), 0, 'TRUE'); --afl participants
-insert into bet_participant_price values(1, 1, 1.90, now(), 0, 'TRUE');
-insert into bet_participant_price values(2, 2, 2.70, now(), 1, 'TRUE'); --cricket
-insert into bet_participant_price values(3, 3, 1.40, now(), 1, 'TRUE');
+insert into bet_participant_price values(0, 1, 1.70, now(), 0, 'TRUE'); --afl participants
+insert into bet_participant_price values(1, 2, 1.90, now(), 0, 'TRUE');
+insert into bet_participant_price values(2, 3, 2.70, now(), 1, 'TRUE'); --cricket
+insert into bet_participant_price values(3, 4, 1.40, now(), 1, 'TRUE');
 
 --insert betting competition
 insert into bet_competition values (1,'General', now(), now(), 1, 0, 1000.00,null);
