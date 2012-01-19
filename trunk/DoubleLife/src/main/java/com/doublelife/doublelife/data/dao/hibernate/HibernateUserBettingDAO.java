@@ -433,5 +433,21 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		}
 		return retval;
 	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getLstUserBettingAccountByCompId(long)
+	 */
+	public List<UserBettingAccount> getLstUserBettingAccountByCompId(long compId) {
+		List<UserBettingAccount> retVal = null;
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(UserBettingAccount.class);
+		detachedCriteria.add(Property.forName("compId").eq(compId));
+		
+		try {
+			retVal = (List<UserBettingAccount>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving betevent participant prices", e);
+		}
+			return retVal;
+	}
 
 }

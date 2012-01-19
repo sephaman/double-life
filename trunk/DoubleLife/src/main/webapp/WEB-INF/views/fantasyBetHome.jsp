@@ -39,6 +39,11 @@
 					<a id="createBetEvent" href="createBetEvent.htm">Create Bet Event</a>
 			</td>
 		</tr>
+		<tr>
+			<td valign="middle" style="font-size: normal">
+					<a id="viewCompLeaderboard" href="betCompLeaderboardView.htm?id=1">View Comp Leaderboard</a>
+			</td>
+		</tr>
 	</table>
 </body>
 </html>

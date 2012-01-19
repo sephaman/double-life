@@ -176,5 +176,12 @@ public interface UserBettingDAO {
 	 * @return
 	 */
 	public BetParticipant getParticipantById(long id);
+	
+	/**
+	 * Returns list of user betting accounts for given comp id.
+	 * @param compId
+	 * @return
+	 */
+	public List<UserBettingAccount> getLstUserBettingAccountByCompId(long compId);
 
 }

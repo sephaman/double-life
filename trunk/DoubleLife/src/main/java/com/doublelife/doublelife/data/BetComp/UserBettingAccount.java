@@ -17,7 +17,7 @@ import javax.persistence.Id;
  *
  */
 @Entity (name = "user_betting_account")
-public class UserBettingAccount {
+public class UserBettingAccount implements Comparable<UserBettingAccount> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -95,6 +95,19 @@ public class UserBettingAccount {
 	 */
 	public long getCompId() {
 		return compId;
+	}
+	
+	/**
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
+	public int compareTo(UserBettingAccount o) {
+		
+		if (this.amountAvailable > o.amountAvailable) {
+			return 1;
+		} else if (this.amountAvailable < o.amountAvailable) {
+			return -1;
+		}
+		return 0;
 	}
 	
 }

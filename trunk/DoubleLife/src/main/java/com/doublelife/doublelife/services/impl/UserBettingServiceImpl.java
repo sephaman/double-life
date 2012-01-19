@@ -4,6 +4,7 @@
 package com.doublelife.doublelife.services.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +20,9 @@ import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
 import com.doublelife.doublelife.data.BetComp.BetResult;
 import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
+import com.doublelife.doublelife.data.dao.BettingCompetitionDAO;
 import com.doublelife.doublelife.data.dao.UserBettingDAO;
+import com.doublelife.doublelife.data.dao.UserDAO;
 import com.doublelife.doublelife.services.UserBettingService;
 import com.doublelife.doublelife.services.utils.SecurityUtil;
 
@@ -31,6 +34,10 @@ import com.doublelife.doublelife.services.utils.SecurityUtil;
 public class UserBettingServiceImpl implements UserBettingService {
 
 	private UserBettingDAO userBettingDAO;
+	private BettingCompetitionDAO bettingCompetitionDAO;
+	private UserDAO userDAO;
+	
+
 	/**
 	 * @see com.doublelife.doublelife.services.UserBettingService#getUserPendingBets(long)
 	 */
@@ -77,6 +84,20 @@ public class UserBettingServiceImpl implements UserBettingService {
 	 */
 	public void setUserBettingDAO(UserBettingDAO userBettingDAO) {
 		this.userBettingDAO = userBettingDAO;
+	}
+	
+	/**
+	 * @return the userDAO
+	 */
+	public UserDAO getUserDAO() {
+		return userDAO;
+	}
+
+	/**
+	 * @param userDAO the userDAO to set
+	 */
+	public void setUserDAO(UserDAO userDAO) {
+		this.userDAO = userDAO;
 	}
 
 	/**
@@ -279,6 +300,20 @@ public class UserBettingServiceImpl implements UserBettingService {
 	}
 
 	/**
+	 * @return the bettingCompetitionDAO
+	 */
+	public BettingCompetitionDAO getBettingCompetitionDAO() {
+		return bettingCompetitionDAO;
+	}
+
+	/**
+	 * @param bettingCompetitionDAO the bettingCompetitionDAO to set
+	 */
+	public void setBettingCompetitionDAO(BettingCompetitionDAO bettingCompetitionDAO) {
+		this.bettingCompetitionDAO = bettingCompetitionDAO;
+	}
+
+	/**
 	 * @see com.doublelife.doublelife.services.UserBettingService#createBetEventParticipantPrice(com.doublelife.doublelife.data.BetComp.BetEventParticipantPrice)
 	 */
 	public boolean createBetEventParticipantPrice(
@@ -296,5 +331,22 @@ public class UserBettingServiceImpl implements UserBettingService {
 			thisParticipantPrice.setIsCurrent(true);
 			userBettingDAO.createBetEventParticipantPrice(thisParticipantPrice);
 		}
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getLeaderBoardForCompetition(long)
+	 */
+	public Map<User, Double> getLeaderBoardForCompetition(
+			long betttingCompetitionId) {
+		Map<User, Double> mapUserLeaderboard = new HashMap<User, Double>();
+		
+		List<UserBettingAccount> lstUserBettingAccount = userBettingDAO.getLstUserBettingAccountByCompId(betttingCompetitionId);
+		Collections.sort(lstUserBettingAccount);
+		
+		for (UserBettingAccount thisUserAct : lstUserBettingAccount) {
+			User thisUser = userDAO.getUserById(thisUserAct.getUserId());
+			mapUserLeaderboard.put(thisUser, thisUserAct.getAmountAvailable());
+		}
+		return mapUserLeaderboard;
 	}
 }

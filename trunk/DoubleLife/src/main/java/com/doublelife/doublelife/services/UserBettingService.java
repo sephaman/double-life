@@ -187,7 +187,15 @@ public interface UserBettingService {
 	public boolean createBetEventParticipantPrice(BetEventParticipantPrice betEventParticipantPrice);
 
 	/**
+	 * Creates all bet event participant prices associated with the bet event.
 	 * @param betEvent
 	 */
 	public void createAllBetEventParticipantPrices(BetEvent betEvent);
+	
+	/**
+	 * Generates an ordered mapped leaderboard based on the users and their current money. 
+	 * @param betttingCompetitionId
+	 * @return
+	 */
+	public Map<User, Double> getLeaderBoardForCompetition(long betttingCompetitionId);
 }
