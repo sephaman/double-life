@@ -213,4 +213,32 @@ public interface UserBettingDAO {
 	 */
 	public List<Season> getAllSeasonsByBetEventType(long betEventType);
 
+	/**
+	 * Returns the season for the given id.
+	 * @param seasonId
+	 * @return
+	 */
+	public Season getSeasonById(long seasonId);
+	
+	/**
+	 * Returns the list of rounds for an associated season.
+	 * @param seasonId
+	 * @return
+	 */
+	public List<Round> getRoundsBySeasonId(long seasonId);
+
+	/**
+	 * Returns a round by id.
+	 * @param roundId
+	 * @return
+	 */
+	public Round getRoundById(long roundId);
+
+	/**
+	 * Returns a list of bet events by round id.
+	 * @param roundId
+	 * @return
+	 */
+	public List<BetEvent> getBetEventsByRoundId(long roundId);
+
 }

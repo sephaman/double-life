@@ -379,4 +379,32 @@ public class UserBettingServiceImpl implements UserBettingService {
 	public List<Season> getAllSeasonsByBetEventType(long betEventType) {
 		return userBettingDAO.getAllSeasonsByBetEventType(betEventType);
 	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getSeasonById(long)
+	 */
+	public Season getSeasonById(long seasonId) {
+		return userBettingDAO.getSeasonById(seasonId);
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getRoundsBySeasonId(long)
+	 */
+	public List<Round> getRoundsBySeasonId(long seasonId) {
+		return userBettingDAO.getRoundsBySeasonId(seasonId);
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getRoundById(long)
+	 */
+	public Round getRoundById(long roundId) {
+		return userBettingDAO.getRoundById(roundId);
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getBetEventsByRoundId(long)
+	 */
+	public List<BetEvent> getBetEventsByRoundId(long roundId) {
+		return userBettingDAO.getBetEventsByRoundId(roundId);
+	}
 }

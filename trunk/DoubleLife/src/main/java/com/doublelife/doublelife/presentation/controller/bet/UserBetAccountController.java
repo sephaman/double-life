@@ -24,7 +24,7 @@ public class UserBetAccountController {
 	private static final Logger logger = LoggerFactory.getLogger(UserBetAccountController.class);
 
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * Returns the view of the user bet account.
 	 */
 	@RequestMapping(value="/userBetAccount.htm", method=RequestMethod.GET)
 	public ModelAndView showUserBetAccount() {

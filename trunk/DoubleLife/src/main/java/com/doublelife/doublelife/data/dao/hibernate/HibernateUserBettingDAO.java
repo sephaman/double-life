@@ -11,6 +11,7 @@ import java.util.Set;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Property;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -514,6 +515,79 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 			logger.error("Error retrieving season", e);
 		}
 			return retVal;
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getSeasonById(long)
+	 */
+	public Season getSeasonById(long seasonId) {
+		List<Season> retVal = new ArrayList<Season>();
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Season.class);
+		detachedCriteria.add(Property.forName("id").eq(seasonId));
+		
+		try {
+			retVal = (List<Season>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving Season", e);
+		}
+		if (retVal != null && !retVal.isEmpty()) {
+			return retVal.get(0);
+		}
+		return null;
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getRoundsBySeasonId(long)
+	 */
+	public List<Round> getRoundsBySeasonId(long seasonId) {
+		List<Round> retVal = new ArrayList<Round>();
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Round.class);
+		detachedCriteria.add(Property.forName("seasonid").eq(seasonId));
+		detachedCriteria.addOrder(Order.asc("roundSequenceNumber"));
+		
+		try {
+			retVal = (List<Round>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving rounds for a season", e);
+		}
+		
+		return retVal;
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getRoundById(long)
+	 */
+	public Round getRoundById(long roundId) {
+		List<Round> retVal = new ArrayList<Round>();
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Round.class);
+		detachedCriteria.add(Property.forName("id").eq(roundId));
+		
+		try {
+			retVal = (List<Round>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving Round", e);
+		}
+		if (retVal != null && !retVal.isEmpty()) {
+			return retVal.get(0);
+		}
+		return null;
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getBetEventsByRoundId(long)
+	 */
+	public List<BetEvent> getBetEventsByRoundId(long roundId) {
+		List<BetEvent> retVal = new ArrayList<BetEvent>();
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetEvent.class);
+		detachedCriteria.add(Property.forName("parentRoundId").eq(roundId));
+		
+		try {
+			retVal = (List<BetEvent>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving bet events for round", e);
+		}
+		
+		return retVal;
 	}
 
 }

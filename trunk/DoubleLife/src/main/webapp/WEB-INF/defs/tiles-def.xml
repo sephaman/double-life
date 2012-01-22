@@ -94,4 +94,13 @@
     <definition name="createRound.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/betViews/createRound.jsp" />
     </definition>
+     <definition name="viewAllSeasons.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/betViews/viewAllSeasons.jsp" />
+    </definition>
+    <definition name="viewSeason.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/betViews/viewSeason.jsp" />
+    </definition>
+    <definition name="viewRound.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/betViews/roundViewer.jsp" />
+    </definition>
 </tiles-definitions>
