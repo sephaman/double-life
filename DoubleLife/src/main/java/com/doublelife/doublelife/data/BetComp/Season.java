@@ -19,6 +19,25 @@ import javax.persistence.Id;
 @Entity (name = "season")
 public class Season {
 
+	
+	/**
+	 * Default constructor.
+	 */
+	public Season() {
+		
+	}
+	
+	/**
+	 * Convenient constructor to create a season.
+	 * Initially developed to create a mock season not intended to be persisted to represent 'none'.
+	 * @param id
+	 * @param seasonName
+	 */
+	public Season(long id, String seasonName) {
+		this.id = id;
+		this.seasonName = seasonName;
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
