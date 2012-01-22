@@ -25,7 +25,7 @@
 				<form:options items="${lstBetEventTypes}" itemValue="id" itemLabel="name"/>
 				</form:select>
 			</td>
-			</tr>
+		</tr>
 			<tr>
 				<td>Date :</td>
 				<td>

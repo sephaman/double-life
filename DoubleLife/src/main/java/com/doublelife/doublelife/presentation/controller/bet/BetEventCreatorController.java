@@ -52,6 +52,7 @@ public class BetEventCreatorController {
 	 * @param betEventName 
 	 * @param submitter 
 	 * @param selectedParticipant 
+	 * @param part_price 
 	 * @return 
 	 */
 	@RequestMapping(method=RequestMethod.POST)
@@ -80,6 +81,13 @@ public class BetEventCreatorController {
 	}
 	
 	
+	/**
+	 * Adds the selected participant to the bet event.
+	 * @param betEvent
+	 * @param participantSelect
+	 * @param part_price
+	 * @return
+	 */
 	private ModelAndView addParticipant(BetEvent betEvent, String participantSelect, String part_price) {
 		BetParticipant betParticipant = userBettingService.getParticipantById(Long.parseLong(participantSelect));
 		betEvent.getLstBetParticipant().add(betParticipant);
@@ -95,6 +103,12 @@ public class BetEventCreatorController {
 		return new ModelAndView("createBetEvent.tvw", map);
 	}
 	
+	/**
+	 * Removes a participant from the bet event.
+	 * @param betEvent
+	 * @param participantSelect
+	 * @return
+	 */
 	private ModelAndView removeParticipant(BetEvent betEvent, String participantSelect) {
 		for (int i = 0; i < betEvent.getLstBetParticipant().size(); i++) {
 			if (betEvent.getLstBetParticipant().get(i).getId() == Long.parseLong(participantSelect)) {
