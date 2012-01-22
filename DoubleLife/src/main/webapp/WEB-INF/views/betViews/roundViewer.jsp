@@ -2,14 +2,19 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Bet Events</title>
+	<title>Round Viewer</title>
 </head>
 <body>
 <h1>
-	Bet Events
+	Round Viewer - ${thisRound.roundName}  - Round Number - ${thisRound.roundSequenceNumber}
 </h1>
 <table>
-	<c:forEach items="${betEvents}" var="thisBetEvent">
+<tr>
+	<td>
+		Bet Events
+	</td>
+</tr>
+		<c:forEach items="${betEvents}" var="thisBetEvent">
 		<tr>
 			<td><a id="betEvent-${thisBetEvent.id}" href="betViewer.htm?id=${thisBetEvent.id}">${thisBetEvent.betEventName}</a></td>
 		</tr>

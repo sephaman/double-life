@@ -227,4 +227,32 @@ public interface UserBettingService {
 	 * @return
 	 */
 	public List<Season> getAllSeasonsByBetEventType(long betEventType);
+
+	/**
+	 * Returns the season for the given id.
+	 * @param seasonId
+	 * @return
+	 */
+	public Season getSeasonById(long seasonId);
+	
+	/**
+	 * Returns list of rounds for a given season.
+	 * @param seasonId
+	 * @return
+	 */
+	public List<Round> getRoundsBySeasonId(long seasonId);
+
+	/**
+	 * Returns the round for the given round Id.
+	 * @param roundId
+	 * @return
+	 */
+	public Round getRoundById(long roundId);
+
+	/**
+	 * Returns the list of bet events for a given round id.
+	 * @param roundId
+	 * @return
+	 */
+	public List<BetEvent> getBetEventsByRoundId(long roundId);
 }

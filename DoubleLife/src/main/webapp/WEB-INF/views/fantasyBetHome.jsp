@@ -54,6 +54,11 @@
 					<a id="createRound" href="createRound.htm">Create Round</a>
 			</td>
 		</tr>
+		<tr>
+			<td valign="middle" style="font-size: normal">
+					<a id="viewSeasons" href="viewSeasons.htm">View Seasons</a>
+			</td>
+		</tr>
 	</table>
 </body>
 </html>

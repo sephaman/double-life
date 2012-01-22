@@ -2,7 +2,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Stock Order</title>
+	<title>Bet Viewer</title>
 </head>
 <body>
 <h1>
