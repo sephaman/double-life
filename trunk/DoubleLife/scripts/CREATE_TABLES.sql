@@ -85,7 +85,7 @@ WITH (
 ALTER TABLE bet_competition
   OWNER TO postgres;
 
-  CREATE TABLE bet_event
+ CREATE TABLE bet_event
 (
   id integer NOT NULL,
   beteventtypeid integer NOT NULL,
@@ -93,6 +93,7 @@ ALTER TABLE bet_competition
   outcomepending boolean NOT NULL DEFAULT true,
   selectionwinnerid integer NOT NULL DEFAULT (-1),
   bet_event_name character varying(100) NOT NULL,
+  parent_round_id integer NOT NULL DEFAULT (-1),
   CONSTRAINT bet_event_pkey PRIMARY KEY (id )
 )
 WITH (
@@ -306,4 +307,46 @@ WITH (
 ALTER TABLE usergroup_user
   OWNER TO postgres;
 
+CREATE TABLE season
+(
+  id integer NOT NULL,
+  beteventtypeid integer,
+  seasonname character varying(80) NOT NULL,
+  updatedatetime date NOT NULL,
+  CONSTRAINT season_pkey PRIMARY KEY (id )
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE season
+  OWNER TO postgres;
 
+  CREATE TABLE round
+(
+  id integer NOT NULL,
+  seasonid integer NOT NULL DEFAULT (-1),
+  round_sequence_no integer NOT NULL DEFAULT (-1),
+  roundname character varying(80),
+  CONSTRAINT round_pkey PRIMARY KEY (id )
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE round
+  OWNER TO postgres;
+  
+  CREATE TABLE comp_rules
+(
+  id integer NOT NULL,
+  pay_on_tip boolean NOT NULL DEFAULT true,
+  tip_win_amnt integer NOT NULL DEFAULT 100,
+  can_tip boolean NOT NULL DEFAULT true,
+  can_bet boolean NOT NULL DEFAULT true,
+  comp_id integer NOT NULL DEFAULT (-1),
+  CONSTRAINT comp_rules_pkey PRIMARY KEY (id )
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE comp_rules
+  OWNER TO postgres;
