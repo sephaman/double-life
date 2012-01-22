@@ -75,4 +75,4 @@ insert into bet_competition values (1,'General', now(), now(), 1, 0, 1000.00,nul
 insert into user_betting_account values (0, 0, 1000.00, now(),1);
 insert into user_betting_account values (1, 1, 1000.00, now(),1);
 
-insert into bet values(0,)
+
