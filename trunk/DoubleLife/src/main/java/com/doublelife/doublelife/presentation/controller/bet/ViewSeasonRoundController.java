@@ -58,8 +58,8 @@ public class ViewSeasonRoundController {
 	}
 	
 	/**
-	 * Returns a view displaying the season and its associated rounds.
-	 * @param seasonId 
+	 * Returns a view displaying the round and its associated bet events.
+	 * @param roundId 
 	 * @return 
 	 */
 	@RequestMapping(value="/roundViewer.htm", method=RequestMethod.GET)
