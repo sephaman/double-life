@@ -201,7 +201,6 @@ public interface UserBettingService {
 	 */
 	public Map<User, Double> getLeaderBoardForCompetition(long betttingCompetitionId);
 	
-	
 	/**
 	 * Create a season.
 	 * @param season
@@ -215,4 +214,17 @@ public interface UserBettingService {
 	 * @return
 	 */
 	public boolean createRound(Round round);
+	
+	/**
+	 * Returns all seasons.
+	 * @return
+	 */
+	public List<Season> getAllSeasons();
+	
+	/**
+	 * Returns all Seasons for a given Bet Event Type.
+	 * @param betEventType
+	 * @return
+	 */
+	public List<Season> getAllSeasonsByBetEventType(long betEventType);
 }

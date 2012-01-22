@@ -23,13 +23,13 @@
 				<td>
 					<form:input path="seasonName" name="seasonName"/>
 				</td>
+				<td><form:errors path="seasonName" cssClass="error" /></td>
 			</tr>
 		<tr>
 			<td colspan="2"><input type="submit" value="Create Season" name="submitBtn" id="submitBtn"/>
 			</td>
 		</tr>
 	</table>
-	<form:hidden path="" name="submissionType" id="submissionType" value=""/>
 </form:form>
 </body>
 </html>

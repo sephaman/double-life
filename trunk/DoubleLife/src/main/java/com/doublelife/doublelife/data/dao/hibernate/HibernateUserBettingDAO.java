@@ -484,5 +484,36 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		}
 		return retval;
 	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getAllSeasons()
+	 */
+	public List<Season> getAllSeasons() {
+		List<Season> retVal = null;
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Season.class);
+		
+		try {
+			retVal = (List<Season>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving all seasons", e);
+		}
+			return retVal;
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getAllSeasonsByBetEventType(long)
+	 */
+	public List<Season> getAllSeasonsByBetEventType(long betEventType) {
+		List<Season> retVal = null;
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Season.class);
+		detachedCriteria.add(Property.forName("betEventTypeId").eq(betEventType));
+		
+		try {
+			retVal = (List<Season>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving season", e);
+		}
+			return retVal;
+	}
 
 }

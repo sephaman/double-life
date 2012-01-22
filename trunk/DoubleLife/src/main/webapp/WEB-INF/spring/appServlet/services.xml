@@ -103,4 +103,12 @@
 	<bean id="competitionValidator"
 		class="com.doublelife.doublelife.data.validator.CompetitionValidator">
 	</bean>
+	
+	<bean id="seasonValidator"
+		class="com.doublelife.doublelife.data.validator.SeasonValidator">
+	</bean>
+	
+	<bean id="roundValidator"
+		class="com.doublelife.doublelife.data.validator.RoundValidator">
+	</bean>
 </beans>

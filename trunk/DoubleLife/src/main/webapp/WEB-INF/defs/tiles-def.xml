@@ -91,4 +91,7 @@
     <definition name="createSeason.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/betViews/createSeason.jsp" />
     </definition>
+    <definition name="createRound.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/betViews/createRound.jsp" />
+    </definition>
 </tiles-definitions>

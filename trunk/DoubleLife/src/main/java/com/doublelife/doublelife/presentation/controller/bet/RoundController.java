@@ -1,5 +1,7 @@
 package com.doublelife.doublelife.presentation.controller.bet;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,56 +14,62 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.doublelife.doublelife.data.BetComp.Round;
 import com.doublelife.doublelife.data.BetComp.Season;
-import com.doublelife.doublelife.data.validator.SeasonValidator;
+import com.doublelife.doublelife.data.validator.RoundValidator;
 import com.doublelife.doublelife.services.UserBettingService;
 
 /**
- * Handles creating Season.
+ * Handles creating Rounds.
  */
 @Controller
-@RequestMapping("/createSeason.htm")
-@SessionAttributes("season")
-public class SeasonController {
+@RequestMapping("/createRound.htm")
+@SessionAttributes("round")
+public class RoundController {
 
 	@Autowired
 	private UserBettingService userBettingService;
 	
 	@Autowired
-	private SeasonValidator seasonValidator;
+	private RoundValidator roundValidator;
 	
-	private static final Logger logger = LoggerFactory.getLogger(SeasonController.class);
+	private static final Logger logger = LoggerFactory.getLogger(RoundController.class);
 
 	/**
-	 * Returns the create season form page.
+	 * Returns the create round form page.
 	 * @return 
 	 */
 	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView showCreateSeason() {
-		logger.info("create Season Controller : GET");
+	public ModelAndView showCreateRound() {
+		logger.info("create Round Controller : GET");
 		ModelMap map = new ModelMap();
-		map.addAttribute("lstBetEventTypes", userBettingService.getAllBetEventTypes());
-		map.addAttribute("season", new Season());
-		return new ModelAndView("createSeason.tvw", map);
+		
+		List<Season> lstSeasons = userBettingService.getAllSeasons();
+		lstSeasons.add(new Season(-1L, "none"));
+		
+		map.addAttribute("lstSeasons", lstSeasons);
+		map.addAttribute("round", new Round());
+		
+		return new ModelAndView("createRound.tvw", map);
 	}
 	
 	/**
-	 * Validates and creates season.
+	 * Validates and creates round.
 	 * @param season 
-	 * @param result 
 	 * @return 
 	 */
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView createSeason(@ModelAttribute("season") Season season, BindingResult result) {
-		logger.info("create season Controller : POST");
-		seasonValidator.validate(season, result);
+	public ModelAndView createRound(@ModelAttribute("round") Round round, BindingResult result) {
+		logger.info("create round Controller : POST");
+		
+		roundValidator.validate(round, result);
 		
 		if (result.hasErrors()) {
-			return new ModelAndView("dlCompsCreate.tvw");
+			return new ModelAndView("createRound.tvw");
 		}
-		userBettingService.createSeason(season); 
+		userBettingService.createRound(round); 
 		
-		return showCreateSeason();
+		return showCreateRound();
 	}
 	
 	/**
@@ -79,17 +87,17 @@ public class SeasonController {
 	}
 
 	/**
-	 * @return the seasonValidator
+	 * @return the roundValidator
 	 */
-	public SeasonValidator getSeasonValidator() {
-		return seasonValidator;
+	public RoundValidator getRoundValidator() {
+		return roundValidator;
 	}
 
 	/**
-	 * @param seasonValidator the seasonValidator to set
+	 * @param roundValidator the roundValidator to set
 	 */
-	public void setSeasonValidator(SeasonValidator seasonValidator) {
-		this.seasonValidator = seasonValidator;
+	public void setRoundValidator(RoundValidator roundValidator) {
+		this.roundValidator = roundValidator;
 	}
 }
 

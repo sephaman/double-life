@@ -200,4 +200,17 @@ public interface UserBettingDAO {
 	 */
 	public boolean createRound(Round round);
 
+	/**
+	 * Returns all seasons.
+	 * @return
+	 */
+	public List<Season> getAllSeasons();
+
+	/**
+	 * Returns all seasons by bet event type.
+	 * @param betEventType
+	 * @return
+	 */
+	public List<Season> getAllSeasonsByBetEventType(long betEventType);
+
 }

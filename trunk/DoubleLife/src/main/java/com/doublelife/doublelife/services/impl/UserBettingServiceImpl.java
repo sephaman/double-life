@@ -365,4 +365,18 @@ public class UserBettingServiceImpl implements UserBettingService {
 	public boolean createRound(Round round) {
 		return userBettingDAO.createRound(round);
 	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getAllSeasons()
+	 */
+	public List<Season> getAllSeasons() {
+		return userBettingDAO.getAllSeasons();
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getAllSeasonsByBetEventType(long)
+	 */
+	public List<Season> getAllSeasonsByBetEventType(long betEventType) {
+		return userBettingDAO.getAllSeasonsByBetEventType(betEventType);
+	}
 }
