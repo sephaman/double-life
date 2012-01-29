@@ -272,4 +272,11 @@ public interface UserBettingService {
 	 */
 	public boolean updateSubmittedBetPrices(String idPrices, String betPrices,
 			BetEvent betEvent);
+	
+	/**
+	 * Updates a betEvent.
+	 * @param betEvent
+	 * @return
+	 */
+	public boolean updateBetEvent(BetEvent betEvent);
 }

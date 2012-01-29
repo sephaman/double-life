@@ -255,4 +255,11 @@ public interface UserBettingDAO {
 	 */
 	public BetEventParticipantPrice getBetParticipantPriceByEventAndPartipantId(BetEventParticipantPrice betEventParticipantPrice);
 
+	/**
+	 * Updates a betEvent.
+	 * @param betEvent
+	 * @return
+	 */
+	public boolean updateBetEvent(BetEvent betEvent);
+	
 }
