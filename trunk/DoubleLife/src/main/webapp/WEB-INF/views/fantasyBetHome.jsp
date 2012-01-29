@@ -44,21 +44,23 @@
 					<a id="viewCompLeaderboard" href="betCompLeaderboardView.htm?id=1">View Comp Leaderboard</a>
 			</td>
 		</tr>
-		<tr>
-			<td valign="middle" style="font-size: normal">
-					<a id="createSeason" href="createSeason.htm">Create Season</a>
-			</td>
-		</tr>
-		<tr>
-			<td valign="middle" style="font-size: normal">
-					<a id="createRound" href="createRound.htm">Create Round</a>
-			</td>
-		</tr>
-		<tr>
-			<td valign="middle" style="font-size: normal">
-					<a id="viewSeasons" href="viewSeasons.htm">View Seasons</a>
-			</td>
-		</tr>
+		<c:if test="${rolename == 'ROLE_ADMIN'}">
+			<tr>
+				<td valign="middle" style="font-size: normal">
+						<a id="createSeason" href="createSeason.htm">Create Season</a>
+				</td>
+			</tr>
+			<tr>
+				<td valign="middle" style="font-size: normal">
+						<a id="createRound" href="createRound.htm">Create Round</a>
+				</td>
+			</tr>
+			<tr>
+				<td valign="middle" style="font-size: normal">
+						<a id="viewSeasons" href="viewSeasons.htm">View Seasons</a>
+				</td>
+			</tr>
+		</c:if>
 	</table>
 </body>
 </html>

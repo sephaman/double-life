@@ -5,6 +5,7 @@ package com.doublelife.doublelife.services;
 
 import java.util.List;
 
+import com.doublelife.doublelife.data.Role;
 import com.doublelife.doublelife.data.User;
 
 /**
@@ -55,4 +56,11 @@ public interface UserService {
 	 * @return
 	 */
 	public boolean saveUser(User user);
+	
+	
+	/**
+	 * Returns the role for the user.
+	 * @param userRoleId
+	 */
+	public Role getUserRole(long userRoleId);
 }

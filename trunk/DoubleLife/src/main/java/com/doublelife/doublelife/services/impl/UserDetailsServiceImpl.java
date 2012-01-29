@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.doublelife.doublelife.data.AuthorisedUser;
+import com.doublelife.doublelife.data.Role;
 import com.doublelife.doublelife.data.User;
 import com.doublelife.doublelife.services.UserService;
 import com.doublelife.doublelife.services.utils.SecurityUtil;
@@ -38,8 +39,12 @@ public class UserDetailsServiceImpl implements UserDetailsService, Serializable 
 	public UserDetails loadUserByUsername(String userLogon)
 			throws UsernameNotFoundException, DataAccessException {
 		User user = userService.getUserByUserName(userLogon);
+		
+		//get the role for this user
+		Role role = userService.getUserRole(user.getRoleId());
+		
 		List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
-			grantedAuthorities.add(new GrantedAuthorityImpl("ROLE_USER"));
+			grantedAuthorities.add(new GrantedAuthorityImpl(role.getRole()));
 			String userPassword = user.getPassword();
 			try {
 				userPassword = SecurityUtil.md5(user.getPassword());

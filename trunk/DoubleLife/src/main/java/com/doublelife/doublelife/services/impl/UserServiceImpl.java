@@ -9,6 +9,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.doublelife.doublelife.data.Role;
 import com.doublelife.doublelife.data.User;
 import com.doublelife.doublelife.data.dao.UserDAO;
 import com.doublelife.doublelife.services.UserService;
@@ -94,6 +95,13 @@ public class UserServiceImpl implements UserService {
 	 */
 	public boolean saveUser(User user) {
 		return userDAO.createUser(user);
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserService#getUserRole(long)
+	 */
+	public Role getUserRole(long userRoleId) {
+		return userDAO.getUserRole(userRoleId);
 	}
 
 }

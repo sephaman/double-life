@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
+import com.doublelife.doublelife.data.Role;
 import com.doublelife.doublelife.data.User;
 import com.doublelife.doublelife.data.dao.UserDAO;
 
@@ -105,5 +106,24 @@ public class HibernateUserDAO implements UserDAO {
 			logger.error("Error retrieving users with userName", e);
 		}
 			return retVal;
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserDAO#getUserRole(long)
+	 */
+	public Role getUserRole(long userRoleId) {
+		List<Role> retVal = null;
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Role.class);
+		detachedCriteria.add(Property.forName("id").eq(userRoleId));
+		
+		try {
+			retVal = (List<Role>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving role with id:" + userRoleId, e);
+		}
+		if (retVal != null && !retVal.isEmpty()) {
+			return retVal.get(0);
+		}
+		return null;
 	}
 }

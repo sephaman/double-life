@@ -5,6 +5,7 @@ package com.doublelife.doublelife.data.dao;
 
 import java.util.List;
 
+import com.doublelife.doublelife.data.Role;
 import com.doublelife.doublelife.data.User;
 
 /**
@@ -46,4 +47,11 @@ public interface UserDAO {
 	 * @return
 	 */
 	public List<User> getUserByUserName(String userName);
+
+	/**
+	 * Gets the role for the user.
+	 * @param userRoleId
+	 * @return
+	 */
+	public Role getUserRole(long userRoleId);
 }
