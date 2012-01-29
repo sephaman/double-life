@@ -407,4 +407,37 @@ public class UserBettingServiceImpl implements UserBettingService {
 	public List<BetEvent> getBetEventsByRoundId(long roundId) {
 		return userBettingDAO.getBetEventsByRoundId(roundId);
 	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getBetEventTypeById(long)
+	 */
+	public BetEventType getBetEventTypeById(long betEventTypeId) {
+		return userBettingDAO.getBetEventTypeById(betEventTypeId);
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#updateSubmittedBetPrices(java.lang.String, java.lang.String, com.doublelife.doublelife.data.BetComp.BetEvent)
+	 */
+	public boolean updateSubmittedBetPrices(String idPrices, String betPrices,
+			BetEvent betEvent) {
+		
+		String[] arrIdPrices = idPrices.split(",");
+		String[] arrBetPrices = betPrices.split(",");
+		boolean result = true;
+		for(int i = 0; i < arrIdPrices.length; i++) {
+			String[] thisBetPrice = arrIdPrices[i].split(":");
+			if (!arrBetPrices[i].equals(thisBetPrice[1])) {
+				//price has been updated
+
+				BetEventParticipantPrice thisPrice = new BetEventParticipantPrice();
+				thisPrice.setBetEventId(betEvent.getId());
+				thisPrice.setBetParticipantId(Long.parseLong(thisBetPrice[0]));
+				thisPrice.setOdds(Double.parseDouble(arrBetPrices[i]));
+				thisPrice.setIsCurrent(true);
+				result = userBettingDAO.createBetEventParticipantPrice(thisPrice);
+			}
+		}
+		
+		return result;
+	}
 }

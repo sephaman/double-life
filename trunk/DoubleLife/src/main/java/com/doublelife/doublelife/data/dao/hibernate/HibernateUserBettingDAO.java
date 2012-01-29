@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
@@ -425,6 +426,15 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 	public boolean createBetEventParticipantPrice(
 			BetEventParticipantPrice betEventParticipantPrice) {
 		boolean retval = false;
+		//check for any pre-existing
+		if (betEventParticipantPrice.getIsCurrent()) {
+			BetEventParticipantPrice oldObject = getBetParticipantPriceByEventAndPartipantId(betEventParticipantPrice);
+			if (oldObject != null) {
+				oldObject.setIsCurrent(false);
+				hibernate.update(oldObject);
+			}
+		}
+
 		logger.debug("Saving betEventParticipantPrice");
 		try {
 			betEventParticipantPrice.setDateUpdated(new Date());
@@ -435,6 +445,23 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 			throw e;
 		}
 		return retval;
+	}
+	
+	public BetEventParticipantPrice getBetParticipantPriceByEventAndPartipantId(BetEventParticipantPrice betEventParticipantPrice) {
+		List<BetEventParticipantPrice> retVal = new ArrayList<BetEventParticipantPrice>();
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetEventParticipantPrice.class);
+		detachedCriteria.add(Property.forName("betEventId").eq(betEventParticipantPrice.getBetEventId()));
+		detachedCriteria.add(Property.forName("betParticipantId").eq(betEventParticipantPrice.getBetParticipantId()));
+		
+		try {
+			retVal = (List<BetEventParticipantPrice>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving BetEventParticipantPrice", e);
+		}
+		if (retVal != null && !retVal.isEmpty()) {
+			return retVal.get(0);
+		}
+		return null;
 	}
 	
 	/**
@@ -580,6 +607,7 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		List<BetEvent> retVal = new ArrayList<BetEvent>();
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetEvent.class);
 		detachedCriteria.add(Property.forName("parentRoundId").eq(roundId));
+		detachedCriteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		
 		try {
 			retVal = (List<BetEvent>) hibernate.findByCriteria(detachedCriteria);
@@ -588,6 +616,25 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		}
 		
 		return retVal;
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getBetEventTypeById(long)
+	 */
+	public BetEventType getBetEventTypeById(long betEventTypeId) {
+		List<BetEventType> retVal = new ArrayList<BetEventType>();
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetEventType.class);
+		detachedCriteria.add(Property.forName("id").eq(betEventTypeId));
+		
+		try {
+			retVal = (List<BetEventType>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving Round", e);
+		}
+		if (retVal != null && !retVal.isEmpty()) {
+			return retVal.get(0);
+		}
+		return null;
 	}
 
 }

@@ -241,4 +241,18 @@ public interface UserBettingDAO {
 	 */
 	public List<BetEvent> getBetEventsByRoundId(long roundId);
 
+	/**
+	 * Returns the bet event type by id.
+	 * @param betEventTypeId
+	 * @return
+	 */
+	public BetEventType getBetEventTypeById(long betEventTypeId);
+	
+	/**
+	 * Gets the bet participant price based on event and participant ids.
+	 * @param betEventParticipantPrice
+	 * @return
+	 */
+	public BetEventParticipantPrice getBetParticipantPriceByEventAndPartipantId(BetEventParticipantPrice betEventParticipantPrice);
+
 }
