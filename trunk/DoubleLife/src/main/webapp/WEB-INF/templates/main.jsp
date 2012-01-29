@@ -13,9 +13,36 @@
 		<title><tiles:getAsString name="title" /></title>
 	</head>
 	<body>
-		<tiles:insertAttribute name="header" />
-		<tiles:insertAttribute name="top-menu" />
-		<tiles:insertAttribute name="body" />
-		<tiles:insertAttribute name="footer" />
+	<table width="100%">
+		<tr>
+			<td>
+				<tiles:insertAttribute name="header" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<tiles:insertAttribute name="top-menu" />
+			</td>
+		</tr>
+		<tr>
+		<td>
+			<table width ="100%">
+				<tr>
+					<td width="15%">
+						<tiles:insertAttribute name="left-menu" />
+					</td>
+					<td width="85%">
+						<tiles:insertAttribute name="body" />
+					</td>
+				</tr>
+			</table>
+		</td>
+		</tr>
+		<tr>
+			<td>
+				<tiles:insertAttribute name="footer" />
+			</td>
+		</tr>
+	</table>
 	</body>
 </html>
