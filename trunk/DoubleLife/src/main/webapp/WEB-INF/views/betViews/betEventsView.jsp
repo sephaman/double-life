@@ -13,6 +13,7 @@
 		<tr>
 			<td><a id="betEvent-${thisBetEvent.id}" href="betViewer.htm?id=${thisBetEvent.id}">${thisBetEvent.betEventName}</a></td>
 			<td><a id="betEventUpdate-${thisBetEvent.id}" href="betEventUpdate.htm?id=${thisBetEvent.id}">update</a></td>
+			<td><a id="betEventWinSelect-${thisBetEvent.id}" href="betEventWinSelect.htm?id=${thisBetEvent.id}">Select Winner</a></td>
 		</tr>
 	</c:forEach>
 </table>

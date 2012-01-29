@@ -440,4 +440,11 @@ public class UserBettingServiceImpl implements UserBettingService {
 		
 		return result;
 	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#updateBetEvent(com.doublelife.doublelife.data.BetComp.BetEvent)
+	 */
+	public boolean updateBetEvent(BetEvent betEvent) {
+		return userBettingDAO.updateBetEvent(betEvent);
+	}
 }
