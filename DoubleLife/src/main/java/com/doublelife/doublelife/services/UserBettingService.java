@@ -255,4 +255,21 @@ public interface UserBettingService {
 	 * @return
 	 */
 	public List<BetEvent> getBetEventsByRoundId(long roundId);
+
+	/**
+	 * Returns the bet event type by id.
+	 * @param betEventTypeId
+	 * @return
+	 */
+	public BetEventType getBetEventTypeById(long betEventTypeId);
+
+	/**
+	 * Updates the betting prices for the given bet event.
+	 * @param idPrices
+	 * @param betPrices
+	 * @param betEvent
+	 * @return
+	 */
+	public boolean updateSubmittedBetPrices(String idPrices, String betPrices,
+			BetEvent betEvent);
 }

@@ -335,7 +335,7 @@ WITH (
 ALTER TABLE round
   OWNER TO postgres;
   
-  CREATE TABLE comp_rules
+  CREATE TABLE bet_comp_rules
 (
   id integer NOT NULL,
   pay_on_tip boolean NOT NULL DEFAULT true,
@@ -348,5 +348,5 @@ ALTER TABLE round
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE comp_rules
+ALTER TABLE bet_comp_rules
   OWNER TO postgres;
