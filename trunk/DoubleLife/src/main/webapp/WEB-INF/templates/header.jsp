@@ -8,8 +8,11 @@
 	<table width="100%" border="0">
 		<!-- title -->
 		<tr>
-			<td valign="middle">
-				<img src="<c:url value="/resources/img/header.jpg"/>" alt="header logo" style="width:100%"/>
+			<td align="left">
+				<img src="<c:url value="/resources/img/tipntradeHeader.jpg"/>" alt="header logo" style="width:20%"/>
+			</td>
+			<td align="right" class="screenModeSubTitle">
+				Current User: ${username_head} Role:${rolename}
 			</td>
 		</tr>
 	</table>
