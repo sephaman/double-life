@@ -1,0 +1,106 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	background-color: white;
+	font-family: calibri, tahoma, verdana, arial, helvetica;
+	padding: 0px;
+	margin: 0px;
+}
+
+#bodyFrame {
+	 margin-top:2px;
+	 border-width: 1px;
+	 border-color: #17375E;
+	 border-style: solid;
+	 padding-bottom:10px;
+	 width: 99%;
+	 padding-right:5px;
+	 padding-left:5px;
+	 font-size:11pt;
+}
+
+#menuFrame {
+	width:15%;
+}
+
+/* Headings */
+h1 {
+	font-size: xx-large;
+}
+
+h2 {
+	color: #000000;
+	background-color: #C2D4E8;
+	width:100%;
+	font-size:140%;
+	margin-bottom:0.3em;
+	padding-left: 3px;
+}
+
+/* Links */
+a {
+	text-decoration: none;
+}
+
+a:HOVER {
+	text-decoration:underline;
+}
+
+a.menuLink:LINK {
+	color: #17375E;
+}
+
+a.menuLink:VISITED {
+	color: #17375E;
+}
+
+a.menuLink:HOVER {
+	color: #17375E;
+}
+
+a.menuLink:ACTIVE {
+	color: blue;
+}
+
+.centeredText {
+	text-align: center;
+}
+
+.menuHeader {
+	background-color: #95B3D7;
+	border-color: #17375E;
+	border-style: solid;
+	border-width: 1px;
+	font-weight: bold;
+	cursor: pointer; /* FF, Safari, Chrome */
+	cursor: hand; /* IE, Opera */
+}
+
+.button {
+	background-color: #3299F8;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: smaller;
+	text-align: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 1em;
+	padding-right: 1em;
+	margin-right: 2px;
+	cursor: pointer; /* FF, Safari, Chrome */
+	cursor: hand; /* IE, Opera */
+	border: 1px solid white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

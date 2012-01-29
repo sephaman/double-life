@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.doublelife.doublelife.data.User;
 import com.doublelife.doublelife.services.utils.SecurityUtil;
 
 /**
@@ -34,8 +35,16 @@ public final class CommonModelHelper {
 	public static ModelAndView fillCommonAttributes(final ModelAndView modelAndView) {
 
 		if (modelAndView != null) {
+			
+			User user = SecurityUtil.getCurrentUser();
+			if (user != null) {
+				modelAndView.addObject("username_head", user.getUserName());
+			}
+			
 			List<String> lstRoles = SecurityUtil.getCurrentUserRoleNames();
-			if (lstRoles.size() > 0) {modelAndView.addObject("rolename",lstRoles.get(0)); }
+			if (lstRoles.size() > 0) {
+				modelAndView.addObject("rolename",lstRoles.get(0)); 
+				}
 		}
 
 		return modelAndView;
