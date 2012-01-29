@@ -23,7 +23,7 @@ body {
 	width:15%;
 }
 
-/* Headings */
+/* Headings 
 h1 {
 	font-size: xx-large;
 }
@@ -35,7 +35,7 @@ h2 {
 	font-size:140%;
 	margin-bottom:0.3em;
 	padding-left: 3px;
-}
+}*/
 
 /* Links */
 a {
@@ -67,7 +67,7 @@ a.menuLink:ACTIVE {
 }
 
 .menuHeader {
-	background-color: #95B3D7;
+	background-color: #104E8B;
 	border-color: #17375E;
 	border-style: solid;
 	border-width: 1px;
@@ -77,11 +77,12 @@ a.menuLink:ACTIVE {
 }
 
 .button {
-	background-color: #3299F8;
+	background-color: #104E8B;
 	color: #FFFFFF;
 	font-weight: bold;
 	font-size: smaller;
 	text-align: center;
+	text-color: white;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	padding-left: 1em;
@@ -90,6 +91,14 @@ a.menuLink:ACTIVE {
 	cursor: pointer; /* FF, Safari, Chrome */
 	cursor: hand; /* IE, Opera */
 	border: 1px solid white;
+}
+
+a.menuLink:LINK {
+	color: white;
+}
+
+a.menuLink:VISITED {
+	color: white;
 }
 
 
