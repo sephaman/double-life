@@ -10,6 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.doublelife.doublelife.data.User;
+import com.doublelife.doublelife.data.BetComp.BetCompRules;
+import com.doublelife.doublelife.data.BetComp.BetCompetition;
+import com.doublelife.doublelife.services.utils.PersistenceUtil;
 import com.doublelife.doublelife.services.utils.SecurityUtil;
 
 /**
@@ -45,6 +48,14 @@ public final class CommonModelHelper {
 			if (lstRoles.size() > 0) {
 				modelAndView.addObject("rolename",lstRoles.get(0)); 
 				}
+			
+			BetCompetition betComp = PersistenceUtil.getUserBettingDAOImpl().getCompetitionById(1);
+			modelAndView.addObject("betComp",betComp);
+			
+			if (betComp != null) {
+				BetCompRules betCompRules = PersistenceUtil.getUserBettingDAOImpl().getBetCompRulesByCompId(betComp.getId());
+				modelAndView.addObject("betCompRules",betCompRules);
+			}
 		}
 
 		return modelAndView;

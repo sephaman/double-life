@@ -111,4 +111,18 @@
 	<bean id="roundValidator"
 		class="com.doublelife.doublelife.data.validator.RoundValidator">
 	</bean>
+	
+	
+	<!-- PersistenceUtil -->
+	<bean id="persistenceUtil"
+		class="com.doublelife.doublelife.services.utils.PersistenceUtil"
+		factory-method="getInstance">
+		<property name="daoImplementations">
+			<map>
+				<entry key="BetEvent" value-ref="userBettingDAO" />
+				<entry key="user" value-ref="userDAO" />
+			</map>
+		</property>
+	</bean>
+	
 </beans>
