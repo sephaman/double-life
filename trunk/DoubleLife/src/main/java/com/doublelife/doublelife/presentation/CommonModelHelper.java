@@ -3,6 +3,7 @@
  */
 package com.doublelife.doublelife.presentation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -23,6 +24,9 @@ public final class CommonModelHelper {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CommonModelHelper.class);
 
+    private static List<String> lstBetViewNames;
+    private static List<String> lstDLViewNames;
+    
 	private CommonModelHelper() {
 		// cannot be instantiated by others
 	}
@@ -36,7 +40,8 @@ public final class CommonModelHelper {
 	 * @return the filled <code>ModelAndView</code> object.
 	 */
 	public static ModelAndView fillCommonAttributes(final ModelAndView modelAndView) {
-
+		setupBetViewNames();
+		setupDLViewNames();
 		if (modelAndView != null) {
 			
 			User user = SecurityUtil.getCurrentUser();
@@ -56,8 +61,54 @@ public final class CommonModelHelper {
 				BetCompRules betCompRules = PersistenceUtil.getUserBettingDAOImpl().getBetCompRulesByCompId(betComp.getId());
 				modelAndView.addObject("betCompRules",betCompRules);
 			}
+			
+			//set up menu
+			if (lstBetViewNames.contains(modelAndView.getViewName())) {
+				modelAndView.addObject("menuType", "bet");
+			} else if (lstDLViewNames.contains(modelAndView.getViewName())) {
+				modelAndView.addObject("menuType", "dl");
+			}
 		}
 
 		return modelAndView;
+	}
+	
+	/**
+	 * DL View names setup.
+	 */
+	private static void setupDLViewNames() {
+		lstDLViewNames = new ArrayList<String>();
+		lstDLViewNames.add("doubleLifeHome.tvw");
+		lstDLViewNames.add("stockSearch.tvw");
+		lstDLViewNames.add("stockOrder.tvw");
+		lstDLViewNames.add("stockOrderConfirmation.tvw");
+		lstDLViewNames.add("userStockPortfolio.tvw");
+		lstDLViewNames.add("dlCompsView.tvw");
+		lstDLViewNames.add("dlCompsCreate.tvw");
+		lstDLViewNames.add("dlCompsSuccessJoinView.tvw");
+	}
+
+	/**
+	 * Bet view names set up.
+	 */
+	private static void setupBetViewNames() {
+		lstBetViewNames = new ArrayList<String>();
+		lstBetViewNames.add("fantasyBetHome.tvw");
+		lstBetViewNames.add("userBets.tvw");
+		lstBetViewNames.add("betViewer.tvw");
+		lstBetViewNames.add("userBetAccount.tvw");
+		lstBetViewNames.add("betCompsView.tvw");
+		lstBetViewNames.add("betCompsSuccessJoinView.tvw");
+		lstBetViewNames.add("betCompsCreate.tvw");
+		lstBetViewNames.add("betEventsView.tvw");
+		lstBetViewNames.add("createBetEvent.tvw");
+		lstBetViewNames.add("updateBetEvent.tvw");
+		lstBetViewNames.add("selectWinnerBetEvent.tvw");
+		lstBetViewNames.add("betCompLeaderboardView.tvw");
+		lstBetViewNames.add("createSeason.tvw");
+		lstBetViewNames.add("createRound.tvw");
+		lstBetViewNames.add("viewAllSeasons.tvw");
+		lstBetViewNames.add("viewSeason.tvw");
+		lstBetViewNames.add("viewRound.tvw");
 	}
 }
