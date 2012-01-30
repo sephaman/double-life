@@ -37,6 +37,9 @@ insert into dl_user values(1,'sepha','joe','joe','joe@joe.com','joe',1);
 --insert betting competition
 insert into bet_competition values (1,'General', now(), now(), 1, 0, 1000.00, null);
 
+--insert betting competition rules
+insert into bet_comp_rules values (1,true, 100, true, true, 1);
+
 --insert bet event type
 insert into bet_event_type values(1, 'AFL', now());
 
