@@ -20,6 +20,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.doublelife.doublelife.data.BetComp.Bet;
+import com.doublelife.doublelife.data.BetComp.BetCompRules;
 import com.doublelife.doublelife.data.BetComp.BetCompetition;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
 import com.doublelife.doublelife.data.BetComp.BetEventParticipantPrice;
@@ -607,6 +608,7 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		List<BetEvent> retVal = new ArrayList<BetEvent>();
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetEvent.class);
 		detachedCriteria.add(Property.forName("parentRoundId").eq(roundId));
+		detachedCriteria.addOrder(Order.asc("dateTime"));
 		detachedCriteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		
 		try {
@@ -651,6 +653,25 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 			throw e;
 		}
 		return retval;
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getBetCompRulesByCompId(long)
+	 */
+	public BetCompRules getBetCompRulesByCompId(long compId) {
+		List<BetCompRules> retVal = new ArrayList<BetCompRules>();
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetCompRules.class);
+		detachedCriteria.add(Property.forName("compId").eq(compId));
+		
+		try {
+			retVal = (List<BetCompRules>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving Round", e);
+		}
+		if (retVal != null && !retVal.isEmpty()) {
+			return retVal.get(0);
+		}
+		return null;
 	}
 
 }

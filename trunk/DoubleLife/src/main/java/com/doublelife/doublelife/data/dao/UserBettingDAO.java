@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.doublelife.doublelife.data.BetComp.Bet;
+import com.doublelife.doublelife.data.BetComp.BetCompRules;
 import com.doublelife.doublelife.data.BetComp.BetCompetition;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
 import com.doublelife.doublelife.data.BetComp.BetEventParticipantPrice;
@@ -261,5 +262,13 @@ public interface UserBettingDAO {
 	 * @return
 	 */
 	public boolean updateBetEvent(BetEvent betEvent);
+	
+	
+	/**
+	 * Returns the BetCompRules for the given competition.
+	 * @param compId
+	 * @return
+	 */
+	public BetCompRules getBetCompRulesByCompId(long compId);
 	
 }
