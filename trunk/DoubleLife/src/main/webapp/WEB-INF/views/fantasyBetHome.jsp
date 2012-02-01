@@ -5,9 +5,9 @@
 	<title>Home</title>
 </head>
 <body>
-<h1>
+<div class="body_header">
 	Fantasy Betting
-</h1>
+</div>
 
 </body>
 </html>

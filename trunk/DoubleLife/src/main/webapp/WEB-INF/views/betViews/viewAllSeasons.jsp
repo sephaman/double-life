@@ -2,12 +2,12 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>All Season Viewer</title>
+	<title>All Seasons</title>
 </head>
 <body>
-<h1>
-	All Season Viewer
-</h1>
+<div class="body_header">
+	All Seasons
+</div>
 <table>
 		<c:forEach items="${lstSeasons}" var="thisSeason">
 			<tr>

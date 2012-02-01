@@ -5,9 +5,9 @@
 	<title>User Bets</title>
 </head>
 <body>
-	<h1>
+	<div class="body_header">
 		User Bets
-	</h1>
+	</div>
 	<div class="regular_table">
 		<table>
 			<thead>

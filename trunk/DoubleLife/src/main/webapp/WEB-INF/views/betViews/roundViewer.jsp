@@ -5,16 +5,13 @@
 	<title>Round Viewer</title>
 </head>
 <body>
-<h1>
+<div class="body_header">
 	 ${thisRound.roundName}  - Round Number - ${thisRound.roundSequenceNumber}
-</h1>
+</div>
+<br/>
+Bet Events
 <div class="regular_table">
 	<table>
-	<tr>
-		<td>
-			Bet Events
-		</td>
-	</tr>
 		<c:forEach items="${betEvents}" var="thisBetEvent">
 			<tr>
 				<td><a id="betEvent-${thisBetEvent.id}" href="betViewer.htm?id=${thisBetEvent.id}">${thisBetEvent.betEventName}</a></td>

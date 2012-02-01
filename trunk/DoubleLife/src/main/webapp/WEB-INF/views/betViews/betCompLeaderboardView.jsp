@@ -5,9 +5,9 @@
 	<title>Bet Leaderboard</title>
 </head>
 <body>
-<h1>
+<div class="body_header">
 	Competition Leaderboard
-</h1>
+</div>
 
 <c:if test="${not empty leaderboard}">
 	<table>
