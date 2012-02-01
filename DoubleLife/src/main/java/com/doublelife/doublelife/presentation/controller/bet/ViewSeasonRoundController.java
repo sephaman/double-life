@@ -1,5 +1,10 @@
 package com.doublelife.doublelife.presentation.controller.bet;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +57,8 @@ public class ViewSeasonRoundController {
 		Season thisSeason = userBettingService.getSeasonById(seasonId);
 		
 		map.addAttribute("thisSeason", thisSeason);
-		map.addAttribute("rounds", userBettingService.getRoundsBySeasonId(seasonId));
+		
+		map.addAttribute("roundsmap", createMapOfRounds(userBettingService.getRoundsBySeasonId(seasonId)));
 		
 		return new ModelAndView("viewSeason.tvw", map);
 	}
@@ -73,6 +79,20 @@ public class ViewSeasonRoundController {
 		map.addAttribute("betEvents", userBettingService.getBetEventsByRoundId(roundId));
 		
 		return new ModelAndView("viewRound.tvw", map);
+	}
+	
+	private Map<Integer, List<Round>> createMapOfRounds(List<Round> lstRounds) {
+		Map<Integer, List<Round>> retVal = new HashMap<Integer, List<Round>>();
+		
+		for (int i = 0; i < lstRounds.size() / 3; i++) {
+			List<Round> subListRounds = new ArrayList<Round>();
+			for (int x = i * 3; x < (i * 3) + 3; x++) {
+				subListRounds.add(lstRounds.get(x));
+			}
+			retVal.put(i, subListRounds);
+		}
+		
+		return retVal;
 	}
 
 	/**

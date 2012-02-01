@@ -6,25 +6,30 @@
 </head>
 <body>
 <h1>
-	Season Viewer - ${thisSeason.seasonName}
+	 ${thisSeason.seasonName}
 </h1>
-<table>
-<tr>
-	<td>
-		Rounds
-	</td>
-</tr>
-		<c:forEach items="${rounds}" var="thisRound">
-			<tr>
-				<td><a id="round-${thisRound.id}" href="roundViewer.htm?id=${thisRound.id}">${thisRound.roundName}</a></td>
-			</tr>
-		</c:forEach>
+<div class="regular_table">
+	<table>
 		<tr>
 			<td>
-					<input type="submit" name="addRoundBtn" id="addRoundBtn" value="Add New Round" onclick=""/>
+				Rounds
 			</td>
 		</tr>
-</table>
-
+			<c:forEach items="${roundsmap}" var="thisRoundLst">
+				<tr>
+					<c:forEach items="${thisRoundLst.value}" var="thisRound">
+					
+						<td><a id="round-${thisRound.id}" href="roundViewer.htm?id=${thisRound.id}">${thisRound.roundName}</a></td>
+					
+					</c:forEach>
+				</tr>
+			</c:forEach>
+			<tr>
+				<td>
+						<input type="submit" name="addRoundBtn" id="addRoundBtn" value="Add New Round" onclick=""/>
+				</td>
+			</tr>
+	</table>
+</div>
 </body>
 </html>
