@@ -38,8 +38,8 @@
 			</table>
 		</td>
 		</tr>
-		<tr>
-			<td>
+		<tr valign="bottom">
+			<td valign="bottom">
 				<tiles:insertAttribute name="footer" />
 			</td>
 		</tr>

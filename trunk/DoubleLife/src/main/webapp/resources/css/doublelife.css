@@ -101,6 +101,35 @@ a.menuLink:VISITED {
 	color: white;
 }
 
+.regular_table {
+	color:#104E8B;
+	border: 1px solid #104E8B;
+}
+
+.regular_table table{
+	width: 100%;
+    cell-spacing: 0px;
+    border-collapse:collapse;
+    text-align: left;
+    margin-top: 0.25em;
+    clear: both;
+}
+.regular_table td, .regular_table th {
+	padding-left: 3px;
+	background-color: #FFFFFF;
+	border: 1px solid #C2D4E8;
+	padding-right: 3px;
+    padding-left:3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size: 90%;
+    white-space:nowrap;
+}
+.regular_table th {
+	background-color: #D4E0F0;
+	font-size: 90%;
+}
+
 
 
 

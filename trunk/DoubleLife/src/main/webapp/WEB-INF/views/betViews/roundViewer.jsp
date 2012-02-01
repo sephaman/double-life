@@ -6,20 +6,21 @@
 </head>
 <body>
 <h1>
-	Round Viewer - ${thisRound.roundName}  - Round Number - ${thisRound.roundSequenceNumber}
+	 ${thisRound.roundName}  - Round Number - ${thisRound.roundSequenceNumber}
 </h1>
-<table>
-<tr>
-	<td>
-		Bet Events
-	</td>
-</tr>
+<div class="regular_table">
+	<table>
+	<tr>
+		<td>
+			Bet Events
+		</td>
+	</tr>
 		<c:forEach items="${betEvents}" var="thisBetEvent">
-		<tr>
-			<td><a id="betEvent-${thisBetEvent.id}" href="betViewer.htm?id=${thisBetEvent.id}">${thisBetEvent.betEventName}</a></td>
-		</tr>
-	</c:forEach>
-</table>
-
+			<tr>
+				<td><a id="betEvent-${thisBetEvent.id}" href="betViewer.htm?id=${thisBetEvent.id}">${thisBetEvent.betEventName}</a></td>
+			</tr>
+		</c:forEach>
+	</table>
+</div>
 </body>
 </html>
