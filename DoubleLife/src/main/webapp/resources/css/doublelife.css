@@ -129,7 +129,20 @@ a.menuLink:VISITED {
 	background-color: #D4E0F0;
 	font-size: 90%;
 }
-
+.regular_table a,
+	#regular_table a:active,
+    #regular_table a:visited {
+    /*text-decoration:none;*/
+    color:#104E8B;
+}
+.body_header {
+	color: #000000;
+	background-color: #C2D4E8;
+	width:100%;
+	font-size:140%;
+	margin-bottom:0.3em;
+	padding-left: 3px;
+}
 
 
 

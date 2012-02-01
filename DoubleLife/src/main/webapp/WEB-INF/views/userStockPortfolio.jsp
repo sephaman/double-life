@@ -5,9 +5,9 @@
 	<title>Home</title>
 </head>
 <body>
-<h1>
+<div class="body_header">
 	User Stock Portfolio
-</h1>
+</div>
 <div class="regular_table">
 	<table>
 		<thead>

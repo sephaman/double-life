@@ -14,9 +14,9 @@
 		 form.submit();
 	}
 </script>
-<h1>
+<div class="body_header">
 	Create Bet Event
-</h1>
+</div>
 <form:form method="POST" commandName="betEvent" name="sbtForm" id="sbtForm">
 	<table>
 		<tr>

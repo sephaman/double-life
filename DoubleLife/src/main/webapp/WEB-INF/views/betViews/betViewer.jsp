@@ -5,15 +5,12 @@
 	<title>Bet Viewer</title>
 </head>
 <body>
-<h1>
-	Bet Viewer
-</h1>
+<div class="body_header">
+	${betEvent.betEventName}
+</div>
 <form id="submitForm" method="POST" action="betViewer.htm">
 <input type="hidden" name="betEventId" value="${betEvent.id}">
 <table>
-	<tr>
-		<td>${betEvent.betEventName}</td>
-	</tr>
 		<c:forEach items="${betParticipants}" var="thisBetParticipant">
 		<tr>
 			<td>${thisBetParticipant.key.name} - ${thisBetParticipant.value}</td>

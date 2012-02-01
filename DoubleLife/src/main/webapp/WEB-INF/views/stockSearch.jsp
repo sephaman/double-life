@@ -2,12 +2,12 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+	<title>Stock Search</title>
 </head>
 <body>
-<h1>
+<div class="body_header">
 	Stock Search
-</h1>	
+</div>
 	<form id="frmSubmit" method="post" action="stockSearch.htm">
 		<input id="stkCode" type="text" name="stkCode" />
 		<input id="btnOK"  type="submit" value="Submit"/>
