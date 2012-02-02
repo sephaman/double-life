@@ -5,12 +5,12 @@
 	<title>Stock Order</title>
 </head>
 <body>
-<h1>
-	Join Fantasy betting Competition
-</h1>
+<div class="body_header">
+	Join Fantasy Betting Competition
+</div>
 
 <c:if test="${not empty betComps}">
-	<table>
+	<table class="regular_table">
 	<c:forEach items="${betComps}" var="thisBetComp">
 		<tr>
 			<td valign="middle" style="font-size: normal">

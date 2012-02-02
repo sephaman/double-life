@@ -2,12 +2,12 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+	<title>Double Life</title>
 </head>
 <body>
-<h1>
+<div class="body_header">
 	Double Life!
-</h1>
+</div>
 
 </body>
 </html>
