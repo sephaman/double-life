@@ -6,9 +6,9 @@
 	<title>Create Bet Competition</title>
 </head>
 <body>
-<h1>
+<div class="body_header">
 	Create Bet Competition.
-</h1>
+</div>
 <form id="frmSubmit" method="post" action="createBetEvent.htm">
 		<input id="stkCode" type="text" name="stkCode" />
 		<input id="btnOK"  type="submit" value="Submit"/>

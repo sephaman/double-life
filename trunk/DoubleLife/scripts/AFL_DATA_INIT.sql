@@ -43,6 +43,12 @@ insert into bet_comp_rules values (1,true, 100, true, true, 1);
 --insert bet event type
 insert into bet_event_type values(1, 'AFL', now());
 
+--insert comp account
+insert into user_betting_account values(1,1,1000,now(),1);
+
+--insert user comp
+insert into betcomp_user values(1,1);
+
 --insert season
 insert into season values(1, 1, '2012 Toyota AFL Premiership Season', now());
 
@@ -140,3 +146,5 @@ insert into bet_participant_price values(15, 17, 1.20, now(), 8, 'TRUE');
 insert into bet_participant_price values(16, 14, 1.10, now(), 8, 'TRUE');
 insert into bet_participant_price values(17, 11, 1.20, now(), 9, 'TRUE');
 insert into bet_participant_price values(18, 18, 1.30, now(), 9, 'TRUE');
+
+

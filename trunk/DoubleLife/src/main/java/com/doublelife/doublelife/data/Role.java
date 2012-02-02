@@ -14,6 +14,16 @@ import javax.persistence.Id;
 @Entity (name = "role")
 public class Role {
 
+	/**
+	 * Role for normal user.
+	 */
+	public final static String ROLE_USER = "ROLE_USER"; 
+	
+	/**
+	 * Role for admin user.
+	 */
+	public final static String ROLE_ADMIN = "ROLE_ADMIN"; 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")

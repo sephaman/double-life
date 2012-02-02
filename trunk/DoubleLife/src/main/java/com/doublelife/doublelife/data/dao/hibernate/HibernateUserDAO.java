@@ -65,7 +65,9 @@ public class HibernateUserDAO implements UserDAO {
 	 */
 	public boolean createUser(User user) {
 		try {
-			hibernate.saveOrUpdate(user);
+			//default user to have user role
+			user.setRoleId(getRole(Role.ROLE_USER).getId());
+			hibernate.save(user);
 			return true;
 		} catch (DataAccessException e) {
 			logger.error("Error saving user.", e);
@@ -120,6 +122,25 @@ public class HibernateUserDAO implements UserDAO {
 			retVal = (List<Role>) hibernate.findByCriteria(detachedCriteria);
 		} catch (DataAccessException e) {
 			logger.error("Error retrieving role with id:" + userRoleId, e);
+		}
+		if (retVal != null && !retVal.isEmpty()) {
+			return retVal.get(0);
+		}
+		return null;
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserDAO#getRole(java.lang.String)
+	 */
+	public Role getRole(String roleName) {
+		List<Role> retVal = null;
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Role.class);
+		detachedCriteria.add(Property.forName("role").eq(roleName));
+		
+		try {
+			retVal = (List<Role>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving role with roleName:" + roleName, e);
 		}
 		if (retVal != null && !retVal.isEmpty()) {
 			return retVal.get(0);

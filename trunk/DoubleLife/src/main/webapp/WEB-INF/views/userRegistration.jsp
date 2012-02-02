@@ -3,11 +3,12 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+	<title>Tip n' Trade</title>
 </head>
 <body>
+<img src="<c:url value="/resources/img/tipntradeHeader.jpg"/>" alt="header logo" width="170" height="70" alt="tipNtrade"/>
 <h1>
-	User Registration!
+	User Registration
 </h1>
 
 <form:form method="POST" commandName="user">
@@ -38,7 +39,7 @@
 			<td><form:errors path="emailAddress" cssClass="error" /></td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="submit"></td>
+			<td colspan="2"><input type="submit" value="Register"></td>
 		</tr>
 	</table>
 </form:form>

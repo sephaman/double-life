@@ -54,4 +54,11 @@ public interface UserDAO {
 	 * @return
 	 */
 	public Role getUserRole(long userRoleId);
+	
+	/**
+	 * Grabs the role for the given user name.
+	 * @param roleName
+	 * @return
+	 */
+	public Role getRole(String roleName);
 }

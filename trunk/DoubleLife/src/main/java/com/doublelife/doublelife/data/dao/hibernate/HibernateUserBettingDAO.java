@@ -167,6 +167,7 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 	public boolean createUserBettingAccount(
 			UserBettingAccount userBettingAccount) {
 		boolean retval = false;
+		userBettingAccount.setDateUpdated(new Date());
 		logger.debug("Saving user betting account");
 		try {
 			hibernate.saveOrUpdate(userBettingAccount);

@@ -10,11 +10,19 @@
 </div>
 
 <c:if test="${not empty leaderboard}">
-	<table>
+	<table class="regular_table">
+		<thead>
+			<tr>
+				<th>User</th><th>Amount</th>
+			</tr>
+		</thead>
 	<c:forEach items="${leaderboard}" var="thisUser">
 		<tr>
 			<td valign="middle" style="font-size: normal">
-				${thisUser.key.userName} - ${thisUser.value}
+				${thisUser.key.userName}
+			</td>
+			<td>
+				${thisUser.value}
 			</td>
 		</tr>
 	</c:forEach>
