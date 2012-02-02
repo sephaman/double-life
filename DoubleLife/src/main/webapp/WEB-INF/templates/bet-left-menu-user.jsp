@@ -7,7 +7,7 @@
 <div id="header" class="menuHeader">
 	<table width="100%" border="0">
 	
-	<c:if test="${rolename == 'ROLE_ADMIN'}">
+	
 		<!-- Side Menu -->
 		<tr>
 			<td valign="middle" style="font-size: normal" class="button">
@@ -21,22 +21,7 @@
 		</tr>
 		<tr>
 			<td valign="middle" style="font-size: normal" class="button">
-					<a id="createBetCompLink" href="betCompsCreate.htm" class="menuLink">Create Competition</a>
-			</td>
-		</tr>
-		<tr>
-			<td valign="middle" style="font-size: normal" class="button">
-					<a id="viewBetEvents" href="betEventsView.htm" class="menuLink">View Bet Events</a>
-			</td>
-		</tr>
-		<tr>
-			<td valign="middle" style="font-size: normal" class="button">
 					<a id="viewUserBets" href="userBets.htm" class="menuLink">View User Bet</a>
-			</td>
-		</tr>
-		<tr>
-			<td valign="middle" style="font-size: normal" class="button">
-					<a id="createBetEvent" href="createBetEvent.htm" class="menuLink">Create Bet Event</a>
 			</td>
 		</tr>
 		<tr>
@@ -46,19 +31,8 @@
 		</tr>
 			<tr>
 				<td valign="middle" style="font-size: normal" class="button">
-						<a id="createSeason" href="createSeason.htm" class="menuLink">Create Season</a>
-				</td>
-			</tr>
-			<tr>
-				<td valign="middle" style="font-size: normal" class="button">
-						<a id="createRound" href="createRound.htm" class="menuLink">Create Round</a>
-				</td>
-			</tr>
-			<tr>
-				<td valign="middle" style="font-size: normal" class="button">
 						<a id="viewSeasons" href="viewSeasons.htm" class="menuLink">View Seasons</a>
 				</td>
 			</tr>
-		</c:if>
 	</table>
 </div>
