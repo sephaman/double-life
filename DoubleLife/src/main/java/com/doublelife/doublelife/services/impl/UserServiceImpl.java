@@ -31,13 +31,13 @@ public class UserServiceImpl implements UserService {
 	public boolean createUser(User user) {
 		//hash the password
 		try {
-			user.setPassword(SecurityUtil.md5(user.getPassword()));
+			SecurityUtil.md5(user.getPassword()); //TODO: fix this!
+			user.setPassword(user.getPassword());
 			return userDAO.createUser(user);
 		} catch(NoSuchAlgorithmException ex) {
 			logger.error("couldnt hash password while saving user: " + user.getUserName());
 			return false;
 		}
-		
 	}
 
 	/**

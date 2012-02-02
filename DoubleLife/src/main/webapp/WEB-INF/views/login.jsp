@@ -9,12 +9,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<meta http-equiv="version" content="$Id: header.jsp, v1.0 2010/07/30 $" />
-		<title>DoubleLife Login</title>
+		<title>Tip n' Trade Login</title>
 	</head>
 	<body>
+		
 		<div id="loginPanel">
-
-			<h1>DoubleLife</h1>
+			<img src="<c:url value="/resources/img/tipntradeHeader.jpg"/>" alt="header logo" width="170" height="70" alt="tipNtrade"/>
 			<p/>
 			<h3>Life Simulating Financial Games</h3>
 			<div class="errorMessage" style="color:#FFE09D;font-size:1.1em;">
@@ -25,7 +25,7 @@
             </div>
 			<div id="loginInnerPanel">
 				<form id="frmLogin" action="<c:url value="j_spring_security_check"/>" method="post">
-					<table width="100%" border="0">
+					<table width="70%" border="0">
 						<tr>
 							<td class="loginLabel">Username</td>
 							<td class="loginInput">
@@ -39,9 +39,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td>
-							</td>
-							<td align="right">
+							<td align="middle">
 								<input id="btnSubmit" class="button" type="submit" value="Login" tabindex="3" />
 							</td>
 						</tr>

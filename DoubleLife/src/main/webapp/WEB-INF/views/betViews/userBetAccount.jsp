@@ -2,12 +2,12 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Stock Order</title>
+	<title>User Betting Account</title>
 </head>
 <body>
-<h1>
+<div class="body_header">
 	User Bet Account
-</h1>
+</div>
 
 Money available: ${userBetAccount.amountAvailable}
 </body>

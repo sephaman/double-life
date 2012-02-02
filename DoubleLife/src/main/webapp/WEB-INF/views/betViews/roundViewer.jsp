@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="body_header">
-	 ${thisRound.roundName}  - Round Number - ${thisRound.roundSequenceNumber}
+	 ${thisRound.roundName}
 </div>
 <br/>
 Bet Events

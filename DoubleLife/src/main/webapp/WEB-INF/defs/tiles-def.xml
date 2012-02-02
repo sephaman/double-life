@@ -4,8 +4,9 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
-<definition name="login.tvw" template="/WEB-INF/views/login.jsp">
-	</definition>
+<definition name="login.tvw" template="/WEB-INF/views/login.jsp"/>
+	 <definition name="userRegistration.tvw" template="/WEB-INF/views/userRegistration.jsp"/>
+    <definition name="userRegistrationSuccess.tvw" template="/WEB-INF/views/userRegistrationSuccess.jsp"/>
 
 <!-- Default Main Template -->
     <definition name="main.tvw" template="/WEB-INF/templates/main.jsp">
@@ -29,13 +30,6 @@
     </definition>
     <definition name="fantasyBetHome.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/fantasyBetHome.jsp" />
-    </definition>
-    
-    <definition name="userRegistration.tvw" extends="main.tvw">
-    	<put-attribute name="body" value="/WEB-INF/views/userRegistration.jsp" />
-    </definition>
-    <definition name="userRegistrationSuccess.tvw" extends="main.tvw">
-    	<put-attribute name="body" value="/WEB-INF/views/userRegistrationSuccess.jsp" />
     </definition>
     
     <!-- Stock Views -->

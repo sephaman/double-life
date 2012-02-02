@@ -2,11 +2,13 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+	<title>User Registration Success</title>
 </head>
 <body>
-<h1>
-	Registration Success!
-</h1>
+	<h1>
+		Registration Success!
+	</h1>
+	
+	<a id="loginLink" href="login.htm">Click to Login!</a>
 </body>
 </html>

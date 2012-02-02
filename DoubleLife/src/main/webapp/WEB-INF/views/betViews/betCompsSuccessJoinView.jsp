@@ -5,9 +5,9 @@
 	<title>Stock Order</title>
 </head>
 <body>
-<h1>
+<div class="body_header">
 	Successfully Joined Competition
-</h1>
+</div>
 
 <c:if test="${registered == true}">
 <br/>

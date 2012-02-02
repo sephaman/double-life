@@ -7,11 +7,6 @@
 <div id="header" class="menuHeader">
 	<table width="100%" border="0">
 	
-		<tr>
-			<td style="font-color:white">
-				${betComp.name}
-			</td>
-		</tr>
 	
 		<!-- Side Menu -->
 		<tr>

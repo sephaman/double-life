@@ -5,10 +5,10 @@
 	<title>Bet Events</title>
 </head>
 <body>
-<h1>
+<div class="body_header">
 	Bet Events
-</h1>
-<table>
+</div>
+<table class="regular_table">
 	<c:forEach items="${betEvents}" var="thisBetEvent">
 		<tr>
 			<td><a id="betEvent-${thisBetEvent.id}" href="betViewer.htm?id=${thisBetEvent.id}">${thisBetEvent.betEventName}</a></td>
