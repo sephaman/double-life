@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.doublelife.doublelife.data.BetComp.BetEvent;
+import com.doublelife.doublelife.data.BetComp.BetParticipant;
 import com.doublelife.doublelife.data.BetComp.Round;
 import com.doublelife.doublelife.data.BetComp.Season;
+import com.doublelife.doublelife.presentation.viewhelper.BetEventViewHelper;
 import com.doublelife.doublelife.services.UserBettingService;
 
 /**
@@ -76,15 +79,42 @@ public class ViewSeasonRoundController {
 		Round thisRound = userBettingService.getRoundById(roundId);
 		
 		map.addAttribute("thisRound", thisRound);
-		map.addAttribute("betEvents", userBettingService.getBetEventsByRoundId(roundId));
+		List<BetEvent> lstEvents = userBettingService.getBetEventsByRoundId(roundId);
+		
+		List<BetEventViewHelper> lstBetEvents = new ArrayList<BetEventViewHelper>();
+		
+		for (BetEvent thisEvent : lstEvents) {
+			lstBetEvents.add(constructBetEventViewHelper(thisEvent));
+		}
+		
+		map.addAttribute("betEvents", lstBetEvents);
 		
 		return new ModelAndView("viewRound.tvw", map);
 	}
 	
+	/**
+	 * @return
+	 */
+	private BetEventViewHelper constructBetEventViewHelper(BetEvent betEvent) {
+		BetEventViewHelper viewHelper = new BetEventViewHelper();
+		Map<BetParticipant, Double> thisMap = userBettingService.getMappedParticipantAndPrice(betEvent);
+		
+		viewHelper.setBetEventId(betEvent.getId());
+		viewHelper.setHomeOdds(thisMap.get(betEvent.getLstBetParticipant().get(0)));
+		viewHelper.setAwayOdds(thisMap.get(betEvent.getLstBetParticipant().get(1)));
+		viewHelper.setHomeParticipantId(betEvent.getLstBetParticipant().get(0).getId());
+		viewHelper.setAwayParticipantId(betEvent.getLstBetParticipant().get(1).getId());
+		viewHelper.setParticipantHomeName(betEvent.getLstBetParticipant().get(0).getName());
+		viewHelper.setParticipantAwayName(betEvent.getLstBetParticipant().get(1).getName());
+		viewHelper.setBetEventName(betEvent.getBetEventName());
+		
+		return viewHelper;
+	}
+
 	private Map<Integer, List<Round>> createMapOfRounds(List<Round> lstRounds) {
 		Map<Integer, List<Round>> retVal = new HashMap<Integer, List<Round>>();
 		
-		for (int i = 0; i < lstRounds.size() / 3; i++) {
+		for (int i = 0; i <= lstRounds.size() / 3; i++) {
 			List<Round> subListRounds = new ArrayList<Round>();
 			for (int x = i * 3; x < (i * 3) + 3; x++) {
 				subListRounds.add(lstRounds.get(x));
