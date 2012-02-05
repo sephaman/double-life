@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.doublelife.doublelife.data.BetComp.BetEvent;
@@ -93,6 +97,38 @@ public class ViewSeasonRoundController {
 	}
 	
 	/**
+	 * Returns a view displaying the round and its associated bet events.
+	 * @param roundId 
+	 * @return 
+	 */
+	@RequestMapping(value="/roundViewer.htm", method=RequestMethod.POST)
+	public ModelAndView roundSubmission() {
+		logger.info("ViewSeasonRoundController - show round: POST");
+		ModelMap map = new ModelMap();
+		HttpServletRequest curRequest = 
+				((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
+				.getRequest();
+		long roundId = Long.parseLong(curRequest.getParameter("roundId"));
+		Round thisRound = userBettingService.getRoundById(roundId);
+		
+		map.addAttribute("thisRound", thisRound);
+		List<BetEvent> lstEvents = userBettingService.getBetEventsByRoundId(roundId);
+		
+		map.addAttribute("betEvents", lstEvents);
+		
+		return new ModelAndView("viewRound.tvw", map);
+	}
+	
+	private boolean processSubmissionRequest(HttpServletRequest request, List<BetEvent> lstBetEvents) {
+		for (BetEvent thisBetEvent : lstBetEvents) {
+			
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * Generates the BetEventViewHelper to be displayed on-screen.
 	 * @return
 	 */
 	private BetEventViewHelper constructBetEventViewHelper(BetEvent betEvent) {
@@ -111,10 +147,15 @@ public class ViewSeasonRoundController {
 		return viewHelper;
 	}
 
+	/**
+	 * Creates the List of rounds so that it may be displayed in a 3 column table.
+	 * @param lstRounds
+	 * @return
+	 */
 	private Map<Integer, List<Round>> createMapOfRounds(List<Round> lstRounds) {
 		Map<Integer, List<Round>> retVal = new HashMap<Integer, List<Round>>();
 		
-		for (int i = 0; i <= lstRounds.size() / 3; i++) {
+		for (int i = 0; i < lstRounds.size() / 3; i++) {
 			List<Round> subListRounds = new ArrayList<Round>();
 			for (int x = i * 3; x < (i * 3) + 3; x++) {
 				subListRounds.add(lstRounds.get(x));
