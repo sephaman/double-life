@@ -9,12 +9,16 @@
 	 ${thisRound.roundName}
 </div>
 <br/>
+<h3>
 Bet Events
+</h3>
+<form id="frmSubmit" method="post" action="roundViewer.htm">
+<input type="hidden" name="roundId" id="roundId" value="${thisRound.id}"/>
 <div class="regular_table">
 	<table>
 		<thead>
 			<tr>
-				<th>Wager</th><th>Odds</th><th>Tip</th><th>Event</th><th>Tip</th><th>Odds</th><th>Wager</th>
+				<th>Stake</th><th>Odds</th><th>Tip</th><th>Event</th><th>Tip</th><th>Odds</th><th>Stake</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -31,6 +35,8 @@ Bet Events
 			</c:forEach>
 		</tbody>
 	</table>
+	<input id="btnSubmit"  type="submit" value="Submit"/>
 </div>
+</form>
 </body>
 </html>
