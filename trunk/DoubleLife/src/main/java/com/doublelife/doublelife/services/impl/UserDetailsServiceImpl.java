@@ -1,7 +1,6 @@
 package com.doublelife.doublelife.services.impl;
 
 import java.io.Serializable;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,6 @@ import com.doublelife.doublelife.data.AuthorisedUser;
 import com.doublelife.doublelife.data.Role;
 import com.doublelife.doublelife.data.User;
 import com.doublelife.doublelife.services.UserService;
-import com.doublelife.doublelife.services.utils.SecurityUtil;
 
 /**
  * Spring UserDetailsService implementation.
@@ -45,13 +43,8 @@ public class UserDetailsServiceImpl implements UserDetailsService, Serializable 
 		
 		List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
 			grantedAuthorities.add(new GrantedAuthorityImpl(role.getRole()));
+			
 			String userPassword = user.getPassword();
-			try {
-				userPassword = SecurityUtil.md5(user.getPassword());
-				userPassword = user.getPassword();
-			} catch (NoSuchAlgorithmException ex) {
-				logger.error("Couldn't hash password. Login will fail");
-			}
 		return
 			new AuthorisedUser (
 					user.getUserName(), userPassword, true,

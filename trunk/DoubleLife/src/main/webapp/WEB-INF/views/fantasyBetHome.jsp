@@ -2,12 +2,18 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+	<title>Fantasy Betting Home</title>
 </head>
 <body>
 <div class="body_header">
 	Fantasy Betting
 </div>
+
+<h2>
+	View and put in tips for next round!
+</h2>
+<br/>
+	<a id="round-${currentRound.id}" href="roundViewer.htm?id=${currentRound.id}">${currentRound.roundName}</a>
 
 </body>
 </html>

@@ -321,12 +321,14 @@ WITH (
 ALTER TABLE season
   OWNER TO postgres;
 
-  CREATE TABLE round
+ CREATE TABLE round
 (
   id integer NOT NULL,
   seasonid integer NOT NULL DEFAULT (-1),
   round_sequence_no integer NOT NULL DEFAULT (-1),
   roundname character varying(80),
+  is_current boolean,
+  is_active boolean NOT NULL DEFAULT true,
   CONSTRAINT round_pkey PRIMARY KEY (id )
 )
 WITH (
@@ -350,3 +352,23 @@ WITH (
 );
 ALTER TABLE bet_comp_rules
   OWNER TO postgres;
+
+ 
+CREATE TABLE bet_tip
+(
+  id integer NOT NULL,
+  bet_event_id integer NOT NULL,
+  datetime date,
+  outcomepending boolean NOT NULL DEFAULT true,
+  selectionid integer NOT NULL,
+  parent_round_id integer NOT NULL DEFAULT (-1),
+  userid integer NOT NULL,
+  compid integer NOT NULL,
+  CONSTRAINT bet_tip_pkey PRIMARY KEY (id )
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE bet_tip
+  OWNER TO postgres;
+  

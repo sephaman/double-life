@@ -271,4 +271,11 @@ public interface UserBettingDAO {
 	 */
 	public BetCompRules getBetCompRulesByCompId(long compId);
 	
+	/**
+	 * Returns the active round for this season.
+	 * @param seasonId
+	 * @return
+	 */
+	public Round getActiveRoundForComp(long seasonId);
+	
 }
