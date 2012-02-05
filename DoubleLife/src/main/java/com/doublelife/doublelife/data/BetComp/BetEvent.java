@@ -55,6 +55,12 @@ public class BetEvent {
 	@Column(name = "parent_round_id")
 	private long parentRoundId;
 	
+	@Column(name = "home_participant")
+	private long homeParticipant;
+	
+	@Column(name = "away_participant")
+	private long awayParticipant;
+	
 	@Transient
 	private List<BetEventParticipantPrice> lstBetEventParticipantPrice;
 

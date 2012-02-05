@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,16 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.doublelife.doublelife.data.BetComp.Bet;
+import com.doublelife.doublelife.data.BetComp.BetCompRules;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
+import com.doublelife.doublelife.data.BetComp.BetTip;
 import com.doublelife.doublelife.data.BetComp.Round;
 import com.doublelife.doublelife.data.BetComp.Season;
 import com.doublelife.doublelife.presentation.viewhelper.BetEventViewHelper;
 import com.doublelife.doublelife.services.UserBettingService;
+import com.doublelife.doublelife.services.utils.SecurityUtil;
 
 /**
  * Handles requests for displaying seasons and associated rounds.
@@ -34,6 +39,13 @@ public class ViewSeasonRoundController {
 
 	@Autowired
 	private UserBettingService userBettingService;
+	
+	private final String compRulesIdParam = "compRulesId";
+	private final String homeWagerParam = "homeWager-";
+	private final String awayWagerParam = "awayWager-";
+	private final String tipParam = "tip-";
+	private final String homeOddsParam = "homeOdds-";
+	private final String awayOddsParam = "awayOdds-";
 	
 	private static final Logger logger = LoggerFactory.getLogger(ViewSeasonRoundController.class);
 
@@ -105,9 +117,8 @@ public class ViewSeasonRoundController {
 	public ModelAndView roundSubmission() {
 		logger.info("ViewSeasonRoundController - show round: POST");
 		ModelMap map = new ModelMap();
-		HttpServletRequest curRequest = 
-				((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
-				.getRequest();
+		HttpServletRequest curRequest = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+				
 		long roundId = Long.parseLong(curRequest.getParameter("roundId"));
 		Round thisRound = userBettingService.getRoundById(roundId);
 		
@@ -116,17 +127,72 @@ public class ViewSeasonRoundController {
 		
 		map.addAttribute("betEvents", lstEvents);
 		
+		processSubmissionRequest(curRequest, lstEvents);
+		
 		return new ModelAndView("viewRound.tvw", map);
 	}
 	
 	private boolean processSubmissionRequest(HttpServletRequest request, List<BetEvent> lstBetEvents) {
-		for (BetEvent thisBetEvent : lstBetEvents) {
-			
-		}
 		
+		long compRulesId = Long.parseLong(request.getParameter(compRulesIdParam));
+		BetCompRules betCompRules = userBettingService.getBetCompRulesByCompId(compRulesId);
+		
+		for (BetEvent thisEvent : lstBetEvents) {
+			//generate tips
+			if (betCompRules.getCanTip()) {
+				processBetTips(request, thisEvent, betCompRules);
+			}
+			//generate bets
+			if (betCompRules.getCanBet()) {
+				processBetEvents(request, thisEvent, betCompRules);
+			}
+		}
 		return true;
 	}
-	
+
+	/**
+	 * Processes Bet Events submitted.
+	 * @param request
+	 * @param lstBetEvents
+	 * @param betCompRules
+	 */
+	private boolean processBetEvents(HttpServletRequest request,
+			BetEvent thisEvent, BetCompRules betCompRules) {
+		Double homeWager = Double.parseDouble(request.getParameter(homeWagerParam + thisEvent.getId()));
+		Double awayWager = Double.parseDouble(request.getParameter(awayWagerParam + thisEvent.getId()));
+		
+		if (homeWager > 0.00) {
+			Bet bet = new Bet();
+			
+		} else if (awayWager > 0.00) {
+			Bet bet = new Bet();
+		}
+		return false;
+	}
+
+	/**
+	 * Process Bet Tips submitted.
+	 * @param request
+	 * @param lstBetEvents
+	 * @param betCompRules
+	 */
+	private boolean processBetTips(HttpServletRequest request,
+			BetEvent thisEvent, BetCompRules betCompRules) {
+		String tip = request.getParameter(tipParam + thisEvent.getId());
+		if (!StringUtils.isEmpty(tip)) {
+			long tipParticipantId = Long.parseLong(tip);
+			BetTip betTip = new BetTip();
+			betTip.setBetEventId(thisEvent.getId());
+			betTip.setCompId(betCompRules.getCompId());
+			betTip.setIsOutcomePending(true);
+			betTip.setSelectionId(tipParticipantId);
+			betTip.setUserId(SecurityUtil.getCurrentUserId());
+			betTip.setParentRoundId(thisEvent.getParentRoundId());
+			return userBettingService.createBetTip(betTip);
+		}
+		return false;
+	}
+
 	/**
 	 * Generates the BetEventViewHelper to be displayed on-screen.
 	 * @return

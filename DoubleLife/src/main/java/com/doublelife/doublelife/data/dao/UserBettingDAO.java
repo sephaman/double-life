@@ -13,6 +13,7 @@ import com.doublelife.doublelife.data.BetComp.BetEvent;
 import com.doublelife.doublelife.data.BetComp.BetEventParticipantPrice;
 import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
+import com.doublelife.doublelife.data.BetComp.BetTip;
 import com.doublelife.doublelife.data.BetComp.Round;
 import com.doublelife.doublelife.data.BetComp.Season;
 import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
@@ -277,5 +278,12 @@ public interface UserBettingDAO {
 	 * @return
 	 */
 	public Round getActiveRoundForComp(long seasonId);
+
+	/**
+	 * Creates the bet tip.
+	 * @param betTip
+	 * @return
+	 */
+	public boolean createBetTip(BetTip betTip);
 	
 }
