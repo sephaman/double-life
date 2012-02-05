@@ -27,6 +27,7 @@ import com.doublelife.doublelife.data.BetComp.BetEventParticipantPrice;
 import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
 import com.doublelife.doublelife.data.BetComp.BetResult;
+import com.doublelife.doublelife.data.BetComp.BetTip;
 import com.doublelife.doublelife.data.BetComp.Round;
 import com.doublelife.doublelife.data.BetComp.Season;
 import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
@@ -695,5 +696,20 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		}
 		return null;
 	}
-
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#createBetTip(com.doublelife.doublelife.data.BetComp.BetTip)
+	 */
+	public boolean createBetTip(BetTip betTip) {
+		boolean retval = false;
+		logger.debug("Saving Bet Tip");
+		try {
+			hibernate.save(betTip);
+			retval = true;
+		} catch (DataAccessException e) {
+			logger.error("Error Bet Tip", e);
+			throw e;
+		}
+		return retval;
+	}
 }

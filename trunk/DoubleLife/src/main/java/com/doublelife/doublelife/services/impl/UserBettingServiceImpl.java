@@ -13,12 +13,14 @@ import java.util.Set;
 
 import com.doublelife.doublelife.data.User;
 import com.doublelife.doublelife.data.BetComp.Bet;
+import com.doublelife.doublelife.data.BetComp.BetCompRules;
 import com.doublelife.doublelife.data.BetComp.BetCompetition;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
 import com.doublelife.doublelife.data.BetComp.BetEventParticipantPrice;
 import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
 import com.doublelife.doublelife.data.BetComp.BetResult;
+import com.doublelife.doublelife.data.BetComp.BetTip;
 import com.doublelife.doublelife.data.BetComp.Round;
 import com.doublelife.doublelife.data.BetComp.Season;
 import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
@@ -453,5 +455,19 @@ public class UserBettingServiceImpl implements UserBettingService {
 	 */
 	public Round getActiveRoundForComp(long seasonId) {
 		return userBettingDAO.getActiveRoundForComp(seasonId);
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getBetCompRulesByCompId(long)
+	 */
+	public BetCompRules getBetCompRulesByCompId(long compId) {
+		return userBettingDAO.getBetCompRulesByCompId(compId);
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#createBetTip(com.doublelife.doublelife.data.BetComp.BetTip)
+	 */
+	public boolean createBetTip(BetTip betTip) {
+		return userBettingDAO.createBetTip(betTip);
 	}
 }

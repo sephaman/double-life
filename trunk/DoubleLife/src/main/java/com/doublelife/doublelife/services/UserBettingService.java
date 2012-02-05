@@ -9,11 +9,13 @@ import java.util.Set;
 
 import com.doublelife.doublelife.data.User;
 import com.doublelife.doublelife.data.BetComp.Bet;
+import com.doublelife.doublelife.data.BetComp.BetCompRules;
 import com.doublelife.doublelife.data.BetComp.BetCompetition;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
 import com.doublelife.doublelife.data.BetComp.BetEventParticipantPrice;
 import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
+import com.doublelife.doublelife.data.BetComp.BetTip;
 import com.doublelife.doublelife.data.BetComp.Round;
 import com.doublelife.doublelife.data.BetComp.Season;
 import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
@@ -286,4 +288,18 @@ public interface UserBettingService {
 	 * @return
 	 */
 	public Round getActiveRoundForComp(long seasonId);
+	
+	/**
+	 * Returns the BetCompRules for the given competition.
+	 * @param compId
+	 * @return
+	 */
+	public BetCompRules getBetCompRulesByCompId(long compId);
+
+	/**
+	 * Creates the betTip.
+	 * @param betTip
+	 * @return
+	 */
+	public boolean createBetTip(BetTip betTip);
 }

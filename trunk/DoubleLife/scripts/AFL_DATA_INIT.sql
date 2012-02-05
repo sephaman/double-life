@@ -98,15 +98,15 @@ insert into round values(22, 1, 22, '2012 AFL Round 22');
 insert into round values(23, 1, 23, '2012 AFL Round 23');
 
 -- set up round one bet events
-insert into bet_event values(1, 1, now(), true, -1, 'GWS vs Sydney', 1);
-insert into bet_event values(2, 1, now(), true, -1, 'Richmond vs Carlton', 1);
-insert into bet_event values(3, 1, now(), true, -1, 'Hawthorn vs Collingwood', 1);
-insert into bet_event values(4, 1, now(), true, -1, 'Melbourne vs Brisbane', 1);
-insert into bet_event values(5, 1, now(), true, -1, 'Gold Coast vs Adelaide', 1);
-insert into bet_event values(6, 1, now(), true, -1, 'Fremantle vs Geelong', 1);
-insert into bet_event values(7, 1, now(), true, -1, 'North Melbourne vs Essendon', 1);
-insert into bet_event values(8, 1, now(), true, -1, 'Western Bulldogs vs West Coast', 1);
-insert into bet_event values(9, 1, now(), true, -1, 'Port Adelaide vs St Kilda', 1);
+insert into bet_event values(1, 1, now(), true, -1, 'GWS vs Sydney', 1, 15, 6);
+insert into bet_event values(2, 1, now(), true, -1, 'Richmond vs Carlton', 1, 9, 7);
+insert into bet_event values(3, 1, now(), true, -1, 'Hawthorn vs Collingwood', 1, 3, 8);
+insert into bet_event values(4, 1, now(), true, -1, 'Melbourne vs Brisbane', 1, 1, 13);
+insert into bet_event values(5, 1, now(), true, -1, 'Gold Coast vs Adelaide', 1, 16, 10);
+insert into bet_event values(6, 1, now(), true, -1, 'Fremantle vs Geelong', 1, 12, 2);
+insert into bet_event values(7, 1, now(), true, -1, 'North Melbourne vs Essendon', 1, 5, 4);
+insert into bet_event values(8, 1, now(), true, -1, 'Western Bulldogs vs West Coast', 1, 17, 14);
+insert into bet_event values(9, 1, now(), true, -1, 'Port Adelaide vs St Kilda', 1, 11, 18);
 
 insert into participant_betevent values(1, 15);
 insert into participant_betevent values(1, 6);
