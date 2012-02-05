@@ -3,17 +3,17 @@
  */
 package com.doublelife.doublelife.services.impl;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
 
 import com.doublelife.doublelife.data.Role;
 import com.doublelife.doublelife.data.User;
 import com.doublelife.doublelife.data.dao.UserDAO;
 import com.doublelife.doublelife.services.UserService;
-import com.doublelife.doublelife.services.utils.SecurityUtil;
 
 /**
  * @author Joseph McAleer
@@ -25,16 +25,18 @@ public class UserServiceImpl implements UserService {
 	
 	private UserDAO userDAO;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	/**
 	 * @see com.doublelife.doublelife.services.UserService#createUser(com.doublelife.doublelife.data.User)
 	 */
 	public boolean createUser(User user) {
 		//hash the password
 		try {
-			SecurityUtil.md5(user.getPassword()); //TODO: fix this!
-			user.setPassword(user.getPassword());
+			user.setPassword(passwordEncoder.encodePassword(user.getPassword(), ""));
 			return userDAO.createUser(user);
-		} catch(NoSuchAlgorithmException ex) {
+		} catch(Exception ex) {
 			logger.error("couldnt hash password while saving user: " + user.getUserName());
 			return false;
 		}
@@ -104,4 +106,10 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getUserRole(userRoleId);
 	}
 
+	/**
+	 * @param passwordEncoder the passwordEncoder to set
+	 */
+	public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+		this.passwordEncoder = passwordEncoder;
+	}
 }

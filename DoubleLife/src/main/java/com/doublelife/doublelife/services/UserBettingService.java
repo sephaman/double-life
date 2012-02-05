@@ -279,4 +279,11 @@ public interface UserBettingService {
 	 * @return
 	 */
 	public boolean updateBetEvent(BetEvent betEvent);
+	
+	/**
+	 * Returns the active round for this season.
+	 * @param seasonId
+	 * @return
+	 */
+	public Round getActiveRoundForComp(long seasonId);
 }

@@ -21,15 +21,21 @@ public class Round {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private long id;
-	
+
 	@Column(name = "seasonid")
 	private long seasonid;
-	
+
 	@Column(name = "round_sequence_no")
 	private long roundSequenceNumber;
-	
+
 	@Column(name = "roundname")
 	private String roundName;
+	
+	@Column(name = "is_active")
+	private Boolean isActive;
+	
+	@Column(name = "is_current")
+	private Boolean isCurrent;
 
 	/**
 	 * @return the id
@@ -85,6 +91,20 @@ public class Round {
 	 */
 	public void setRoundName(String roundName) {
 		this.roundName = roundName;
+	}
+
+	/**
+	 * @return the isActive
+	 */
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	/**
+	 * @param isActive the isActive to set
+	 */
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 	
 }

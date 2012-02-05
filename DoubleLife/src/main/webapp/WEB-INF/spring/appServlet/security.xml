@@ -9,13 +9,15 @@
 
 	<context:annotation-config/>
 
-
 	<beans:bean id="daoAuthenticationProvider"
 		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
 		<beans:property name="userDetailsService" ref="userDetailsService" />
-	<!-- 	<beans:property name="saltSource" ref="sussSaltSource" />
-		<beans:property name="passwordEncoder" ref="sussPasswordEncoder" />   -->
+	<!-- 	<beans:property name="saltSource" ref="sussSaltSource" />-->
+		<beans:property name="passwordEncoder" ref="passwordEncoder" />   
 	</beans:bean>
+	
+	<beans:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+ 	</beans:bean>
 
 	<authentication-manager alias="authenticationManager">
 		<authentication-provider ref="daoAuthenticationProvider"  />

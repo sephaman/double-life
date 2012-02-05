@@ -256,6 +256,7 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		List<BetCompetition> retVal = null;
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetCompetition.class);
 		detachedCriteria.add(Property.forName("isActive").eq(1));
+		detachedCriteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		
 		try {
 			retVal = (List<BetCompetition>) hibernate.findByCriteria(detachedCriteria);
@@ -666,6 +667,26 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		
 		try {
 			retVal = (List<BetCompRules>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving Round", e);
+		}
+		if (retVal != null && !retVal.isEmpty()) {
+			return retVal.get(0);
+		}
+		return null;
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getActiveRoundForComp(long)
+	 */
+	public Round getActiveRoundForComp(long seasonId) {
+		List<Round> retVal = new ArrayList<Round>();
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Round.class);
+		detachedCriteria.add(Property.forName("seasonid").eq(seasonId));
+		detachedCriteria.add(Property.forName("isCurrent").eq(true));
+		
+		try {
+			retVal = (List<Round>) hibernate.findByCriteria(detachedCriteria);
 		} catch (DataAccessException e) {
 			logger.error("Error retrieving Round", e);
 		}

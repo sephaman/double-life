@@ -12,11 +12,22 @@
 Bet Events
 <div class="regular_table">
 	<table>
-		<c:forEach items="${betEvents}" var="thisBetEvent">
+		<thead>
 			<tr>
-				<td><a id="betEvent-${thisBetEvent.id}" href="betViewer.htm?id=${thisBetEvent.id}">${thisBetEvent.betEventName}</a></td>
+				<th>Wager</th><th>Tip</th><th>Event</th><th>Tip</th><th>Wager</th>
 			</tr>
-		</c:forEach>
+		</thead>
+		<tbody>
+			<c:forEach items="${betEvents}" var="thisBetEvent">
+				<tr>
+					<td><input id="homeWager-${thisBetEvent.id}" name="homeWager-${thisBetEvent.id}" value=""/></td>
+					<td><input id="tip-${thisBetEvent.id}" name="tip-${thisBetEvent.id}" type="radio"/></td>
+					<td><a id="betEvent-${thisBetEvent.id}" href="betViewer.htm?id=${thisBetEvent.id}">${thisBetEvent.betEventName}</a></td>
+					<td><input id="tip-${thisBetEvent.id}" name="tip-${thisBetEvent.id}" type="radio"/></td>
+					<td><input id="awayWager-${thisBetEvent.id}" name="awayWager-${thisBetEvent.id}" value=""/></td>
+				</tr>
+			</c:forEach>
+		</tbody>
 	</table>
 </div>
 </body>

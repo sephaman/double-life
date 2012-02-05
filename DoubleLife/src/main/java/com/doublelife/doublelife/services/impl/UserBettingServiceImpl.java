@@ -447,4 +447,11 @@ public class UserBettingServiceImpl implements UserBettingService {
 	public boolean updateBetEvent(BetEvent betEvent) {
 		return userBettingDAO.updateBetEvent(betEvent);
 	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getActiveRoundForComp(long)
+	 */
+	public Round getActiveRoundForComp(long seasonId) {
+		return userBettingDAO.getActiveRoundForComp(seasonId);
+	}
 }
