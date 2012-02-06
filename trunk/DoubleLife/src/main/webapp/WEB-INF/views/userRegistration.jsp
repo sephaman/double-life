@@ -35,7 +35,7 @@
 		</tr>
 		<tr>
 			<td>Email :</td>
-			<td><form:password path="emailAddress" /></td>
+			<td><form:input path="emailAddress" /></td>
 			<td><form:errors path="emailAddress" cssClass="error" /></td>
 		</tr>
 		<tr>

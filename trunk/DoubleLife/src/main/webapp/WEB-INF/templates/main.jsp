@@ -13,18 +13,19 @@
 		<title><tiles:getAsString name="title" /></title>
 	</head>
 	<body>
-	<tiles:insertAttribute name="header" />
-	<tiles:insertAttribute name="top-menu" />
-	<table width="100%" border="0">
-		<tr>
-			<td width="20%" align="left" valign="top">
-				<tiles:insertAttribute name="left-menu" />
-			</td>
-			<td align="left" valign="top">
-				<tiles:insertAttribute name="body" />
-			</td>
-		</tr>
-	</table>
-	<tiles:insertAttribute name="footer" />
+		<tiles:insertAttribute name="header" />
+		<tiles:insertAttribute name="top-menu" />
+		<table width="100%" border="0">
+			<tr>
+				<td width="20%" align="left" valign="top">
+					<tiles:insertAttribute name="left-menu" />
+				</td>
+				<td align="left" valign="top">
+					<tiles:insertAttribute name="info-bar"/>
+					<tiles:insertAttribute name="body" />
+				</td>
+			</tr>
+		</table>
+		<tiles:insertAttribute name="footer" />
 	</body>
 </html>
