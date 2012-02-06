@@ -468,6 +468,7 @@ public class UserBettingServiceImpl implements UserBettingService {
 	 * @see com.doublelife.doublelife.services.UserBettingService#createBetTip(com.doublelife.doublelife.data.BetComp.BetTip)
 	 */
 	public boolean createBetTip(BetTip betTip) {
+		betTip.setDateTime(new Date());
 		return userBettingDAO.createBetTip(betTip);
 	}
 }

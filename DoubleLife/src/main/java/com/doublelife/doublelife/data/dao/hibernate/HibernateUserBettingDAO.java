@@ -92,7 +92,8 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		List<Bet> retVal = null;
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Bet.class);
 		detachedCriteria.add(Property.forName("userId").eq(userId));
-		
+		detachedCriteria.addOrder(Order.asc("id"));
+
 		try {
 			retVal = (List<Bet>) hibernate.findByCriteria(detachedCriteria);
 		} catch (DataAccessException e) {
@@ -106,7 +107,7 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 	 */
 	public boolean saveBet(Bet bet) {
 		try {
-			hibernate.saveOrUpdate(bet);
+			hibernate.save(bet);
 			return true;
 		} catch (DataAccessException e) {
 			logger.error("Error saving bet.", e);

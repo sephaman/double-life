@@ -20,7 +20,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.doublelife.doublelife.data.BetComp.Bet;
 import com.doublelife.doublelife.data.BetComp.BetCompRules;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
@@ -162,10 +161,11 @@ public class ViewSeasonRoundController {
 		Double awayWager = Double.parseDouble(request.getParameter(awayWagerParam + thisEvent.getId()));
 		
 		if (homeWager > 0.00) {
-			Bet bet = new Bet();
-			
+			Double homeOdds = Double.parseDouble(request.getParameter(homeOddsParam + thisEvent.getId()));
+			return userBettingService.createAndSaveBet(thisEvent.getId(), thisEvent.getHomeParticipant(), homeWager, homeOdds);
 		} else if (awayWager > 0.00) {
-			Bet bet = new Bet();
+			Double homeOdds = Double.parseDouble(request.getParameter(awayOddsParam  + thisEvent.getId()));
+			return userBettingService.createAndSaveBet(thisEvent.getId(), thisEvent.getAwayParticipant(), homeWager, homeOdds);
 		}
 		return false;
 	}
