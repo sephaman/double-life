@@ -61,7 +61,13 @@ public final class CommonModelHelper {
 				BetCompRules betCompRules = PersistenceUtil.getUserBettingDAOImpl().getBetCompRulesByCompId(betComp.getId());
 				modelAndView.addObject("betCompRules",betCompRules);
 			}
-			
+			if (user != null) {
+				
+				modelAndView.addObject("userAccount_head", PersistenceUtil.getUserBettingDAOImpl().getUserBettingAccountByUserId(user.getId(), betComp.getId()).getAmountAvailable());
+				
+				modelAndView.addObject("pendingBets_head", PersistenceUtil.getUserBettingDAOImpl().getUserPendingBetCount(user.getId()));
+				
+			}
 			//set up menu
 			if (lstBetViewNames.contains(modelAndView.getViewName())) {
 				modelAndView.addObject("menuType", "bet");
