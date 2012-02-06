@@ -38,7 +38,26 @@ public class EmailServiceImpl implements EmailService {
 
 		mailSender.send(message);
 	}
+	
+	/**
+	 * @see com.doublelife.doublelife.services.EmailService#sendMail(java.lang.String, java.lang.String)
+	 */
+	public void sendMail(String subject, String message, String recipient) {
+		MimeMessage msg = mailSender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(msg);
+		try {
+			helper.setTo(recipient);
+			helper.setText(message);
+			helper.setSubject(subject);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
+		mailSender.send(msg);
+		
+	}
+	
 	/**
 	 * @param mailSender the mailSender to set
 	 */

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.doublelife.doublelife.data.User;
 import com.doublelife.doublelife.data.validator.UserValidator;
+import com.doublelife.doublelife.services.EmailService;
 import com.doublelife.doublelife.services.UserService;
 
 /**
@@ -31,6 +32,9 @@ public class UserRegistrationController {
 	
 	@Autowired
 	private UserValidator userValidator;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	/**
 	 * Displays the user registration page.
@@ -64,9 +68,22 @@ public class UserRegistrationController {
 		} else {
 			user.setRoleId(0);
 			boolean createResult = userService.createUser(user);  //TODO: handle failures
-			
+			emailService.sendMail("Welcome to Tip n' Trade!", getWelcomeEmailText(user), user.getEmailAddress());
 			return new ModelAndView("userRegistrationSuccess.tvw");
 		}
+	}
+
+	/**
+	 * Generates the email text for the welcome message.
+	 * @param user
+	 * @return
+	 */
+	private String getWelcomeEmailText(User user) {
+		String txt ="Hey there " + user.getFirstName() + "! Welcome to Tip n' Trade\r\n\r\n";
+		
+		txt += "This email confirms your registration.\r\n\r\n Good luck!";
+		
+		return txt;
 	}
 
 	/**
@@ -95,6 +112,20 @@ public class UserRegistrationController {
 	 */
 	public void setUserValidator(UserValidator userValidator) {
 		this.userValidator = userValidator;
+	}
+
+	/**
+	 * @return the emailService
+	 */
+	public EmailService getEmailService() {
+		return emailService;
+	}
+
+	/**
+	 * @param emailService the emailService to set
+	 */
+	public void setEmailService(EmailService emailService) {
+		this.emailService = emailService;
 	}
 	
 }
