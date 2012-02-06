@@ -26,11 +26,11 @@ Bet Events
 				<c:forEach items="${betEvents}" var="thisBetEvent">
 					<tr>
 						<td><input id="homeWager-${thisBetEvent.betEventId}" name="homeWager-${thisBetEvent.betEventId}" value="0.00"/></td>
-						<td><input id="homeOdds-${thisBetEvent.betEventId}" value="${thisBetEvent.homeOdds}" type="text"/></td>
+						<td><input id="homeOdds-${thisBetEvent.betEventId}" name="homeOdds-${thisBetEvent.betEventId}" value="${thisBetEvent.homeOdds}" type="text"/></td>
 						<td><input id="tip-${thisBetEvent.betEventId}" name="tip-${thisBetEvent.betEventId}" type="radio" value="${thisBetEvent.homeParticipantId}"/></td>
 						<td><a id="betEvent-${thisBetEvent.betEventId}" href="betViewer.htm?id=${thisBetEvent.betEventId}">${thisBetEvent.betEventName}</a></td>
 						<td><input id="tip-${thisBetEvent.betEventId}" name="tip-${thisBetEvent.betEventId}" type="radio" value="${thisBetEvent.awayParticipantId}"/></td>
-						<td><input id="awayOdds-${thisBetEvent.betEventId}" value="${thisBetEvent.awayOdds}" type="text"/></td>
+						<td><input id="awayOdds-${thisBetEvent.betEventId}" name="awayOdds-${thisBetEvent.betEventId}" value="${thisBetEvent.awayOdds}" type="text"/></td>
 						<td><input id="awayWager-${thisBetEvent.betEventId}" name="awayWager-${thisBetEvent.betEventId}" value="0.00"/></td>
 					</tr>
 				</c:forEach>

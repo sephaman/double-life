@@ -193,4 +193,32 @@ public class BetEvent {
 	public void setParentRoundId(long parentRoundId) {
 		this.parentRoundId = parentRoundId;
 	}
+
+	/**
+	 * @return the homeParticipant
+	 */
+	public long getHomeParticipant() {
+		return homeParticipant;
+	}
+
+	/**
+	 * @param homeParticipant the homeParticipant to set
+	 */
+	public void setHomeParticipant(long homeParticipant) {
+		this.homeParticipant = homeParticipant;
+	}
+
+	/**
+	 * @return the awayParticipant
+	 */
+	public long getAwayParticipant() {
+		return awayParticipant;
+	}
+
+	/**
+	 * @param awayParticipant the awayParticipant to set
+	 */
+	public void setAwayParticipant(long awayParticipant) {
+		this.awayParticipant = awayParticipant;
+	}
 }
