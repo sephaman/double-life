@@ -23,20 +23,6 @@ body {
 	width:15%;
 }
 
-/* Headings 
-h1 {
-	font-size: xx-large;
-}
-
-h2 {
-	color: #000000;
-	background-color: #C2D4E8;
-	width:100%;
-	font-size:140%;
-	margin-bottom:0.3em;
-	padding-left: 3px;
-}*/
-
 /* Links */
 a {
 	text-decoration: none;
@@ -74,6 +60,19 @@ a.menuLink:ACTIVE {
 	font-weight: bold;
 	cursor: pointer; /* FF, Safari, Chrome */
 	cursor: hand; /* IE, Opera */
+}
+
+.infoBar {
+	background-color: #6B0000;
+	border-width: 1px;
+	font-weight: bold;
+	text-color: white;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 1em;
+	padding-right: 1em;
+	color: #FFFFFF;
+	margin-bottom:0.3em;
 }
 
 .button {
