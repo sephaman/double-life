@@ -9,7 +9,7 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.6</java-version>
-		<org.springframework-version>3.0.4.RELEASE</org.springframework-version>
+		<org.springframework-version>3.0.5.RELEASE</org.springframework-version>
 		<org.springframework.roo-version>1.0.2.RELEASE</org.springframework.roo-version>
 		<org.aspectj-version>1.6.9</org.aspectj-version>
 		<org.slf4j-version>1.5.10</org.slf4j-version>
@@ -106,10 +106,12 @@
 				
 		<!-- AspectJ -->
 		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
-			<version>${org.aspectj-version}</version>
-		</dependency>	
+    	 <groupId>org.aspectj</groupId>
+     	<artifactId>aspectjweaver</artifactId>
+     	<version>${org.aspectj-version}</version>
+    </dependency>
+
+            
 		
 		<!-- Logging -->
 		<dependency>
@@ -342,7 +344,7 @@
 				<version>1.2</version>
 				<dependencies>
 					<!-- You must use Maven 2.0.9 or above or these are ignored (see MNG-2972) -->
-					<dependency>
+				  	<dependency>
 						<groupId>org.aspectj</groupId>
 						<artifactId>aspectjrt</artifactId>
 						<version>${org.aspectj-version}</version>
