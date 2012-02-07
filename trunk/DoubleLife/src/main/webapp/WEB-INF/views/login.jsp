@@ -8,12 +8,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
+		<link rel="stylesheet" href="<c:url value="/resources/css/doublelife.css"/>" type="text/css"/>
 		<meta http-equiv="version" content="$Id: header.jsp, v1.0 2010/07/30 $" />
 		<title>Tip n' Trade Login</title>
 	</head>
 	<body>
 		
-		<div id="loginPanel">
+		<div id="loginPanel" class="login_panels">
 			<img src="<c:url value="/resources/img/tipntradeHeader.jpg"/>" alt="header logo" width="170" height="70" alt="tipNtrade"/>
 			<p/>
 			<h3>Life Simulating Financial Games</h3>

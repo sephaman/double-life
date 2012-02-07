@@ -57,7 +57,7 @@ public class UserBettingDAOTest {
 		BetEvent betEvent = new BetEvent();
 		betEvent.setDateTime(new Date());
 		betEvent.setBetEventTypeId(3L);
-		betEvent.setOutcomePending(0);
+		//betEvent.setOutcomePending(0);
 		betEvent.setSelectionWinnerId(0);
 		Assert.assertTrue(userBettingDAO.createBetEvent(betEvent));
 	}

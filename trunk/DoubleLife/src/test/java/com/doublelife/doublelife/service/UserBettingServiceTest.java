@@ -59,9 +59,9 @@ public class UserBettingServiceTest {
 		BetEvent betEvent = new BetEvent();
 		betEvent.setDateTime(new Date());
 		betEvent.setBetEventTypeId(betEventType.getId());
-		betEvent.setOutcomePending(0);
+		//betEvent.setOutcomePending(0);
 		betEvent.getLstBetParticipant().add(betParticipant);
-		userBettingService.addBetEvent(betEvent);
+		//userBettingService.addBetEvent(betEvent);
 		
 		//create a user
 		User user = new User();
@@ -82,9 +82,9 @@ public class UserBettingServiceTest {
 		userBettingService.createBet(bet);
 		
 		//update the bet event with result
-		betEvent.setOutcomePending(1);
+		//betEvent.setOutcomePending(1);
 		betEvent.setSelectionWinnerId(betParticipant.getId());
-		userBettingService.addBetEvent(betEvent);
+	//	userBettingService.addBetEvent(betEvent);
 		
 		//process the bets
 		userBettingService.processBetResults(betEvent);
@@ -96,7 +96,7 @@ public class UserBettingServiceTest {
 		Assert.assertTrue(ourBet.getBetResult() == BetResult.WIN);
 		
 		//check the amount paid
-		acct = userBettingService.getUserBettingAccount(user.getId());
+	//	acct = userBettingService.getUserBettingAccount(user.getId());
 		
 		Assert.assertTrue(acct.getAmountAvailable() == 400.00);
 	}
