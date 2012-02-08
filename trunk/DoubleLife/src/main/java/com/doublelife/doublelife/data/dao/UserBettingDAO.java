@@ -285,5 +285,13 @@ public interface UserBettingDAO {
 	 * @return
 	 */
 	public boolean createBetTip(BetTip betTip);
+
+	/**
+	 * Returns users bets by round & comp.
+	 * @param roundId
+	 * @param compId
+	 * @return
+	 */
+	public List<Bet> getUserBetsByRoundAndComp(long roundId, long compId, long userId);
 	
 }

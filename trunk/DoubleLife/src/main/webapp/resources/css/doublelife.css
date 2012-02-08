@@ -144,6 +144,12 @@ a.menuLink:VISITED {
 	text-align:top;
 }
 
+.login_panels {
+	border-top: 200px solid blue;
+	/*border-bottom: 100px solid white;
+	border-color: #104E8B;*/
+}
+
 
 
 
