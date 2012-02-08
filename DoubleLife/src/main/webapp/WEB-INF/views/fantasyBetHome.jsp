@@ -13,7 +13,7 @@
 	View and put in tips for next round!
 </h2>
 <br/>
-	<a id="round-${currentRound.id}" href="roundViewer.htm?id=${currentRound.id}">${currentRound.roundName}</a>
+	<a id="round-${currentRound.id}" href="roundViewer.htm?id=${currentRound.id}&compId=${betComp.id}">${currentRound.roundName}</a>
 
 </body>
 </html>

@@ -471,4 +471,11 @@ public class UserBettingServiceImpl implements UserBettingService {
 		betTip.setDateTime(new Date());
 		return userBettingDAO.createBetTip(betTip);
 	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getUserBetsByRoundAndComp(long, long)
+	 */
+	public List<Bet> getUserBetsByRoundAndComp(long roundId, long compId, long userId) {
+		return userBettingDAO.getUserBetsByRoundAndComp(roundId, compId, userId);
+	}
 }

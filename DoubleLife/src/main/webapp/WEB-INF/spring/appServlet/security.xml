@@ -51,9 +51,9 @@
 	<http auto-config="true">
 		<access-denied-handler error-page="/accessDenied.form"/>
 
-		<intercept-url pattern="/css/**" filters="none" />
-		<intercept-url pattern="/img/**" filters="none" />
-		<intercept-url pattern="/js/**" filters="none" />
+		<intercept-url pattern="/resources/css/**" filters="none" />
+		<intercept-url pattern="/resources/img/**" filters="none" />
+		<intercept-url pattern="/resources/js/**" filters="none" />
 		<intercept-url pattern="/sessionExpired.form" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/sessionInvalid.form" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/login.form" access="IS_AUTHENTICATED_ANONYMOUSLY" />
@@ -64,7 +64,7 @@
 		<form-login login-page="/login.form"
 			authentication-failure-url="/login.form?login_error=true"
 			default-target-url="/doubleLifeHome.htm"
-			always-use-default-target="false" />
+			always-use-default-target="true" />
 
 		<logout logout-success-url="/login.form"
 			logout-url="/j_spring_security_logout"

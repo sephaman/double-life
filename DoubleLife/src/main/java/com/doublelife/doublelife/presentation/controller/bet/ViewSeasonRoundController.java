@@ -87,7 +87,7 @@ public class ViewSeasonRoundController {
 	 * @return 
 	 */
 	@RequestMapping(value="/roundViewer.htm", method=RequestMethod.GET)
-	public ModelAndView showRound(@RequestParam("id") long roundId) {
+	public ModelAndView showRound(@RequestParam("id") long roundId, @RequestParam("compId") long compId) {
 		logger.info("ViewSeasonRoundController - show round: GET");
 		ModelMap map = new ModelMap();
 		
@@ -101,6 +101,10 @@ public class ViewSeasonRoundController {
 		for (BetEvent thisEvent : lstEvents) {
 			lstBetEvents.add(constructBetEventViewHelper(thisEvent));
 		}
+		
+		map.addAttribute("userBets", userBettingService.getUserBetsByRoundAndComp(roundId, compId, SecurityUtil.getCurrentUserId()));
+		
+		map.addAttribute("userBets", "");
 		
 		map.addAttribute("betEvents", lstBetEvents);
 		
