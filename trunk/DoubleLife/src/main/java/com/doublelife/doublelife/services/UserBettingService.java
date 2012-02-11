@@ -310,4 +310,13 @@ public interface UserBettingService {
 	 * @return
 	 */
 	public List<Bet> getUserBetsByRoundAndComp(long roundId, long compId, long userId);
+
+	/**
+	 * Returns users bet tips by round & comp.
+	 * @param roundId
+	 * @param compId
+	 * @param currentUserId
+	 */
+	public List<BetTip> getUserBetTipsByRoundAndComp(long roundId, long compId,
+			long currentUserId);
 }

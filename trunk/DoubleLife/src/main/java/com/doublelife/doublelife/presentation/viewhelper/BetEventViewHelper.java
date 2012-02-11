@@ -19,6 +19,10 @@ public class BetEventViewHelper {
 		private double awayOdds;
 		private String betEventName;
 		
+		//user selection data
+		private double betValue;
+		private long selectionId;
+		
 		/**
 		 * @return the betEventId
 		 */
@@ -114,5 +118,29 @@ public class BetEventViewHelper {
 		 */
 		public void setBetEventName(String betEventName) {
 			this.betEventName = betEventName;
+		}
+		/**
+		 * @return the betValue
+		 */
+		public double getBetValue() {
+			return betValue;
+		}
+		/**
+		 * @param betValue the betValue to set
+		 */
+		public void setBetValue(double betValue) {
+			this.betValue = betValue;
+		}
+		/**
+		 * @return the selectionId
+		 */
+		public long getSelectionId() {
+			return selectionId;
+		}
+		/**
+		 * @param selectionId the selectionId to set
+		 */
+		public void setSelectionId(long selectionId) {
+			this.selectionId = selectionId;
 		}
 }
