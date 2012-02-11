@@ -292,7 +292,7 @@ public interface UserBettingDAO {
 	 * @param compId
 	 * @return
 	 */
-	public List<Bet> getUserBetsByRoundAndComp(long roundId, long compId, long userId);
+	public List<Bet> getUserBetsByRoundAndComp(List<Long> lstEventIds, long compId, long userId);
 
 	/**
 	 * @param roundId
