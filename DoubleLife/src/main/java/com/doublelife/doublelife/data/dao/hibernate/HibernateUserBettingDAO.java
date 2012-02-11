@@ -733,4 +733,25 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		
 		return retVal;
 	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getUserBetTipsByRoundAndComp(long, long, long)
+	 */
+	public List<BetTip> getUserBetTipsByRoundAndComp(long roundId, long compId,
+			long currentUserId) {
+		List<BetTip> retVal = new ArrayList<BetTip>();
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetTip.class);
+		detachedCriteria.add(Property.forName("userId").eq(currentUserId));
+		detachedCriteria.add(Property.forName("parentRoundId").eq(roundId));
+		detachedCriteria.add(Property.forName("compId").eq(compId));
+		detachedCriteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		
+		try {
+			retVal = (List<BetTip>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving bet tips for round", e);
+		}
+		
+		return retVal;
+	}
 }
