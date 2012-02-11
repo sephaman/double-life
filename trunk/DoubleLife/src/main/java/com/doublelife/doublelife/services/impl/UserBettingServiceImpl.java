@@ -475,8 +475,8 @@ public class UserBettingServiceImpl implements UserBettingService {
 	/**
 	 * @see com.doublelife.doublelife.services.UserBettingService#getUserBetsByRoundAndComp(long, long)
 	 */
-	public List<Bet> getUserBetsByRoundAndComp(long roundId, long compId, long userId) {
-		return userBettingDAO.getUserBetsByRoundAndComp(roundId, compId, userId);
+	public List<Bet> getUserBetsByRoundAndComp(List<Long> lstEventIds, long compId, long userId) {
+		return userBettingDAO.getUserBetsByRoundAndComp(lstEventIds, compId, userId);
 	}
 
 	/**

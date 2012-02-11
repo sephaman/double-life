@@ -20,6 +20,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.doublelife.doublelife.data.BetComp.Bet;
 import com.doublelife.doublelife.data.BetComp.BetCompRules;
 import com.doublelife.doublelife.data.BetComp.BetEvent;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
@@ -92,21 +93,30 @@ public class ViewSeasonRoundController {
 		ModelMap map = new ModelMap();
 		
 		Round thisRound = userBettingService.getRoundById(roundId);
-		
-		map.addAttribute("thisRound", thisRound);
+	
 		List<BetEvent> lstEvents = userBettingService.getBetEventsByRoundId(roundId);
+		List<Long> lstBetEventIds = getIdsFromEvents(lstEvents);
+		
+		//get any existing bets and bet tips
+		List<Bet> lstExistingBets = userBettingService.getUserBetsByRoundAndComp(lstBetEventIds, compId, SecurityUtil.getCurrentUserId());
+		List<BetTip> lstExistingBetTips = userBettingService.getUserBetTipsByRoundAndComp(roundId, compId, SecurityUtil.getCurrentUserId());
 		
 		List<BetEventViewHelper> lstBetEvents = new ArrayList<BetEventViewHelper>();
 		
 		for (BetEvent thisEvent : lstEvents) {
-			lstBetEvents.add(constructBetEventViewHelper(thisEvent));
+			BetTip betTip = getBetTipFromList(thisEvent, lstExistingBetTips);
+			Bet bet = getBetFromList(thisEvent, lstExistingBets);
+			lstBetEvents.add(constructBetEventViewHelper(thisEvent, betTip, bet));
 		}
 		
-		map.addAttribute("userBets", userBettingService.getUserBetsByRoundAndComp(roundId, compId, SecurityUtil.getCurrentUserId()));
-		
-		map.addAttribute("userBets", "");
-		
+		map.addAttribute("thisRound", thisRound);
 		map.addAttribute("betEvents", lstBetEvents);
+		//TODO: apply comp rules
+		if (lstExistingBets.size() > 0) {
+			map.addAttribute("betSubmitted", true);
+		} else {
+			map.addAttribute("betSubmitted", false);
+		}
 		
 		return new ModelAndView("viewRound.tvw", map);
 	}
@@ -201,7 +211,7 @@ public class ViewSeasonRoundController {
 	 * Generates the BetEventViewHelper to be displayed on-screen.
 	 * @return
 	 */
-	private BetEventViewHelper constructBetEventViewHelper(BetEvent betEvent) {
+	private BetEventViewHelper constructBetEventViewHelper(BetEvent betEvent, BetTip betTip, Bet bet) {
 		BetEventViewHelper viewHelper = new BetEventViewHelper();
 		Map<BetParticipant, Double> thisMap = userBettingService.getMappedParticipantAndPrice(betEvent);
 		
@@ -213,10 +223,15 @@ public class ViewSeasonRoundController {
 		viewHelper.setParticipantHomeName(betEvent.getLstBetParticipant().get(0).getName());
 		viewHelper.setParticipantAwayName(betEvent.getLstBetParticipant().get(1).getName());
 		viewHelper.setBetEventName(betEvent.getBetEventName());
-		
+		if (bet != null) {
+			viewHelper.setBetValue(bet.getStake());
+		}
+		if (betTip != null) {
+			viewHelper.setSelectionId(betTip.getSelectionId());
+		}
 		return viewHelper;
 	}
-
+	
 	/**
 	 * Creates the List of rounds so that it may be displayed in a 3 column table.
 	 * @param lstRounds
@@ -235,6 +250,50 @@ public class ViewSeasonRoundController {
 		
 		return retVal;
 	}
+	
+	/**
+	 * Grabs the Bet for the bet event.
+	 * @param betEvent
+	 * @param lstBets
+	 * @return
+	 */
+	private Bet getBetFromList(BetEvent betEvent, List<Bet> lstBets) {
+		for (Bet thisBet : lstBets) {
+			if (thisBet.getBetEventId() == betEvent.getId()) {
+				return thisBet;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Grabs the BetTip for the bet event.
+	 * @param betEvent
+	 * @param lstBetTips
+	 * @return
+	 */
+	private BetTip getBetTipFromList(BetEvent betEvent, List<BetTip> lstBetTips) {
+		for (BetTip thisBetTip : lstBetTips) {
+			if (thisBetTip.getBetEventId() == betEvent.getId()) {
+				return thisBetTip;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Gets the bet event ids for the given list.
+	 * @param lstEvents
+	 * @return
+	 */
+	private List<Long> getIdsFromEvents(List<BetEvent> lstEvents) {
+		List<Long> lstIds = new ArrayList<Long>();
+		for (BetEvent betEvent : lstEvents) {
+			lstIds.add(betEvent.getId());
+		}
+		return lstIds;
+	}
+
 
 	/**
 	 * @param userBettingService the userBettingService to set

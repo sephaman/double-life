@@ -20,8 +20,8 @@ public class BetEventViewHelper {
 		private String betEventName;
 		
 		//user selection data
-		private double betValue;
-		private long selectionId;
+		private double betValue = 0.00;
+		private long selectionId = -1L;
 		
 		/**
 		 * @return the betEventId

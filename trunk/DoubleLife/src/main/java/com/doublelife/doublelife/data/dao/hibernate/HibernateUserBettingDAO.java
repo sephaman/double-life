@@ -717,12 +717,12 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 	/**
 	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getUserBetsByRoundAndComp(long, long)
 	 */
-	public List<Bet> getUserBetsByRoundAndComp(long roundId, long compId, long userId) {
+	public List<Bet> getUserBetsByRoundAndComp(List<Long> lstEventIds, long compId, long userId) {
 		List<Bet> retVal = new ArrayList<Bet>();
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Bet.class);
 		detachedCriteria.add(Property.forName("userId").eq(userId));
-		detachedCriteria.add(Property.forName("parentRoundId").eq(roundId));
 		detachedCriteria.add(Property.forName("compId").eq(compId));
+		detachedCriteria.add(Property.forName("betEventId").in(lstEventIds));
 		detachedCriteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		
 		try {

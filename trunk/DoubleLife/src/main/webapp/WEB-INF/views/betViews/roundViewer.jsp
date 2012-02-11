@@ -15,8 +15,11 @@ Bet Events
 <form id="frmSubmit" method="post" action="roundViewer.htm">
 	<input type="hidden" name="roundId" id="roundId" value="${thisRound.id}"/>
 	<input type="hidden" name="compRulesId" id="compRulesId" value="${betCompRules.id}"/>
+	<div id="msgDiv" style="color: red">
+			<c:if test="${betSubmitted == true}">Bets submitted for this round.</c:if>
+	</div>
 	<div class="regular_table">
-		<table>
+		<table width="75%">
 			<thead>
 				<tr>
 					<th>Stake</th><th>Odds</th><th>Tip</th><th>Event</th><th>Tip</th><th>Odds</th><th>Stake</th>
@@ -25,18 +28,40 @@ Bet Events
 			<tbody>
 				<c:forEach items="${betEvents}" var="thisBetEvent">
 					<tr>
-						<td><input id="homeWager-${thisBetEvent.betEventId}" name="homeWager-${thisBetEvent.betEventId}" value="0.00"/></td>
-						<td><input id="homeOdds-${thisBetEvent.betEventId}" name="homeOdds-${thisBetEvent.betEventId}" value="${thisBetEvent.homeOdds}" type="text" readonly/></td>
-						<td><input id="tip-${thisBetEvent.betEventId}" name="tip-${thisBetEvent.betEventId}" type="radio" value="${thisBetEvent.homeParticipantId}"/></td>
-						<td><a id="betEvent-${thisBetEvent.betEventId}" href="betViewer.htm?id=${thisBetEvent.betEventId}">${thisBetEvent.betEventName}</a></td>
-						<td><input id="tip-${thisBetEvent.betEventId}" name="tip-${thisBetEvent.betEventId}" type="radio" value="${thisBetEvent.awayParticipantId}"/></td>
-						<td><input id="awayOdds-${thisBetEvent.betEventId}" name="awayOdds-${thisBetEvent.betEventId}" value="${thisBetEvent.awayOdds}" type="text" readonly/></td>
-						<td><input id="awayWager-${thisBetEvent.betEventId}" name="awayWager-${thisBetEvent.betEventId}" value="0.00"/></td>
+						<td width="15%">
+							<input id="homeWager-${thisBetEvent.betEventId}" name="homeWager-${thisBetEvent.betEventId}" 
+							value="${thisBetEvent.selectionId == thisBetEvent.homeParticipantId ? thisBetEvent.betValue : 0.00}"
+							<c:if test="${betSubmitted == true}">readonly</c:if>/>
+						</td>
+						<td width="15%">
+							<input id="homeOdds-${thisBetEvent.betEventId}" name="homeOdds-${thisBetEvent.betEventId}" value="${thisBetEvent.homeOdds}" type="text" readonly/>
+						</td>
+						<td width="5%">
+							<input id="tip-${thisBetEvent.betEventId}" name="tip-${thisBetEvent.betEventId}" type="radio" value="${thisBetEvent.homeParticipantId}" 
+							<c:if test="${thisBetEvent.selectionId == thisBetEvent.homeParticipantId}">checked </c:if> 
+							<c:if test="${betSubmitted == true}">disabled</c:if>/>
+						</td>
+						<td width="30%"><a id="betEvent-${thisBetEvent.betEventId}" href="betViewer.htm?id=${thisBetEvent.betEventId}">${thisBetEvent.betEventName}</a></td>
+						<td width="5%">
+							<input id="tip-${thisBetEvent.betEventId}" name="tip-${thisBetEvent.betEventId}" type="radio" value="${thisBetEvent.awayParticipantId}"
+							<c:if test="${thisBetEvent.selectionId == thisBetEvent.awayParticipantId}">checked </c:if> 
+							<c:if test="${betSubmitted == true}">disabled</c:if>/>
+						</td>
+						<td width="15%">
+							<input id="awayOdds-${thisBetEvent.betEventId}" name="awayOdds-${thisBetEvent.betEventId}" value="${thisBetEvent.awayOdds}" type="text" readonly/>
+						</td>
+						<td width="15%">
+							<input id="awayWager-${thisBetEvent.betEventId}" name="awayWager-${thisBetEvent.betEventId}" 
+							value="${thisBetEvent.selectionId == thisBetEvent.awayParticipantId ? thisBetEvent.betValue : 0.00}"
+							<c:if test="${betSubmitted == true}">readonly</c:if>/>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<input id="btnSubmit"  type="submit" value="Submit"/>
+	</div>
+	<div align="center">
+		<input id="btnSubmit"  type="submit" value="Submit" <c:if test="${betSubmitted == true}">disabled</c:if>/>
 	</div>
 </form>
 </body>
