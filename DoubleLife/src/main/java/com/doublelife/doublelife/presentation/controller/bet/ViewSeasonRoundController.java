@@ -228,6 +228,8 @@ public class ViewSeasonRoundController {
 		viewHelper.setParticipantHomeName(betEvent.getLstBetParticipant().get(0).getName());
 		viewHelper.setParticipantAwayName(betEvent.getLstBetParticipant().get(1).getName());
 		viewHelper.setBetEventName(betEvent.getBetEventName());
+		viewHelper.setHomeIconUrl(betEvent.getLstBetParticipant().get(0).getIconUrl());
+		viewHelper.setAwayIconUrl(betEvent.getLstBetParticipant().get(1).getIconUrl());
 		if (bet != null) {
 			viewHelper.setBetValue(bet.getStake());
 		}
