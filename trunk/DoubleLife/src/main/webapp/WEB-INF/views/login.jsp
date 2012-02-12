@@ -47,7 +47,7 @@
 					</table>
 				</form>
 			</div>
-				<a id="registerLink" href="userRegistration.htm">Register</a>
+				<a id="registerLink" href="userRegistration.htm">Register</a> &nbsp;&nbsp;<a id="forgotLink" href="forgotPassword.htm">Forgot Password?</a>
 			<p/>
 			<div>
 			</div>
