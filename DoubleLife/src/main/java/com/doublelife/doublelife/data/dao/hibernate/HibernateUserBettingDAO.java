@@ -28,6 +28,7 @@ import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
 import com.doublelife.doublelife.data.BetComp.BetResult;
 import com.doublelife.doublelife.data.BetComp.BetTip;
+import com.doublelife.doublelife.data.BetComp.Location;
 import com.doublelife.doublelife.data.BetComp.Round;
 import com.doublelife.doublelife.data.BetComp.Season;
 import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
@@ -753,5 +754,20 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		}
 		
 		return retVal;
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getLocation()
+	 */
+	public List<Location> getLocation() {
+		List<Location> retVal = null;
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Location.class);
+		
+		try {
+			retVal = (List<Location>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving all Locations", e);
+		}
+			return retVal;
 	}
 }
