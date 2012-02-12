@@ -16,27 +16,27 @@
 		<tr>
 			<td>User Name :</td>
 			<td><form:input path="userName" /></td>
-			<td><form:errors path="userName" cssClass="error" /></td>
+			<td style="color:red;"><form:errors path="userName" cssClass="error" /></td>
 		</tr>
 		<tr>
 			<td>First Name :</td>
 			<td><form:input path="firstName" /></td>
-			<td><form:errors path="firstName" cssClass="error" /></td>
+			<td style="color:red;"><form:errors path="firstName" cssClass="error" /></td>
 		</tr>
 		<tr>
 			<td>Last Name :</td>
 			<td><form:input path="lastName" /></td>
-			<td><form:errors path="lastName" cssClass="error" /></td>
+			<td style="color:red;"><form:errors path="lastName" cssClass="error" /></td>
 		</tr>
 		<tr>
 			<td>Password :</td>
 			<td><form:password path="password" /></td>
-			<td><form:errors path="password" cssClass="error" /></td>
+			<td style="color:red;"><form:errors path="password" cssClass="error" /></td>
 		</tr>
 		<tr>
 			<td>Email :</td>
 			<td><form:input path="emailAddress" /></td>
-			<td><form:errors path="emailAddress" cssClass="error" /></td>
+			<td style="color:red;"><form:errors path="emailAddress" cssClass="error" /></td>
 		</tr>
 		<tr>
 			<td colspan="2"><input type="submit" value="Register"></td>

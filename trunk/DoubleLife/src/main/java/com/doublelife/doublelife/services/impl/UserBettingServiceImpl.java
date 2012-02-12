@@ -21,6 +21,7 @@ import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
 import com.doublelife.doublelife.data.BetComp.BetResult;
 import com.doublelife.doublelife.data.BetComp.BetTip;
+import com.doublelife.doublelife.data.BetComp.Location;
 import com.doublelife.doublelife.data.BetComp.Round;
 import com.doublelife.doublelife.data.BetComp.Season;
 import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
@@ -486,5 +487,12 @@ public class UserBettingServiceImpl implements UserBettingService {
 			long currentUserId) {
 		return userBettingDAO.getUserBetTipsByRoundAndComp(roundId, compId, currentUserId);
 		
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getLocation()
+	 */
+	public List<Location> getLocation() {
+		return userBettingDAO.getLocation();
 	}
 }

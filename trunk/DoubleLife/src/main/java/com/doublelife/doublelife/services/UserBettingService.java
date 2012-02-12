@@ -16,6 +16,7 @@ import com.doublelife.doublelife.data.BetComp.BetEventParticipantPrice;
 import com.doublelife.doublelife.data.BetComp.BetEventType;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
 import com.doublelife.doublelife.data.BetComp.BetTip;
+import com.doublelife.doublelife.data.BetComp.Location;
 import com.doublelife.doublelife.data.BetComp.Round;
 import com.doublelife.doublelife.data.BetComp.Season;
 import com.doublelife.doublelife.data.BetComp.UserBettingAccount;
@@ -319,4 +320,10 @@ public interface UserBettingService {
 	 */
 	public List<BetTip> getUserBetTipsByRoundAndComp(long roundId, long compId,
 			long currentUserId);
+	
+	/**
+	 * Returns the list of locations.
+	 * @return
+	 */
+	public List<Location> getLocation();
 }
