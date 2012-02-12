@@ -58,6 +58,7 @@
 		<intercept-url pattern="/sessionInvalid.form" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/login.form" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/userRegistration.htm" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/forgotPassword.htm" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY" />
 		<intercept-url pattern="/stockSearch.htm" access="ROLE_USER"/>
 

@@ -4,9 +4,10 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
-<definition name="login.tvw" template="/WEB-INF/views/login.jsp"/>
-	 <definition name="userRegistration.tvw" template="/WEB-INF/views/userRegistration.jsp"/>
+	<definition name="login.tvw" template="/WEB-INF/views/login.jsp"/>
+	<definition name="userRegistration.tvw" template="/WEB-INF/views/userRegistration.jsp"/>
     <definition name="userRegistrationSuccess.tvw" template="/WEB-INF/views/userRegistrationSuccess.jsp"/>
+    <definition name="forgotPassword.tvw" template="/WEB-INF/views/forgotPassword.jsp"/>
 
 <!-- Default Main Template -->
     <definition name="main.tvw" template="/WEB-INF/templates/main.jsp">

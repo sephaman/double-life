@@ -43,5 +43,6 @@
 		</tr>
 	</table>
 </form:form>
+<a id="loginLink" href="login.htm">Return To Login</a>
 </body>
 </html>
