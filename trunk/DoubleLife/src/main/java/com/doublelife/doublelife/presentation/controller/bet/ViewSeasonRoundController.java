@@ -115,7 +115,7 @@ public class ViewSeasonRoundController {
 		
 		map.addAttribute("betEvents", lstBetEvents);
 		//TODO: apply comp rules
-		if (lstExistingBets.size() > 0) {
+		if (lstExistingBets.size() > 0 || lstExistingBetTips.size() > 0) {
 			map.addAttribute("betSubmitted", true);
 		} else {
 			map.addAttribute("betSubmitted", false);
@@ -144,8 +144,10 @@ public class ViewSeasonRoundController {
 		map.addAttribute("betEvents", lstEvents);
 		
 		processSubmissionRequest(curRequest, lstEvents);
+		long compRulesId = Long.parseLong(curRequest.getParameter(compRulesIdParam));
+		BetCompRules betCompRules = userBettingService.getBetCompRulesByCompId(compRulesId);
 		
-		return new ModelAndView("viewRound.tvw", map);
+		return showRound(roundId, betCompRules.getCompId());
 	}
 	
 	private boolean processSubmissionRequest(HttpServletRequest request, List<BetEvent> lstBetEvents) {
