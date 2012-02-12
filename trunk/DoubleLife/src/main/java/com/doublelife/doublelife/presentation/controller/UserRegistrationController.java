@@ -59,10 +59,10 @@ public class UserRegistrationController {
 		logger.info("User Registration Submission");
 		userValidator.validate(user, result);
 		if (userService.checkForExistingUser(user)) {
-			result.reject("userName", "Username already exists");
+			result.rejectValue("userName", "username.exist");
 		}
 		if (userService.getUserByEmail(user.getEmailAddress()) != null) {
-			result.reject("userName", "Email already registered");
+			result.rejectValue("emailAddress", "email.exist");
 		}
 		
 		if (result.hasErrors()) {
