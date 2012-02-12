@@ -61,7 +61,13 @@ Bet Events
 		</table>
 	</div>
 	<div align="center">
-		<input id="btnSubmit"  type="submit" value="Submit" <c:if test="${betSubmitted == true}">disabled</c:if>/>
+	<table width="100%">
+	<tr>
+		<td align="left"> <c:if test="${not empty prevRound}"><a id="round-${prevRound.id}" href="roundViewer.htm?id=${prevRound.id}&compId=${betComp.id}">${prevRound.roundName}</a></c:if></td>
+		<td align="center"><input id="btnSubmit" type="submit" value="Submit" <c:if test="${betSubmitted == true}">disabled</c:if>/></td>
+		<td align="right"> <c:if test="${not empty nextRound}"><a id="round-${nextRound.id}" href="roundViewer.htm?id=${nextRound.id}&compId=${betComp.id}">${nextRound.roundName}</a></c:if></td>
+	</tr>
+	</table>
 	</div>
 </form>
 </body>

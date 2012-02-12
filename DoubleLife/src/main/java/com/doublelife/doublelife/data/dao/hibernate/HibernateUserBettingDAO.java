@@ -770,4 +770,24 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		}
 			return retVal;
 	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getRoundBySequence(long, long)
+	 */
+	public Round getRoundBySequence(long seqNo, long seasonId) {
+		List<Round> retVal = new ArrayList<Round>();
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Round.class);
+		detachedCriteria.add(Property.forName("seasonid").eq(seasonId));
+		detachedCriteria.add(Property.forName("roundSequenceNumber").eq(seqNo));
+		
+		try {
+			retVal = (List<Round>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving Round", e);
+		}
+		if (retVal != null && !retVal.isEmpty()) {
+			return retVal.get(0);
+		}
+		return null;
+	}
 }

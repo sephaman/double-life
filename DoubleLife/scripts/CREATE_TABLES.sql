@@ -372,3 +372,15 @@ WITH (
 ALTER TABLE bet_tip
   OWNER TO postgres;
   
+CREATE TABLE location
+(
+  id integer NOT NULL,
+  location character varying(50),
+  CONSTRAINT location_pkey PRIMARY KEY (id )
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE location
+  OWNER TO postgres;  
+  

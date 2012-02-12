@@ -326,4 +326,18 @@ public interface UserBettingService {
 	 * @return
 	 */
 	public List<Location> getLocation();
+	
+	/**
+	 * Gets the next round by sequence.
+	 * @param round
+	 * @return
+	 */
+	public Round getNextRoundBySequence(Round round);
+
+	/**
+	 * Gets the previous round by sequence.
+	 * @param thisRound
+	 * @return
+	 */
+	public Round getPrevRoundBySequence(Round thisRound);
 }
