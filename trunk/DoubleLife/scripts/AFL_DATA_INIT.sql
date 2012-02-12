@@ -147,4 +147,53 @@ insert into bet_participant_price values(16, 14, 1.10, now(), 8, 'TRUE');
 insert into bet_participant_price values(17, 11, 1.20, now(), 9, 'TRUE');
 insert into bet_participant_price values(18, 18, 1.30, now(), 9, 'TRUE');
 
+-- set up round two
+insert into bet_event values(11, 1, now(), true, -1, 'Brisbane vs Carlton', 2, 13, 7);
+insert into bet_event values(12, 1, now(), true, -1, 'Essendon vs Port Adelaide', 2, 4, 11);
+insert into bet_event values(13, 1, now(), true, -1, 'Sydney vs Fremantle', 2, 6, 12);
+insert into bet_event values(14, 1, now(), true, -1, 'West Coast vs Melbourne', 2, 14, 1);
+insert into bet_event values(15, 1, now(), true, -1, 'Adelaide vs Western Bulldogs', 2, 10, 17);
+insert into bet_event values(16, 1, now(), true, -1, 'Collingwood vs Richmond', 2, 8, 9);
+insert into bet_event values(17, 1, now(), true, -1, 'North Melbourne vs GWS', 2, 5, 15);
+insert into bet_event values(18, 1, now(), true, -1, 'St Kilda vs Gold Coast', 2, 18, 16);
+insert into bet_event values(19, 1, now(), true, -1, 'Geelong vs Hawthorn', 2, 2, 3);
+
+insert into participant_betevent values(11, 13);
+insert into participant_betevent values(11, 7);
+insert into participant_betevent values(12, 4);
+insert into participant_betevent values(12, 11);
+insert into participant_betevent values(13, 6);
+insert into participant_betevent values(13, 12);
+insert into participant_betevent values(14, 14);
+insert into participant_betevent values(14, 1);
+insert into participant_betevent values(15, 10);
+insert into participant_betevent values(15, 17);
+insert into participant_betevent values(16, 8);
+insert into participant_betevent values(16, 9);
+insert into participant_betevent values(17, 5);
+insert into participant_betevent values(17, 15);
+insert into participant_betevent values(18, 18);
+insert into participant_betevent values(18, 16);
+insert into participant_betevent values(19, 2);
+insert into participant_betevent values(19, 3);
+
+
+insert into bet_participant_price values(21, 13, 1.20, now(), 11, 'TRUE');
+insert into bet_participant_price values(22, 7, 1.30, now(), 11, 'TRUE');
+insert into bet_participant_price values(23, 4, 1.40, now(), 12, 'TRUE');
+insert into bet_participant_price values(24, 11, 1.50, now(), 12, 'TRUE');
+insert into bet_participant_price values(25, 6, 1.60, now(), 13, 'TRUE');
+insert into bet_participant_price values(26, 12, 1.70, now(), 13, 'TRUE');
+insert into bet_participant_price values(27, 14, 1.80, now(), 14, 'TRUE');
+insert into bet_participant_price values(28, 1, 1.90, now(), 14, 'TRUE');
+insert into bet_participant_price values(29, 10, 1.80, now(), 15, 'TRUE');
+insert into bet_participant_price values(30, 17, 1.70, now(), 15, 'TRUE');
+insert into bet_participant_price values(31, 8, 1.60, now(), 16, 'TRUE');
+insert into bet_participant_price values(32, 9, 1.50, now(), 16, 'TRUE');
+insert into bet_participant_price values(33, 5, 1.40, now(), 17, 'TRUE');
+insert into bet_participant_price values(34, 15, 1.30, now(), 17, 'TRUE');
+insert into bet_participant_price values(35, 18, 1.20, now(), 18, 'TRUE');
+insert into bet_participant_price values(36, 16, 1.10, now(), 18, 'TRUE');
+insert into bet_participant_price values(37, 2, 1.20, now(), 19, 'TRUE');
+insert into bet_participant_price values(88, 3, 1.30, now(), 19, 'TRUE');
 
