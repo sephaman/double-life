@@ -4,9 +4,9 @@
 package com.doublelife.doublelife.services.impl;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -343,10 +343,9 @@ public class UserBettingServiceImpl implements UserBettingService {
 	 */
 	public Map<User, Double> getLeaderBoardForCompetition(
 			long betttingCompetitionId) {
-		Map<User, Double> mapUserLeaderboard = new HashMap<User, Double>();
+		Map<User, Double> mapUserLeaderboard = new LinkedHashMap<User, Double>();
 		
 		List<UserBettingAccount> lstUserBettingAccount = userBettingDAO.getLstUserBettingAccountByCompId(betttingCompetitionId);
-		Collections.sort(lstUserBettingAccount);
 		
 		for (UserBettingAccount thisUserAct : lstUserBettingAccount) {
 			User thisUser = userDAO.getUserById(thisUserAct.getUserId());

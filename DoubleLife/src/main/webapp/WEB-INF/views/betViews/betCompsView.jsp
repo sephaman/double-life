@@ -8,7 +8,11 @@
 <div class="body_header">
 	Join Fantasy Betting Competition
 </div>
-
+<div style="color:red;">
+<c:if test="${not empty errorMsg}">
+	${errorMsg}
+</c:if>
+</div>
 <c:if test="${not empty betComps}">
 	<table class="regular_table">
 	<c:forEach items="${betComps}" var="thisBetComp">
