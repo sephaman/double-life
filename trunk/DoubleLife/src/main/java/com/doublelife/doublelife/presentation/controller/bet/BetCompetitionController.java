@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.doublelife.doublelife.data.User;
 import com.doublelife.doublelife.data.BetComp.BetCompetition;
 import com.doublelife.doublelife.services.UserBettingService;
 import com.doublelife.doublelife.services.utils.SecurityUtil;
@@ -46,15 +47,38 @@ public class BetCompetitionController {
 	public ModelAndView joinBetCompetition(@RequestParam("id") long compId) {
 		logger.info("Bet Comps Controller join: GET");
 		BetCompetition betComp = userBettingService.getCompetitionById(compId);
-		betComp.getLstUser().add(SecurityUtil.getCurrentUser());
-		userBettingService.createBetCompetition(betComp);
-		userBettingService.createNewBettingAccount(betComp, SecurityUtil.getCurrentUserId());
 		ModelMap map = new ModelMap();
-		map.addAttribute("registered", true);
-		map.addAttribute("joinedComp", betComp);
-		return new ModelAndView("betCompsSuccessJoinView.tvw", map);
+		if (!betCompContainsUser(betComp)) {
+			betComp.getLstUser().add(SecurityUtil.getCurrentUser());
+			userBettingService.createBetCompetition(betComp);
+			userBettingService.createNewBettingAccount(betComp, SecurityUtil.getCurrentUserId());
+			
+			map.addAttribute("registered", true);
+			map.addAttribute("joinedComp", betComp);
+			return new ModelAndView("betCompsSuccessJoinView.tvw", map);
+		} else {
+			map.addAttribute("errorMsg", "Already registered for this competition!");
+			map.addAttribute("betComps", userBettingService.getAllCurrentCompetitions());
+			return new ModelAndView("betCompsView.tvw", map);
+		}
 	}
 	
+	/**
+	 * Returns true if user is in the competition already.
+	 * @param betComp
+	 * @return
+	 */
+	private boolean betCompContainsUser(BetCompetition betComp) {
+		
+		for (User thisUser : betComp.getLstUser()) {
+			if (thisUser.getId() == SecurityUtil.getCurrentUserId()) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
 	/**
 	 * @param userBettingService the userBettingService to set
 	 */
