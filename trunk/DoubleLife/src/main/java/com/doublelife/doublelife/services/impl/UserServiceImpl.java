@@ -133,5 +133,9 @@ public class UserServiceImpl implements UserService {
 			return false;
 		}
 	}
+	
+	public boolean checkPassword(User user, String pwd) {
+		return passwordEncoder.isPasswordValid(user.getPassword(), pwd, "");
+	}
 
 }

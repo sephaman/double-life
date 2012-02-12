@@ -79,4 +79,11 @@ public interface UserService {
 	 */
 	public boolean updateUserPassword(User user, String newPw);
 	
+	/**
+	 * Checks the given password.
+	 * @param pwd
+	 * @return
+	 */
+	public boolean checkPassword(User user, String pwd);
+	
 }
