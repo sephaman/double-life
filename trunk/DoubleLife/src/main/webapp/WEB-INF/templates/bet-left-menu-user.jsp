@@ -29,10 +29,15 @@
 					<a id="viewCompLeaderboard" href="betCompLeaderboardView.htm?id=1" class="menuLink">View Comp Leaderboard</a>
 			</td>
 		</tr>
-			<tr>
-				<td valign="middle" style="font-size: normal" class="button">
-						<a id="viewSeasons" href="viewSeasons.htm" class="menuLink">View Seasons</a>
-				</td>
-			</tr>
+		<tr>
+			<td valign="middle" style="font-size: normal" class="button">
+					<a id="viewSeasons" href="viewSeasons.htm" class="menuLink">View Seasons</a>
+			</td>
+		</tr>
+		<tr>
+			<td valign="middle" style="font-size: normal" class="button">
+					<a id="viewUserDetails" href="userDetails.htm" class="menuLink">User Details</a>
+			</td>
+		</tr>
 	</table>
 </div>

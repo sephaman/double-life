@@ -44,21 +44,21 @@
 					<a id="viewCompLeaderboard" href="betCompLeaderboardView.htm?id=1" class="menuLink">View Comp Leaderboard</a>
 			</td>
 		</tr>
-			<tr>
-				<td valign="middle" style="font-size: normal" class="button">
-						<a id="createSeason" href="createSeason.htm" class="menuLink">Create Season</a>
-				</td>
-			</tr>
-			<tr>
-				<td valign="middle" style="font-size: normal" class="button">
-						<a id="createRound" href="createRound.htm" class="menuLink">Create Round</a>
-				</td>
-			</tr>
-			<tr>
-				<td valign="middle" style="font-size: normal" class="button">
-						<a id="viewSeasons" href="viewSeasons.htm" class="menuLink">View Seasons</a>
-				</td>
-			</tr>
+		<tr>
+			<td valign="middle" style="font-size: normal" class="button">
+					<a id="createSeason" href="createSeason.htm" class="menuLink">Create Season</a>
+			</td>
+		</tr>
+		<tr>
+			<td valign="middle" style="font-size: normal" class="button">
+					<a id="createRound" href="createRound.htm" class="menuLink">Create Round</a>
+			</td>
+		</tr>
+		<tr>
+			<td valign="middle" style="font-size: normal" class="button">
+					<a id="viewSeasons" href="viewSeasons.htm" class="menuLink">View Seasons</a>
+			</td>
+		</tr>
 		</c:if>
 	</table>
 </div>
