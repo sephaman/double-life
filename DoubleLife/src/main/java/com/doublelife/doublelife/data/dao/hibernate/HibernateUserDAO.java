@@ -147,4 +147,37 @@ public class HibernateUserDAO implements UserDAO {
 		}
 		return null;
 	}
+
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserDAO#getUserByEmail(java.lang.String)
+	 */
+	public User getUserByEmail(String emailAddress) {
+		List<User> retVal = null;
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(User.class);
+		detachedCriteria.add(Property.forName("emailAddress").eq(emailAddress));
+		
+		try {
+			retVal = (List<User>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving user with email:" + emailAddress, e);
+		}
+		if (retVal != null && !retVal.isEmpty()) {
+			return retVal.get(0);
+		}
+		return null;
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserDAO#updateUser(com.doublelife.doublelife.data.User)
+	 */
+	public boolean updateUser(User user) {
+		try {
+			//default user to have user role
+			hibernate.update(user);
+			return true;
+		} catch (DataAccessException e) {
+			logger.error("Error updating user.", e);
+			return false;
+		}
+	}
 }

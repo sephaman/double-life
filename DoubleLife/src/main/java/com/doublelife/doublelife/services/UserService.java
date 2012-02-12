@@ -63,4 +63,20 @@ public interface UserService {
 	 * @param userRoleId
 	 */
 	public Role getUserRole(long userRoleId);
+
+	/**
+	 * Retrieves user by email address.
+	 * @param emailAddress
+	 * @return
+	 */
+	public User getUserByEmail(String emailAddress);
+
+
+	/**
+	 * Updates the password of the user.
+	 * @param newPw
+	 * @return
+	 */
+	public boolean updateUserPassword(User user, String newPw);
+	
 }

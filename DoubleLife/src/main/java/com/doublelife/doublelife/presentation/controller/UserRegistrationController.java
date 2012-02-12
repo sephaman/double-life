@@ -21,7 +21,6 @@ import com.doublelife.doublelife.services.UserService;
  * Handles requests for the user registration page.
  */
 @Controller
-@RequestMapping("/userRegistration.htm")
 @SessionAttributes("user")
 public class UserRegistrationController {
 
@@ -40,7 +39,7 @@ public class UserRegistrationController {
 	 * Displays the user registration page.
 	 * @return 
 	 */
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(value="/userRegistration.htm", method=RequestMethod.GET)
 	public ModelAndView initUserRegistrationPage() {
 		logger.info("Welcome to user registration!");
 		User user = new User();
@@ -55,12 +54,15 @@ public class UserRegistrationController {
 	 * @param result 
 	 * @return 
 	 */
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(value="/userRegistration.htm", method=RequestMethod.POST)
 	public ModelAndView handleSubmit(@ModelAttribute("user") User user, BindingResult result) {
 		logger.info("User Registration Submission");
 		userValidator.validate(user, result);
 		if (userService.checkForExistingUser(user)) {
 			result.reject("userName", "Username already exists");
+		}
+		if (userService.getUserByEmail(user.getEmailAddress()) != null) {
+			result.reject("userName", "Email already registered");
 		}
 		
 		if (result.hasErrors()) {
@@ -71,6 +73,49 @@ public class UserRegistrationController {
 			emailService.sendMail("Welcome to Tip n' Trade!", getWelcomeEmailText(user), user.getEmailAddress());
 			return new ModelAndView("userRegistrationSuccess.tvw");
 		}
+	}
+	
+	/**
+	 * Displays the forgot password page.
+	 * @param user 
+	 * @param result 
+	 * @return 
+	 */
+	@RequestMapping(value="/forgotPassword.htm", method=RequestMethod.GET)
+	public ModelAndView showForgotPassword() {
+		logger.info("User Forgot Password");
+		ModelMap map = new ModelMap();
+		User user = new User();
+		map.addAttribute("user", user);
+		return new ModelAndView("forgotPassword.tvw", map);
+	}
+	
+	/**
+	 * Displays the forgot password page.
+	 * @param user 
+	 * @param result 
+	 * @return 
+	 */
+	@RequestMapping(value="/forgotPassword.htm", method=RequestMethod.POST)
+	public ModelAndView submitForgotPassword(@ModelAttribute("user") User user) {
+		logger.info("User Forgot Password Submit");
+		boolean result = false;
+		User retrievedUser = userService.getUserByEmail(user.getEmailAddress());
+		ModelMap map = new ModelMap();
+		if (retrievedUser != null) {
+			Double randomVal = Math.random() * 1000;
+			String newPw = "newPassword" + randomVal.intValue();
+			result = userService.updateUserPassword(retrievedUser, newPw);
+			if (result == true) {
+				emailService.sendMail("Tip n' Trade Password Reset", getForgotPwdEmailText(retrievedUser, newPw), user.getEmailAddress());
+			}
+		} else {
+			map.addAttribute("errorMsg", "User with submitted email address " + user.getEmailAddress() + " not found");
+		}
+		
+		map.addAttribute("user", retrievedUser);
+		map.addAttribute("success", result);
+		return new ModelAndView("forgotPassword.tvw", map);
 	}
 
 	/**
@@ -83,6 +128,13 @@ public class UserRegistrationController {
 		
 		txt += "This email confirms your registration.\r\n\r\n Good luck!";
 		
+		return txt;
+	}
+	
+	private String getForgotPwdEmailText(User user, String newPw) {
+		String txt = "Here are your login details for Tip n' Trade\r\n\r\n";
+		txt += "Username: " + user.getUserName() + "\r\n\r\n";
+		txt += "Password: " + newPw;
 		return txt;
 	}
 

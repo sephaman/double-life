@@ -61,4 +61,18 @@ public interface UserDAO {
 	 * @return
 	 */
 	public Role getRole(String roleName);
+
+	/**
+	 * Gets user by email address.
+	 * @param emailAddress
+	 * @return
+	 */
+	public User getUserByEmail(String emailAddress);
+
+	/**
+	 * Updates the given user.
+	 * @param user
+	 * @return
+	 */
+	public boolean updateUser(User user);
 }
