@@ -309,5 +309,13 @@ public interface UserBettingDAO {
 	 * @return
 	 */
 	public List<Location> getLocation();
+
+	/**
+	 * Returns round by season and sequence.
+	 * @param l
+	 * @param m 
+	 * @return
+	 */
+	public Round getRoundBySequence(long seqNo, long seasonId);
 	
 }

@@ -19,7 +19,7 @@
 				<tr>
 					<c:forEach items="${thisRoundLst.value}" var="thisRound">
 					
-						<td><a id="round-${thisRound.id}" href="roundViewer.htm?id=${thisRound.id}">${thisRound.roundName}</a></td>
+						<td><a id="round-${thisRound.id}" href="roundViewer.htm?id=${thisRound.id}&compId=${betComp.id}">${thisRound.roundName}</a></td>
 					
 					</c:forEach>
 				</tr>

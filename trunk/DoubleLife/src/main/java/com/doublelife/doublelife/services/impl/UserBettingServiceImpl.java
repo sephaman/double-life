@@ -495,4 +495,18 @@ public class UserBettingServiceImpl implements UserBettingService {
 	public List<Location> getLocation() {
 		return userBettingDAO.getLocation();
 	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getNextRoundBySequence(com.doublelife.doublelife.data.BetComp.Round)
+	 */
+	public Round getNextRoundBySequence(Round round) {
+		return userBettingDAO.getRoundBySequence(round.getRoundSequenceNumber() + 1, round.getSeasonid());
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserBettingService#getPrevRoundBySequence(com.doublelife.doublelife.data.BetComp.Round)
+	 */
+	public Round getPrevRoundBySequence(Round thisRound) {
+		return userBettingDAO.getRoundBySequence(thisRound.getRoundSequenceNumber() - 1, thisRound.getSeasonid());
+	}
 }

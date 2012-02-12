@@ -110,6 +110,9 @@ public class ViewSeasonRoundController {
 		}
 		
 		map.addAttribute("thisRound", thisRound);
+		map.addAttribute("nextRound", userBettingService.getNextRoundBySequence(thisRound));
+		map.addAttribute("prevRound", userBettingService.getPrevRoundBySequence(thisRound));
+		
 		map.addAttribute("betEvents", lstBetEvents);
 		//TODO: apply comp rules
 		if (lstExistingBets.size() > 0) {
