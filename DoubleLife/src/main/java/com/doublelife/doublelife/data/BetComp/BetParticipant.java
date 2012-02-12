@@ -32,6 +32,9 @@ public class BetParticipant {
 	
 	@Column(name = "primaryBetEventTypeId", nullable = false)
 	private long primaryBetEventTypeId;
+	
+	@Column(name = "icon_url", nullable = true)
+	private String iconUrl;
 
 	/**
 	 * @return the id
@@ -87,5 +90,19 @@ public class BetParticipant {
 	 */
 	public void setPrimaryBetEventTypeId(long primaryBetEventTypeId) {
 		this.primaryBetEventTypeId = primaryBetEventTypeId;
+	}
+
+	/**
+	 * @return the iconUrl
+	 */
+	public String getIconUrl() {
+		return iconUrl;
+	}
+
+	/**
+	 * @param iconUrl the iconUrl to set
+	 */
+	public void setIconUrl(String iconUrl) {
+		this.iconUrl = iconUrl;
 	}
 }
