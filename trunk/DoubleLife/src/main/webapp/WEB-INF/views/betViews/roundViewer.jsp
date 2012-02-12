@@ -33,7 +33,7 @@ Bet Events
 		<table width="50">
 			<thead>
 				<tr>
-					<th>Stake</th><th>Odds</th><th>Tip</th><th>Event</th><th>Tip</th><th>Odds</th><th>Stake</th>
+					<th>Stake</th><th>Odds</th><th>Tip</th><th/><th>Event</th><th/><th>Tip</th><th>Odds</th><th>Stake</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -52,7 +52,17 @@ Bet Events
 							<c:if test="${thisBetEvent.selectionId == thisBetEvent.homeParticipantId}">checked </c:if> 
 							<c:if test="${betSubmitted == true}">disabled</c:if>/>
 						</td>
+						<td width="5%" align="center">
+							<c:if test="${not empty thisBetEvent.homeIconUrl}">
+								<img src="<c:url value="${thisBetEvent.homeIconUrl}"/>" width="30" height="30"/>
+							</c:if>
+						</td>
 						<td width="20%" align="center"><a id="betEvent-${thisBetEvent.betEventId}" href="betViewer.htm?id=${thisBetEvent.betEventId}">${thisBetEvent.betEventName}</a></td>
+						<td width="5%" align="center">
+							<c:if test="${not empty thisBetEvent.awayIconUrl}">
+								<img src="<c:url value="${thisBetEvent.awayIconUrl}"/>" width="30" height="30"/>
+							</c:if>
+						</td>
 						<td width="5%" align="center">
 							<input id="tip-${thisBetEvent.betEventId}" name="tip-${thisBetEvent.betEventId}" type="radio" value="${thisBetEvent.awayParticipantId}"
 							<c:if test="${thisBetEvent.selectionId == thisBetEvent.awayParticipantId}">checked </c:if> 
@@ -73,11 +83,11 @@ Bet Events
 	</div>
 	<div align="center">
 	<div id="msgConfirmDiv" style="color: red"></div>
+	<input id="btnSubmit" type="button" value="Submit" onclick="submitter(this.value)" <c:if test="${betSubmitted == true}">disabled</c:if>/>
 	<table width="100%">
 	<tr>
-		<td align="left"> <c:if test="${not empty prevRound}"><a id="round-${prevRound.id}" href="roundViewer.htm?id=${prevRound.id}&compId=${betComp.id}">${prevRound.roundName}</a></c:if></td>
-		<td align="center"><input id="btnSubmit" type="button" value="Submit" onclick="submitter(this.value)" <c:if test="${betSubmitted == true}">disabled</c:if>/></td>
-		<td align="right"> <c:if test="${not empty nextRound}"><a id="round-${nextRound.id}" href="roundViewer.htm?id=${nextRound.id}&compId=${betComp.id}">${nextRound.roundName}</a></c:if></td>
+		<td align="left"> <c:if test="${not empty prevRound}"><a id="round-${prevRound.id}" href="roundViewer.htm?id=${prevRound.id}&compId=${betComp.id}"><<-${prevRound.roundName}</a></c:if></td>
+		<td align="right"> <c:if test="${not empty nextRound}"><a id="round-${nextRound.id}" href="roundViewer.htm?id=${nextRound.id}&compId=${betComp.id}">${nextRound.roundName}->></a></c:if></td>
 	</tr>
 	</table>
 	</div>

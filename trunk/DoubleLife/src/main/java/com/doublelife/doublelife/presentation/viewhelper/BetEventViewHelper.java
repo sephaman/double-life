@@ -18,6 +18,8 @@ public class BetEventViewHelper {
 		private double homeOdds;
 		private double awayOdds;
 		private String betEventName;
+		private String homeIconUrl;
+		private String awayIconUrl;
 		
 		//user selection data
 		private double betValue = 0.00;
@@ -142,5 +144,29 @@ public class BetEventViewHelper {
 		 */
 		public void setSelectionId(long selectionId) {
 			this.selectionId = selectionId;
+		}
+		/**
+		 * @return the homeIconUrl
+		 */
+		public String getHomeIconUrl() {
+			return homeIconUrl;
+		}
+		/**
+		 * @param homeIconUrl the homeIconUrl to set
+		 */
+		public void setHomeIconUrl(String homeIconUrl) {
+			this.homeIconUrl = homeIconUrl;
+		}
+		/**
+		 * @return the awayIconUrl
+		 */
+		public String getAwayIconUrl() {
+			return awayIconUrl;
+		}
+		/**
+		 * @param awayIconUrl the awayIconUrl to set
+		 */
+		public void setAwayIconUrl(String awayIconUrl) {
+			this.awayIconUrl = awayIconUrl;
 		}
 }
