@@ -112,4 +112,26 @@ public class UserServiceImpl implements UserService {
 	public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
 		this.passwordEncoder = passwordEncoder;
 	}
+	
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserService#getUserByEmail(java.lang.String)
+	 */
+	public User getUserByEmail(String emailAddress) {
+		return userDAO.getUserByEmail(emailAddress);
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.UserService#updateUserPassword(java.lang.String)
+	 */
+	public boolean updateUserPassword(User user, String newPw) {
+		try {
+			user.setPassword(passwordEncoder.encodePassword(newPw, ""));
+			return userDAO.updateUser(user);
+		} catch(Exception ex) {
+			logger.error("couldnt hash password while saving user: " + user.getUserName());
+			return false;
+		}
+	}
+
 }
