@@ -28,6 +28,13 @@
     	<put-attribute name="body" value="/WEB-INF/views/fantasyBetHome.jsp" />
     </definition>
     
+    <definition name="userDetails.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/userDetails.jsp" />
+    </definition>
+    <definition name="userResetPwd.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/userResetPassword.jsp" />
+    </definition>
+    
     <!-- Stock Views -->
     <definition name="stockSearch.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/stockSearch.jsp" />
