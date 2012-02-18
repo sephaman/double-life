@@ -9,7 +9,7 @@
 		<!-- title -->
 		<tr>
 			<td align="left" valign="middle">
-				<img src="<c:url value="/resources/img/tipntradeHeader.jpg"/>" alt="header logo" width="140" height="50" alt="tipNtrade"/>
+				<img src="<c:url value="/resources/img/tipntradeHeader2.jpg"/>" alt="header logo" width="180" height="70" alt="tipNtrade"/>
 			</td>
 			<td align="right" valign="bottom" class="screenModeSubTitle" style="color:#990000">
 				Current User: ${username_head}

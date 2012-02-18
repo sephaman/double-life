@@ -6,7 +6,7 @@
 	<title>Tip n' Trade</title>
 </head>
 <body>
-<img src="<c:url value="/resources/img/tipntradeHeader.jpg"/>" alt="header logo" width="170" height="70" alt="tipNtrade"/>
+<img src="<c:url value="/resources/img/tipntradeHeader2.jpg"/>" alt="header logo" width="170" height="70" alt="tipNtrade"/>
 <h1>
 	Forgot your password?
 </h1>

@@ -39,5 +39,15 @@
 					<a id="viewUserDetails" href="userDetails.htm" class="menuLink">User Details</a>
 			</td>
 		</tr>
+		<tr>
+			<td valign="middle" style="font-size: normal" class="button">
+					<a id="viewForum" href="viewForum.htm" class="menuLink">View Forum</a>
+			</td>
+		</tr>
+		<tr>
+			<td valign="middle" style="font-size: normal" class="button">
+					<a id="viewAllBets" href="viewAllBets.htm" class="menuLink">View All Bets</a>
+			</td>
+		</tr>
 	</table>
 </div>
