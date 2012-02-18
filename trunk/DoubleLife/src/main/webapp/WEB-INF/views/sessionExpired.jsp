@@ -20,7 +20,7 @@ props.load(pageContext.getServletContext().getResourceAsStream("/META-INF/MANIFE
 	</head>
 	<body>
 		<div id="loginPanel">
-			<img src="<c:url value="/resources/img/tipntradeHeader.jpg"/>" alt="header logo" width="140" height="50" alt="tipNtrade"/>
+			<img src="<c:url value="/resources/img/tipntradeHeader2.jpg"/>" alt="header logo" width="140" height="50" alt="tipNtrade"/>
 			<p/>
 			<h4>Session Expired</h4>
 			<p/>

@@ -15,7 +15,7 @@
 	<body>
 		
 		<div id="loginPanel" class="login_panels">
-			<img src="<c:url value="/resources/img/tipntradeHeader.jpg"/>" alt="header logo" width="170" height="70" alt="tipNtrade"/>
+			<img src="<c:url value="/resources/img/tipntradeHeader2.jpg"/>" alt="header logo" width="170" height="70" alt="tipNtrade"/>
 			<p/>
 			<h3>Life Simulating Financial Games</h3>
 			<div class="errorMessage" style="color:#FFE09D;font-size:1.1em;">

@@ -49,6 +49,11 @@
 		class="com.doublelife.doublelife.services.impl.CompetitionServiceImpl">
 		<property name="competitionDAO" ref="competitionDAO"></property>
 	</bean>
+	
+	<bean id="forumService"
+		class="com.doublelife.doublelife.services.impl.ForumServiceImpl">
+		<property name="forumDAO" ref="forumDAO"></property>
+	</bean>
 
 <!-- DAOs -->
 	<bean id="userBettingDAO"
@@ -83,6 +88,11 @@
 	
 	<bean id="bankingDAO"
 		class="com.doublelife.doublelife.data.dao.hibernate.HibernateBankingDAO">
+		<constructor-arg ref="sessionFactory"></constructor-arg>
+	</bean>
+	
+	<bean id="forumDAO"
+		class="com.doublelife.doublelife.data.dao.hibernate.HibernateForumDAO">
 		<constructor-arg ref="sessionFactory"></constructor-arg>
 	</bean>
 	

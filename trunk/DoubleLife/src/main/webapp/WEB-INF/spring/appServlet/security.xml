@@ -64,7 +64,7 @@
 
 		<form-login login-page="/login.form"
 			authentication-failure-url="/login.form?login_error=true"
-			default-target-url="/doubleLifeHome.htm"
+			default-target-url="/fantasyBetHome.htm"
 			always-use-default-target="true" />
 
 		<logout logout-success-url="/login.form"
