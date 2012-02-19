@@ -120,5 +120,6 @@ public final class CommonModelHelper {
 		lstBetViewNames.add("userResetPwd.tvw");
 		lstBetViewNames.add("viewAllBets.tvw");
 		lstBetViewNames.add("viewForum.tvw");
+		lstBetViewNames.add("viewForumTopic.tvw");
 	}
 }

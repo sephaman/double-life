@@ -33,6 +33,9 @@ public class ForumEntry {
 	@Column(name = "forum_post")
 	private String forumPost;
 
+	@Column(name = "username")
+	private String userName;
+	
 	/**
 	 * @return the id
 	 */
@@ -103,6 +106,18 @@ public class ForumEntry {
 		this.forumPost = forumPost;
 	}
 
-	
-	
+	/**
+	 * @return the userName
+	 */
+	public String getUserName() {
+		return userName;
+	}
+
+	/**
+	 * @param userName the userName to set
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 }

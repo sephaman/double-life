@@ -17,12 +17,17 @@
 		</tr>
 	  		<c:forEach items="${topics}" var="thisTopic">
 				<tr>
-				${thisTopic.topicName}
+					<td>
+						<a id="topic-${thisTopic.id}" href="viewForumTopic.htm?topicId=${thisTopic.id}">${thisTopic.topicName}</a>
+					</td>
 				</tr>
 			</c:forEach>
 			<tr>
 				<td>
-					<input />
+					Create Topic:
+				</td>
+				<td>
+					<input id="newTopic" name="newTopic"/>
 				</td>
 			</tr>
 			<tr>
