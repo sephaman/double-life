@@ -110,6 +110,9 @@
     <definition name="viewForum.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/betViews/viewForum.jsp" />
     </definition>
+    <definition name="viewForumTopic.tvw" extends="main.tvw">
+    	<put-attribute name="body" value="/WEB-INF/views/betViews/viewForumTopic.jsp" />
+    </definition>
     <definition name="viewAllBets.tvw" extends="main.tvw">
     	<put-attribute name="body" value="/WEB-INF/views/betViews/viewAllBets.jsp" />
     </definition>

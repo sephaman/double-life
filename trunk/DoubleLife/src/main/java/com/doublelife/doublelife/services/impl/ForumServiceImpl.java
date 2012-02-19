@@ -5,6 +5,7 @@ package com.doublelife.doublelife.services.impl;
 
 import java.util.List;
 
+import com.doublelife.doublelife.data.BetComp.ForumEntry;
 import com.doublelife.doublelife.data.BetComp.ForumTopic;
 import com.doublelife.doublelife.data.dao.ForumDAO;
 import com.doublelife.doublelife.services.ForumService;
@@ -31,6 +32,27 @@ public class ForumServiceImpl implements ForumService {
 	 */
 	public boolean addForumTopic(ForumTopic forumTopic) {
 		return forumDAO.addForumTopic(forumTopic);
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.services.ForumService#getForumEntries(long)
+	 */
+	public List<ForumEntry> getForumEntries(long topicId) {
+		return forumDAO.getForumEntries(topicId);
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.services.ForumService#getForumTopicById(long)
+	 */
+	public ForumTopic getForumTopicById(long forumTopicId) {
+		return forumDAO.getForumTopicById(forumTopicId);
+	}
+	
+	/**
+	 * @see com.doublelife.doublelife.services.ForumService#addForumEntry(com.doublelife.doublelife.data.BetComp.ForumEntry)
+	 */
+	public boolean addForumEntry(ForumEntry forumEntry) {
+		return forumDAO.addForumEntry(forumEntry);
 	}
 	
 	/**
