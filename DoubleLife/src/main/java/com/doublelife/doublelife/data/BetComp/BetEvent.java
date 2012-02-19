@@ -61,6 +61,9 @@ public class BetEvent {
 	@Column(name = "away_participant")
 	private long awayParticipant;
 	
+	@Column(name = "location")
+	private String location;
+	
 	@Transient
 	private List<BetEventParticipantPrice> lstBetEventParticipantPrice;
 
@@ -220,5 +223,19 @@ public class BetEvent {
 	 */
 	public void setAwayParticipant(long awayParticipant) {
 		this.awayParticipant = awayParticipant;
+	}
+
+	/**
+	 * @return the location
+	 */
+	public String getLocation() {
+		return location;
+	}
+
+	/**
+	 * @param location the location to set
+	 */
+	public void setLocation(String location) {
+		this.location = location;
 	}
 }

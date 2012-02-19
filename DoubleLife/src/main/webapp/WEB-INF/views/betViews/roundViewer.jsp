@@ -57,7 +57,7 @@ Bet Events
 								<img src="<c:url value="${thisBetEvent.homeIconUrl}"/>" width="30" height="30"/>
 							</c:if>
 						</td>
-						<td width="20%" align="center"><a id="betEvent-${thisBetEvent.betEventId}" href="betViewer.htm?id=${thisBetEvent.betEventId}">${thisBetEvent.betEventName}</a></td>
+						<td width="20%" align="center">${thisBetEvent.betEventName}</td>
 						<td width="5%" align="center">
 							<c:if test="${not empty thisBetEvent.awayIconUrl}">
 								<img src="<c:url value="${thisBetEvent.awayIconUrl}"/>" width="30" height="30"/>
