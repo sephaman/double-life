@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div id="header" class="menuHeader">
+<div id="header" class="sideMenuHeader">
 	<c:if test="${menuType eq 'bet'}">
 		<c:if test="${rolename == 'ROLE_ADMIN'}">
 			<jsp:include page="bet-left-menu.jsp"></jsp:include>

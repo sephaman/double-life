@@ -17,7 +17,7 @@
 		<tiles:insertAttribute name="top-menu" />
 		<table width="100%" border="0">
 			<tr>
-				<td width="20%" align="left" valign="top">
+				<td width="20%" align="left" valign="top" style="background-color:#104E8B;height:80%;position: relative;">
 					<tiles:insertAttribute name="left-menu" />
 				</td>
 				<td align="left" valign="top">
@@ -25,7 +25,11 @@
 					<tiles:insertAttribute name="body" />
 				</td>
 			</tr>
+			<tr>
+				<td align="center" valign="bottom" >
+					<tiles:insertAttribute name="footer" />
+				</td>
+			</tr>
 		</table>
-		<tiles:insertAttribute name="footer" />
 	</body>
 </html>
