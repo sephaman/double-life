@@ -4,7 +4,7 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Properties" %>
-<div id="header" class="menuHeader">
+<div id="sidemenu">
 	<table width="100%" border="0">
 	
 	
