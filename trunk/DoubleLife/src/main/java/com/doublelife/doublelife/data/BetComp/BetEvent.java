@@ -24,6 +24,9 @@ import javax.persistence.Transient;
 @Entity (name = "bet_event")
 public class BetEvent {
 	
+	public static long DRAW_VALUE = -999;
+	public static long PENDING = -1;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")

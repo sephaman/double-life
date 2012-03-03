@@ -59,6 +59,7 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Bet.class);
 		detachedCriteria.add(Property.forName("userId").eq(userId));
 		detachedCriteria.add(Property.forName("betResult").eq(BetResult.PENDING));
+		detachedCriteria.addOrder(Order.asc("id"));
 		
 		try {
 			retVal = (List<Bet>) hibernate.findByCriteria(detachedCriteria);
@@ -790,5 +791,25 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 			return retVal.get(0);
 		}
 		return null;
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getPendingBetEventsWithSelectedWinners()
+	 */
+	public List<BetEvent> getPendingBetEventsWithSelectedWinners() {
+		List<BetEvent> retVal = new ArrayList<BetEvent>();
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetEvent.class);
+		detachedCriteria.add(Property.forName("isOutcomePending").eq(true));
+		detachedCriteria.add(Property.forName("selectionWinnerId").ne(BetEvent.PENDING));
+		detachedCriteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		
+		try {
+			retVal = (List<BetEvent>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving bet events", e);
+		}
+		
+		return retVal;
+		
 	}
 }

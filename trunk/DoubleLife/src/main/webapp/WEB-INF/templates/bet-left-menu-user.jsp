@@ -49,5 +49,10 @@
 					<a id="viewAllBets" href="viewAllBets.htm" class="menuLink">View All Bets</a>
 			</td>
 		</tr>
+		<tr>
+			<td valign="middle" style="font-size: normal" class="button">
+					<a id="viewUserBetHistory" href="viewUserBetHistory.htm" class="menuLink">View Bet History</a>
+			</td>
+		</tr>
 	</table>
 </div>

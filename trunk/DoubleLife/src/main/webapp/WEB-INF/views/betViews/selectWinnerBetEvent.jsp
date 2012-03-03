@@ -10,20 +10,16 @@
 	Select Winner For Bet Event
 </h1>
 <form:form method="POST" commandName="betEvent" name="sbtForm" id="sbtForm">
-	<table>
+	<table class="regular_table">
 			<tr>
 				<td>Participants :</td>
 				<c:forEach items="${lstParticipant}" var="thisPart">
 					<td>
-					${thisPart.name}
-					</td>
-					<td>
-						<form:radiobutton path="" name="winner" id="winner" value="${thisPart.id}"/>
+					${thisPart.name}<form:radiobutton path="" name="winner" id="winner" value="${thisPart.id}"/>&nbsp;&nbsp;
 					</td>
 				</c:forEach>
-				<tr>
 					<td>
-					<form:radiobutton path="" name="winner" id="winner" value=""/>
+					Draw <form:radiobutton path="" name="winner" id="winner" value="-999"/>
 					</td>
 				</tr>
 		<tr>

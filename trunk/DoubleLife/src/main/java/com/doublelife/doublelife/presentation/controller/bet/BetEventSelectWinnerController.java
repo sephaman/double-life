@@ -46,10 +46,7 @@ public class BetEventSelectWinnerController {
 	/**
 	 * Validates and updates bet event.
 	 * @param betEvent 
-	 * @param betEventName 
-	 * @param submitter 
-	 * @param selectedParticipant 
-	 * @param part_price 
+	 * @param winner 
 	 * @return 
 	 */
 	@RequestMapping(method=RequestMethod.POST)
@@ -58,7 +55,6 @@ public class BetEventSelectWinnerController {
 	{
 		logger.info("update bet event betEvent Controller : POST");
 		betEvent.setSelectionWinnerId(winner);
-		betEvent.setOutcomePending(false);
 		userBettingService.updateBetEvent(betEvent);
 		
 		return new ModelAndView("createBetEvent.tvw");

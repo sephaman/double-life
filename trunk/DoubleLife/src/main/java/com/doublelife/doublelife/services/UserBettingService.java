@@ -45,7 +45,7 @@ public interface UserBettingService {
 	 * Process bets by updating them with the result of the given bet event.
 	 * @param betEvent 
 	 */
-	public void processBetResults(BetEvent betEvent);
+	public int processBetResults(BetEvent betEvent);
 	
 	/**
 	 * Add a betting participant to the system.
@@ -156,7 +156,7 @@ public interface UserBettingService {
 	 * Returns a map of bets and the selection made.
 	 * @return
 	 */
-	public Map<Bet, String> getMappedBetAndSelection();
+	public Map<Bet, String> getMappedBetAndSelection(boolean pendingOnly);
 
 	/**
 	 * creates a a bet competition for the current user.
@@ -340,4 +340,10 @@ public interface UserBettingService {
 	 * @return
 	 */
 	public Round getPrevRoundBySequence(Round thisRound);
+	
+	/**
+	 * Processes all bet events.
+	 * @return
+	 */
+	public int processAllPendingBetsForBetEvents();
 }

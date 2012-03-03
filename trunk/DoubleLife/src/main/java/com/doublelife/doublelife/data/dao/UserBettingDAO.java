@@ -317,5 +317,10 @@ public interface UserBettingDAO {
 	 * @return
 	 */
 	public Round getRoundBySequence(long seqNo, long seasonId);
+
+	/**
+	 * Gets all pending bet events with selected winners. These indicate bet events that need to be processed.
+	 */
+	public List<BetEvent> getPendingBetEventsWithSelectedWinners();
 	
 }
