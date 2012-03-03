@@ -1,5 +1,7 @@
 package com.doublelife.doublelife.presentation.controller.bet;
 
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +33,15 @@ public class BetEventsController {
 	public ModelAndView showBetEvents() {
 		logger.info("betEvents Controller : GET");
 		ModelMap map = new ModelMap();
-		map.addAttribute("betEvents", userBettingService.getAllCurrentBetEvents());
+		Set<BetEvent> setBetEvents = userBettingService.getAllCurrentBetEvents();
+		map.addAttribute("betEvents", setBetEvents);
+		boolean hasPending = false;
+		for (BetEvent thisEvent : setBetEvents) {
+			if (thisEvent.getSelectionWinnerId() != BetEvent.PENDING) {
+				hasPending = true;
+			}
+		}
+		map.addAttribute("betsToProcessExist", hasPending);
 		return new ModelAndView("betEventsView.tvw", map);
 	}
 	
@@ -69,18 +79,18 @@ public class BetEventsController {
 		return showBetEvents();
 	}
 	
-	/**
-	 * Called to handle bet submission.
-	 * @param stake 
-	 * @param selection 
-	 * @param betEventId 
-	 * @return 
-	 */
-//	@RequestMapping(value="/createBetEvent.htm", method=RequestMethod.GET)
-	public ModelAndView createBetEvent() {
-		logger.info("create bet event betEvent Controller : GET");
-		return new ModelAndView("createBetEvent.tvw");
+	@RequestMapping(value="/processPendingBets.htm", method=RequestMethod.POST)
+	public ModelAndView processBets() {
+		
+		int numBetsProcessed = userBettingService.processAllPendingBetsForBetEvents();
+		
+		logger.info("process pending bets : POST");
+		ModelMap map = new ModelMap();
+		map.addAttribute("betEvents", userBettingService.getAllCurrentBetEvents());
+		map.addAttribute("betsProcessed", numBetsProcessed);
+		return new ModelAndView("betEventsView.tvw", map);
 	}
+	
 	
 	/**
 	 * @param userBettingService the userBettingService to set

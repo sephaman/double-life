@@ -31,10 +31,24 @@ public class UserBetsController {
 		logger.info("User Bets Contoller: GET");
 		ModelMap map = new ModelMap();
 		map.addAttribute("userBets",
-				userBettingService.getMappedBetAndSelection());
+				userBettingService.getMappedBetAndSelection(true));
 		return new ModelAndView("userBets.tvw", map);
 	}
 	
+	/**
+	 * Returns a view displaying a user's history of bets and their selections.
+	 * @return 
+	 */
+	@RequestMapping(value="/viewUserBetHistory.htm", method=RequestMethod.GET)
+	public ModelAndView showUserBetHistory() {
+		logger.info("User Bets Contoller: GET");
+		ModelMap map = new ModelMap();
+		map.addAttribute("userBets",
+				userBettingService.getMappedBetAndSelection(false));
+		return new ModelAndView("userBets.tvw", map);
+	}
+
+
 	/**
 	 * @param userBettingService the userBettingService to set
 	 */

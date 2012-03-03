@@ -12,7 +12,7 @@
 		<table>
 			<thead>
 				<tr>
-					<th>Bet Id</th><th>Bet Event Id</th><th>Value</th><th>Stake</th><th>Odds</th><th>Date</th><th>Money Paid</th>
+					<th>Bet Id</th><th>Bet Event Id</th><th>Selection</th><th>Stake</th><th>Odds</th><th>Date</th><th>Status</th><th>Money Paid</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -24,6 +24,7 @@
 						<td>${thisBet.key.stake}</td>
 						<td>${thisBet.key.odds}</td>
 						<td>${thisBet.key.dateReceived}</td>
+						<td>${thisBet.key.betResult == 'PENDING' ? 'Pending' : 'Resulted'} </td>
 						<td>${thisBet.key.moneyPaid}</td>
 					</tr>
 				</c:forEach>

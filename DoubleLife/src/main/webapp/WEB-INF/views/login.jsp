@@ -22,7 +22,7 @@
 					Welcome to Tip n' Trade! This website aims to provide financial games in the form of 
 					fantasy betting and sharemarket trading. Join today!
 				</p>
-			<div class="errorMessage" style="color:#FFE09D;font-size:1.1em;">
+			<div class="errorMessage" style="color:red;font-size:1.1em;">
                 <c:if test="${!empty param.login_error}">
                     Login failed.  Please retry.
                 </c:if>

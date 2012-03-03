@@ -57,10 +57,22 @@ public class UserBettingServiceImpl implements UserBettingService {
 		return userBettingDAO.saveBet(bet);
 	}
 	
+	public int processAllPendingBetsForBetEvents() {
+		int betCounter = 0;
+		List<BetEvent> lstPendingBetEvents = userBettingDAO.getPendingBetEventsWithSelectedWinners();
+		for (BetEvent thisEvent : lstPendingBetEvents) {
+			betCounter += processBetResults(thisEvent);
+			thisEvent.setOutcomePending(false);
+			userBettingDAO.updateBetEvent(thisEvent);
+		}
+
+		return betCounter;
+	}
+	
 	/**
 	 * @see com.doublelife.doublelife.services.UserBettingService#processBetResults(com.doublelife.doublelife.data.BetComp.BetEvent)
 	 */
-	public void processBetResults(BetEvent betEvent) {
+	public int processBetResults(BetEvent betEvent) {
 		List<Bet> lstBets = userBettingDAO.getBetsByBetEvent(betEvent.getId());
 		for (Bet thisBet : lstBets) {
 			if (thisBet.getSelectionId() == betEvent.getSelectionWinnerId()) {
@@ -74,8 +86,9 @@ public class UserBettingServiceImpl implements UserBettingService {
 				thisBet.setBetResult(BetResult.LOSE);
 				thisBet.setMoneyPaid(thisBet.getStake() * -1);
 			}
-			userBettingDAO.updateAllBets(lstBets);
 		}
+		userBettingDAO.updateAllBets(lstBets);
+		return lstBets.size();
 	}
 	
 	/**
@@ -250,9 +263,16 @@ public class UserBettingServiceImpl implements UserBettingService {
 	/**
 	 * @see com.doublelife.doublelife.services.UserBettingService#getMappedBetAndSelection()
 	 */
-	public Map<Bet, String> getMappedBetAndSelection() {
-		Map<Bet, String> mapBetsAndSelections = new HashMap<Bet, String>();
-		List<Bet> lstBets = getAllUserBets(SecurityUtil.getCurrentUserId());
+	public Map<Bet, String> getMappedBetAndSelection(boolean pendingOnly) {
+		Map<Bet, String> mapBetsAndSelections = new LinkedHashMap<Bet, String>();
+		List<Bet> lstBets = null;
+		
+		if (pendingOnly) {
+			lstBets = getUserPendingBets(SecurityUtil.getCurrentUserId());
+		} else {
+			lstBets = getAllUserBets(SecurityUtil.getCurrentUserId());
+		}
+		
 		Set<BetParticipant> setParticipants = userBettingDAO.getParticipantsBySelectionList(getSelectionIdsFromBets(lstBets));
 		for(Bet thisBet : lstBets) {
 			for (BetParticipant thisParticipant : setParticipants) {
@@ -263,6 +283,7 @@ public class UserBettingServiceImpl implements UserBettingService {
 		}
 		return mapBetsAndSelections;
 	}
+	
 	
 	private List<Long> getSelectionIdsFromBets(List<Bet> lstBets) {
 		List<Long> lstSelectionIds = new ArrayList<Long>(); 
