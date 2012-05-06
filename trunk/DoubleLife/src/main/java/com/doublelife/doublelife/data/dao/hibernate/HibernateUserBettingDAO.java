@@ -812,4 +812,21 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 		return retVal;
 		
 	}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#updateBet(com.doublelife.doublelife.data.BetComp.Bet)
+	 */
+	@Override
+	public boolean updateBet(Bet thisBet) {
+			boolean retval = false;
+			logger.debug("Updating Bet");
+			try {
+				hibernate.update(thisBet);
+				retval = true;
+			} catch (DataAccessException e) {
+				logger.error("Error updating Bet ", e);
+				throw e;
+			}
+			return retval;
+		}
 }
