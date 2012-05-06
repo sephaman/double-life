@@ -322,5 +322,11 @@ public interface UserBettingDAO {
 	 * Gets all pending bet events with selected winners. These indicate bet events that need to be processed.
 	 */
 	public List<BetEvent> getPendingBetEventsWithSelectedWinners();
+
+	/**
+	 * Updates a bet.
+	 * @param thisBet
+	 */
+	public boolean updateBet(Bet thisBet);
 	
 }

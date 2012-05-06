@@ -86,8 +86,8 @@ public class UserBettingServiceImpl implements UserBettingService {
 				thisBet.setBetResult(BetResult.LOSE);
 				thisBet.setMoneyPaid(thisBet.getStake() * -1);
 			}
+			userBettingDAO.updateBet(thisBet);
 		}
-		userBettingDAO.updateAllBets(lstBets);
 		return lstBets.size();
 	}
 	
