@@ -48,7 +48,7 @@ public class YahooXMLProcessor {
 		for (int i = 0; i < nl.getLength(); i++) {
 			Node node = nl.item(i);
 			if (node.getNodeName().equals(nodeName)) {
-				return node.getTextContent();
+				return node.getNodeValue();
 			}
 		}
 		

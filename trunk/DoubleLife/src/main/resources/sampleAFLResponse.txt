@@ -1,0 +1,7 @@
+:100494172~Match Odds~O~ACTIVE~1336878600000~\Australian Rules\AFL 2012\Round 7 - 13 May\North Melbourne v Western Bulldogs~/61420/26759191/26841792/26841793/100494172~0~2~AUS~1336819557478~2~1~13987.35~N~Y:
+
+:100494940~Match Odds~O~ACTIVE~1336988400000~\Australian Rules\AFL 2012\Round 7 - 14 May\St Kilda v Carlton~/61420/26759191/26842785/26842786/100494940~0~2~AUS~1336819557478~2~1~10305.32~N~Y:
+
+
+http://xml3.afl.com.au/feed.aspx?format=xml&feed_getfixturebyround=req2&param_req2_round=1085
+
