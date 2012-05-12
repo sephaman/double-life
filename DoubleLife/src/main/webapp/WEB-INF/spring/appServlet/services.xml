@@ -54,6 +54,10 @@
 		class="com.doublelife.doublelife.services.impl.ForumServiceImpl">
 		<property name="forumDAO" ref="forumDAO"></property>
 	</bean>
+	
+	<bean id="betDataRetrieverService"
+		class="com.doublelife.doublelife.services.impl.BFBetDataRetrieverServiceImpl">
+	</bean>
 
 <!-- DAOs -->
 	<bean id="userBettingDAO"
