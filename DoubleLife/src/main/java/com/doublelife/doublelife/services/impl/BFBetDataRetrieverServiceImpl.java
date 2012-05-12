@@ -3,6 +3,9 @@
  */
 package com.doublelife.doublelife.services.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -199,7 +202,7 @@ public class BFBetDataRetrieverServiceImpl implements BetDataRetrieverService {
         sessionToken = resp.getHeader().getSessionToken();
 	}
 	
-	public void getAllMarketsData(ArrayOfInt eventTypeIds) throws Exception {
+	public String getAllMarketsData(ArrayOfInt eventTypeIds) throws Exception {
 		connectExchangeService();
 		GetAllMarketsReq request = new GetAllMarketsReq();
         request.setHeader(getExchangeHeader());
@@ -220,10 +223,38 @@ public class BFBetDataRetrieverServiceImpl implements BetDataRetrieverService {
         // Transfer the response data back to the API context
         sessionToken = resp.getHeader().getSessionToken();
         
-        int numOccurrences = StringUtils.countOccurrencesOf(resp.getMarketData(), "Match Odds"); 
-        
-        logger.info("Num matches: " + numOccurrences);
-        
+        return resp.getMarketData();
+	}
+	
+	public List<Integer> getAllMatchIdsForMatchOdds(String dataString) {
+		List<Integer> retVal = new ArrayList<Integer>();
+		 int numOccurrences = StringUtils.countOccurrencesOf(dataString, "Match Odds"); 
+	        
+	        logger.info("Num matches: " + numOccurrences);
+	        
+	        if (numOccurrences > 0) {
+	        	retVal = getAllMatchIdsForBetType(dataString, "Match Odds");
+	        }
+	        
+	        return retVal;
+	}
+	
+	private List<Integer> getAllMatchIdsForBetType(String dataString, String betType) {
+		List<Integer> lstMatchIds = new ArrayList<Integer>();
+
+		String[] strArr = dataString.split(":");
+
+		for (String thisMatch : strArr) {
+			if (thisMatch.length() > 10 && thisMatch.contains("~")) {
+				if (thisMatch.substring(thisMatch.indexOf("~") + 1).startsWith(betType)) {
+					int matchId = Integer.parseInt(thisMatch.substring(0, thisMatch.indexOf("~")));
+					logger.info("Found " + betType + " Match Id:" + matchId);
+					lstMatchIds.add(matchId);
+				}
+			}
+		}
+
+		return lstMatchIds;
 	}
 	
 	public void getAllEventsData() throws Exception {
@@ -249,8 +280,6 @@ public class BFBetDataRetrieverServiceImpl implements BetDataRetrieverService {
         for (EventType thisEvent : resp.getEventTypeItems().getEventType()) {
         	logger.info(thisEvent.getId() + " - " + thisEvent.getName());
         }
-        
-        
 	}
 	
 	public BFExchangeServiceStub getExchangeConnection() {
