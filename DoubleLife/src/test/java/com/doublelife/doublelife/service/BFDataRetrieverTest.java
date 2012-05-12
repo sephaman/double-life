@@ -6,6 +6,7 @@ package com.doublelife.doublelife.service;
 import org.junit.Test;
 
 import com.doublelife.doublelife.data.BetComp.retrievedBetData.InflatedMarketPrices;
+import com.doublelife.doublelife.data.webServices.generated.exchange.BFExchangeServiceStub.ArrayOfInt;
 import com.doublelife.doublelife.services.impl.BFBetDataRetrieverServiceImpl;
 
 /**
@@ -28,7 +29,7 @@ public class BFDataRetrieverTest {
 	@Test
 	public void testGetMarketPrices() throws Exception {
 		service.login();
-		InflatedMarketPrices prices = service.getMarketPrices(100399461);//244667
+		InflatedMarketPrices prices = service.getMarketPrices(100494819);//244667
 		service.logout();
 	}
 	
@@ -37,6 +38,32 @@ public class BFDataRetrieverTest {
 		service.login();
 		service.getMarketData(100399461);//244667
 		service.logout();
+	}
+	
+	@Test
+	public void testGetAllMarketsData() throws Exception {
+		service.login();
+		service.getAllMarketsData();
+		service.logout();
+	}
+	
+	@Test
+	public void testGetAllEvents() throws Exception {
+		service.login();
+		service.getAllEventsData();
+		service.logout();
+	}
+	
+	@Test
+	public void testGetAllAFLMarketsData() throws Exception {
+		service.login();
+		ArrayOfInt arrInt = new ArrayOfInt();
+		int[] nums = new int[1];
+		nums[0] = 61420;
+		arrInt.set_int(nums);
+		service.getAllMarketsData(arrInt);
+		service.logout();
+		
 	}
 
 }

@@ -5,9 +5,15 @@ package com.doublelife.doublelife.services.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 import com.doublelife.doublelife.data.BetComp.retrievedBetData.InflatedMarketPrices;
 import com.doublelife.doublelife.data.webServices.generated.exchange.BFExchangeServiceStub;
+import com.doublelife.doublelife.data.webServices.generated.exchange.BFExchangeServiceStub.ArrayOfInt;
+import com.doublelife.doublelife.data.webServices.generated.exchange.BFExchangeServiceStub.GetAllMarkets;
+import com.doublelife.doublelife.data.webServices.generated.exchange.BFExchangeServiceStub.GetAllMarketsErrorEnum;
+import com.doublelife.doublelife.data.webServices.generated.exchange.BFExchangeServiceStub.GetAllMarketsReq;
+import com.doublelife.doublelife.data.webServices.generated.exchange.BFExchangeServiceStub.GetAllMarketsResp;
 import com.doublelife.doublelife.data.webServices.generated.exchange.BFExchangeServiceStub.GetMarket;
 import com.doublelife.doublelife.data.webServices.generated.exchange.BFExchangeServiceStub.GetMarketErrorEnum;
 import com.doublelife.doublelife.data.webServices.generated.exchange.BFExchangeServiceStub.GetMarketPricesCompressed;
@@ -18,6 +24,11 @@ import com.doublelife.doublelife.data.webServices.generated.exchange.BFExchangeS
 import com.doublelife.doublelife.data.webServices.generated.exchange.BFExchangeServiceStub.GetMarketResp;
 import com.doublelife.doublelife.data.webServices.generated.global.BFGlobalServiceStub;
 import com.doublelife.doublelife.data.webServices.generated.global.BFGlobalServiceStub.APIRequestHeader;
+import com.doublelife.doublelife.data.webServices.generated.global.BFGlobalServiceStub.EventType;
+import com.doublelife.doublelife.data.webServices.generated.global.BFGlobalServiceStub.GetAllEventTypes;
+import com.doublelife.doublelife.data.webServices.generated.global.BFGlobalServiceStub.GetEventTypesReq;
+import com.doublelife.doublelife.data.webServices.generated.global.BFGlobalServiceStub.GetEventTypesResp;
+import com.doublelife.doublelife.data.webServices.generated.global.BFGlobalServiceStub.GetEventsErrorEnum;
 import com.doublelife.doublelife.data.webServices.generated.global.BFGlobalServiceStub.Login;
 import com.doublelife.doublelife.data.webServices.generated.global.BFGlobalServiceStub.LoginErrorEnum;
 import com.doublelife.doublelife.data.webServices.generated.global.BFGlobalServiceStub.LoginReq;
@@ -38,10 +49,12 @@ public class BFBetDataRetrieverServiceImpl implements BetDataRetrieverService {
 	private final Logger logger = LoggerFactory.getLogger(BFBetDataRetrieverServiceImpl.class);
 	
 	private BFExchangeServiceStub stub_AUS;
-	private static BFGlobalServiceStub stub_global;
+	private BFGlobalServiceStub stub_global;
 	private String username = "sephaman";
 	private String password = "Brownmouse92";
 	private String sessionToken = "";
+	private final static int AFL_ID = 61420;
+	
 	
 	public BFBetDataRetrieverServiceImpl() {
 		connectGlobalService();
@@ -164,6 +177,81 @@ public class BFBetDataRetrieverServiceImpl implements BetDataRetrieverService {
 
 	}
 	
+	public void getAllMarketsData() throws Exception {
+		connectExchangeService();
+		GetAllMarketsReq request = new GetAllMarketsReq();
+        request.setHeader(getExchangeHeader());
+        
+        // Create the message and attach the request to it.
+        GetAllMarkets msg = new GetAllMarkets();
+        msg.setRequest(request);
+        
+        // Send the request to the Betfair Exchange Service.
+        GetAllMarketsResp resp = stub_AUS.getAllMarkets(msg).getResult();
+
+        // Check the response code, and throw and exception if call failed
+        if (resp.getErrorCode() != GetAllMarketsErrorEnum.OK)
+        {
+        	throw new IllegalArgumentException("Failed to retrieve data: "+resp.getErrorCode() + " Minor Error:"+resp.getMinorErrorCode()+ " Header Error:"+resp.getHeader().getErrorCode());
+        	
+        }
+        // Transfer the response data back to the API context
+        sessionToken = resp.getHeader().getSessionToken();
+	}
+	
+	public void getAllMarketsData(ArrayOfInt eventTypeIds) throws Exception {
+		connectExchangeService();
+		GetAllMarketsReq request = new GetAllMarketsReq();
+        request.setHeader(getExchangeHeader());
+        request.setEventTypeIds(eventTypeIds);
+        
+        // Create the message and attach the request to it.
+        GetAllMarkets msg = new GetAllMarkets();
+        msg.setRequest(request);
+        
+        // Send the request to the Betfair Exchange Service.
+        GetAllMarketsResp resp = stub_AUS.getAllMarkets(msg).getResult();
+
+        // Check the response code, and throw and exception if call failed
+        if (resp.getErrorCode() != GetAllMarketsErrorEnum.OK)
+        {
+        	throw new IllegalArgumentException("Failed to retrieve data: "+resp.getErrorCode() + " Minor Error:"+resp.getMinorErrorCode()+ " Header Error:"+resp.getHeader().getErrorCode());
+        }
+        // Transfer the response data back to the API context
+        sessionToken = resp.getHeader().getSessionToken();
+        
+        int numOccurrences = StringUtils.countOccurrencesOf(resp.getMarketData(), "Match Odds"); 
+        
+        logger.info("Num matches: " + numOccurrences);
+        
+	}
+	
+	public void getAllEventsData() throws Exception {
+		connectExchangeService();
+		GetEventTypesReq request = new GetEventTypesReq();
+        request.setHeader(getGlobalHeader());
+        
+        // Create the message and attach the request to it.
+        GetAllEventTypes msg = new GetAllEventTypes();
+        msg.setRequest(request);
+        
+        // Send the request to the Betfair Exchange Service.
+        GetEventTypesResp resp = stub_global.getAllEventTypes(msg).getResult();
+
+        // Check the response code, and throw and exception if call failed
+        if (resp.getErrorCode() != GetEventsErrorEnum.OK)
+        {
+        	throw new IllegalArgumentException("Failed to retrieve data: "+resp.getErrorCode() + " Minor Error:"+resp.getMinorErrorCode()+ " Header Error:"+resp.getHeader().getErrorCode());
+        }
+        // Transfer the response data back to the API context
+        sessionToken = resp.getHeader().getSessionToken();
+         
+        for (EventType thisEvent : resp.getEventTypeItems().getEventType()) {
+        	logger.info(thisEvent.getId() + " - " + thisEvent.getName());
+        }
+        
+        
+	}
 	
 	public BFExchangeServiceStub getExchangeConnection() {
 		return stub_AUS;
