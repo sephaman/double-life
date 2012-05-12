@@ -5,3 +5,9 @@
 
 http://xml3.afl.com.au/feed.aspx?format=xml&feed_getfixturebyround=req2&param_req2_round=1085
 
+North Melb:2013991
+Bulldogs:39986
+Freo:244666
+Port:4570081
+Saints:244688 
+BLues:244689
