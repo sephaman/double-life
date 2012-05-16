@@ -53,24 +53,24 @@ insert into betcomp_user values(1,1);
 insert into season values(1, 1, '2012 Toyota AFL Premiership Season', now());
 
 --insert bet participants
-insert into bet_participant values(1, 'Melbourne', now(), 1,'/resources/img/aflteams/melbourne.jpg', 39987);
-insert into bet_participant values(2, 'Geelong', now(), 1,'/resources/img/aflteams/geelong.jpg', 244663);
-insert into bet_participant values(3, 'Hawthorn', now(), 1,'/resources/img/aflteams/hawthorn.jpg', 244664);
-insert into bet_participant values(4, 'Essendon', now(), 1,'/resources/img/aflteams/essendon.jpg', 210343);
-insert into bet_participant values(5, 'North Melbourne', now(), 1,'/resources/img/aflteams/north.jpg', 2013991);
-insert into bet_participant values(6, 'Sydney', now(), 1,'/resources/img/aflteams/sydney.jpg', 244665) ;
-insert into bet_participant values(7, 'Carlton', now(), 1,'/resources/img/aflteams/carlton.jpg', 244689);
-insert into bet_participant values(8, 'Collingwood', now(), 1,'/resources/img/aflteams/collingwood.jpg', 39983);
-insert into bet_participant values(9, 'Richmond', now(), 1,'/resources/img/aflteams/richmond.jpg', 244667);
-insert into bet_participant values(10, 'Adelaide', now(), 1,'/resources/img/aflteams/adelaide.jpg', 173363);
-insert into bet_participant values(11, 'Port Adelaide', now(), 1,'/resources/img/aflteams/portAdelaide.jpg', 4570081);
-insert into bet_participant values(12, 'Fremantle', now(), 1,'/resources/img/aflteams/fremantle.jpg', 244666);
-insert into bet_participant values(13, 'Brisbane', now(), 1,'/resources/img/aflteams/brisbane.jpg', 39984);
-insert into bet_participant values(14, 'West Coast', now(), 1,'/resources/img/aflteams/westcoast.jpg', 210344);
-insert into bet_participant values(15, 'Greater Western Sydney', now(), 1,'/resources/img/aflteams/gws.jpg', 5149403);
-insert into bet_participant values(16, 'Gold Coast', now(), 1,'/resources/img/aflteams/goldcoast.jpg', 4997061);
-insert into bet_participant values(17, 'Western Bulldogs', now(), 1,'/resources/img/aflteams/bulldogs.jpg', 39986);
-insert into bet_participant values(18, 'St Kilda', now(), 1,'/resources/img/aflteams/saints.jpg', 244688);
+insert into bet_participant values(1, 'Melbourne', now(), 1,'/resources/img/aflteams/melbourne.jpg', 39987, 31);
+insert into bet_participant values(2, 'Geelong', now(), 1,'/resources/img/aflteams/geelong.jpg', 244663, 30);
+insert into bet_participant values(3, 'Hawthorn', now(), 1,'/resources/img/aflteams/hawthorn.jpg', 244664, 32);
+insert into bet_participant values(4, 'Essendon', now(), 1,'/resources/img/aflteams/essendon.jpg', 210343, 37);
+insert into bet_participant values(5, 'North Melbourne', now(), 1,'/resources/img/aflteams/north.jpg', 2013991, 45);
+insert into bet_participant values(6, 'Sydney', now(), 1,'/resources/img/aflteams/sydney.jpg', 244665, 33) ;
+insert into bet_participant values(7, 'Carlton', now(), 1,'/resources/img/aflteams/carlton.jpg', 244689, 43);
+insert into bet_participant values(8, 'Collingwood', now(), 1,'/resources/img/aflteams/collingwood.jpg', 39983, 38);
+insert into bet_participant values(9, 'Richmond', now(), 1,'/resources/img/aflteams/richmond.jpg', 244667, 42);
+insert into bet_participant values(10, 'Adelaide', now(), 1,'/resources/img/aflteams/adelaide.jpg', 173363, 40);
+insert into bet_participant values(11, 'Port Adelaide', now(), 1,'/resources/img/aflteams/portAdelaide.jpg', 4570081, 41);
+insert into bet_participant values(12, 'Fremantle', now(), 1,'/resources/img/aflteams/fremantle.jpg', 244666, 34);
+insert into bet_participant values(13, 'Brisbane', now(), 1,'/resources/img/aflteams/brisbane.jpg', 39984, 36);
+insert into bet_participant values(14, 'West Coast', now(), 1,'/resources/img/aflteams/westcoast.jpg', 210344, 35);
+insert into bet_participant values(15, 'Greater Western Sydney', now(), 1,'/resources/img/aflteams/gws.jpg', 5149403, 72);
+insert into bet_participant values(16, 'Gold Coast', now(), 1,'/resources/img/aflteams/goldcoast.jpg', 4997061, 71);
+insert into bet_participant values(17, 'Western Bulldogs', now(), 1,'/resources/img/aflteams/bulldogs.jpg', 39986, 44);
+insert into bet_participant values(18, 'St Kilda', now(), 1,'/resources/img/aflteams/saints.jpg', 244688, 39);
 
 --insert rounds
 insert into round values(1, 1, 1, '2012 AFL Round 1');

@@ -3,11 +3,14 @@
  */
 package com.doublelife.doublelife.data.BetComp;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 /**
  * Represents a round which is a collection of bet events.
@@ -36,6 +39,9 @@ public class Round {
 	
 	@Column(name = "is_current")
 	private Boolean isCurrent;
+	
+	@Transient
+	private List<BetEvent> lstBetEvent = null; //used to help attach betEvents on external data retrieval
 
 	/**
 	 * @return the id
@@ -105,6 +111,20 @@ public class Round {
 	 */
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
+	}
+
+	/**
+	 * @return the lstBetEvent
+	 */
+	public List<BetEvent> getLstBetEvent() {
+		return lstBetEvent;
+	}
+
+	/**
+	 * @param lstBetEvent the lstBetEvent to set
+	 */
+	public void setLstBetEvent(List<BetEvent> lstBetEvent) {
+		this.lstBetEvent = lstBetEvent;
 	}
 	
 }

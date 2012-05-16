@@ -35,6 +35,12 @@ public class BetParticipant {
 	
 	@Column(name = "icon_url", nullable = true)
 	private String iconUrl;
+	
+	@Column(name = "betexternalid", nullable = true)
+	private Integer betExternalId;
+	
+	@Column(name = "teamexternalid", nullable = true)
+	private Integer teamExternalId;
 
 	/**
 	 * @return the id
@@ -104,5 +110,33 @@ public class BetParticipant {
 	 */
 	public void setIconUrl(String iconUrl) {
 		this.iconUrl = iconUrl;
+	}
+
+	/**
+	 * @return the teamExternalId
+	 */
+	public Integer getTeamExternalId() {
+		return teamExternalId;
+	}
+
+	/**
+	 * @param teamExternalId the teamExternalId to set
+	 */
+	public void setTeamExternalId(Integer teamExternalId) {
+		this.teamExternalId = teamExternalId;
+	}
+
+	/**
+	 * @return the betExternalId
+	 */
+	public Integer getBetExternalId() {
+		return betExternalId;
+	}
+
+	/**
+	 * @param betExternalId the betExternalId to set
+	 */
+	public void setBetExternalId(Integer betExternalId) {
+		this.betExternalId = betExternalId;
 	}
 }

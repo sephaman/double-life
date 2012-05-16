@@ -122,7 +122,8 @@ ALTER TABLE bet_event_type
   updatedatetime date NOT NULL,
   primarybeteventtypeid integer NOT NULL,
   icon_url character varying(100),
-  externalid integer,
+  betexternalid integer,
+  teamexternalid integer,
   CONSTRAINT bet_participant_pkey PRIMARY KEY (id )
 )
 WITH (

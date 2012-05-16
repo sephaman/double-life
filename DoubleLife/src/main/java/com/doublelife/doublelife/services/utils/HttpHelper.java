@@ -36,5 +36,23 @@ public static String getHttpRequestBody(String url) {
 	 String[] parts = returnValue.split("\n");
 	 return parts[1];
 }
+
+public static String getAFLHttpRequestBody(String url) {
+	String returnValue = "";
+	 HttpClient httpclient = new DefaultHttpClient();
+     try {
+    	 HttpGet httpget = new HttpGet(url);
+    	 // Create a response handler
+     ResponseHandler<String> responseHandler = new BasicResponseHandler();
+     returnValue =  httpclient.execute(httpget, responseHandler);
+
+ } catch (Exception ex) {
+ }
+	 finally {
+     httpclient.getConnectionManager().shutdown();
+ }
+	 String[] parts = returnValue.split("\n");
+	 return parts[0];
+}
 	
 }
