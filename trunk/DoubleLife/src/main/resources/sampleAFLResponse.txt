@@ -11,3 +11,15 @@ Freo:244666
 Port:4570081
 Saints:244688 
 BLues:244689
+Collingwood:39983
+Geelong:244663
+Hawks:244664
+Sydney:244665
+Melbourne:39987
+GoldCoast:4997061
+Ess:210343
+Rich:244667
+Bris:39984
+GWS:5149403
+Adel:173363
+WCE:210344

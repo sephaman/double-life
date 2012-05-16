@@ -115,12 +115,14 @@ WITH (
 ALTER TABLE bet_event_type
   OWNER TO postgres;
 
-  CREATE TABLE bet_participant
+ CREATE TABLE bet_participant
 (
   id integer NOT NULL,
   name character varying(80) NOT NULL,
   updatedatetime date NOT NULL,
   primarybeteventtypeid integer NOT NULL,
+  icon_url character varying(100),
+  externalid integer,
   CONSTRAINT bet_participant_pkey PRIMARY KEY (id )
 )
 WITH (
