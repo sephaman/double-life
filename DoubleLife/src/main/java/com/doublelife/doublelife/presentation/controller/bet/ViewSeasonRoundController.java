@@ -221,15 +221,21 @@ public class ViewSeasonRoundController {
 		Map<BetParticipant, Double> thisMap = userBettingService.getMappedParticipantAndPrice(betEvent);
 		
 		viewHelper.setBetEventId(betEvent.getId());
-		viewHelper.setHomeOdds(thisMap.get(betEvent.getLstBetParticipant().get(0)));
-		viewHelper.setAwayOdds(thisMap.get(betEvent.getLstBetParticipant().get(1)));
-		viewHelper.setHomeParticipantId(betEvent.getLstBetParticipant().get(0).getId());
-		viewHelper.setAwayParticipantId(betEvent.getLstBetParticipant().get(1).getId());
-		viewHelper.setParticipantHomeName(betEvent.getLstBetParticipant().get(0).getName());
-		viewHelper.setParticipantAwayName(betEvent.getLstBetParticipant().get(1).getName());
-		viewHelper.setBetEventName(betEvent.getBetEventName());
-		viewHelper.setHomeIconUrl(betEvent.getLstBetParticipant().get(0).getIconUrl());
-		viewHelper.setAwayIconUrl(betEvent.getLstBetParticipant().get(1).getIconUrl());
+		if (thisMap.size() > 1) {
+			viewHelper.setHomeOdds(thisMap.get(betEvent.getLstBetParticipant().get(0)));
+			viewHelper.setAwayOdds(thisMap.get(betEvent.getLstBetParticipant().get(1)));
+		} else {
+			viewHelper.setHomeOdds(0.0);
+			viewHelper.setAwayOdds(0.0);
+		}
+			viewHelper.setHomeParticipantId(betEvent.getLstBetParticipant().get(0).getId());
+			viewHelper.setAwayParticipantId(betEvent.getLstBetParticipant().get(1).getId());
+			viewHelper.setParticipantHomeName(betEvent.getLstBetParticipant().get(0).getName());
+			viewHelper.setParticipantAwayName(betEvent.getLstBetParticipant().get(1).getName());
+			viewHelper.setBetEventName(betEvent.getBetEventName());
+			viewHelper.setHomeIconUrl(betEvent.getLstBetParticipant().get(0).getIconUrl());
+			viewHelper.setAwayIconUrl(betEvent.getLstBetParticipant().get(1).getIconUrl());
+		
 		if (bet != null) {
 			viewHelper.setBetValue(bet.getStake());
 		}

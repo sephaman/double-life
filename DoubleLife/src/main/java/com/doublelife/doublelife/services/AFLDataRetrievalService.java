@@ -17,5 +17,5 @@ public interface AFLDataRetrievalService {
 	 * @param roundId
 	 * @return
 	 */
-	Round getRound(int roundId);
+	Round getRound(int roundId, int seasonId);
 }

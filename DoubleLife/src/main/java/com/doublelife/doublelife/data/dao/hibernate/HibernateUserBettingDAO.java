@@ -155,6 +155,7 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 	 */
 	public boolean createBetEvent(BetEvent betEvent) {
 		boolean retval = false;
+		betEvent.setDateTime(new Date());
 		logger.debug("Saving bets collection.");
 		try {
 			hibernate.save(betEvent);
@@ -829,4 +830,46 @@ public class HibernateUserBettingDAO implements UserBettingDAO {
 			}
 			return retval;
 		}
+	
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getBetParticipantsByBetEventType(java.lang.String)
+	 */
+	@Override
+	public List<BetParticipant> getBetParticipantsByBetEventType(String eventTypeName) {
+		BetEventType eventType = getBetEventTypeByName(eventTypeName);
+		
+		List<BetParticipant> retVal = new ArrayList<BetParticipant>();
+		
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetParticipant.class);
+		detachedCriteria.add(Property.forName("primaryBetEventTypeId").eq(eventType.getId()));
+		detachedCriteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
+		try {
+			retVal = (List<BetParticipant>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving bet participants by id", e);
+		}
+		
+		return retVal;
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.data.dao.UserBettingDAO#getBetEventTypeByName(java.lang.String)
+	 */
+	@Override
+	public BetEventType getBetEventTypeByName(String eventTypeName) {
+		List<BetEventType> retVal = new ArrayList<BetEventType>();
+		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(BetEventType.class);
+		detachedCriteria.add(Property.forName("name").eq(eventTypeName));
+		
+		try {
+			retVal = (List<BetEventType>) hibernate.findByCriteria(detachedCriteria);
+		} catch (DataAccessException e) {
+			logger.error("Error retrieving BetEventType by name " + eventTypeName, e);
+		}
+		if (retVal != null && !retVal.isEmpty()) {
+			return retVal.get(0);
+		}
+		return null;
+	}
 }
