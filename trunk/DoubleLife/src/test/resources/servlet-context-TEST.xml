@@ -21,10 +21,7 @@
 	</beans:bean>
 	
 	<!-- Imports user-defined @Controller beans that process client requests -->
-	<beans:import resource="controllers-TEST.xml" />
-	
+		<beans:import resource="doublelife-common-context-TEST.xml"/>
 	<beans:import resource="services-TEST.xml" />
-	
-	<beans:import resource="doublelife-common-context-TEST.xml"/>
 	
 </beans:beans>
