@@ -22,10 +22,10 @@ import com.doublelife.doublelife.data.BetComp.Round;
 public class AFLXMLProcessor {
 
 	private Map<Integer, BetParticipant> mapAFLTeams = null;
-	private int betEventTypeId = -1;
+	private long betEventTypeId = -1;
 	private int roundId = -1;
 	
-	public AFLXMLProcessor(List<BetParticipant> lstAFLTeams, int betEventTypeId, int roundId) {
+	public AFLXMLProcessor(List<BetParticipant> lstAFLTeams, long betEventTypeId, int roundId) {
 		generateAFLTeamMap(lstAFLTeams);
 		this.betEventTypeId = betEventTypeId;
 		this.roundId = roundId;
@@ -36,24 +36,27 @@ public class AFLXMLProcessor {
 		try{
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		NodeList nl = (NodeList) xpath.evaluate("/dataFeederResponse/req2/row", document, XPathConstants.NODESET);
-		
+			
 		Round round = new Round();
 		round.setIsActive(true);
+		round.setIsCurrent(false);
 		round.setRoundName(getNodeValueFromElement((Element) nl.item(0), "RoundName"));
 		
 		List<BetEvent> lstBetEvent = new ArrayList<BetEvent>();
 
 		for (int i=0; i < nl.getLength(); i++) {
-			BetEvent betEvent = new BetEvent();
-			betEvent.setBetEventName(getNodeValueFromElement((Element) nl.item(i), "Title"));
-			betEvent.setHomeParticipant(mapAFLTeams.get(Integer.parseInt(getNodeValueFromElement((Element) nl.item(i), "HomeTeamId"))).getId());
-			betEvent.setAwayParticipant(mapAFLTeams.get(Integer.parseInt(getNodeValueFromElement((Element) nl.item(i), "AwayTeamId"))).getId());
-			betEvent.setOutcomePending(true);
-			betEvent.setLocation(getNodeValueFromElement((Element) nl.item(i), "VenueName"));
-			betEvent.setBetEventTypeId(this.betEventTypeId);
-			betEvent.setParentRoundId(this.roundId);
-			betEvent.setSelectionWinnerId(-1);
-			lstBetEvent.add(betEvent);
+			//check for a bye
+			if (getNodeValueFromElement((Element) nl.item(i), "IsBye").equals("False")) {
+				BetEvent betEvent = new BetEvent();
+				betEvent.setBetEventName(getNodeValueFromElement((Element) nl.item(i), "Title"));
+				betEvent.setHomeParticipant(mapAFLTeams.get(Integer.parseInt(getNodeValueFromElement((Element) nl.item(i), "HomeTeamId"))).getId());
+				betEvent.setAwayParticipant(mapAFLTeams.get(Integer.parseInt(getNodeValueFromElement((Element) nl.item(i), "AwayTeamId"))).getId());
+				betEvent.setOutcomePending(true);
+				betEvent.setLocation(getNodeValueFromElement((Element) nl.item(i), "VenueName"));
+				betEvent.setBetEventTypeId(this.betEventTypeId);
+				betEvent.setSelectionWinnerId(-1);
+				lstBetEvent.add(betEvent);
+			}
 		}
 		
 		round.setLstBetEvent(lstBetEvent);

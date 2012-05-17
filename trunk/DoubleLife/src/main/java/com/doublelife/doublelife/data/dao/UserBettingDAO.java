@@ -328,5 +328,17 @@ public interface UserBettingDAO {
 	 * @param thisBet
 	 */
 	public boolean updateBet(Bet thisBet);
+
+	/**
+	 * @param eventTypeName 
+	 * @return
+	 */
+	public List<BetParticipant> getBetParticipantsByBetEventType(String eventTypeName);
+	
+	/**
+	 * @param eventTypeName 
+	 * @return
+	 */
+	public BetEventType getBetEventTypeByName(String eventTypeName);
 	
 }

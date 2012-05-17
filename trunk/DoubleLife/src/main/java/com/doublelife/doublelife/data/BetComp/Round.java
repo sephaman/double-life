@@ -126,5 +126,19 @@ public class Round {
 	public void setLstBetEvent(List<BetEvent> lstBetEvent) {
 		this.lstBetEvent = lstBetEvent;
 	}
+
+	/**
+	 * @return the isCurrent
+	 */
+	public Boolean getIsCurrent() {
+		return isCurrent;
+	}
+
+	/**
+	 * @param isCurrent the isCurrent to set
+	 */
+	public void setIsCurrent(Boolean isCurrent) {
+		this.isCurrent = isCurrent;
+	}
 	
 }
