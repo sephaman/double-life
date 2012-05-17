@@ -9,48 +9,31 @@
 
 <!-- Service Bean Definitions -->
 
-	<bean id="stockService"
-		class="com.doublelife.doublelife.services.impl.YahooStockServiceImpl">
-	</bean>
-	
-	<bean id="userService"
-		class="com.doublelife.doublelife.services.impl.UserServiceImpl">
-		<property name="userDAO" ref="userDAO"></property>
-	</bean>
-	
-	<bean id="stockProcessingService"
-		class="com.doublelife.doublelife.services.impl.StockProcessingServiceImpl">
-		<property name="userStockService" ref="userStockService"></property>
-		<property name="stockOrderDAO" ref="stockOrderDAO"></property>
-		<property name="stockService" ref="stockService"></property>
-	</bean>
-	
-	<bean id="userStockService"
-		class="com.doublelife.doublelife.services.impl.UserStockServiceImpl">
-		<property name="userStockDAO" ref="userStockDAO"></property>
-	</bean>
 	
 	<bean id="userBettingService"
 		class="com.doublelife.doublelife.services.impl.UserBettingServiceImpl">
 		<property name="userBettingDAO" ref="userBettingDAO"></property>
-	</bean>
-	
-	<bean id="loginService"
-		class="com.doublelife.doublelife.services.impl.LoginServiceImpl">
+		<property name="bettingCompetitionDAO" ref="bettingCompetitionDAO"></property>
 		<property name="userDAO" ref="userDAO"></property>
 	</bean>
 	
-	
-	<bean id="emailService"
-		class="com.doublelife.doublelife.services.impl.EmailServiceImpl">
-		<property name="mailSender" ref="springMailSender"></property>
+	<bean id="aflDataRetrievalService"
+		class="com.doublelife.doublelife.services.impl.AFLDataRetrievalServiceImpl">
+		<property name="userBettingDAO" ref="userBettingDAO"></property>
 	</bean>
 	
-	<bean class="com.doublelife.doublelife.services.impl.UserDetailsServiceImpl" id="userDetailsService"/>
+	<bean id="betDataRetrieverService"
+		class="com.doublelife.doublelife.services.impl.BFBetDataRetrieverServiceImpl">
+	</bean>
 
 <!-- DAOs -->
 	<bean id="userBettingDAO"
 		class="com.doublelife.doublelife.data.dao.hibernate.HibernateUserBettingDAO">
+		<constructor-arg ref="sessionFactory"></constructor-arg>
+	</bean>
+	
+	<bean id="bettingCompetitionDAO"
+		class="com.doublelife.doublelife.data.dao.hibernate.HibernateBettingCompetitionDAO">
 		<constructor-arg ref="sessionFactory"></constructor-arg>
 	</bean>
 	
@@ -67,6 +50,34 @@
 	<bean id="stockOrderDAO"
 		class="com.doublelife.doublelife.data.dao.hibernate.HibernateStockOrderDAO">
 		<constructor-arg ref="sessionFactory"></constructor-arg>
+	</bean>
+	
+	<bean id="competitionDAO"
+		class="com.doublelife.doublelife.data.dao.hibernate.HibernateCompetitionDAO">
+		<constructor-arg ref="sessionFactory"></constructor-arg>
+	</bean>
+	
+	<bean id="bankingDAO"
+		class="com.doublelife.doublelife.data.dao.hibernate.HibernateBankingDAO">
+		<constructor-arg ref="sessionFactory"></constructor-arg>
+	</bean>
+	
+	<bean id="forumDAO"
+		class="com.doublelife.doublelife.data.dao.hibernate.HibernateForumDAO">
+		<constructor-arg ref="sessionFactory"></constructor-arg>
+	</bean>
+	
+	
+	<!-- PersistenceUtil -->
+	<bean id="persistenceUtil"
+		class="com.doublelife.doublelife.services.utils.PersistenceUtil"
+		factory-method="getInstance">
+		<property name="daoImplementations">
+			<map>
+				<entry key="BetEvent" value-ref="userBettingDAO" />
+				<entry key="user" value-ref="userDAO" />
+			</map>
+		</property>
 	</bean>
 	
 </beans>

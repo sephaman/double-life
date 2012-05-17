@@ -38,6 +38,11 @@
 		<property name="userDAO" ref="userDAO"></property>
 	</bean>
 	
+	<bean id="aflDataRetrievalService"
+		class="com.doublelife.doublelife.services.impl.AFLDataRetrievalServiceImpl">
+		<property name="userBettingDAO" ref="userBettingDAO"></property>
+	</bean>
+	
 	<bean id="emailService"
 		class="com.doublelife.doublelife.services.impl.EmailServiceImpl">
 		<property name="mailSender" ref="springMailSender"></property>
