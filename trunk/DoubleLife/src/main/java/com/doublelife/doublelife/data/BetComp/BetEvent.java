@@ -67,6 +67,9 @@ public class BetEvent {
 	@Column(name = "location")
 	private String location;
 	
+	@Column(name = "ext_market_id")
+	private Long externalMarketId;
+	
 	@Transient
 	private List<BetEventParticipantPrice> lstBetEventParticipantPrice;
 
@@ -240,5 +243,19 @@ public class BetEvent {
 	 */
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	/**
+	 * @return the externalMarketId
+	 */
+	public long getExternalMarketId() {
+		return externalMarketId;
+	}
+
+	/**
+	 * @param externalMarketId the externalMarketId to set
+	 */
+	public void setExternalMarketId(long externalMarketId) {
+		this.externalMarketId = externalMarketId;
 	}
 }
