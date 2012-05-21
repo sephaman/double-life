@@ -63,6 +63,10 @@
 	<bean id="betDataRetrieverService"
 		class="com.doublelife.doublelife.services.impl.BFBetDataRetrieverServiceImpl">
 	</bean>
+	
+	<bean id="bfAflBetDataRetrieverServiceImpl"
+		class="com.doublelife.doublelife.services.impl.BFAflBetDataRetrieverServiceImpl">
+	</bean>
 
 <!-- DAOs -->
 	<bean id="userBettingDAO"
