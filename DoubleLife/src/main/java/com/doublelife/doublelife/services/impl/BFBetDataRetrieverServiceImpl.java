@@ -59,6 +59,9 @@ public class BFBetDataRetrieverServiceImpl implements BetDataRetrieverService {
 	private final static int AFL_ID = 61420;
 	
 	
+	/**
+	 * Default constructor, sets up global service.
+	 */
 	public BFBetDataRetrieverServiceImpl() {
 		connectGlobalService();
 	}
@@ -94,7 +97,10 @@ public class BFBetDataRetrieverServiceImpl implements BetDataRetrieverService {
 			}
 		}
 	
-	// Fire a Web services login request
+		/**
+		 * Logs in to BetFair via Global Exchange.
+		 * @throws Exception
+		 */
 		public void login() throws Exception {
 			// Create a login request object
 	        LoginReq request = new LoginReq();
@@ -125,6 +131,12 @@ public class BFBetDataRetrieverServiceImpl implements BetDataRetrieverService {
 	        sessionToken = resp.getHeader().getSessionToken();
 		}
 	
+	/**
+	 * Get market prices for given Id.
+	 * @param marketId
+	 * @return
+	 * @throws Exception
+	 */
 	public InflatedMarketPrices getMarketPrices(int marketId) throws Exception {
 		// Create a request object
 		connectExchangeService();
@@ -154,6 +166,11 @@ public class BFBetDataRetrieverServiceImpl implements BetDataRetrieverService {
 	}
 	
 	
+	/**
+	 * Gets the market data fro the given market id.
+	 * @param marketId
+	 * @throws Exception
+	 */
 	public void getMarketData(int marketId) throws Exception {
 		connectExchangeService();
 		GetMarketReq request = new GetMarketReq();
@@ -180,6 +197,10 @@ public class BFBetDataRetrieverServiceImpl implements BetDataRetrieverService {
 
 	}
 	
+	/**
+	 * Returns all arket data.
+	 * @throws Exception
+	 */
 	public void getAllMarketsData() throws Exception {
 		connectExchangeService();
 		GetAllMarketsReq request = new GetAllMarketsReq();
@@ -202,6 +223,12 @@ public class BFBetDataRetrieverServiceImpl implements BetDataRetrieverService {
         sessionToken = resp.getHeader().getSessionToken();
 	}
 	
+	/**
+	 * Returns all market data for the given array of event type ids.
+	 * @param eventTypeIds
+	 * @return
+	 * @throws Exception
+	 */
 	public String getAllMarketsData(ArrayOfInt eventTypeIds) throws Exception {
 		connectExchangeService();
 		GetAllMarketsReq request = new GetAllMarketsReq();
@@ -226,6 +253,11 @@ public class BFBetDataRetrieverServiceImpl implements BetDataRetrieverService {
         return resp.getMarketData();
 	}
 	
+	/**
+	 * Pulls out the match ids for bet type 'Match Odds'.
+	 * @param dataString
+	 * @return
+	 */
 	public List<Integer> getAllMatchIdsForMatchOdds(String dataString) {
 		List<Integer> retVal = new ArrayList<Integer>();
 		 int numOccurrences = StringUtils.countOccurrencesOf(dataString, "Match Odds"); 
@@ -253,10 +285,13 @@ public class BFBetDataRetrieverServiceImpl implements BetDataRetrieverService {
 				}
 			}
 		}
-
 		return lstMatchIds;
 	}
 	
+	/**
+	 * Retrieves all Events data.
+	 * @throws Exception
+	 */
 	public void getAllEventsData() throws Exception {
 		connectExchangeService();
 		GetEventTypesReq request = new GetEventTypesReq();
@@ -286,15 +321,6 @@ public class BFBetDataRetrieverServiceImpl implements BetDataRetrieverService {
 		return stub_AUS;
 	}
 	
-	/**
-	 * @see com.doublelife.doublelife.services.BetDataRetrieverService#getMarkets()
-	 */
-	@Override
-	public void getMarkets() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	private com.doublelife.doublelife.data.webServices.generated.global.BFGlobalServiceStub.APIRequestHeader getGlobalHeader() {
         APIRequestHeader header = new APIRequestHeader();
         // The header must have the session token attached.
@@ -310,29 +336,32 @@ public class BFBetDataRetrieverServiceImpl implements BetDataRetrieverService {
         return header;
 	}
 	
-	// Fire a Web services logout request
-		public void logout() throws Exception {
-			// Create a request object
-	        LogoutReq request = new LogoutReq();
-	        request.setHeader(getGlobalHeader());
+	/**
+	 * Logs out of BetFair.
+	 * @throws Exception
+	 */
+	public void logout() throws Exception {
+		// Create a request object
+        LogoutReq request = new LogoutReq();
+        request.setHeader(getGlobalHeader());
 
-	        // Create the Logout message and attach the request to it.
-	        Logout msg = new Logout();
-	        msg.setRequest(request);
-	        
-	        // Send the request to the Betfair Service.
-	        LogoutResp resp = stub_global.logout(msg).getResult();
-	       
-	        // Transfer the response data back to the API context
-	        logger.info("login response:" + resp.getHeader());
-	        
-	        // Check the response code, and throw and exception if the call failed
-	        if (resp.getErrorCode() != LogoutErrorEnum.OK)
-	        {
-	        	throw new IllegalArgumentException("Failed to log out: "+resp.getErrorCode() + " Minor Error:"+resp.getMinorErrorCode()+ " Header Error:"+resp.getHeader().getErrorCode());
-	        }
-	        
-	        sessionToken = resp.getHeader().getSessionToken();
-		}
+        // Create the Logout message and attach the request to it.
+        Logout msg = new Logout();
+        msg.setRequest(request);
+        
+        // Send the request to the Betfair Service.
+        LogoutResp resp = stub_global.logout(msg).getResult();
+       
+        // Transfer the response data back to the API context
+        logger.info("login response:" + resp.getHeader());
+        
+        // Check the response code, and throw and exception if the call failed
+        if (resp.getErrorCode() != LogoutErrorEnum.OK)
+        {
+        	throw new IllegalArgumentException("Failed to log out: "+resp.getErrorCode() + " Minor Error:"+resp.getMinorErrorCode()+ " Header Error:"+resp.getHeader().getErrorCode());
+        }
+        
+        sessionToken = resp.getHeader().getSessionToken();
+	}
 
 }
