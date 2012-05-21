@@ -5,6 +5,7 @@ package com.doublelife.doublelife.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -16,6 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.doublelife.doublelife.data.BetComp.BetEvent;
+import com.doublelife.doublelife.data.BetComp.BetEventParticipantPrice;
 import com.doublelife.doublelife.data.BetComp.BetParticipant;
 import com.doublelife.doublelife.data.BetComp.retrievedBetData.InflatedMarketPrices;
 import com.doublelife.doublelife.data.BetComp.retrievedBetData.InflatedMarketPrices.InflatedRunner;
@@ -117,7 +119,7 @@ public class BFDataRetrieverTest {
 		//link these to bet_event object
 		
 		//get bet events for given round
-		List<BetEvent> lstRoundEvents = userBettingDAO.getBetEventsByRoundId(1283L); //TODO: get round smartly
+		List<BetEvent> lstRoundEvents = userBettingDAO.getBetEventsByRoundId(1293L); //TODO: get round smartly
 		
 		for (BetEvent thisBetEvent : lstRoundEvents) {
 			InflatedMarketPrices foundMarket = findMarketPricesForBetEvent(thisBetEvent, allPrices);
@@ -125,10 +127,34 @@ public class BFDataRetrieverTest {
 				logger.info("setting market id:" + foundMarket.getMarketId());
 				thisBetEvent.setExternalMarketId(foundMarket.getMarketId());
 				userBettingDAO.updateBetEvent(thisBetEvent);
+				
+				//now generate betting prices
+				for (BetParticipant thisBetParticipant : thisBetEvent.getLstBetParticipant()) {
+					BetEventParticipantPrice betEventParticipantPrice = new BetEventParticipantPrice();
+					InflatedRunner runner = getInflatedRunnerById(thisBetParticipant.getBetExternalId(), foundMarket.getRunners());
+					if (runner != null) {
+						betEventParticipantPrice.setBetEventId(thisBetEvent.getId());
+						betEventParticipantPrice.setBetParticipant(thisBetParticipant);
+						betEventParticipantPrice.setIsCurrent(true);
+						betEventParticipantPrice.setOdds(runner.getLastPriceMatched());
+						betEventParticipantPrice.setBetParticipantId(thisBetParticipant.getId());
+						betEventParticipantPrice.setDateUpdated(new Date());
+						userBettingDAO.createBetEventParticipantPrice(betEventParticipantPrice);
+					}
+				}
 			}
 		}
 		
 		service.logout();
+	}
+	
+	private InflatedRunner getInflatedRunnerById(int id, List<InflatedRunner> lstRunners) {
+		for (InflatedRunner thisRunner : lstRunners) {
+			if (thisRunner.getSelectionId() == id) {
+				return thisRunner;
+			}
+		}
+		return null;
 	}
 	
 	private InflatedMarketPrices findMarketPricesForBetEvent(BetEvent betEvent, List<InflatedMarketPrices> allPrices) {

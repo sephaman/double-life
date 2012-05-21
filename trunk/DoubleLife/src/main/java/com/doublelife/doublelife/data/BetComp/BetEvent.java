@@ -70,6 +70,9 @@ public class BetEvent {
 	@Column(name = "ext_market_id")
 	private Long externalMarketId;
 	
+	@Column(name = "secondary_market_id")
+	private Long secondaryMarketId;
+	
 	@Transient
 	private List<BetEventParticipantPrice> lstBetEventParticipantPrice;
 
@@ -257,5 +260,19 @@ public class BetEvent {
 	 */
 	public void setExternalMarketId(long externalMarketId) {
 		this.externalMarketId = externalMarketId;
+	}
+
+	/**
+	 * @return the secondaryMarketId
+	 */
+	public Long getSecondaryMarketId() {
+		return secondaryMarketId;
+	}
+
+	/**
+	 * @param secondaryMarketId the secondaryMarketId to set
+	 */
+	public void setSecondaryMarketId(Long secondaryMarketId) {
+		this.secondaryMarketId = secondaryMarketId;
 	}
 }

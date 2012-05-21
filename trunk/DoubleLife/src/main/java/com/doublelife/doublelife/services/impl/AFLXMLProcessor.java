@@ -55,6 +55,7 @@ public class AFLXMLProcessor {
 				betEvent.setLocation(getNodeValueFromElement((Element) nl.item(i), "VenueName"));
 				betEvent.setBetEventTypeId(this.betEventTypeId);
 				betEvent.setSelectionWinnerId(-1);
+				betEvent.setSecondaryMarketId(Long.parseLong(getNodeValueFromElement((Element) nl.item(i), "StatsId")));
 				//add participants
 				betEvent.getLstBetParticipant().add(mapAFLTeams.get(Integer.parseInt(getNodeValueFromElement((Element) nl.item(i), "HomeTeamId"))));
 				betEvent.getLstBetParticipant().add(mapAFLTeams.get(Integer.parseInt(getNodeValueFromElement((Element) nl.item(i), "AwayTeamId"))));
