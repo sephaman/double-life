@@ -11,5 +11,4 @@ package com.doublelife.doublelife.services;
  */
 public interface BetDataRetrieverService {
 
-	void getMarkets();
 }
