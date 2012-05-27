@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.doublelife.doublelife.data.RepaymentFrequencyEnum;
 import com.doublelife.doublelife.data.asset.bonds.Bond;
+import com.doublelife.doublelife.data.asset.bonds.BondPresentValueRow;
 import com.doublelife.doublelife.services.BondCalculationService;
 
 /**
@@ -63,6 +64,34 @@ public class BondCalculationServiceImpl implements BondCalculationService {
 	
 	private int getNumCouponPeriods(Bond bond, RepaymentFrequencyEnum frequency) {
 		return bond.getTerm() * frequency.getValue();
+	}
+
+	/**
+	 * @see com.doublelife.doublelife.services.BondCalculationService#priceBondBySeries(com.doublelife.doublelife.data.asset.bonds.Bond, double, com.doublelife.doublelife.data.RepaymentFrequencyEnum)
+	 */
+	@Override
+	public double priceBondBySeries(Bond bond, double yield,
+			RepaymentFrequencyEnum frequency) {
+		double retVal = 0.00;
+		
+		List<BondPresentValueRow> presentValueSeries = new ArrayList<BondPresentValueRow>();
+		double couponValue = getCouponPayment(bond.getFaceValue(), bond, frequency);
+		//get coupons
+		for (int index = 1; index <= getNumCouponPeriods(bond, frequency); index++) {
+			double presentValue = calculatePresentValue(couponValue, index, ((yield / 100) / frequency.getValue()));
+			BondPresentValueRow thisRow = new BondPresentValueRow(index, couponValue, 0.00, presentValue);
+			presentValueSeries.add(thisRow);
+		}
+
+		//get face value
+		double facePresentValue = 
+				calculatePresentValue(bond.getFaceValue(), presentValueSeries.size(), ((yield / 100) / frequency.getValue()));
+		presentValueSeries.add(new BondPresentValueRow(presentValueSeries.size(), 0.00, bond.getFaceValue(), facePresentValue));
+		
+		for (BondPresentValueRow thisRow : presentValueSeries) {
+			retVal += thisRow.getPresentValue();
+		}
+		return retVal;
 	}
 
 }

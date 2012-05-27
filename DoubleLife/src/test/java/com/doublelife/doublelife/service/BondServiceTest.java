@@ -31,6 +31,10 @@ public class BondServiceTest {
 		Assert.assertEquals(120.0, interest);
 		
 		service.priceBondPer100(bond, 6.00, RepaymentFrequencyEnum.SEMIANNUALLY);
+		
+		bond.setCouponRate(8.00);
+		bond.setTerm(10);
+		service.priceBondBySeries(bond, 10.00, RepaymentFrequencyEnum.SEMIANNUALLY);
 	}
 
 }

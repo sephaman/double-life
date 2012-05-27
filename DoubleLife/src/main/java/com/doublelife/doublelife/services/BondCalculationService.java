@@ -20,6 +20,22 @@ public interface BondCalculationService {
 	 */
 	public double calculateTotalInterestPaid(Bond bond);
 	
+	/**
+	 * Returns a bond price $100 of face value.
+	 * @param bond
+	 * @param yield
+	 * @param frequency
+	 * @return
+	 */
 	public double priceBondPer100(Bond bond, double yield, RepaymentFrequencyEnum frequency);
+	
+	/**
+	 * Prices a bond through generating a series of present values.
+	 * @param bond
+	 * @param yield
+	 * @param frequency
+	 * @return
+	 */
+	public double priceBondBySeries(Bond bond, double yield, RepaymentFrequencyEnum frequency);
 	
 }
