@@ -18,7 +18,7 @@ public enum RepaymentFrequencyEnum {
 	FORTNIGHTLY(26, "Fortnightly"),
 	MONTHLY(12, "Monthly"),
 	QUARTERLY(4, "Quarterly"),
-	BIANNUALLY(2, "Biannually"),
+	SEMIANNUALLY(2, "Semiannually"),
 	ANNUALLY(1, "Annually");
 	
 	 private static final Map<RepaymentFrequencyEnum, Integer> lookup 
