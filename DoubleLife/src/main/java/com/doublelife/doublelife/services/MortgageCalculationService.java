@@ -3,8 +3,11 @@
  */
 package com.doublelife.doublelife.services;
 
+import java.util.List;
+
 import com.doublelife.doublelife.data.RepaymentFrequencyEnum;
 import com.doublelife.doublelife.data.asset.property.MortgageDataObject;
+import com.doublelife.doublelife.data.asset.property.MortgageRepaymentRow;
 
 /**
  * Interface for Mortgage Calculations.
@@ -32,4 +35,12 @@ public interface MortgageCalculationService {
 	 * @return
 	 */
 	public double calculateRepayment(MortgageDataObject mortgageDataObj, RepaymentFrequencyEnum frequency);
+	
+	
+	/**
+	 * @param mortgageDataObj
+	 * @param frequency
+	 * @return
+	 */
+	public List<MortgageRepaymentRow> getRepaymentSchedule(MortgageDataObject mortgageDataObj, RepaymentFrequencyEnum frequency);
 }
