@@ -35,6 +35,8 @@ public class BondServiceTest {
 		bond.setCouponRate(8.00);
 		bond.setTerm(10);
 		service.priceBondBySeries(bond, 10.00, RepaymentFrequencyEnum.SEMIANNUALLY);
+		
+		service.priceBondByAnnuity(bond, 10.00, RepaymentFrequencyEnum.SEMIANNUALLY);
 	}
 
 }
