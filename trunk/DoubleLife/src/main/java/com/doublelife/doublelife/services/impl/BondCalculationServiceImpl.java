@@ -93,5 +93,25 @@ public class BondCalculationServiceImpl implements BondCalculationService {
 		}
 		return retVal;
 	}
+	
+	/**
+	 * @see com.doublelife.doublelife.services.BondCalculationService#priceBondByAnnuity(com.doublelife.doublelife.data.asset.bonds.Bond, double, com.doublelife.doublelife.data.RepaymentFrequencyEnum)
+	 */
+	public double priceBondByAnnuity(Bond bond, double yield, RepaymentFrequencyEnum frequency) {
+		double retVal = 0.00;
+		double couponValue = getCouponPayment(bond.getFaceValue(), bond, frequency);
+		double interest = yield / 100 / frequency.getValue();
+		int numCoupons = bond.getTerm() * frequency.getValue();
+		
+		//calculate coupon payments using pvifa = 1 - (1+i)^-n/i
+		double presentValue = 
+				couponValue * (1 - (Math.pow(1.00 + interest, -numCoupons)))/(interest);
+		
+		//calculate face value
+		double facePresentValue = bond.getFaceValue() * Math.pow((1 + interest), -numCoupons);
+		
+		retVal = presentValue + facePresentValue;
+		return retVal;
+	}
 
 }

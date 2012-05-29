@@ -38,4 +38,14 @@ public interface BondCalculationService {
 	 */
 	public double priceBondBySeries(Bond bond, double yield, RepaymentFrequencyEnum frequency);
 	
+	
+	/**
+	 * Prices the bond using the annuity method.
+	 * @param bond
+	 * @param yield
+	 * @param frequency
+	 * @return
+	 */
+	public double priceBondByAnnuity(Bond bond, double yield, RepaymentFrequencyEnum frequency);
+	
 }
