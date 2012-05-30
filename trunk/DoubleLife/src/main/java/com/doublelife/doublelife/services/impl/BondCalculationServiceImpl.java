@@ -127,5 +127,53 @@ public class BondCalculationServiceImpl implements BondCalculationService {
 		retVal = numerator / denominator;
 		return retVal * frequency.getValue() * 100;
 	}
+	
+	/**
+	 * @see com.doublelife.doublelife.services.BondCalculationService#calculateIndexedBondPrice(com.doublelife.doublelife.data.asset.bonds.Bond, com.doublelife.doublelife.data.RepaymentFrequencyEnum, double, boolean, boolean)
+	 */
+	public double calculateIndexedBondPrice(Bond bond, RepaymentFrequencyEnum frequency, double yield, double indexation, boolean interestIndexed, boolean capitalIndexed) {
+		double retVal = 0.00;
+		double indexRate = indexation / 100 / frequency.getValue();
+		double couponValue = getCouponPayment(bond.getFaceValue(), bond, frequency);
+		int numCoupons = bond.getTerm() * frequency.getValue();
+		double interest = yield / 100 / frequency.getValue();
+		
+		List<BondPresentValueRow> presentValueSeries = new ArrayList<BondPresentValueRow>();
+		
+		//get coupon payments
+		for (int thisPeriod = 1; thisPeriod <= numCoupons; thisPeriod++) {
+			double indexedCoupon = couponValue;
+			if (interestIndexed) {
+				indexedCoupon =  couponValue * (Math.pow((1 + indexRate), thisPeriod));
+			}
+			double couponPresentValue = calculateIndexedValue(indexedCoupon, thisPeriod, interest, indexRate);
+			BondPresentValueRow faceValueRow = new BondPresentValueRow(thisPeriod, indexedCoupon, 0.00, couponPresentValue);
+			presentValueSeries.add(faceValueRow);
+		}
+		
+		//get face value
+		double indexedFace = bond.getFaceValue();
+		if (capitalIndexed) {
+			indexedFace = bond.getFaceValue() * (Math.pow((1 + indexRate), numCoupons));
+		}
+		double facePresentValue = calculateIndexedValue(indexedFace, numCoupons, interest, indexRate);
+		BondPresentValueRow faceValueRow = new BondPresentValueRow(numCoupons, 0.00, indexedFace, facePresentValue);
+		presentValueSeries.add(faceValueRow);
+		
+		//calculate total present value
+		for (BondPresentValueRow thisRow : presentValueSeries) {
+			retVal += thisRow.getPresentValue();
+		}
+		
+		return retVal;
+	}
+	
+	private double calculateIndexedValue(double coefficient, int periodNum, double yield, double indexation) {
+		double retVal = 0.00;
+		double numerator = coefficient;
+		double denominator =Math.pow((1 + yield), periodNum);
+		retVal = numerator / denominator;
+		return retVal;
+	}
 
 }
