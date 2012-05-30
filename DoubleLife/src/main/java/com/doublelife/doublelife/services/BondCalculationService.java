@@ -57,4 +57,16 @@ public interface BondCalculationService {
 	 */
 	public double calculateApproxBondYield(Bond bond, RepaymentFrequencyEnum frequency, double presentVal);
 	
+	/**
+	 * Calculates the indexed bond value.
+	 * @param bond
+	 * @param frequency
+	 * @param yield 
+	 * @param indexation
+	 * @param interestIndexed
+	 * @param capitalIndexed
+	 * @return
+	 */
+	public double calculateIndexedBondPrice(Bond bond, RepaymentFrequencyEnum frequency, double yield, double indexation, boolean interestIndexed, boolean capitalIndexed);
+	
 }

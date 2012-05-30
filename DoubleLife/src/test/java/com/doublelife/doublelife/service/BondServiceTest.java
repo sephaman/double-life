@@ -39,6 +39,8 @@ public class BondServiceTest {
 		service.priceBondByAnnuity(bond, 10.00, RepaymentFrequencyEnum.SEMIANNUALLY);
 		
 		double res = service.calculateApproxBondYield(bond, RepaymentFrequencyEnum.SEMIANNUALLY, 819.00);
+		
+		double res2 = service.calculateIndexedBondPrice(bond, RepaymentFrequencyEnum.QUARTERLY, 10.00, 3.00, true, true);
 	}
 
 }
