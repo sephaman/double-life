@@ -113,5 +113,19 @@ public class BondCalculationServiceImpl implements BondCalculationService {
 		retVal = presentValue + facePresentValue;
 		return retVal;
 	}
+	
+	/**
+	 * @see com.doublelife.doublelife.services.BondCalculationService#calculateApproxBondYield(com.doublelife.doublelife.data.asset.bonds.Bond, com.doublelife.doublelife.data.RepaymentFrequencyEnum, double)
+	 */
+	public double calculateApproxBondYield(Bond bond, RepaymentFrequencyEnum frequency, double presentVal) {
+		double retVal = 0.00;
+		double couponValue = getCouponPayment(bond.getFaceValue(), bond, frequency);
+		int numCoupons = bond.getTerm() * frequency.getValue();
+		
+		double denominator = 0.5 * (bond.getFaceValue() + presentVal);
+		double numerator = couponValue + ((1.00/numCoupons) * (bond.getFaceValue() - presentVal));
+		retVal = numerator / denominator;
+		return retVal * frequency.getValue() * 100;
+	}
 
 }
