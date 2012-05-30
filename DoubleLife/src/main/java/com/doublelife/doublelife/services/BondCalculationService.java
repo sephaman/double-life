@@ -48,4 +48,13 @@ public interface BondCalculationService {
 	 */
 	public double priceBondByAnnuity(Bond bond, double yield, RepaymentFrequencyEnum frequency);
 	
+	/**
+	 * Calculates an approximate per annum yield for a given bond.
+	 * @param bond
+	 * @param frequency
+	 * @param presentVal
+	 * @return
+	 */
+	public double calculateApproxBondYield(Bond bond, RepaymentFrequencyEnum frequency, double presentVal);
+	
 }
