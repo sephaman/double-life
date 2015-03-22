@@ -1,0 +1,1 @@
+a web site to allow users to compete with real time financial data
